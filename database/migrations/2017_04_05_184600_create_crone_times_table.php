@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWheatersTable extends Migration
+class CreateCroneTimesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateWheatersTable extends Migration
      */
     public function up()
     {
-        Schema::create('wheaters', function (Blueprint $table) {
+        Schema::create('crone_times', function (Blueprint $table) {
             $table->increments('id');
+            $table->time('time');
+            $table->dateTime('running_at');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateWheatersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wheaters');
+        Schema::dropIfExists('crone_times');
     }
 }
