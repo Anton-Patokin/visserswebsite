@@ -2,6 +2,7 @@
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 @import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url(https://fonts.googleapis.com/css?family=Tinos);
 
 // Variables
 @import "variables";
@@ -9,5 +10,7 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+@import "nav/navbar";
+@import "images";
 body{
 }

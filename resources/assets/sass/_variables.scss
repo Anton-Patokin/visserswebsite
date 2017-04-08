@@ -1,6 +1,13 @@
+//color palet
+$font-white:#fff;
+$dark-blue:#323b44;
+$light-blue:#007d9b;
+
 
 // Body
 $body-bg: #f5f8fa;
+$path:'http://localhost/einddwerk_visserswebsite/visserswebsite/public/';
+
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
@@ -18,6 +25,7 @@ $brand-danger: #bf5329;
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+
 $font-family-sans-serif: 'Roboto', sans-serif;
 
 $font-size-base: 14px;

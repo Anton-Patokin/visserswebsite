@@ -1,0 +1,137 @@
+@import "variables";
+@import "navbar_second";
+#nav-bar-top {
+  z-index: 5000;
+  #user-fish-line-icon {
+    background-image: url(#{$path}/images/fish-line-background.png);
+    min-width: 150px;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .caret{
+    margin-top: 12px;
+    margin-left: 10px;
+  }
+
+  .dropdown-menu{
+    min-width: 150px;
+    width: 100%;
+  }
+  .navbar.navbar-default {
+    border-radius: 0px;
+    border-left: transparent;
+  }
+  #navbar-collapse {
+    border-bottom: 1px solid #266080;
+  }
+  .lower-nav {
+    color: #fff;
+    font-size: 20px;
+    padding: 23px 20px;
+    height: 78px;
+    color: #266080;
+    background-color: #fff;
+    border-bottom: 6px solid #266080;
+  }
+  #brand-logo {
+    background-size: cover;
+    position: absolute;
+  }
+  #brand-logo img {
+    width: 100%;
+    height: 130px;
+    min-width: 150px;
+  }
+  div.nopadding {
+    padding: 0;
+    margin: 0;
+  }
+  .nav-buttons {
+    border-radius: 0px;
+  }
+  .navbar-brand {
+    display: none;
+  }
+  .wrapper {
+    height: auto;
+    background-color: #fff;
+    margin-top: 0px;
+    padding: 10px 20px;
+  }
+  .well {
+    background-color: transparent;
+    border: 3px solid #428bca;
+    border-radius: 0px;
+    text-align: center;
+    font-size: 25px;
+  }
+  @media (max-width: 768px) {
+    .lower-nav {
+      font-size: 20px;
+      padding: 25px 20px;
+    }
+    .navbar-brand {
+      display: block;
+    }
+  }
+  @media (max-width: 480px) {
+    .lower-nav {
+      font-size: 18px;
+      padding: 20px 10px;
+    }
+    .navbar-header a{
+      margin-top: 5px;
+    }
+  }
+
+}
+
+#nav-bar-top.navbar-default .navbar-brand {
+  color: rgba(255, 255, 255, 1);
+}
+
+#nav-bar-top.navbar-default {
+  font-size: 15px;
+  background-color: rgba(0, 125, 155, 1);
+  border-bottom-width: 1px;
+}
+
+#nav-bar-top.navbar-default .navbar-nav > li > a {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(0, 125, 155, 1);
+}
+
+#nav-bar-top.navbar-default .navbar-nav > li > a:hover,
+#nav-bar-top.navbar-default .navbar-nav > li > a:focus {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(2, 93, 115, 1);
+}
+
+#nav-bar-top.navbar-default .navbar-nav > .active > a,
+#nav-bar-top.navbar-default .navbar-nav > .active > a:hover,
+#nav-bar-top.navbar-default .navbar-nav > .active > a:focus {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(2, 93, 115, 1);
+}
+
+#nav-bar-top.navbar-default .navbar-toggle {
+  border-color: #025d73;
+}
+
+#nav-bar-top.navbar-default .navbar-toggle:hover,
+#nav-bar-top.navbar-default .navbar-toggle:focus {
+  background-color: #025d73;
+}
+
+#nav-bar-top.navbar-default .navbar-toggle .icon-bar {
+  background-color: #025d73;
+}
+
+#nav-bar-top.navbar-default .navbar-toggle:hover .icon-bar,
+#nav-bar-top.navbar-default .navbar-toggle:focus .icon-bar {
+  background-color: #007d9b;
+}
+
+
