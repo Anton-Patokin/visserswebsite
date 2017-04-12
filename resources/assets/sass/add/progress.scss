@@ -33,6 +33,17 @@
   border-bottom-color: transparent;
 }
 
+.disabled {
+  &:hover {
+    cursor: default;
+  }
+  cursor: default;
+}
+
+.disabled span.round-tab {
+  background: #eee;
+}
+
 span.round-tab {
   width: 70px;
   height: 70px;
@@ -47,15 +58,18 @@ span.round-tab {
   text-align: center;
   font-size: 25px;
 }
-span.round-tab i{
-  color:#555555;
+
+span.round-tab i {
+  color: #555555;
 }
+
 .wizard li.active span.round-tab {
   background: #fff;
   border: 2px solid #323b44;
-
+  cursor: pointer;
 }
-.wizard li.active span.round-tab i{
+
+.wizard li.active span.round-tab i {
   color: #007d9b;
 }
 
@@ -88,7 +102,7 @@ span.round-tab:hover {
   margin: 0 auto;
   bottom: 0px;
   border: 10px solid transparent;
-  border-bottom-color: #323b44;
+  border-bottom-color: $dark-blue;
 }
 
 .wizard .nav-tabs > li a {
@@ -112,7 +126,7 @@ span.round-tab:hover {
   margin-top: 0;
 }
 
-@media( max-width : 585px ) {
+@media(max-width: 585px) {
 
   .wizard {
     width: 90%;
@@ -137,4 +151,16 @@ span.round-tab:hover {
     position: absolute;
     left: 35%;
   }
+}
+
+.well {
+  &:hover {
+    background-color: $font-white;
+    color: $dark-blue;
+    cursor: pointer;
+  }
+  background-color: #eee;
+  font-size: 1.2em;
+  padding: 12px;
+  margin-bottom: 0
 }
