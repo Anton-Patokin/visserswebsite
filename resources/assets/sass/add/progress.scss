@@ -155,12 +155,13 @@ span.round-tab:hover {
 
 .well {
   &:hover {
-    background-color: $font-white;
-    color: $dark-blue;
+    background-color: $dark-blue;
+    color: $font-white;
     cursor: pointer;
   }
-  background-color: #eee;
+  background-color: #fff;
   font-size: 1.2em;
   padding: 12px;
-  margin-bottom: 0
+  border-radius: 0;
+  margin-bottom: 0;
 }

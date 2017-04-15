@@ -1,0 +1,46 @@
+.thumbnail {
+  position: relative;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+
+.thumbnail img {
+  width: 100%;
+}
+
+//.arrow {
+//  border-style: dashed;
+//  border-color: transparent;
+//  border-width: 0.20em;
+//  display: -moz-inline-box;
+//  display: inline-block;    /* Use font-size to control the size of the arrow. */
+//  font-size: 100px;
+//  height: 0;
+//  line-height: 0;
+//  position: relative;
+//  vertical-align: middle;
+//  width: 0;
+//  background-color:#fff;   /* change background color acc to bg color */
+//  border-left-width: 0.2em;
+//  border-left-style: solid;
+//  border-left-color: #eee;
+//  left:0.25em;
+//}
+
+.arrow {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  margin-top: -12px;
+  margin-right: -24px;
+  border-top: 26px solid transparent;
+  border-bottom: 26px solid transparent;
+  border-left: 26px solid $dark-blue;
+}
+
+//
+.show-arrow .arrow{
+  margin-right: -38px;
+  opacity: 1;
+  transition: all 0.5s;
+}

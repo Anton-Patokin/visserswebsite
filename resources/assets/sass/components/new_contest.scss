@@ -1,0 +1,41 @@
+
+.head-thumbnail{
+  .icon {
+    top: 27px;
+    left: 50%;
+    position: absolute;
+    height: 75px;
+    background-color: #eee;
+    min-width: 25%;
+    text-align: center;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    .date-nummber{
+      position: inherit;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      background-color: #fff;
+      font-size: 25px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+    .date-string{
+      position: inherit;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 25px;
+
+      color: $font-white;
+      background-color: #bf5329;
+
+    }
+  }
+  background-color: $dark-blue;
+  padding: 20px 0px 10px 10px
+}
