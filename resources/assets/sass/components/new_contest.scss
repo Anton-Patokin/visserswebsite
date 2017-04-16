@@ -36,6 +36,30 @@
 
     }
   }
+  .icon-img-background-left{
+    position: absolute;
+    top: 0;
+    left: 10%;
+    height: 60px;
+    width: 60px;
+    z-index: 5;
+  }
+  .icon-img-background-right{
+    position: absolute;
+    top: 0;
+    right: 10%;
+    height: 60px;
+    width: 60px;
+    z-index: 5;
+  }
+  .ship{
+    background: url(#{$path}/images/icon/fishing-sprite.png) -60px 0px;
+  }
+  .dobber{
+    background: url(#{$path}/images/icon/fishing-sprite.png) 0px 0px;
+  }
+
+  height: 63px;
   background-color: $dark-blue;
   padding: 20px 0px 10px 10px
 }

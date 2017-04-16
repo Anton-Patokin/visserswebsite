@@ -19,6 +19,7 @@
     {{--'csrfToken' => csrf_token(),--}}
     {{--]) !!};--}}
     {{--</script>--}}
+
 </head>
 <body ng-app="myApp" ng-controller="MainController">
 @include('layouts.top')
@@ -32,9 +33,10 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{url('/js/angular-min.js')}}"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>
+{{--<script src="{{url('/js/angular-min.js')}}"></script>--}}
+{{--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>--}}
+{{--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>--}}
+
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

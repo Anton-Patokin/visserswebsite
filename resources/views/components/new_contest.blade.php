@@ -1,11 +1,12 @@
 <div class="thumbnail">
     <div class="head-thumbnail">
+        <div  class="icon-img-background-left ship"></div>
         <div class="icon">
+{{--            <img class="pull-left" src="{{url('/images/icon/dobber.png')}}">--}}
             <div class="date-string">mar</div>
             <div class="date-nummber">12</div>
-
         </div>
-        <p>head</p>
+        <div class="icon-img-background-right dobber"></div>
     </div>
     <img src="http://placehold.it/500x300" alt="">
     <div class="caption">

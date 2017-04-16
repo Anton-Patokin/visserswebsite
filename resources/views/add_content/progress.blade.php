@@ -10,7 +10,7 @@
                                 ng-class="{active: step.step<=currentStep,'disabled':step.step>currentStep}">
                                 <a ng-href="@{{step.url}}" title="Step @{{step.step}}">
                             <span class="round-tab">
-                                <i class="glyphicon @{{ step.glyphicon }}"></i>
+                                <i class="glyphicon" ng-class="step.glyphicon"><div ng-hide="step.glyphicon!=''">@{{ $index }}</div></i>
                             </span>
                                 </a>
                             </li>
@@ -20,12 +20,13 @@
                 <form class="margin-top-2 min-height-500" role="form">
                     <div class="tab-content">
                         <div ng-show="currentStep == 1" class="container">
-                                <div class="row">
-                                    <div class="col-md-12 col-lg-12">
-                                        <h3>Wat wil jij delen? </h3>
-                                        @include('add_content.steps.step1')
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <h3>Wat wil jij delen? </h3>
+                                    @include('add_content.steps.step1')
+                                    <input type="text" name="inputType" ng-model="input.type" hidden>
                                 </div>
+                            </div>
                         </div>
                         <div ng-show="currentStep == 2">
                             <h3>Step 2</h3>
