@@ -1,8 +1,8 @@
-<div class=" margin-bottom-10">
+<div class=" margin-bottom-10 container">
     <div class="row">
         <div class="col-md-12">
             <section>
-                <div class="wizard container">
+                <div class="wizard ">
                     <div class="wizard-inner">
                         <div class="connecting-line"></div>
                         <ul class="nav nav-tabs" role="tablist">
@@ -10,7 +10,9 @@
                                 ng-class="{active: step.step<=currentStep,'disabled':step.step>currentStep}">
                                 <a ng-href="@{{step.url}}" title="Step @{{step.step}}">
                             <span class="round-tab">
-                                <i class="glyphicon" ng-class="step.glyphicon"><div ng-hide="step.glyphicon!=''">@{{ $index }}</div></i>
+                                <i class="glyphicon" ng-class="step.glyphicon">
+                                    <div ng-hide="step.glyphicon!=''">@{{ $index }}</div>
+                                </i>
                             </span>
                                 </a>
                             </li>
@@ -19,7 +21,7 @@
                 </div>
                 <form class="margin-top-2 min-height-500" role="form">
                     <div class="tab-content">
-                        <div ng-show="currentStep == 1" class="container">
+                        <div ng-show="currentStep == 1" class="">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
                                     <h3>Wat wil jij delen? </h3>
@@ -28,10 +30,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-show="currentStep == 2">
-                            <h3>Step 2</h3>
-                            <p>This is step 2</p>
-
+                        <div ng-if="currentStep == 2">
+                            <h3 class="">Step 2</h3>
+                            <div class=" margin-top-3">
+                                @include('add_content.steps.step2')
+                            </div>
                         </div>
                         <div ng-show="currentStep == 3">
                             <h3>Step 3</h3>

@@ -1,3 +1,4 @@
+var center = {latitude: 51.218826, longitude: 4.402950};
 
 
 require('./bootstrap');
@@ -15,23 +16,24 @@ myApp.config(function (uiGmapGoogleMapApiProvider) {
         libraries: 'weather,geometry,visualization'
     });
 })
-myApp.controller('GoogleMapsConroller',['$scope','uiGmapGoogleMapApi',function ($scope,uiGmapGoogleMapApi) {
-    var center = { latitude: 51.218826, longitude: 4.402950 };
+
+myApp.controller('GoogleMapsConroller', ['$scope', 'uiGmapGoogleMapApi', function ($scope, uiGmapGoogleMapApi) {
     $scope.map = {
-        center:
-        { latitude:  center.latitude,
+        center: {
+            latitude: center.latitude,
             longitude: center.longitude
         },
-        options:{
-            minZoom: 8,
+        options: {
             scrollwheel: false,
-        }};
-    uiGmapGoogleMapApi.then(function(maps) {
+        },
+        zoom: 8
+    };
+    uiGmapGoogleMapApi.then(function (maps) {
 
     });
 }]);
 
-myApp.controller('MainController', ['$scope', function ($scope) {
+myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', function ($scope, uiGmapGoogleMapApi) {
     $scope.greeting = 'Hola!';
     $scope.show_exampale = 1;
 
@@ -73,7 +75,6 @@ myApp.controller('MainController', ['$scope', function ($scope) {
 
     //Functions
     $scope.gotoStep = function (newStep) {
-        console.log(newStep);
         $scope.currentStep = newStep;
         editSteps($scope.currentStep);
     }
@@ -124,6 +125,44 @@ myApp.controller('MainController', ['$scope', function ($scope) {
         console.log($scope.steps);
     }
 
+    $scope.mapAdd = {
+        center: {
+            latitude: center.latitude,
+            longitude: center.longitude
+        },
+        options: {
+            scrollwheel: false,
+        },
+        control: {
+            refresh: {
+                latitude: center.latitude,
+                longitude: center.longitude,
+            },
+        },
+        zoom: 8,
+        events: {
+            click: function ($marker, $event, $position) {
+                var coordinats=$position[0].latLng;
+                $scope.marker.coords = {
+                    latitude: coordinats.lat(),
+                    longitude: coordinats.lng(),
+                };
+                $scope.$apply();
+            }
+        }
+    };
+    $scope.marker = {
+        id: 1,
+        coords: {
+            latitude: "",
+            longitude: "",
+        },
+        options: '',
+
+    }
+    uiGmapGoogleMapApi.then(function (maps) {
+
+    });
 
 }]);
 
