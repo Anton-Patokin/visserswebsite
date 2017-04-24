@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/add/content','AddContentController@add');
+Route::get('/add/content',function(){
+    return 'okey';
+});

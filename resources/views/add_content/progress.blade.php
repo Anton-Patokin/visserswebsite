@@ -19,8 +19,9 @@
                         </ul>
                     </div>
                 </div>
-                <form class="margin-top-2 min-height-500" role="form">
-                    <div class="tab-content">
+                <form name="visWedstrijdForm" class="margin-top-2 min-height-500" role="form" ng-submit="submitForm()" novalidate>
+                    {{--                {{ Form::open(array('url' => 'foo/bar','files' => true,'ng-submit'=>'submitForm()','novalidate')) }}--}}
+                    <div class="tab-content margin-top-5" ng-init="input.id={{Auth::user()->id }}">
                         <div ng-show="currentStep == 1" class="">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
@@ -31,30 +32,37 @@
                             </div>
                         </div>
                         <div ng-if="currentStep == 2">
-                            <h3 class="">Step 2</h3>
+                            <h3 class="">Kies best pasende locatie voor je @{{ input.type }}</h3>
                             <div class=" margin-top-3">
                                 @include('add_content.steps.step2')
                             </div>
+                            <input type="text" name="lat" ng-model="input.lat" hidden>
+                            <input type="text" name="lng" ng-model="input.lng" hidden>
                         </div>
                         <div ng-show="currentStep == 3">
-                            <h3>Step 3</h3>
-                            <p>This is step 3</p>
+                            <h3>Vul het ontbrekende informatie om je bericht successvol af te ronden</h3>
+                            @include('add_content.steps.step3.stap3_1')
                         </div>
                         <div ng-show="currentStep == 4">
                             <h3>Complete</h3>
-                            <p>You have successfully completed all steps.</p>
+                            <p>Jou bericht is goed opgeslagen</p>
                         </div>
                         <div class="clearfix"></div>
-                        <ul ng-show="currentStep>1" class="list-inline text-center ">
+                        <ul ng-show="currentStep>1" class="list-inline text-center margin-top-5">
                             <li>
                                 <button ng-click="prev()" type="button" class="btn btn-default">Vorige</button>
                             </li>
                             <li>
-                                <button ng-click="next()" type="" class="btn btn-default">Volgende</button>
+                                <button ng-if="currentStep ==2 " ng-click="next()" type="" class="btn btn-default"
+                                        ng-disabled="input.lat=='' && input.lng == ''">Volgende
+                                </button>
+                                <button ng-if="currentStep == 3" type="submit" class="btn btn-default"
+                                        ng-disabled="!visWedstrijdForm.$valid">Verzenden
+                                </button>
                             </li>
                         </ul>
                     </div>
-                </form>
+                    </form>
             </section>
         </div>
     </div>

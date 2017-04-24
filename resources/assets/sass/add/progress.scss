@@ -113,6 +113,7 @@ span.round-tab:hover {
   padding: 0;
 }
 
+
 .wizard .nav-tabs > li a:hover {
   background: transparent;
 }
@@ -164,4 +165,17 @@ span.round-tab:hover {
   padding: 12px;
   border-radius: 0;
   margin-bottom: 0;
+}
+
+.max-charakters {
+  margin-top: 0px;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.max-charakters.show {
+  margin-top: 0px;
+  color: $dark-blue;
+  opacity: 0.7;
+  transition: all 0.2s ease-in-out;
 }

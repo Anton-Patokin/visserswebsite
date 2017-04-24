@@ -37,6 +37,23 @@
 {{--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>--}}
 {{--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>--}}
 
+<script>var ROUTEFRONT='http://localhost/einddwerk_visserswebsite/visserswebsite/public';</script>
+<script type="text/javascript" src="{{url('/js/libs/angular.min.js')}}"></script>
+
+
+<script type="text/javascript" src="{{url('/js/libs/lodash.min.js')}}"></script>
+
+<script src="{{url('/js/libs/angular-simple-logger.min.js')}}"></script>
+<script src="{{url('/js/libs/angular-google-maps.js')}}"></script>
+<script src="{{url('/js/libs/angular-animate.min.js')}}"></script>
+<script src="{{url('/js/libs/angular-aria.min.js')}}"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-messages.min.js"></script>--}}
+<script src="{{url('/js/libs/angular-material.min.js')}}"></script>
+
+
+
+
+<script src="{{ asset('js/base.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
