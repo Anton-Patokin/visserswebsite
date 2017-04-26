@@ -23,6 +23,7 @@ class CreateWedstrijdsTable extends Migration
             $table->string('category');
             $table->string('hengel');
             $table->string('visserij');
+            $table->decimal('kostprijs',10,2);
             $table->string('duur');
             $table->string('water');
             $table->date('datum');

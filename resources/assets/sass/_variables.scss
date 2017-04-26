@@ -1,3 +1,5 @@
+
+
 //color palet
 $font-white:#fff;
 $dark-blue:#323b44;
@@ -45,3 +47,10 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+
+//btn
+$btn-font-weight:                1.5em;
+
+$btn-default-color:              $font-white;
+$btn-default-bg:                 $dark-blue;
+$btn-default-border:             $dark-blue;

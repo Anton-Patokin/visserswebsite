@@ -1,5 +1,5 @@
 var center = {latitude: 51.218826, longitude: 4.402950};
-
+var MAX_SIZE = 5000000;//5mb
 
 var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial']);
 
@@ -69,8 +69,27 @@ myApp.directive("ngFileSelect", function () {
             el.bind("change", function (e) {
 
                 $scope.file = (e.srcElement || e.target).files[0];
-                $scope.input.file=$scope.file;
-                $scope.getFile();
+                var ext = $scope.file.name.match(/\.(.+)$/)[1];
+                if (angular.lowercase(ext) === 'jpg' || angular.lowercase(ext) === 'jpeg' || angular.lowercase(ext) === 'png') {
+                    $scope.showImageInvalideFileFormat = false;
+                    var size = $scope.file.size;
+                    console.log(size);
+                    if (size < MAX_SIZE) {
+                        console.log('alles is inoorde image is corect');
+                        $scope.ShowfileSizeValidation = false;
+                        $scope.showSelectImageValidation = false;
+                        $scope.input.file = $scope.file;
+                        $scope.getFile();
+                    } else {
+                        $scope.ShowfileSizeValidation = true;
+                    }
+
+                }
+                else {
+                    $scope.showImageInvalideFileFormat = true;
+                }
+                console.log($scope.showImageInvalideFileFormat);
+                $scope.$apply();
             })
 
         }
@@ -105,29 +124,65 @@ myApp.controller('GoogleMapsConroller', ['$scope', 'uiGmapGoogleMapApi', functio
 
 myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader', '$http', function ($scope, uiGmapGoogleMapApi, fileReader, $http) {
     $scope.imageSrc = "http://placehold.it/500x300";
-    var formValue=new FormData();
+    var formValue = new FormData();
+    $scope.showImageInvalideFileFormat = false;
+    $scope.showSelectImageValidation = false
+    $scope.ShowfileSizeValidation = false;
     $scope.submitForm = function () {
-
+        $scope.showError = false;
         console.log($scope.visWedstrijdForm.$valid);
         // check to make sure the form is completely valid
 
-        formValue.append("input", $scope.input);
+        formValue.append("input", [$scope.input.id]);
 
-        if ($scope.visWedstrijdForm.$valid) {
+
+
+        if ($scope.visWedstrijdForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
+            $scope.showError = false;
+            $scope.currentStep++;
+
+
+
+            $scope.model = {
+                name: "",
+                comments: ""
+            };
             $http({
-                withCredentials: true,
                 method: 'POST',
                 url: ROUTEFRONT + '/api/add/content',
-                data: formValue,
-                headers: {'Content-Type': undefined}
-            }).then(function ($massage) {
-                console.log($scope.input);
-                console.log($massage);
-            })
+                headers: { 'Content-Type': undefined },
+                transformRequest: function (data) {
+                    var formData = new FormData();
+                    formData.append("input", angular.toJson(data.input));
+                        formData.append("file", data.file);
+                    return formData;
+                },
+                data: { input: $scope.input, file: $scope.file }
+            }).
+            success(function (data, status, headers, config) {
+            }).
+            error(function (data, status, headers, config) {
+            });
+
+
+            // $http({
+            //     withCredentials: true,
+            //     method: 'POST',
+            //     url: ROUTEFRONT + '/api/add/content',
+            //     data: formValue,
+            //     headers: {'Content-Type': undefined}
+            // }).then(function ($massage) {
+            //     console.log($scope.input);
+            //     console.log($massage);
+            // })
+        } else {
+            $scope.showError = true;
         }
     };
 
+
     $scope.getFile = function () {
+
 
         formValue.append("file", $scope.file);
         $scope.progress = 0;
@@ -174,7 +229,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         category: "",
         hangel: "dobber",
         visserij: "",
-        kostprijs: "",
+        kostprijs: 0,
         wedstrijdduur: "",
         wedstrijdwater: "",
         myDate: d,

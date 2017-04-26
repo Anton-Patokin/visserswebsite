@@ -1,5 +1,5 @@
 <div class=" margin-bottom-10 container">
-    <div class="row">
+    <div class="">
         <div class="col-md-12">
             <section>
                 <div class="wizard ">
@@ -41,7 +41,9 @@
                         </div>
                         <div ng-show="currentStep == 3">
                             <h3>Vul het ontbrekende informatie om je bericht successvol af te ronden</h3>
-                            @include('add_content.steps.step3.stap3_1')
+                            <div class="row">
+                                @include('add_content.steps.step3.stap3_1')
+                            </div>
                         </div>
                         <div ng-show="currentStep == 4">
                             <h3>Complete</h3>
@@ -50,14 +52,16 @@
                         <div class="clearfix"></div>
                         <ul ng-show="currentStep>1" class="list-inline text-center margin-top-5">
                             <li>
-                                <button ng-click="prev()" type="button" class="btn btn-default">Vorige</button>
+                                <button ng-click="prev()" type="button" class="btn-lg btn-default">Vorige</button>
                             </li>
                             <li>
-                                <button ng-if="currentStep ==2 " ng-click="next()" type="" class="btn btn-default"
+                                <button ng-if="currentStep ==2 " ng-click="next()" type="" class="btn-lg btn-default"
                                         ng-disabled="input.lat=='' && input.lng == ''">Volgende
                                 </button>
-                                <button ng-if="currentStep == 3" type="submit" class="btn btn-default"
+                                <button ng-if="currentStep == 3" type="submit" class="btn-lg btn-default"
                                         ng-disabled="!visWedstrijdForm.$valid">Verzenden
+                                </button>
+                                <button ng-if="currentStep == 3" type="submit" class="btn-lg btn-default">Verzenden1
                                 </button>
                             </li>
                         </ul>
