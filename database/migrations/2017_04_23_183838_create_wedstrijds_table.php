@@ -19,20 +19,22 @@ class CreateWedstrijdsTable extends Migration
             $table->decimal('lng',12,8);
             $table->string('titel');
             $table->string('image');
-            $table->string('prijzen');
+            $table->string('prijzen')->nullable();
             $table->string('category');
             $table->string('hengel');
             $table->string('visserij');
             $table->decimal('kostprijs',10,2);
-            $table->string('duur');
-            $table->string('water');
+            $table->string('duur')->nullable();
+            $table->string('water')->nullable();
             $table->date('datum');
             $table->integer('dag');
             $table->string('maand');
-            $table->string('loting');
+            $table->string('loting')->nullable();
             $table->text('text');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('active')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

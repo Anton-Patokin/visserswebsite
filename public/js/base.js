@@ -33,7 +33,6 @@ var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial']);
                     });
             };
         };
-
         var getReader = function (deferred, scope) {
             var reader = new FileReader();
             reader.onload = onLoad(reader, deferred, scope);
@@ -41,10 +40,9 @@ var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial']);
             reader.onprogress = onProgress(reader, scope);
             return reader;
         };
-
         var readAsDataURL = function (file, scope) {
             var deferred = $q.defer();
-
+            console.log(file);
             var reader = getReader(deferred, scope);
             reader.readAsDataURL(file);
 
@@ -81,7 +79,8 @@ myApp.directive("ngFileSelect", function () {
                         $scope.input.file = $scope.file;
                         $scope.getFile();
                     } else {
-                        $scope.ShowfileSizeValidation = true;
+                        $scope.ShowfileSiz
+                        eValidation = true;
                     }
 
                 }
@@ -96,8 +95,6 @@ myApp.directive("ngFileSelect", function () {
 
     }
 })
-
-
 myApp.config(function (uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyDJBGY58S0ptq6KlFxYIpNLTIEW8mBKhk4',
@@ -105,7 +102,6 @@ myApp.config(function (uiGmapGoogleMapApiProvider) {
         libraries: 'weather,geometry,visualization'
     });
 })
-
 myApp.controller('GoogleMapsConroller', ['$scope', 'uiGmapGoogleMapApi', function ($scope, uiGmapGoogleMapApi) {
     $scope.map = {
         center: {
@@ -118,7 +114,6 @@ myApp.controller('GoogleMapsConroller', ['$scope', 'uiGmapGoogleMapApi', functio
         zoom: 8
     };
     uiGmapGoogleMapApi.then(function (maps) {
-
     });
 }]);
 
@@ -126,8 +121,53 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     $scope.imageSrc = "http://placehold.it/500x300";
     var formValue = new FormData();
     $scope.showImageInvalideFileFormat = false;
-    $scope.showSelectImageValidation = false
+    $scope.showSelectImageValidation = true;
     $scope.ShowfileSizeValidation = false;
+    $scope.greeting = 'Hola!';
+    $scope.show_exampale = 1;
+    $scope.currentStep = 1;
+    $scope.serverErrorMassage = false;
+    var d = new Date();
+    $scope.input = {
+        id: '',
+        naam: "",
+        ervaring: "",
+        telefonnummer: "",
+        email: "",
+        type: "",
+        lat: "",
+        lng: "",
+        geslacht: "Man",
+        leeftijd: "",
+        titel: "",
+        file_image: "",
+        prijzen: "",
+        category: "",
+        hangel: "dobber",
+        visserij: "",
+        kostprijs: 0,
+        wedstrijdduur: "",
+        wedstrijdwater: "",
+        myDate: d,
+        dag: d.getDate(),
+        maand: getMaand(d.getMonth()),
+        loting: "",
+        text: "",
+    }
+
+
+    $scope.initTrainerfunction = function (naam) {
+        console.log(naam);
+        $scope.input.naam = naam;
+
+    }
+    $scope.initContest = function (contestCategory, hengel, visserij) {
+        $scope.input.category = contestCategory;
+        $scope.input.hengel = hengel;
+        $scope.input.visserij = visserij;
+        console.log($scope.input.visserij)
+    }
+
     $scope.submitForm = function () {
         $scope.showError = false;
         console.log($scope.visWedstrijdForm.$valid);
@@ -136,13 +176,8 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         formValue.append("input", [$scope.input.id]);
 
 
-
         if ($scope.visWedstrijdForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
             $scope.showError = false;
-            $scope.currentStep++;
-
-
-
             $scope.model = {
                 name: "",
                 comments: ""
@@ -150,31 +185,25 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
             $http({
                 method: 'POST',
                 url: ROUTEFRONT + '/api/add/content',
-                headers: { 'Content-Type': undefined },
+                headers: {'Content-Type': undefined},
                 transformRequest: function (data) {
                     var formData = new FormData();
                     formData.append("input", angular.toJson(data.input));
-                        formData.append("file", data.file);
+                    formData.append("file", data.file);
                     return formData;
                 },
-                data: { input: $scope.input, file: $scope.file }
-            }).
-            success(function (data, status, headers, config) {
-            }).
-            error(function (data, status, headers, config) {
+                data: {input: $scope.input, file: $scope.file}
+            }).success(function (data, status, headers, config) {
+                if (data == 'success') {
+                    $scope.serverErrorMassage = false;
+                    $scope.currentStep++;
+                } else {
+                    $scope.serverErrorMassage = true;
+                }
+            }).error(function (data, status, headers, config) {
+                $scope.serverErrorMassage = true;
             });
 
-
-            // $http({
-            //     withCredentials: true,
-            //     method: 'POST',
-            //     url: ROUTEFRONT + '/api/add/content',
-            //     data: formValue,
-            //     headers: {'Content-Type': undefined}
-            // }).then(function ($massage) {
-            //     console.log($scope.input);
-            //     console.log($massage);
-            // })
         } else {
             $scope.showError = true;
         }
@@ -213,38 +242,12 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
 
     }
 
-    $scope.greeting = 'Hola!';
-    $scope.show_exampale = 1;
-    // $scope.myDate = new Date();
-
-    var d = new Date();
-    $scope.input = {
-        id: '',
-        type: "",
-        lat: "",
-        lng: "",
-        titel: "",
-        file_image: "",
-        prijzen: "",
-        category: "",
-        hangel: "dobber",
-        visserij: "",
-        kostprijs: 0,
-        wedstrijdduur: "",
-        wedstrijdwater: "",
-        myDate: d,
-        dag: d.getDate(),
-        maand: getMaand(d.getMonth()),
-        loting: "",
-        text: "",
-    }
-
-    $scope.currentStep = 3;
     $scope.steps = [
         {
             step: 1,
             url: '',
             glyphicon: "glyphicon-bullhorn",
+            description: 'Artikel',
             name: "First step",
             template: "step1"
         },
@@ -252,6 +255,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
             step: 2,
             url: '',
             glyphicon: "glyphicon-map-marker",
+            description: 'Locatie',
             name: "Second step",
             template: "step2"
         },
@@ -259,12 +263,14 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
             step: 3,
             url: '',
             glyphicon: "glyphicon-pencil",
+            description: 'Formulier',
             name: "Third step",
             template: "step3"
         }, {
             step: 4,
             url: '',
             glyphicon: "glyphicon-ok",
+            description: 'Opgeslagen',
             name: "Third step",
             template: "step3"
         },

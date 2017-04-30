@@ -17,6 +17,18 @@
 @import "components/news_artikel";
 @import "components/new_contest";
 @import "errors";
+@import "buttons/buttons";
+@import "thumbnail";
+@import "icons";
+
+.line-title {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid $dark-blue;
+  margin: 1em 0;
+  padding: 0;
+}
 
 .margin-top-1{
   margin-top: 1%;

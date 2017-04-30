@@ -1,0 +1,44 @@
+.thumbnail .card-profile {
+  position: relative;
+  z-index: 1;
+  margin-top: -45px;
+  right: 25px;
+  border-radius: 50%;
+  padding: 5px;
+  background-color: #FFF;
+  -webkit-box-shadow: 0 -3px 3px rgba(0,0,0,.2);
+  box-shadow: 0 -3px 3px rgba(0,0,0,.2);
+
+
+  img {
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+  }
+
+
+
+}
+.thumbnail  {
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+  border-radius: 2px;
+  .card-title{
+    background-color:$red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 2px 20px 2px 20px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+  }
+  .card-title-naam{
+    background-color:$red;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    padding: 2px 20px 2px 20px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+  }
+
+}

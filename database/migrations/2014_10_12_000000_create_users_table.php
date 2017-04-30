@@ -17,8 +17,16 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('image')->nullable();
+            $table->integer('leeftijd')->nullable();
+            $table->string('geslacht')->nullable();
+            $table->string('ervaring')->nullable();
+            $table->integer('telefonnummer')->nullable();
+            $table->integer('vraagprijs')->nullable();
+            $table->integer('trainer')->default(0);
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

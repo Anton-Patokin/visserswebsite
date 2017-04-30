@@ -1,62 +1,26 @@
-<?php
-$sort_wedstrijd = ['Op tijd' => 'Op tijd',
-        'Op gewicht' => 'Op gewicht'];
-$hengel = ['Vaste hengel' => 'Vaste hengel',
-        'werphengel' => 'Werphengel',
-        'dobber' => 'dobber',
-        'Alles' => 'Hengelkeuze vrij'];
-$visserij = ['Vaste hengel' => 'Vaste hengel',
-        'Werphengel' => 'Werphengel',
-        'Alles' => 'Alles is toegelaten'];
-?>
-<div class="col-xs-12 col-ms-6 col-sm-8 col-md-9 col-lg-9">
+<div class="col-xs-12  col-sm-7 col-md-8 col-lg-8"
+     ng-init="initContest('{{$category->first()->category}}','{{$hengel->first()->hengel}}','{{$visserij->first()->visserij}}')">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="form-group">
-                {{--<label for="titel" class="pull-right">max 255 leters</label>--}}
-                <input name="titel" ng-class="{'alert-danger':input.titel.length>140}" type="title"
-                       class="form-control input-lg" ng-focus="classTextFocus =true" ng-blur="classTextFocus =false"
-                       id="" placeholder="Titel" ng-model="input.titel" ng-maxlength="150" maxlength="150" required>
-                {{--<p ng-show="userForm.username.$error.minlength">Username is too short.</p>--}}
-                <div class="space-for-errors">
-                    <p class="error alert alert-danger " ng-show="visWedstrijdForm.titel.$error.maxlength && showError">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Title is te lang
-                    </p>
-                    <p class="error alert alert-danger" ng-show="visWedstrijdForm.titel.$error.required && showError">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Titel van dewedstrijd is verplicht
-                    </p>
-                    <small ng-if="input.titel.length>5 && !visWedstrijdForm.titel.$error.required"
-                           class="pull-right max-charakters"
-                           ng-class="{'show':classTextFocus}">@{{150-input.titel.length}} karakters over
-                    </small>
-                </div>
-            </div>
+        <div class="col-md-12">
+            <h1>Vul het formulier in</h1>
+            <hr class="line-title">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+            @include('add_content.inputs.title')
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            @include('add_content.inputs.image')
         </div>
     </div>
     <div class="form-group">
         <div class="row">
-            <div class=" col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <label for="image">Kies een foto*</label>
-                <input class="form-control input-lg" type="file" ng-file-select="onFileSelect($files)">
-                <div class="space-for-errors">
-                    <p class="error alert alert-danger" ng-show="showImageInvalideFileFormat">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Afbeelding moet png,jpg of jpeg format zijn
-                    </p>
-                    <p class="error alert alert-danger" ng-show="showSelectImageValidation && showError">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Je hebt nog geen afbeelding gekozen.
-                    </p>
-                    <p class="error alert alert-danger" ng-show="ShowfileSizeValidation">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Afbeelding mag niet groter zijn dan 5mb
-                    </p>
 
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            {{--<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">--}}
+            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <label for="prijzen">Prijzen</label>
                 <input type="prijzen" ng-class="{'alert-danger':input.prijzen.length>148}"
                        ng-focus="classPrijzenFocus =true" ng-blur="classPrijzenFocus =false"
@@ -74,9 +38,17 @@ $visserij = ['Vaste hengel' => 'Vaste hengel',
     </div>
     <div class="form-group">
         <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <label for="sel1">Soort wedstrijd*</label>
-                {{Form::select('category',$sort_wedstrijd ,'Op tijd',['class'=>'form-control input-lg','ng-model'=>'input.category','required'])}}
+                {{--                {{Form::select('category',$category ,'Op tijd',['class'=>'form-control input-lg','ng-model'=>'input.category','required'])}}--}}
+
+                <select class="form-control input-lg ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
+                        ng-model="input.category" required="required" name="category" aria-invalid="true">
+                    @foreach($category as $type)
+                        <option value="{{$type->category}}">{{$type->category}}</option>
+                    @endforeach
+                </select>
+
                 {{--voeg nog ng-class aan form om validatie!--}}
                 <div class="space-for-errors">
                     <p class="error alert alert-danger"
@@ -86,9 +58,16 @@ $visserij = ['Vaste hengel' => 'Vaste hengel',
                     </p>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <label for="sel1">Soort hengel*</label>
-                {{Form::select('hengel',$hengel ,'werphengel',['class'=>'form-control input-lg','ng-model'=>'input.hengel','required'])}}
+                {{--                {{Form::select('hengel',$hengel ,'werphengel',['class'=>'form-control input-lg','ng-model'=>'input.hengel','required'])}}--}}
+
+                <select class="form-control input-lg ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
+                        ng-model="input.hengel" required="required" name="category" aria-invalid="true">
+                    @foreach($hengel as $type)
+                        <option value="{{$type->hengel}}">{{$type->hengel}}</option>
+                    @endforeach
+                </select>
                 <span ng-show="visWedstrijdForm.hengel.$touched && visWedstrijdForm.hengel.$invalid">Titel van wedstrijd is verplicht</span>
                 <div class="space-for-errors">
                     <p class="error alert alert-danger" ng-show="visWedstrijdForm.hengel.$error.required && showError">
@@ -97,9 +76,15 @@ $visserij = ['Vaste hengel' => 'Vaste hengel',
                     </p>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <label for="sel1">Vorm van visserij*</label>
-                {{Form::select('visserij', $visserij, 'Op tijd',['class'=>'form-control input-lg','ng-model'=>'input.visserij','required'])}}
+                {{--                {{Form::select('visserij', $visserij, 'Op tijd',['class'=>'form-control input-lg','ng-model'=>'input.visserij','required'])}}--}}
+                <select class="form-control input-lg ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
+                        ng-model="input.visserij" required="required" name="category" aria-invalid="true">
+                    @foreach($visserij as $type)
+                        <option value="{{$type->visserij}}">{{$type->visserij}}</option>
+                    @endforeach
+                </select>
                 <span ng-show="visWedstrijdForm.visserij.$touched && visWedstrijdForm.visserij.$invalid">Titel van wedstrijd is verplicht</span>
                 <div class="space-for-errors">
                     <p class="error alert alert-danger"
@@ -113,37 +98,15 @@ $visserij = ['Vaste hengel' => 'Vaste hengel',
     </div>
     <div class="form-group">
         <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                <label for="kostprijs ">kostprijs in euro*</label>
-                <input name="kostprijs" type="number" step="0.50" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
-                       class="form-control input-lg" id="" placeholder="34.15" ng-model="input.kostprijs"
-                       maxlength="11" ng-focus="classkostprijsFocus =true" ng-blur="classkostprijsFocus =false"
-                       required>
-                <div class="space-for-errors">
-                    <p class="error alert alert-danger "
-                       ng-show="!visWedstrijdForm.kostprijs.$valid">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Ongeldig bedraag
-                    </p>
-                    <p class="error alert alert-danger "
-                       ng-show="visWedstrijdForm.kostprijs.$error.maxlength && showError">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Dat is veel geld
-                    </p>
-                    <p class="error alert alert-danger"
-                       ng-show="visWedstrijdForm.kostprijs.$error.required && showError">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Korstprijs is verplicht
-                    </p>
-                    <p class="error alert alert-danger"
-                       ng-show="99998<input.kostprijs">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        max 99999 euro
-                    </p>
-
-                </div>
+            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                @include('add_content.inputs.kostprijs')
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                {{--<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">--}}
                 <label for="wedstrijdduur">Wedstrijdduur</label>
                 <input name="wedstrijdduur" ng-class="{'alert-danger':input.wedstrijdduur.length>98}"
                        ng-focus="classWedstrijdduurFocus =true" ng-blur="classWedstrijdduurFocus =false" type="text"
@@ -156,7 +119,8 @@ $visserij = ['Vaste hengel' => 'Vaste hengel',
                     </small>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                {{--<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">--}}
                 <label for="wedstrijdwater ">Wedstrijdwater</label>
                 <input name="wedstrijdwater" ng-class="{'alert-danger':input.wedstrijdwater.length>198}"
                        ng-focus="classWedstrijdwaterFocus =true" ng-blur="classWedstrijdwaterFocus =false" type="text"
@@ -173,13 +137,13 @@ $visserij = ['Vaste hengel' => 'Vaste hengel',
     </div>
     <div class="form-group">
         <div class="row">
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <label for="datum ">Datum*</label>
                 {{--<input type="datum" class="form-control" id="" placeholder="3 uur" ng-model="input.datum">--}}
                 <md-datepicker class="col-md-12" ng-model="input.myDate" md-placeholder="Enter date"></md-datepicker>
 
             </div>
-            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                 <label for="loting ">Loting</label>
                 <input ng-class="{'alert-danger':input.loting.length>198}" ng-focus="classLotingFocus =true"
                        ng-blur="classLotingFocus =false" type="loting" class="form-control input-lg" id=""
@@ -193,34 +157,20 @@ $visserij = ['Vaste hengel' => 'Vaste hengel',
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-
-                {{--<label for="comment">Comment:</label>--}}
-                <textarea name="text" ng-class="{'alert-danger':input.text.length>990}" ng-focus="classTextFocus =true"
-                          ng-blur="classTextFocus =false" class="form-control input-lg" rows="5" ng-model="input.text"
-                          placeholder="Extra uitleg" maxlength="1000" required></textarea>
-                <span ng-show="visWedstrijdForm.text.$touched && visWedstrijdForm.text.$invalid">Extra uitleg is verplicht</span>
-                <div class="space-for-errors">
-                    <p class="error alert alert-danger " ng-show="visWedstrijdForm.text.$error.maxlength && showError">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Extra uitleeg is te lang
-                    </p>
-                    <p class="error alert alert-danger" ng-show="visWedstrijdForm.text.$error.required && showError">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        Extra uitlig is verplicht
-                    </p>
-                    <small ng-if="input.text.length>5" class="pull-right max-charakters" ng-cloak=""
-                           ng-class="{'show':classTextFocus}">@{{1000-input.text.length}} karakters over
-                    </small>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            {{--<label for="comment">Comment:</label>--}}
+            @include('add_content.inputs.extraInformatie')
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" >
+<div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Live voorbeeld</h1>
+            <hr class="line-title">
+        </div>
+    </div>
     <div class="thumbnail">
         <div class="head-thumbnail">
             <div class="icon-img-background-left ship"></div>
@@ -230,8 +180,7 @@ $visserij = ['Vaste hengel' => 'Vaste hengel',
             </div>
             <div class="icon-img-background-right" ng-class="input.hengel"></div>
         </div>
-
-        <img ng-src="@{{imageSrc}}" alt="">
+        <img class="image_contest" ng-src="@{{imageSrc}}" alt="">
         <div class="caption">
             <h4>@{{input.titel| limitTo:150}}</h4>
             <p>@{{input.text| limitTo:350}}@{{input.text.length > 350 ? '...' : ''}}</p>

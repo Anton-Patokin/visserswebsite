@@ -1,17 +1,24 @@
 #nav-bar-bottom {
+  .navbar-default{
+    background-color: $navbar-bottom-background-color;
+  }
+  .navbar{
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
   .navbar-default .navbar-nav > li > a {
     font-size: 1.2em;
-    color: $dark-blue;
+    color: $navbar-bottom-font-color;
     font-family: 'Tinos', 'Roboto', sans-serif;
   }
   .navbar-default .navbar-nav > li:hover {
-    background-color:  $dark-blue;
+    background-color:  $font-white;
     a{
-      color: $font-white;
+      color: $dark-blue;
     }
   }
   .navbar-default .navbar-nav > li.active {
-    margin-right: 5px;
     background-color: $font-white;
     color: $dark-blue;
   }

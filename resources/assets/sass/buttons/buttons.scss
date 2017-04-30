@@ -1,0 +1,10 @@
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: $dark-blue*2;
+}
+
+//button[disabled], html input[disabled] {
+//  background-color: #fff;
+//  cursor: default;
+//}

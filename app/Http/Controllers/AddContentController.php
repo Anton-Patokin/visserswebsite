@@ -9,6 +9,9 @@ use App\User;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use App\Visserij;
+use App\Category;
+use App\Hengel;
 
 
 class AddContentController extends Controller
@@ -24,12 +27,12 @@ class AddContentController extends Controller
     public function add(Request $request)
     {
 
-        $input = json_decode($request->input, true);
+        $category = \Config::get('constant.ConstantContestCategory');
+        $hengel = \Config::get('constant.ConstantContestHengel');
+        $visserij = \Config::get('constant.ConstantContestVisserij');
 
-//        $this->validate(json_encode($input), [
-//            'titel' => 'required|max:',
-//            'text' => 'required|max:255',
-//        ]);
+
+        $input = json_decode($request->input, true);
 
         $validator = Validator::make($input, [
             'titel' => 'required|max:151',
@@ -37,9 +40,9 @@ class AddContentController extends Controller
             'lat' => 'required|numeric',
             'lng' => 'required|numeric',
             'prijzen' => 'max:151',
-            'category' => 'required|',
-            'hengel' => 'required|',
-            'visserij' => 'required|',
+            'category' => 'required|exists:categories',
+            'hengel' => 'required|exists:hengels',
+            'visserij' => 'required|exists:visserijs',
             'wedstrijdduur' => 'max:100',
             'wedstrijdwater' => 'max:200',
             'kostprijs' => 'required|min:1|max:5|regex:/^\d*(\.\d{1,2})?$/',
@@ -55,14 +58,51 @@ class AddContentController extends Controller
 //            return $validator->messages();
         }
 
+
         $data = Input::get('file');
         if (Input::hasFile('file')) {
+
+            $file = Input::file('file');
+
+            $allowed_extensions = ["jpeg", "png", "jpg"];
+
+
+            //check whether file extension is valid
+            if (!in_array($file->guessClientExtension(), $allowed_extensions)) {
+                return $this->massage_error;
+            }
+
+            $file = Input::file('file');
+
+            $allowed_extensions = ["jpeg", "png", "jpg"];
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $fileName = date("Y-m-d") . $file->getClientOriginalName();
+
+            //check whether file extension is valid
+            if (!in_array($extension, $allowed_extensions)) {
+                return $this->massage_error;
+            }
+            $destinationPath = 'uploads\\';
+
+
+            $user = User::find($input['id']);
+
+
             $user = User::find($input['id']);
             if ($user) {
-                $file = Input::file('file');
-                $file->move('public/uploads',
-                    $file->getClientOriginalName());
-                $image = Image::make(sprintf('public/uploads/%s', $file->getClientOriginalName()))->resize(200, 200)->save();
+
+                // uploading file to given path
+                
+                if ($file->move($destinationPath, $fileName)) {
+                    $max_with=600;
+                    $max_height=300;
+                    Image::make(public_path($destinationPath . $fileName))->resize($max_with, $max_height)->save($destinationPath.'thumbnail\\' . $fileName);
+                    Image::make(public_path($destinationPath . $fileName))->resize($max_with*2, $max_height*2)->save($destinationPath .'big\\'. $fileName);
+
+//                    Image::make(sprintf($destinationPath, 'small_' . $file->getClientOriginalName()))->resize(600, 300)->save();
+//                    Image::make(sprintf($destinationPath, 'big_' . $file->getClientOriginalName()))->resize(1200, 600)->save();
+
+                }
                 $wedstrijd = new Wedstrijd;
                 $wedstrijd->lat = $input['lat'];
                 $wedstrijd->lng = $input['lng'];
