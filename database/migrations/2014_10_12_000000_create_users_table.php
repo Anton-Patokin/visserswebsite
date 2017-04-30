@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             $table->integer('telefonnummer')->nullable();
             $table->integer('vraagprijs')->nullable();
             $table->integer('trainer')->default(0);
+            $table->integer('lat')->nullable();
+            $table->integer('lng')->nullable();
+            $table->text('text')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->softDeletes();

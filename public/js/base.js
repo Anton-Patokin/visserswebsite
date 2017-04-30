@@ -125,7 +125,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     $scope.ShowfileSizeValidation = false;
     $scope.greeting = 'Hola!';
     $scope.show_exampale = 1;
-    $scope.currentStep = 1;
+    $scope.currentStep = 3;
     $scope.serverErrorMassage = false;
     var d = new Date();
     $scope.input = {
@@ -133,8 +133,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         naam: "",
         ervaring: "",
         telefonnummer: "",
-        email: "",
-        type: "",
+        type: "trainer",
         lat: "",
         lng: "",
         geslacht: "Man",
@@ -156,6 +155,13 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     }
 
 
+    var today = new Date();
+    var minAge = 18;
+    $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+    $scope.getAgeOfuser = function () {
+        console.log($scope.minAge);
+    }
+
     $scope.initTrainerfunction = function (naam) {
         console.log(naam);
         $scope.input.naam = naam;
@@ -176,7 +182,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         formValue.append("input", [$scope.input.id]);
 
 
-        if ($scope.visWedstrijdForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
+        if ($scope.visTrainerForm.$valid || $scope.visWedstrijdForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
             $scope.showError = false;
             $scope.model = {
                 name: "",
@@ -277,18 +283,50 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     ];
     console.log($scope.steps);
 
+    function refreschAddContent() {
+        if ($scope.currentStep == 1) {
+            $scope.marker.coords = {latitude: 0, longitude: 0,};
+            $scope.showError = false;
+            $scope.imageSrc = "http://placehold.it/500x300";
+            $scope.input.id = '';
+            $scope.input.ervaring = "";
+            $scope.input.telefonnummer = "";
+            $scope.input.type = "trainer";
+            $scope.input.lat = "";
+            $scope.input.lng = "";
+            $scope.input.geslacht = "Man";
+            $scope.input.leeftijd = "";
+            $scope.input.titel = "";
+            $scope.input.file_image = "";
+            $scope.input.prijzen = "";
+            $scope.input.kostprijs = 0;
+            $scope.input.wedstrijdduur = "";
+            $scope.input.wedstrijdwater = "";
+            $scope.input.myDate = d;
+            $scope.input.dag = d.getDate();
+            $scope.input.maand = getMaand(d.getMonth());
+            $scope.input.loting = "";
+            $scope.input.text = "";
+            $scope.showSelectImageValidation = true;
+            $scope.$apply();
+        }
+    }
+
     //Functions
     $scope.gotoStep = function (newStep) {
         $scope.currentStep = newStep;
-        editSteps($scope.currentStep);
+        refreschAddContent();
+
     }
     $scope.progress_clicked = function ($step) {
         if ($step < $scope.currentStep)
             $scope.gotoStep($step);
     }
     $scope.prev = function () {
-
-        if ($scope.currentStep > 1)$scope.currentStep--
+        if ($scope.currentStep > 1) {
+            $scope.currentStep--
+        }
+        refreschAddContent();
     }
     $scope.next = function () {
         if ($scope.currentStep < 4) $scope.currentStep++;
@@ -308,25 +346,6 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
             default:
         }
 
-    }
-
-    function editSteps($currentStep) {
-        switch ($currentStep) {
-            case 1:
-                $scope.steps[0]["url"] = "#step1"
-                break;
-            case 2:
-                $scope.steps[1]["url"] = "#step2"
-                break;
-            case 3:
-                $scope.steps[2]["url"] = "#step3"
-                break;
-            case 4:
-                $scope.steps[3]["url"] = "#step4"
-                break;
-            default:
-        }
-        console.log($scope.steps);
     }
 
     $scope.mapAdd = {

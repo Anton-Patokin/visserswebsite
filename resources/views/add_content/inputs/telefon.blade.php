@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="telefonnummer">Telefonnummer*</label>
+    <label for="telefonnummer">Telefonnummer</label>
     <input name="telefonnummer" ng-class="{'alert-danger':input.telefonnummer.length>22}" type="text"
            class="form-control input-lg" ng-focus="classTextFocus =true" ng-blur="classTextFocus =false"
            id="" placeholder="+324 84 123 368" ng-model="input.telefonnummer" ng-maxlength="25" maxlength="25">

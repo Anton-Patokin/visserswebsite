@@ -1,8 +1,8 @@
 <div class="form-group" >
     <label for="naam">Naam*</label>
-    <input name="naam" ng-class="{'alert-danger':input.naam.length>140}" type="text"
+    <input name="naam" ng-class="{'alert-danger':input.naam.length>50}" type="text"
            class="form-control input-lg" ng-focus="classNaamFocus =true" ng-blur="classNaamFocus =false"
-           id="" ng-model="input.naam" ng-maxlength="150" maxlength="150" required>
+           id="" ng-model="input.naam" ng-maxlength="50" maxlength="150" required>
     {{--<p ng-show="userForm.username.$error.minlength">Username is too short.</p>--}}
     <div class="space-for-errors">
         <p class="error alert alert-danger " ng-show="visTrainerForm.naam.$error.maxlength && showError">
@@ -15,7 +15,7 @@
         </p>
         <small ng-if="input.naam.length>5 && !visTrainerForm.naam.$error.required"
                class="pull-right max-charakters"
-               ng-class="{'show':classNaamFocus}">@{{150-input.naam.length}} karakters over
+               ng-class="{'show':classNaamFocus}">@{{50-input.naam.length}} karakters over
         </small>
     </div>
 </div>
