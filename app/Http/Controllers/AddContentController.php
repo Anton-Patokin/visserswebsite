@@ -92,7 +92,7 @@ class AddContentController extends Controller
                     $user->lat = $input['lat'];
                     $user->lng = $input['lng'];
                     $user->name = $input['naam'];
-                    $user->image = $file->getClientOriginalName();
+                    $user->image = $fileName;
                     $user->vraagprijs = $input['kostprijs'];
                     $user->geslacht =  $input['geslacht'];
                     $user->leeftijd = $input['leeftijd'];
@@ -186,7 +186,7 @@ class AddContentController extends Controller
                     $wedstrijd->lat = $input['lat'];
                     $wedstrijd->lng = $input['lng'];
                     $wedstrijd->titel = $input['titel'];
-                    $wedstrijd->image = $file->getClientOriginalName();
+                    $wedstrijd->image = $fileName;
                     $wedstrijd->prijzen = $input['prijzen'];
                     $wedstrijd->category = $input['category'];
                     $wedstrijd->hengel = $input['hengel'];

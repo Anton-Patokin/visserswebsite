@@ -125,7 +125,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     $scope.ShowfileSizeValidation = false;
     $scope.greeting = 'Hola!';
     $scope.show_exampale = 1;
-    $scope.currentStep = 3;
+    $scope.currentStep = 1;
     $scope.serverErrorMassage = false;
     var d = new Date();
     $scope.input = {
@@ -133,12 +133,15 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         naam: "",
         ervaring: "",
         telefonnummer: "",
-        type: "trainer",
+        type: "",
         lat: "",
         lng: "",
         geslacht: "Man",
+        vergunigen: "",
+        reglementen: "",
         leeftijd: "",
         titel: "",
+        naam_visplek: "",
         file_image: "",
         prijzen: "",
         category: "",
@@ -152,6 +155,8 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         maand: getMaand(d.getMonth()),
         loting: "",
         text: "",
+        viswater:"",
+        watertype:"",
     }
 
 
@@ -160,6 +165,11 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
     $scope.getAgeOfuser = function () {
         console.log($scope.minAge);
+    }
+
+    $scope.initVisersPlek=function (waterType) {
+        console.log(waterType);
+        $scope.input.watertype=waterType;
     }
 
     $scope.initTrainerfunction = function (naam) {
@@ -182,7 +192,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         formValue.append("input", [$scope.input.id]);
 
 
-        if ($scope.visTrainerForm.$valid || $scope.visWedstrijdForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
+        if ($scope.visPlekForm.$valid || $scope.visTrainerForm.$valid || $scope.visWedstrijdForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
             $scope.showError = false;
             $scope.model = {
                 name: "",
@@ -288,12 +298,14 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
             $scope.marker.coords = {latitude: 0, longitude: 0,};
             $scope.showError = false;
             $scope.imageSrc = "http://placehold.it/500x300";
-            $scope.input.id = '';
             $scope.input.ervaring = "";
             $scope.input.telefonnummer = "";
             $scope.input.type = "trainer";
             $scope.input.lat = "";
             $scope.input.lng = "";
+            $scope.input.naam_visplek = "";
+            $scope.input.vergunigen = "";
+            $scope.input.reglementen = "";
             $scope.input.geslacht = "Man";
             $scope.input.leeftijd = "";
             $scope.input.titel = "";
@@ -307,8 +319,8 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
             $scope.input.maand = getMaand(d.getMonth());
             $scope.input.loting = "";
             $scope.input.text = "";
+            $scope.input.viswater="";
             $scope.showSelectImageValidation = true;
-            $scope.$apply();
         }
     }
 

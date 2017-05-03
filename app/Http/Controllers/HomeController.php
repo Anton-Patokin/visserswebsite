@@ -9,6 +9,8 @@ use App\Atmosphere;
 use App\Astronomy;
 use App\Weather;
 use App\Condition_code;
+use App\Wedstrijd;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -31,6 +33,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        $wedstrijden = Wedstrijd::all();
+        $trainers = User::where('trainer',1)->get();
+        return view('home',["wedstrijden"=>$wedstrijden,"trainers"=>$trainers]);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Visserij;
 use App\Category;
 use App\Hengel;
+use App\WaterType;
 
 class Add_contentController extends Controller
 {
@@ -15,6 +16,10 @@ class Add_contentController extends Controller
     }
 
     public function index(){
-        return view('add_content.add')->with('visserij',Visserij::all(['id','visserij']))->with('category',Category::all(['id','category']))->with('hengel',Hengel::all(['id','hengel']));
+        return view('add_content.add')
+            ->with('visserij',Visserij::all(['id','visserij']))
+            ->with('category',Category::all(['id','category']))
+            ->with('waterType',WaterType::all(['waterType']))
+            ->with('hengel',Hengel::all(['id','hengel']));
     }
 }
