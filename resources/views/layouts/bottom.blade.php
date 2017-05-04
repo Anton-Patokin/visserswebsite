@@ -16,12 +16,21 @@
                     &nbsp;
                 </ul>
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="#">Plekken</a></li>
-                    <li><a href="#">Wedstrijden</a></li>
-                    <li><a href="#">Winkels</a></li>
-                    <li><a href="#">Nieuws</a></li>
-                    <li><a href="#">Recepten</a></li>
-                    <li><a href="#">Over ons</a></li>
+                    @if(Menu::isActiveRoute('home'))
+                        <li><a href="#">Plekken</a></li>
+                        <li><a href="#">Wedstrijden</a></li>
+                        <li><a href="#">Nieuws</a></li>
+                        <li><a href="#">Trainer zoeken</a></li>
+                        <li><a href="#">Over ons</a></li>
+                        <li><a href="#">Contact</a></li>
+                    @elseif(Menu::isActiveRoute('toevoegen'))
+                        <li><a ng-click="gotoStep(2);putValue('visPlek')" href="">Visplaats</a></li>
+                        <li><a ng-click="gotoStep(2);putValue('wedstrijd')" href="">Wedstrijd</a></li>
+                        @if(Auth::user()->trainer=='')
+                            <li><a ng-click="gotoStep(2);putValue('trainer')" href="">Trainer worden</a></li>
+                        @endif
+                        <li class="{{Menu::isActiveList('toevoegen/nieuws')}}"><a href="{{url('/toevoegen/nieuws')}}">Nieuws beriecht</a></li>
+                    @endif
                 </ul>
             </div>
         </div>

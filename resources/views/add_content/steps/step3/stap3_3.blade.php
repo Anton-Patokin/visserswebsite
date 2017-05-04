@@ -106,7 +106,7 @@
                         Reglementen visvijver uitlig is verplicht
                     </p>
                     <small ng-if="input.reglementen.length>5" class="pull-right max-charakters" ng-cloak=""
-                           ng-class="{'show':reglementen}">@{{1000-input.reglementen.length}} karakters over
+                           ng-class="{'show':classreglementenFocus}">@{{1000-input.reglementen.length}} karakters over
                     </small>
                 </div>
             </div>
@@ -117,8 +117,8 @@
             <label for="nachvissen">Mach je er nachvissen?</label>
             <div class="row">
                 <div class="col-md-12">
-                    <label class="radio-inline"><input type="radio" name="nachvissen">JA</label>
-                    <label class="radio-inline"><input type="radio" name="nachvissen" checked>NEE</label>
+                    <label class="radio-inline"><input type="radio" name="nachvissen" ng-model="input.nachvissen" value="1">JA</label>
+                    <label class="radio-inline"><input type="radio" name="nachvissen" ng-model="input.nachvissen" value="0" checked>NEE</label>
                 </div>
             </div>
 
@@ -127,19 +127,19 @@
             <label for="toilet">Kantine of toilet?</label>
             <div class="row">
                 <div class="col-md-12">
-                    <label class="radio-inline"><input type="radio" name="toilet">JA</label>
-                    <label class="radio-inline"><input type="radio" name="toilet" checked>NEE</label>
+                    <label class="radio-inline"><input type="radio" name="toilet" ng-model="input.toilet" value="1">JA</label>
+                    <label class="radio-inline"><input type="radio" name="toilet" ng-model="input.toilet" value="0" checked>NEE</label>
                 </div>
             </div>
         </div>
     </div>
     <div class="row margin-bottom-3">
         <div class="col-md-6">
-            <label for="Prive">Prive?</label>
+            <label for="prive">Prive?</label>
             <div class="row">
                 <div class="col-md-12">
-                    <label class="radio-inline"><input type="radio" name="Prive">JA</label>
-                    <label class="radio-inline"><input type="radio" name="Prive" checked>NEE</label>
+                    <label class="radio-inline"><input type="radio" name="Prive" ng-model="input.prive"  value="1">JA</label>
+                    <label class="radio-inline"><input type="radio" name="Prive" ng-model="input.prive" value="0" checked>NEE</label>
                 </div>
             </div>
 
@@ -148,8 +148,8 @@
             <label for="betaalwater">betaalwater?</label>
             <div class="row">
                 <div class="col-md-12">
-                    <label class="radio-inline"><input type="radio" name="betaalwater">JA</label>
-                    <label class="radio-inline"><input type="radio" name="betaalwater" checked>NEE</label>
+                    <label class="radio-inline"><input type="radio" name="betaalwater" ng-model="input.betaalwater" value="1">JA</label>
+                    <label class="radio-inline"><input type="radio" name="betaalwater" ng-model="input.betaalwater" value="0" checked>NEE</label>
                 </div>
             </div>
         </div>
@@ -174,7 +174,7 @@
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                         Vergunigen en rechten is verplicht
                     </p>
-                    <small ng-if="input.naam.length>5 && !visPlekForm.vergunigen.$error.required"
+                    <small ng-if="input.vergunigen.length>5 && !visPlekForm.vergunigen.$error.required"
                            class="pull-right max-charakters"
                            ng-class="{'show':classVergunigenFocus}">@{{250-input.vergunigen.length}} karakters over
                     </small>
@@ -182,8 +182,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
@@ -191,7 +189,7 @@
                 <input name="vissoorten" ng-class="{'alert-danger':input.vissoorten.length>250}" type="text"
                        class="form-control input-lg" ng-focus="classVissoortenFocus =true"
                        ng-blur="classVissoortenFocus =false"
-                       id="" ng-model="input.vissoorten" ng-maxlength="250" maxlength="50"
+                       id="" ng-model="input.vissoorten" ng-maxlength="250" maxlength="250"
                        placeholder="Carper, Snoek, voorn">
                 <div class="space-for-errors">
                     <p class="error alert alert-danger "
@@ -204,9 +202,9 @@
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                         Naam van de visplek is verplicht
                     </p>
-                    <small ng-if="input.naam.length>5 && !visPlekForm.vissoorten.$error.required"
+                    <small ng-if="input.vissoorten.length>5 && !visPlekForm.vissoorten.$error.required"
                            class="pull-right max-charakters"
-                           ng-class="{'show':classVissoortenFocus}">@{{50-input.vissoorten.length}} karakters over
+                           ng-class="{'show':classVissoortenFocus}">@{{250-input.vissoorten.length}} karakters over
                     </small>
                 </div>
             </div>

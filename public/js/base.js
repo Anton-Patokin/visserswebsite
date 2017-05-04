@@ -128,6 +128,11 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     $scope.currentStep = 1;
     $scope.serverErrorMassage = false;
     var d = new Date();
+
+    $scope.nieuws = {
+        inleiding: "",
+        titel: "",
+    }
     $scope.input = {
         id: '',
         naam: "",
@@ -155,8 +160,13 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         maand: getMaand(d.getMonth()),
         loting: "",
         text: "",
-        viswater:"",
-        watertype:"",
+        viswater: "",
+        nachvissen: 0,
+        watertype: 0,
+        toilet: 0,
+        prive: 0,
+        vissoorten: "",
+        betaalwater: 0,
     }
 
 
@@ -167,9 +177,9 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         console.log($scope.minAge);
     }
 
-    $scope.initVisersPlek=function (waterType) {
+    $scope.initVisersPlek = function (waterType) {
         console.log(waterType);
-        $scope.input.watertype=waterType;
+        $scope.input.watertype = waterType;
     }
 
     $scope.initTrainerfunction = function (naam) {
@@ -182,6 +192,23 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.input.hengel = hengel;
         $scope.input.visserij = visserij;
         console.log($scope.input.visserij)
+    }
+
+
+    $scope.submitNieuwForm = function () {
+        $scope.showError = false;
+        console.log('launch')
+        console.log($scope.nieuwForm.$valid);
+        // check to make sure the form is completely valid
+        if ($scope.nieuwForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
+            $scope.showError = false;
+            console.log("send");
+            $("form").get(0).setAttribute( "action", "test.html" );
+
+            document.getElementById("submitNieuwForm").submit();
+        } else {
+            $scope.showError = true;
+        }
     }
 
     $scope.submitForm = function () {
@@ -319,7 +346,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
             $scope.input.maand = getMaand(d.getMonth());
             $scope.input.loting = "";
             $scope.input.text = "";
-            $scope.input.viswater="";
+            $scope.input.viswater = "";
             $scope.showSelectImageValidation = true;
         }
     }

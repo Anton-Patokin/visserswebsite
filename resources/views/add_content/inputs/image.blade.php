@@ -14,6 +14,5 @@
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             Afbeelding mag niet groter zijn dan 5mb
         </p>
-
     </div>
 </div>

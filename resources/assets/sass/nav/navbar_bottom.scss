@@ -13,16 +13,18 @@
     font-family: 'Tinos', 'Roboto', sans-serif;
   }
   .navbar-default .navbar-nav > li:hover {
-    background-color:  $font-white;
+    background-color:  $dark-blue;
     a{
-      color: $dark-blue;
+      color: #f4f4f4;
     }
   }
   .navbar-default .navbar-nav > li.active {
-    background-color: $font-white;
-    color: $dark-blue;
+    background-color: #fff;
+    a{
+      background-color: #fff;
+      color: $dark-blue;
+    }
   }
-
 }
 
 @media (max-width: 768px) {

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Visserij;
 use App\Category;
 use App\Hengel;
+use App\VisPlek;
 
 
 class AddContentController extends Controller
@@ -28,24 +29,26 @@ class AddContentController extends Controller
     {
         $input = json_decode($request->input, true);
 
-
-        if ($input['type']=="trainer") {
+        if ($input['type'] == 'visPlek') {
             $validator = Validator::make($input, [
                 'id' => 'required',
                 'naam' => 'required|max:51',
-                'text' => 'required|max:1000',
                 'lat' => 'required|numeric',
                 'lng' => 'required|numeric',
-                'geslacht' => 'required|max:10',
-                'leeftijd' => 'required||min:1|max:2|regex:/^\d*(\.\d{1,2})?$/',
-                'ervaring' => 'required|max:100',
-                'telefonnummer' => '',
-                'kostprijs' => 'required|min:1|max:5|regex:/^\d*(\.\d{1,2})?$/',
+                'watertype' => 'required|max:50',
+                'viswater' => 'required|max:1000',
+                'reglementen' => 'max:1000',
+                'nachvissen' => 'required|max:1',
+                'toilet' => 'required|max:1',
+                'betaalwater' => 'required||max:1',
+                'prive' => 'required|max:1',
+                'vissoorten' => 'max:255',
+                'text' => 'max:1000',
             ]);
+
             if ($validator->fails()) {
                 return $validator->messages();
             }
-            $data = Input::get('file');
             if (Input::hasFile('file')) {
 
                 $file = Input::file('file');
@@ -74,7 +77,81 @@ class AddContentController extends Controller
                 $user = User::find($input['id']);
 
 
+                if ($user) {
+
+                    // uploading file to given path
+
+                    if ($file->move($destinationPath, $fileName)) {
+                        $max_with = 600;
+                        $max_height = 300;
+                        Image::make(public_path($destinationPath . $fileName))->resize($max_with, $max_height)->save($destinationPath . 'thumbnail\\' . $fileName);
+                        Image::make(public_path($destinationPath . $fileName))->resize($max_with * 2, $max_height * 2)->save($destinationPath . 'big\\' . $fileName);
+                    }
+
+                    $visPlek = new VisPlek;
+                    $visPlek->lat = $input['lat'];
+                    $visPlek->lng = $input['lng'];
+                    $visPlek->naam = $input['naam'];
+                    $visPlek->image = $fileName;
+                    $visPlek->watertype = $input['watertype'];
+                    $visPlek->viswater = $input['viswater'];
+                    $visPlek->reglementen = $input['reglementen'];
+                    $visPlek->toilet = $input['toilet'];
+                    $visPlek->betaalwater = $input['betaalwater'];
+                    $visPlek->prive = $input['prive'];
+                    $visPlek->vissoorten = $input['vissoorten'];
+                    $visPlek->text = $input['text'];
+                    $visPlek->user_id = $user->id;
+                    $visPlek->save();
+                    return $this->massage_success;
+                }
+            }
+        }
+
+
+        if ($input['type'] == "trainer") {
+            $validator = Validator::make($input, [
+                'id' => 'required',
+                'naam' => 'required|max:51',
+                'text' => 'required|max:1000',
+                'lat' => 'required|numeric',
+                'lng' => 'required|numeric',
+                'geslacht' => 'required|max:10',
+                'leeftijd' => 'required||min:1|max:2|regex:/^\d*(\.\d{1,2})?$/',
+                'ervaring' => 'required|max:100',
+                'telefonnummer' => '',
+                'kostprijs' => 'required|min:1|max:5|regex:/^\d*(\.\d{1,2})?$/',
+            ]);
+            if ($validator->fails()) {
+                return $validator->messages();
+            }
+            if (Input::hasFile('file')) {
+
+                $file = Input::file('file');
+
+                $allowed_extensions = ["jpeg", "png", "jpg"];
+
+
+                //check whether file extension is valid
+                if (!in_array($file->guessClientExtension(), $allowed_extensions)) {
+                    return $this->massage_error;
+                }
+
+                $file = Input::file('file');
+
+                $allowed_extensions = ["jpeg", "png", "jpg"];
+                $extension = $file->getClientOriginalExtension(); // getting image extension
+                $fileName = date("Ymdsmd") . $file->getClientOriginalName();
+
+                //check whether file extension is valid
+                if (!in_array($extension, $allowed_extensions)) {
+                    return $this->massage_error;
+                }
+                $destinationPath = 'uploads\\';
+
+
                 $user = User::find($input['id']);
+
                 if ($user) {
 
                     // uploading file to given path
@@ -94,7 +171,7 @@ class AddContentController extends Controller
                     $user->name = $input['naam'];
                     $user->image = $fileName;
                     $user->vraagprijs = $input['kostprijs'];
-                    $user->geslacht =  $input['geslacht'];
+                    $user->geslacht = $input['geslacht'];
                     $user->leeftijd = $input['leeftijd'];
                     $user->ervaring = $input['ervaring'];
                     $user->telefonnummer = $input['telefonnummer'];
@@ -108,11 +185,11 @@ class AddContentController extends Controller
         }
 
 //add wedstrijd
-        if ($input['type']=="wedstrijd") {
+        if ($input['type'] == "wedstrijd") {
             $category = \Config::get('constant.ConstantContestCategory');
             $hengel = \Config::get('constant.ConstantContestHengel');
             $visserij = \Config::get('constant.ConstantContestVisserij');
-            
+
             $validator = Validator::make($input, [
                 'titel' => 'required|max:151',
                 'text' => 'required|max:1000',

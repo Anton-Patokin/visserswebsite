@@ -19,4 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 Route::get('/toevoegen','Add_contentController@index');
+Route::get('/toevoegen/nieuws','Add_contentController@nieuws');
+Route::post('/toevoegen/nieuws','Add_contentController@toaveogenNieuws');
 

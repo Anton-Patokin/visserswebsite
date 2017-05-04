@@ -27,7 +27,7 @@
 @include('layouts.middel')
 @include('layouts.bottom')
 
-<div id="app">
+<div id="app" class="background-gray">
 
     @yield('content')
 </div>
@@ -55,5 +55,7 @@
 
 <script src="{{ asset('js/base.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
+@yield('script')
+
 </body>
 </html>

@@ -1,0 +1,14 @@
+.background-dark{
+  background-color: $dark-blue;
+}
+
+.background-gray{
+  background-color: #f4f4f4;
+}
+.background-white{
+  background-color: #fff;
+}
+.background-image{
+  background: url(#{$path}/images/vissen_background.jpg)no-repeat center center fixed;
+
+}

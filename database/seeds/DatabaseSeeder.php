@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Crone_timeTabele::class);
         $this->call(CitiesTabele::class);
         $this->call(WaterType::class);
+        $this->call(Navbar::class);
     }
 }

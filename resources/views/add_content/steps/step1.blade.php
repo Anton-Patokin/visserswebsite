@@ -19,8 +19,7 @@ $naam = "Anton";
             {{--<div  class="arrow-right"></div>--}}
             <span class="arrow pull-right"></span>
         </div>
-        @if(Auth::user()->trainer!='0'&&Auth::user()->trainer!='1')
-            {{Auth::user()->trainer}}
+        @if(Auth::user()->trainer=='')
             <div ng-click="gotoStep(2);putValue('trainer')" class="well" ng-class="{'show-arrow':showArrow2}"
                  ng-mouseover="showArrow2=true;show_exampale=2" ng-mouseleave="showArrow2=false">
                 Word Trainer voor andere mensen

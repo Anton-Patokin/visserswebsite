@@ -1,6 +1,125 @@
-.angular-google-map-container {
-  margin: -22px 0px 0px 0px;
+//.angular-google-map-container {
+//  margin: -22px 0px 0px 0px;
+//
+//  height: 400px;
+//}
 
-  height: 400px;
+.angular-google-map-container {
+  height: 350px;
+  width: 100%;
+}
+//
+
+.home-top{
+  .card.small {
+    font-size: 13px;
+  }
+  .card, .panel, .theme-picker .theme-item:hover, .well, .z-depth-0 {
+    box-shadow: none;
+  }
+  .card {
+    position: relative;
+    background-color: #fff;
+    border-radius: 2px;
+    margin-bottom: 30px;
+  }
+  .small, small {
+    font-size: 92%;
+  }
+  .card, .card .card-content, .card .card-reveal, .noUi-target, .noUi-target *, :after, :before, input[type=search] {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  .card, .card .card-content, .card .card-reveal, .noUi-target, .noUi-target *, :after, :before, input[type=search] {
+    -webkit-box-sizing: border-box;
+  }
+
+
+
+  .card.small .card-action, .card.small .card-header {
+    padding: 10px 15px;
+  }
+
+  .card.bordered .card-header {
+    border-bottom: 1px solid #F0F0F0;
+  }
+
+  .card .card-header {
+    padding: 20px;
+    background-color: #fff;
+  }
+
+  .btn-group-vertical>.btn-group:after, .btn-toolbar:after, .card .card-header, .clear, .clear:after, .clearfix:after, .container-fluid:after, .container:after, .dropdown-menu>li>a, .form-horizontal .form-group:after, .modal-footer:after, .nav:after, .navbar-collapse:after, .navbar:after, .pager:after, .panel-body:after, .row:after, .timeline>li:after {
+    clear: both;
+  }
+
+  .card, .card .card-content, .card .card-reveal, .noUi-target, .noUi-target *, :after, :before, input[type=search] {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .card, .card .card-content, .card .card-reveal, .noUi-target, .noUi-target *, :after, :before, input[type=search] {
+    -webkit-box-sizing: border-box;
+  }
+
+  div.card.bordered.small
+  .card.small {
+    font-size: 13px;
+  }
+}
+.card.small {
+  font-size: 13px;
+}
+.card, .panel, .theme-picker .theme-item:hover, .well, .z-depth-0 {
+  -webkit-box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+  box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+}
+.card {
+  position: relative;
+  background-color: #fff;
+  border-radius: 2px;
+  margin-bottom: 30px;
+}
+.small, small {
+  font-size: 92%;
+}
+.card, .card .card-content, .card .card-reveal, .noUi-target, .noUi-target *, :after, :before, input[type=search] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
+.card, .card .card-content, .card .card-reveal, .noUi-target, .noUi-target *, :after, :before, input[type=search] {
+  -webkit-box-sizing: border-box;
+}
+
+
+
+.card.small .card-action, .card.small .card-header {
+  padding: 10px 15px;
+}
+
+.card.bordered .card-header {
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.card .card-header {
+  padding: 20px;
+  background-color: #eee;
+}
+
+.btn-group-vertical>.btn-group:after, .btn-toolbar:after, .card .card-header, .clear, .clear:after, .clearfix:after, .container-fluid:after, .container:after, .dropdown-menu>li>a, .form-horizontal .form-group:after, .modal-footer:after, .nav:after, .navbar-collapse:after, .navbar:after, .pager:after, .panel-body:after, .row:after, .timeline>li:after {
+  clear: both;
+}
+
+.card, .card .card-content, .card .card-reveal, .noUi-target, .noUi-target *, :after, :before, input[type=search] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.card, .card .card-content, .card .card-reveal, .noUi-target, .noUi-target *, :after, :before, input[type=search] {
+  -webkit-box-sizing: border-box;
+}
+
+div.card.bordered.small
+.card.small {
+  font-size: 13px;
+}
