@@ -1,6 +1,6 @@
 <div class="form-group">
     <label for="image">Kies een foto*</label>
-    <input class="form-control input-lg" type="file" ng-file-select="onFileSelect($files)">
+    <input name="image" class="form-control input-lg" type="file" ng-file-select="onFileSelect($files)">
     <div class="space-for-errors">
         <p class="error alert alert-danger" ng-show="showImageInvalideFileFormat">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

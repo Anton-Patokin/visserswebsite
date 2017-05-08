@@ -7,11 +7,14 @@
     border: none;
   }
   .navbar-default .navbar-nav > li > a {
-    font-size: 1.5em;
-    margin-right: 5px;
+
     background-color: $dark-blue;
-    color: $color-grey;
     font-family: 'Tinos', 'Roboto', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 1.4em;
+    margin-right: 5px;
+    color: $color-grey;
   }
   .navbar-default .navbar-nav > li > a:hover {
     margin-right: 5px;
@@ -20,8 +23,8 @@
   }
   .navbar-default .navbar-nav > li > a.active {
     margin-right: 5px;
-    background-color: $font-active;
-    color: $dark-blue;
+    background-color: #fff;
+    color: #333;
   }
   .navbar .navbar-nav {
 

@@ -8,21 +8,23 @@
     padding: 0;
   }
   .navbar-default .navbar-nav > li > a {
-    font-size: 1.2em;
-    color: $navbar-bottom-font-color;
-    font-family: 'Tinos', 'Roboto', sans-serif;
+    text-transform: uppercase;
+    margin: 5px 10px 5px 10px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: #333333;
   }
   .navbar-default .navbar-nav > li:hover {
-    background-color:  $dark-blue;
+    background-color:  #f4f4f4;
     a{
-      color: #f4f4f4;
+      color: #333;
     }
   }
   .navbar-default .navbar-nav > li.active {
-    background-color: #fff;
+    background-color: #f4f4f4;
     a{
-      background-color: #fff;
-      color: $dark-blue;
+      background-color: #f4f4f4;
+      color: #333;
     }
   }
 }
@@ -36,3 +38,4 @@
 
   }
 }
+

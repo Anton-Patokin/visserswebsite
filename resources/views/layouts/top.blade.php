@@ -1,5 +1,5 @@
 <div id="nav-bar-top" class="navbar navbar-default navbar-static-top" role="navigation">
-    <div class="container">
+    <div class="container-fluid">
         <div class="col-md-2 col-sm-2 hidden-xs nopadding">
             <div id="brand-logo">
                 <a href="{{url('/home')}}"> <img src="{{url('/images/logo/logo-with-background.jpg')}}" alt="Home"/></a>

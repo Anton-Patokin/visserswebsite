@@ -9,8 +9,13 @@ use App\Atmosphere;
 use App\Astronomy;
 use App\Weather;
 use App\Condition_code;
-use App\Wedstrijd;
 use App\User;
+use App\NieuwsArtikel;
+//use App\VisPlek;
+use App\Wedstrijd;
+//use App\Tutorial;
+use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -29,12 +34,64 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
 
     public function index()
     {
         $wedstrijden = Wedstrijd::all();
-        $trainers = User::where('trainer',1)->get();
-        return view('home',["wedstrijden"=>$wedstrijden,"trainers"=>$trainers]);
+        $trainers = User::where('trainer', 1)->get();
+        return view('home', ["wedstrijden" => $wedstrijden, "trainers" => $trainers]);
+    }
+
+
+    public function plaatsen($titel = null)
+    {
+        return $this->get_content_from_database('vis_pleks', 'naam', $titel,'plaats','plaatsen');
+    }
+    public function wedstrijden($titel = null)
+    {
+        return $this->get_content_from_database('wedstrijds', 'titel', $titel,'wedstrijd','wedstrijden');
+    }
+
+    public function nieuws($titel = null)
+    {
+        return $this->get_content_from_database('nieuws_artikels', 'titel', $titel,'nieuws-artikel','nieuws-artikelen');
+    }
+    public function trainer($naam = null)
+    {
+        return $this->get_content_from_database('users', 'name', $naam,'trainer','trainers');
+    }
+    public function tutorial($naam = null)
+    {
+        return $this->get_content_from_database('tutorials', 'titel', $naam,'tutorial','tutorials');
+    }
+    public function contact()
+    {
+        return view('show/contact');
+    }
+    public function overOns(){
+        return view('show/over-ons');
+    }
+
+    public function get_content_from_database($tabel, $row_name = null, $titel = null,$view1,$view2,$view3=null)
+    {
+        if ($titel) {
+            $value = DB::table($tabel)->where($row_name, '=', $titel)->Where('active', 1)->first();
+//            $value = $tabel::where($row_name, $titel)->where('active', 1)->get();
+            if (count($value)) {
+                return view('show/'.$view1, ['content' => $value]);
+            }
+        } else {
+            $value = DB::table($tabel)->Where('active', 1)->get();
+            if (count($value)) {
+                return view('show/'.$view2, ['contents' => $value]);
+            }
+        }
+        return $this->paginaNietGevonden();
+    }
+
+    public function paginaNietGevonden()
+    {
+        return view('show/pagina-niet-gevonden');
     }
 }

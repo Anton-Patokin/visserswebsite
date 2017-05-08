@@ -2,6 +2,18 @@
   position: relative;
   padding: 0px;
   margin-bottom: 20px;
+  .caption{
+    h4{
+      text-transform: uppercase;
+      font-size: 18px;
+      line-height: 24px;
+      color: #666;
+      text-decoration: none;
+      display: block;
+      font-weight: 600;
+      transition: all 0.44s;
+    }
+  }
 }
 
 .thumbnail img {

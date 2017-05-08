@@ -24,6 +24,9 @@
 @import "inputs";
 @import "headings";
 
+.text-uppercase {
+  text-transform: uppercase;
+}
 .line-title {
   display: block;
   height: 1px;

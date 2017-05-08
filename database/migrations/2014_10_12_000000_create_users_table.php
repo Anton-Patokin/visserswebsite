@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('ervaring')->nullable();
             $table->string('telefonnummer')->nullable();
             $table->integer('vraagprijs')->nullable();
-            $table->integer('trainer')->default(0);
+            $table->integer('active')->default(0);
             $table->integer('lat')->nullable();
             $table->integer('lng')->nullable();
             $table->text('text')->nullable();

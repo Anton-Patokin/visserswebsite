@@ -82,7 +82,7 @@ class AddContentController extends Controller
                     // uploading file to given path
 
                     if ($file->move($destinationPath, $fileName)) {
-                        $max_with = 600;
+                        $max_with = 500;
                         $max_height = 300;
                         Image::make(public_path($destinationPath . $fileName))->resize($max_with, $max_height)->save($destinationPath . 'thumbnail\\' . $fileName);
                         Image::make(public_path($destinationPath . $fileName))->resize($max_with * 2, $max_height * 2)->save($destinationPath . 'big\\' . $fileName);
@@ -157,13 +157,13 @@ class AddContentController extends Controller
                     // uploading file to given path
 
                     if ($file->move($destinationPath, $fileName)) {
-                        $max_with = 600;
+                        $max_with = 500;
                         $max_height = 300;
                         Image::make(public_path($destinationPath . $fileName))->resize($max_with, $max_height)->save($destinationPath . 'thumbnail\\' . $fileName);
                         Image::make(public_path($destinationPath . $fileName))->resize($max_with * 2, $max_height * 2)->save($destinationPath . 'big\\' . $fileName);
 
-//                    Image::make(sprintf($destinationPath, 'small_' . $file->getClientOriginalName()))->resize(600, 300)->save();
-//                    Image::make(sprintf($destinationPath, 'big_' . $file->getClientOriginalName()))->resize(1200, 600)->save();
+//                    Image::make(sprintf($destinationPath, 'small_' . $file->getClientOriginalName()))->resize(500, 300)->save();
+//                    Image::make(sprintf($destinationPath, 'big_' . $file->getClientOriginalName()))->resize(1200, 500)->save();
 
                     }
                     $user->lat = $input['lat'];
@@ -250,13 +250,13 @@ class AddContentController extends Controller
                     // uploading file to given path
 
                     if ($file->move($destinationPath, $fileName)) {
-                        $max_with = 600;
+                        $max_with = 500;
                         $max_height = 300;
                         Image::make(public_path($destinationPath . $fileName))->resize($max_with, $max_height)->save($destinationPath . 'thumbnail\\' . $fileName);
                         Image::make(public_path($destinationPath . $fileName))->resize($max_with * 2, $max_height * 2)->save($destinationPath . 'big\\' . $fileName);
 
-//                    Image::make(sprintf($destinationPath, 'small_' . $file->getClientOriginalName()))->resize(600, 300)->save();
-//                    Image::make(sprintf($destinationPath, 'big_' . $file->getClientOriginalName()))->resize(1200, 600)->save();
+//                    Image::make(sprintf($destinationPath, 'small_' . $file->getClientOriginalName()))->resize(500, 300)->save();
+//                    Image::make(sprintf($destinationPath, 'big_' . $file->getClientOriginalName()))->resize(1200, 500)->save();
 
                     }
                     $wedstrijd = new Wedstrijd;

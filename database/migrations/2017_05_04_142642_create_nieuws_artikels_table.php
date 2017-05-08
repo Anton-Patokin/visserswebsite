@@ -18,7 +18,11 @@ class CreateNieuwsArtikelsTable extends Migration
             $table->string('titel');
             $table->string('image');
             $table->string('inleiding');
-            $table->text('wiziwig');
+            $table->longText('wiziwig');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('active')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

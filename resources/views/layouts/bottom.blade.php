@@ -1,6 +1,6 @@
 <div id="nav-bar-bottom">
     <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#app-navbar-collapse">
@@ -16,20 +16,25 @@
                     &nbsp;
                 </ul>
                 <ul class="nav navbar-nav navbar-left">
-                    @if(Menu::isActiveRoute('home'))
-                        <li><a href="#">Plekken</a></li>
-                        <li><a href="#">Wedstrijden</a></li>
-                        <li><a href="#">Nieuws</a></li>
-                        <li><a href="#">Trainer zoeken</a></li>
-                        <li><a href="#">Over ons</a></li>
-                        <li><a href="#">Contact</a></li>
-                    @elseif(Menu::isActiveRoute('toevoegen'))
+                    <?php
+                    $navbar = ['home', 'plaatsen', 'wedstrijden', 'nieuws', 'trainer', 'tutorial', 'over-ons', 'contact'];
+                    ?>
+                    @if(Menu::isActiveRoute($navbar))
+                        @foreach($navbar as $value)
+                            <li class="{{Menu::isActiveHomeList($value)}}"><a
+                                        href="{{url('/'.$value)}}">{{$value}}</a>
+                            </li>
+                        @endforeach
+                    @elseif(Menu::isActiveRoute(['toevoegen']))
                         <li><a ng-click="gotoStep(2);putValue('visPlek')" href="">Visplaats</a></li>
                         <li><a ng-click="gotoStep(2);putValue('wedstrijd')" href="">Wedstrijd</a></li>
                         @if(Auth::user()->trainer=='')
                             <li><a ng-click="gotoStep(2);putValue('trainer')" href="">Trainer worden</a></li>
                         @endif
-                        <li class="{{Menu::isActiveList('toevoegen/nieuws')}}"><a href="{{url('/toevoegen/nieuws')}}">Nieuws beriecht</a></li>
+                        <li class="{{Menu::isActiveList('toevoegen/nieuws')}}"><a href="{{url('/toevoegen/nieuws')}}">Nieuws
+                                beriecht</a></li>
+                        <li class="{{Menu::isActiveList('toevoegen/tutorial')}}"><a
+                                    href="{{url('/toevoegen/tutorial')}}">Tutorial</a></li>
                     @endif
                 </ul>
             </div>

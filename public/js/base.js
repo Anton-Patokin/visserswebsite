@@ -194,18 +194,34 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         console.log($scope.input.visserij)
     }
 
+    $scope.tutorialCategory = "";
+    $scope.initTutorialCategory = function (titel, inleiding, category) {
+        $scope.tutorialCategory = category;
+        $scope.nieuws.titel = titel;
+        $scope.nieuws.inleiding = inleiding;
+        console.log($scope.tutorialCategory);
+    }
+    $scope.initNieuwsArtikel = function (titel, inleiding) {
+        console.log(titel, inleiding);
+        $scope.nieuws.titel = titel;
+        $scope.nieuws.inleiding = inleiding;
 
+    }
     $scope.submitNieuwForm = function () {
         $scope.showError = false;
         console.log('launch')
         console.log($scope.nieuwForm.$valid);
         // check to make sure the form is completely valid
+
+        $("form").get(0).setAttribute("action", "test.html");
+
+        document.getElementById("submitNieuwForm").submit();
         if ($scope.nieuwForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
             $scope.showError = false;
             console.log("send");
-            $("form").get(0).setAttribute( "action", "test.html" );
-
-            document.getElementById("submitNieuwForm").submit();
+            // $("form").get(0).setAttribute( "action", "test.html" );
+            //
+            // document.getElementById("submitNieuwForm").submit();
         } else {
             $scope.showError = true;
         }
@@ -217,8 +233,6 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         // check to make sure the form is completely valid
 
         formValue.append("input", [$scope.input.id]);
-
-
         if ($scope.visPlekForm.$valid || $scope.visTrainerForm.$valid || $scope.visWedstrijdForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
             $scope.showError = false;
             $scope.model = {

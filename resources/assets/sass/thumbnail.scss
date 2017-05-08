@@ -1,3 +1,96 @@
+.box-card {
+  .thumbnail {
+    border: none;
+    box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .07), 1px 2px 5px 0 rgba(0, 0, 0, .06);
+    border-radius: 2px;
+    .media:first-child {
+      margin-top: 0;
+    }
+    .media, .media-body {
+      overflow: hidden;
+      zoom: 1;
+    }
+    .media {
+      margin-top: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .media .media-left {
+      float: left;
+    }
+    .media-body, .media-left, .media-right {
+      display: table-cell;
+      vertical-align: top;
+    }
+    .media-left, .media > .pull-left {
+      padding-right: 10px;
+    }
+    .p-content a {
+      font-size: 12px;
+      color: #666;
+      text-decoration: none;
+      display: block;
+      font-weight: 600;
+      transition: all 0.44s;
+    }
+
+    .p-content span {
+      color: #666666;
+      font-size: 12px;
+      font-style: italic;
+    }
+    .p-date {
+      font-size: 12px;
+      font-style: italic;
+    }
+    span, p, input {
+      font-family: 'Merriweather', serif;
+      line-height: 26px;
+    }
+    .media .popular-img {
+      position: relative;
+      width: auto;
+      margin-bottom: 0;
+    }
+    .media img {
+      position: relative;
+      width: 100px;
+      margin-bottom: 15px;
+    }
+    img {
+      position: relative;
+      width: 100px;
+      margin-bottom: 15px;
+    }
+
+
+    .box-card-head {
+      h3 {
+        text-transform: uppercase;
+        font-size: 24px;
+        margin: 27px 0 25px;
+        letter-spacing: 0.5px;
+        color: #333333;
+      }
+    }
+    .box-card-body {
+      h3 {
+        font-size: 12px;
+        color: #333333;
+        text-decoration: none;
+        display: block;
+        font-weight: 600;
+        transition: all 0.44s;
+      }
+      span {
+        color: #666666;
+        font-size: 12px;
+        font-style: italic;
+      }
+
+    }
+  }
+}
+
 .thumbnail .card-profile {
   position: relative;
   z-index: 1;
@@ -9,36 +102,34 @@
   //-webkit-box-shadow: 0 -3px 3px rgba(0,0,0,.2);
   //box-shadow: 0 -3px 3px rgba(0,0,0,.2);
 
-
   img {
     border-radius: 50%;
     width: 75px;
     height: 75px;
   }
 
-
-
 }
-.thumbnail  {
-  box-shadow: 1px 1px 1px 0 rgba(0,0,0,.07), 1px 2px 5px 0 rgba(0,0,0,.06);
+
+.thumbnail {
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, .07), 1px 2px 5px 0 rgba(0, 0, 0, .06);
   border-radius: 2px;
-  .card-title{
-    background-color:$red;
+  .card-title {
+    background-color: $red;
     position: absolute;
     top: 0;
     left: 0;
     padding: 2px 20px 2px 20px;
     color: #fff;
-    text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .6);
   }
-  .card-title-naam{
-    background-color:$red;
+  .card-title-naam {
+    background-color: $red;
     position: absolute;
     top: 35px;
     left: 0;
     padding: 2px 20px 2px 20px;
     color: #fff;
-    text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .6);
   }
 
 }

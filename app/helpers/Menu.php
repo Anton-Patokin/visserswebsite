@@ -1,17 +1,21 @@
 <?php
 namespace App\helpers;
+
 use Illuminate\Support\Facades\Route;
 
 class Menu
 {
 
-    public static function isActiveRoute($route, $output = 'active')
+    public static function isActiveRoute($routs, $output = 'active')
     {
-        $route_array= explode('/',Route::getFacadeRoot()->current()->uri());
+        $route_array = explode('/', Route::getFacadeRoot()->current()->uri());
 
-        if ($route_array[0] == $route) {
-            return $output;
+        foreach ($routs as $route) {
+            if ($route_array[0] == $route) {
+                return $output;
+            }
         }
+
     }
 
     public static function isActiveList($route, $output = 'active')
@@ -20,4 +24,12 @@ class Menu
             return $output;
         }
     }
+    public static function isActiveHomeList($route, $output = 'active')
+    {
+        $route_array = explode('/', Route::getFacadeRoot()->current()->uri());
+        if ($route_array[0] == $route) {
+            return $output;
+        }
+    }
+
 }

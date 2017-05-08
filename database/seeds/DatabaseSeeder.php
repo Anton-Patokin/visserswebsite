@@ -17,5 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CitiesTabele::class);
         $this->call(WaterType::class);
         $this->call(Navbar::class);
+        $this->call(TutorialCategory::class);
     }
 }

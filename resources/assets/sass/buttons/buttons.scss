@@ -4,6 +4,36 @@ button[disabled]{
   background-color: $dark-blue*2;
 }
 
+.btn-subscribe {
+  width: 100%;
+  background-color: $dark-blue;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0;
+  -webkit-transition: all 0.33s;
+  transition: all 0.33s;
+  letter-spacing: 1px;
+  font-size: 12px;
+  padding: 9px 0;
+  font-family: 'Open Sans', sans-serif;
+}
+.box-card{
+  button{
+    width: 100%;
+    background-color: $dark-blue;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0;
+    -webkit-transition: all 0.33s;
+    transition: all 0.33s;
+    letter-spacing: 1px;
+    font-size: 12px;
+    padding: 9px 0;
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+
 //button[disabled], html input[disabled] {
 //  background-color: #fff;
 //  cursor: default;
