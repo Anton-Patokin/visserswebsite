@@ -116,6 +116,20 @@ myApp.controller('GoogleMapsConroller', ['$scope', 'uiGmapGoogleMapApi', functio
     uiGmapGoogleMapApi.then(function (maps) {
     });
 }]);
+myApp.controller('GoogleMapsSmaalConroller', ['$scope', 'uiGmapGoogleMapApi', function ($scope, uiGmapGoogleMapApi) {
+    $scope.map = {
+        center: {
+            latitude: center.latitude,
+            longitude: center.longitude
+        },
+        options: {
+            scrollwheel: false,
+        },
+        zoom: 8
+    };
+    uiGmapGoogleMapApi.then(function (maps) {
+    });
+}]);
 
 myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader', '$http', function ($scope, uiGmapGoogleMapApi, fileReader, $http) {
     $scope.imageSrc = "http://placehold.it/500x300";

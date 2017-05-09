@@ -6,6 +6,6 @@
     <div class="caption margin-top-5">
         <h4>{{$content->naam}}</h4>
         <p>{{substr($content->viswater,0,350)}}</p>
-        <p><a href="" class=" btn-xs" role="button">Meer</a></p>
+        <p><a href="{{url('/plaatsen/'.$content->naam)}}" class=" btn-xs" role="button">Meer</a></p>
     </div>
 </div>
