@@ -32,4 +32,5 @@ Route::get('/toevoegen/nieuws','Add_contentController@nieuws');
 Route::get('/toevoegen/tutorial','Add_contentController@tutorial');
 Route::post('/toevoegen/nieuws','Add_contentController@toaveogenNieuws');
 Route::post('/toevoegen/tutorial','Add_contentController@toevoegenTutorial');
+Route::post('/toevoegen/subscribe','EmailController@addSubscriber');
 

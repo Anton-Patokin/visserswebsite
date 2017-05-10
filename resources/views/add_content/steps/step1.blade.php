@@ -1,4 +1,6 @@
 <?php
+
+
 $title = "Nieuws artikel";
 $description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, soluta, eligendi doloribus sunt minus amet sit debitis repellat. Consectetur, culpa itaque odio similique suscipit";
 $url = "http://placehold.it/500x300";
@@ -49,7 +51,7 @@ $naam = "Anton";
             @include('components.new_contest')
         </div>
         <div ng-show="show_exampale==4">
-            @include('components.visplek_thumbnail')
+{{--            @include('components.visplek_thumbnail')--}}
         </div>
     </div>
 </div>

@@ -3,9 +3,22 @@
 @section('content')
 
     <div class="container-fluid" ng-controller="GoogleMapsConroller">
+
+        @if (Cookie::has('success'))
+            <div class="row margin-top-2 ">
+                <div class="col-md-12">
+                    <div class="alert alert-success">
+                        <p class="text-center">{{Cookie::get('success')}}</p>
+                    </div>
+                </div>
+            </div>
+            <?php Cookie::queue('success', null, -1);?>
+        @endif
         <?php $head = 'home';$head_description = 'Vis activiteiten onder een dak';?>
         @include('header')
         <div class="row margin-top-1">
+
+
             <div class="col-md-3 box-card">
                 <div class="thumbnail ">
                     <div class="caption">
@@ -44,11 +57,18 @@
                                     <div class="row">
                                         <div class="form-group">
                                             <div class="col-xs-12 col-sm-8 col-md-10 col-lg-10">
-                                                <input type="text" class="form-control ng-valid input-lg"
-                                                       placeholder="Zoeken">
+                                                <div ng-if="googleMaps" class="form-group move-down">
+                                                    <input type="text" id="Autocomplete" class="form-control"
+                                                           ng-autocomplete ng-model="latLngFromAdress.result"
+                                                           type="text" class="form-control ng-valid input-lg"
+                                                           details="details1" options="options1"
+                                                           placeholder="Zoeken">
+                                                </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
-                                                <button type="submit" class="btn btn-default fullwidth">Zoeken</button>
+                                                <button ng-click="resenterGoogleMaps(latLngFromAdress.result)"
+                                                        type="submit" class="btn btn-default fullwidth">Zoeken
+                                                </button>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -68,32 +88,26 @@
 
                                 <div class="">
                                     <ui-gmap-google-map options="map.options" center='map.center'
-                                                        zoom='map.zoom'></ui-gmap-google-map>
+                                                        zoom='map.zoom'>
+                                        <ui-gmap-markers models="visPlaatsMarkers" coords="'self'"
+                                                         icon="{url:'{{url('/images/icon/marker_vis.png')}}'}">
+                                        </ui-gmap-markers>
+                                        <ui-gmap-markers models="trainerMarkers" coords="'self'"
+                                                         icon="{url:'{{url('/images/icon/marker_trainer.png')}}'}">
+                                        </ui-gmap-markers>
+                                        <ui-gmap-markers models="wedsrijdMarkers" coords="'self'"
+                                                         icon="{url:'{{url('/images/icon/marker_wedstrijd.png')}}'}">
+                                        </ui-gmap-markers>
+                                    </ui-gmap-google-map>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 box-card">
-                <div class="thumbnail">
-                    <div class="caption ">
-                        <div class="box-card-head">
-                            <h3 class="widget-title text-uppercase text-center ">BLIJF OP DE HOOCHTE</h3>
-                        </div>
-                        <div class="box-card-body">
-                            <form>
-                                <div class="form-group">
-                                    <input class="form-control grey" type="email"
-                                           placeholder="Jouw e-mail adress">
-                                    <input type="submit" value="Aboneer je nu"
-                                           class="text-uppercase text-center btn btn-subscribe margin-top-3">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @if (!Cookie::has('subscriber'))
+                @include('components.subscribe')
+            @endif
         </div>
     </div>
     <div class="container-fluid">

@@ -1,4 +1,4 @@
-<div class="row margin-top-2">
+<div class="row {{(Cookie::get('success'))?"":"margin-top-2"}}">
     <div class="col-md-12 box-card">
         <div class="thumbnail">
             <div class="caption">
@@ -16,3 +16,4 @@
         </div>
     </div>
 </div>
+

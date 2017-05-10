@@ -203,6 +203,14 @@
 }
 
 .thumbnail {
+  .error.alert {
+    margin-bottom: 0px;
+    color: $dark-blue;
+    height: 20px;
+    line-height:20px;
+    padding:0px 10px 20px;
+  }
+
   .thumbnail-head {
     h4 {
       font-size: 18px;

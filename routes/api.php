@@ -20,3 +20,6 @@ Route::post('/add/content','AddContentController@add');
 Route::get('/add/content',function(){
     return 'okey';
 });
+
+Route::get('/get/markers/{type}','ApiGoogleMaps@markers');
+Route::get('/get/marker/{id}','ApiGoogleMaps@marker');

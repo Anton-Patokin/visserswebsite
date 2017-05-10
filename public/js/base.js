@@ -1,137 +1,16 @@
 var center = {latitude: 51.218826, longitude: 4.402950};
 var MAX_SIZE = 5000000;//5mb
+var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial','ngAutocomplete']);
 
-var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial']);
 
-
-(function (module) {
-
-    var fileReader = function ($q, $log) {
-
-        var onLoad = function (reader, deferred, scope) {
-            return function () {
-                scope.$apply(function () {
-                    deferred.resolve(reader.result);
-                });
-            };
-        };
-
-        var onError = function (reader, deferred, scope) {
-            return function () {
-                scope.$apply(function () {
-                    deferred.reject(reader.result);
-                });
-            };
-        };
-
-        var onProgress = function (reader, scope) {
-            return function (event) {
-                scope.$broadcast("fileProgress",
-                    {
-                        total: event.total,
-                        loaded: event.loaded
-                    });
-            };
-        };
-        var getReader = function (deferred, scope) {
-            var reader = new FileReader();
-            reader.onload = onLoad(reader, deferred, scope);
-            reader.onerror = onError(reader, deferred, scope);
-            reader.onprogress = onProgress(reader, scope);
-            return reader;
-        };
-        var readAsDataURL = function (file, scope) {
-            var deferred = $q.defer();
-            console.log(file);
-            var reader = getReader(deferred, scope);
-            reader.readAsDataURL(file);
-
-            return deferred.promise;
-        };
-
-        return {
-            readAsDataUrl: readAsDataURL
-        };
+myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader', '$http','$window', function ($scope, uiGmapGoogleMapApi, fileReader, $http,$window) {
+    $scope.latLngFromAdress ={result:''};
+    $scope.options1 = {
+        country: 'be',
+        types: '(cities)'
     };
+    $scope.details1 = '';
 
-    module.factory("fileReader",
-        ["$q", "$log", fileReader]);
-
-}(angular.module("myApp")));
-
-myApp.directive("ngFileSelect", function () {
-
-    return {
-        link: function ($scope, el) {
-
-            el.bind("change", function (e) {
-
-                $scope.file = (e.srcElement || e.target).files[0];
-                var ext = $scope.file.name.match(/\.(.+)$/)[1];
-                if (angular.lowercase(ext) === 'jpg' || angular.lowercase(ext) === 'jpeg' || angular.lowercase(ext) === 'png') {
-                    $scope.showImageInvalideFileFormat = false;
-                    var size = $scope.file.size;
-                    console.log(size);
-                    if (size < MAX_SIZE) {
-                        console.log('alles is inoorde image is corect');
-                        $scope.ShowfileSizeValidation = false;
-                        $scope.showSelectImageValidation = false;
-                        $scope.input.file = $scope.file;
-                        $scope.getFile();
-                    } else {
-                        $scope.ShowfileSiz
-                        eValidation = true;
-                    }
-
-                }
-                else {
-                    $scope.showImageInvalideFileFormat = true;
-                }
-                console.log($scope.showImageInvalideFileFormat);
-                $scope.$apply();
-            })
-
-        }
-
-    }
-})
-myApp.config(function (uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyDJBGY58S0ptq6KlFxYIpNLTIEW8mBKhk4',
-        v: '3.20', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization'
-    });
-})
-myApp.controller('GoogleMapsConroller', ['$scope', 'uiGmapGoogleMapApi', function ($scope, uiGmapGoogleMapApi) {
-    $scope.map = {
-        center: {
-            latitude: center.latitude,
-            longitude: center.longitude
-        },
-        options: {
-            scrollwheel: false,
-        },
-        zoom: 8
-    };
-    uiGmapGoogleMapApi.then(function (maps) {
-    });
-}]);
-myApp.controller('GoogleMapsSmaalConroller', ['$scope', 'uiGmapGoogleMapApi', function ($scope, uiGmapGoogleMapApi) {
-    $scope.map = {
-        center: {
-            latitude: center.latitude,
-            longitude: center.longitude
-        },
-        options: {
-            scrollwheel: false,
-        },
-        zoom: 8
-    };
-    uiGmapGoogleMapApi.then(function (maps) {
-    });
-}]);
-
-myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader', '$http', function ($scope, uiGmapGoogleMapApi, fileReader, $http) {
     $scope.imageSrc = "http://placehold.it/500x300";
     var formValue = new FormData();
     $scope.showImageInvalideFileFormat = false;
@@ -188,11 +67,9 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     var minAge = 18;
     $scope.minAge = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
     $scope.getAgeOfuser = function () {
-        console.log($scope.minAge);
     }
 
     $scope.initVisersPlek = function (waterType) {
-        console.log(waterType);
         $scope.input.watertype = waterType;
     }
 
@@ -205,7 +82,6 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.input.category = contestCategory;
         $scope.input.hengel = hengel;
         $scope.input.visserij = visserij;
-        console.log($scope.input.visserij)
     }
 
     $scope.tutorialCategory = "";
@@ -213,18 +89,14 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.tutorialCategory = category;
         $scope.nieuws.titel = titel;
         $scope.nieuws.inleiding = inleiding;
-        console.log($scope.tutorialCategory);
     }
     $scope.initNieuwsArtikel = function (titel, inleiding) {
-        console.log(titel, inleiding);
         $scope.nieuws.titel = titel;
         $scope.nieuws.inleiding = inleiding;
 
     }
     $scope.submitNieuwForm = function () {
         $scope.showError = false;
-        console.log('launch')
-        console.log($scope.nieuwForm.$valid);
         // check to make sure the form is completely valid
 
         $("form").get(0).setAttribute("action", "test.html");
@@ -232,7 +104,6 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         document.getElementById("submitNieuwForm").submit();
         if ($scope.nieuwForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
             $scope.showError = false;
-            console.log("send");
             // $("form").get(0).setAttribute( "action", "test.html" );
             //
             // document.getElementById("submitNieuwForm").submit();
@@ -243,7 +114,6 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
 
     $scope.submitForm = function () {
         $scope.showError = false;
-        console.log($scope.visWedstrijdForm.$valid);
         // check to make sure the form is completely valid
 
         formValue.append("input", [$scope.input.id]);
@@ -346,7 +216,6 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
             template: "step3"
         },
     ];
-    console.log($scope.steps);
 
     function refreschAddContent() {
         if ($scope.currentStep == 1) {
@@ -452,16 +321,20 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         options: '',
 
     }
-    uiGmapGoogleMapApi.then(function (maps) {
 
+
+    uiGmapGoogleMapApi.then(function (maps) {
+        $scope.google=google;
+        $scope.googleMaps = true;
     });
 
 }]);
 
+myApp.config(function (uiGmapGoogleMapApiProvider) {
+    uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyDJBGY58S0ptq6KlFxYIpNLTIEW8mBKhk4',
+        v: '3.20', //defaults to latest 3.X anyhow
+        libraries: "places,geometry,visualization"
+    });
+});
 
-myApp.controller('WizardController', ['$scope', function ($scope) {
-
-
-    //Model
-
-}]);
