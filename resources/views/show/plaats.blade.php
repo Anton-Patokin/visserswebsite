@@ -4,7 +4,7 @@
     $text["waterTypeLeeg"] = "Water type is onbekend";
     ?>
     <div class="container-fluid" ng-controller="GoogleMapsSmaalConroller">
-        <?php $head = 'VisPlaats';$head_description = $content->naam;?>
+        <?php $head = 'VisPlaats';$head_description = $content->titel;?>
         @include('header')
         <div class="row margin-top-1">
             <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
@@ -12,7 +12,7 @@
                     <div class="col-md-12">
                         <div class="thumbnail">
                             <div class="caption">
-                                <img src="{{url('/uploads/thumbnail/'.$content->image)}}" alt="{{$content->naam}}">
+                                <img src="{{url('/uploads/thumbnail/'.$content->image)}}" alt="{{$content->titel}}">
                             </div>
                         </div>
                     </div>

@@ -17,6 +17,7 @@ class CreateTutorialsTable extends Migration
             $table->increments('id');
             $table->string('titel');
             $table->string('image');
+            $table->string('type')->default('tutorial');
             $table->string('inleiding');
             $table->longText('wiziwig');
             $table->string('category');

@@ -14,7 +14,11 @@
                             <div class="caption">
                                 <div>
                                     <ui-gmap-google-map options="map.options" center='map.center'
-                                                        zoom='map.zoom'></ui-gmap-google-map>
+                                                        zoom='map.zoom'>
+                                        <ui-gmap-markers models="visPlaatsMarkers" coords="'self'"
+                                                         icon="{url:'{{url('/images/icon/marker_vis.png')}}'}">
+                                        </ui-gmap-markers>
+                                    </ui-gmap-google-map>
                                 </div>
                             </div>
                         </div>

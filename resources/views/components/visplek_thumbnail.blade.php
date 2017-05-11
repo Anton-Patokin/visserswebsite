@@ -1,11 +1,11 @@
 <div class="thumbnail">
-    <img src="{{url('/uploads/thumbnail/'.$content->image)}}" alt="Ableding van trainer onder naam {{$content->naam}}">
+    <img src="{{url('/uploads/thumbnail/'.$content->image)}}" alt="Ableding van trainer onder naam {{$content->titel}}">
     <div class="card-profile pull-right" >
         <img src="{{url('/images/icon/vishak.jpg')}}">
     </div>
     <div class="caption margin-top-5">
-        <h4>{{$content->naam}}</h4>
+        <h4>{{$content->titel}}</h4>
         <p>{{substr($content->viswater,0,350)}}</p>
-        <p><a href="{{url('/plaatsen/'.$content->naam)}}" class=" btn-xs" role="button">Meer</a></p>
+        <p><a href="{{url('/plaatsen/'.$content->titel)}}" class=" btn-xs" role="button">Meer</a></p>
     </div>
 </div>

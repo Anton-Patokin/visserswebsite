@@ -39,14 +39,14 @@ class HomeController extends Controller
     public function index()
     {
         $wedstrijden = Wedstrijd::all();
-        $trainers = User::where('trainer', 1)->get();
+        $trainers = User::where('active', 1)->get();
         return view('home', ["wedstrijden" => $wedstrijden, "trainers" => $trainers]);
     }
 
 
     public function plaatsen($titel = null)
     {
-        return $this->get_content_from_database('vis_pleks', 'naam', $titel,'plaats','plaatsen');
+        return $this->get_content_from_database('vis_pleks', 'titel', $titel,'plaats','plaatsen');
     }
     public function wedstrijden($titel = null)
     {
@@ -57,13 +57,13 @@ class HomeController extends Controller
     {
         return $this->get_content_from_database('nieuws_artikels', 'titel', $titel,'nieuws-artikel','nieuws-artikelen');
     }
-    public function trainer($naam = null)
+    public function trainer($titel = null)
     {
-        return $this->get_content_from_database('users', 'name', $naam,'trainer','trainers');
+        return $this->get_content_from_database('users', 'titel', $titel,'trainer','trainers');
     }
-    public function tutorial($naam = null)
+    public function tutorial($titel = null)
     {
-        return $this->get_content_from_database('tutorials', 'titel', $naam,'tutorial','tutorials');
+        return $this->get_content_from_database('tutorials', 'titel', $titel,'tutorial','tutorials');
     }
     public function contact()
     {
@@ -76,13 +76,13 @@ class HomeController extends Controller
     public function get_content_from_database($tabel, $row_name = null, $titel = null,$view1,$view2,$view3=null)
     {
         if ($titel) {
-            $value = DB::table($tabel)->where($row_name, '=', $titel)->Where('active', 1)->first();
+            $value = DB::table($tabel)->where($row_name, '=', $titel)->Where('active', 2)->first();
 //            $value = $tabel::where($row_name, $titel)->where('active', 1)->get();
             if (count($value)) {
                 return view('show/'.$view1, ['content' => $value]);
             }
         } else {
-            $value = DB::table($tabel)->Where('active', 1)->get();
+            $value = DB::table($tabel)->Where('active', 2)->get();
             if (count($value)) {
                 return view('show/'.$view2, ['contents' => $value]);
             }

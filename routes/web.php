@@ -20,6 +20,13 @@ Auth::routes();
 Route::get('/home/{titel?}', 'HomeController@index');
 Route::get('/plaatsen/{titel?}','HomeController@plaatsen');
 Route::get('/tutorial/{titel?}','HomeController@tutorial');
+Route::get('/dashboard','DashboardController@index');
+Route::get('/dashboard/toegevoegd-inhoud','DashboardController@toegevoegd_inhoud');
+Route::get('/dashboard/nieuw-toegevoegd-inhoud','DashboardController@nieuw_toegevoegd_inhoud');
+Route::get('/dashboard/alle-toegevoegd-inhoud','DashboardController@alle_toegevoegd_inhoud');
+Route::get('/dashboard/alle-verwijderde','DashboardController@alle_verwijderde');
+
+
 
 Route::get('/wedstrijden/{titel?}','HomeController@wedstrijden');
 Route::get('/trainer/{titel?}','HomeController@trainer');
@@ -34,3 +41,7 @@ Route::post('/toevoegen/nieuws','Add_contentController@toaveogenNieuws');
 Route::post('/toevoegen/tutorial','Add_contentController@toevoegenTutorial');
 Route::post('/toevoegen/subscribe','EmailController@addSubscriber');
 
+Route::get('/verwijderen/{tabel}/{id}','DashboardController@verwijderen');
+Route::get('/verwijderen/activeren/{tabel}/{id}','DashboardController@verwijderen_deactiveren');
+Route::get('/aanvaarden/{tabel}/{id}/','DashboardController@aanvaarden');
+Route::get('/dashboard/gebruikers','DashboardController@gebruikers');

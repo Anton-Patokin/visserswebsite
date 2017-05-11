@@ -15,7 +15,8 @@ class CreateVisPleksTable extends Migration
     {
         Schema::create('vis_pleks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('naam');
+            $table->string('titel');
+            $table->string('type')->default('plaats');
             $table->string('image');
             $table->decimal('lat',12,8);
             $table->decimal('lng',12,8);

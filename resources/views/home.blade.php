@@ -1,19 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container-fluid" ng-controller="GoogleMapsConroller">
-
-        @if (Cookie::has('success'))
-            <div class="row margin-top-2 ">
-                <div class="col-md-12">
-                    <div class="alert alert-success">
-                        <p class="text-center">{{Cookie::get('success')}}</p>
-                    </div>
-                </div>
-            </div>
-            <?php Cookie::queue('success', null, -1);?>
-        @endif
+        @include('berichten.cookieBericht')
         <?php $head = 'home';$head_description = 'Vis activiteiten onder een dak';?>
         @include('header')
         <div class="row margin-top-1">

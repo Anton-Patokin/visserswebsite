@@ -16,6 +16,7 @@ class CreateNieuwsArtikelsTable extends Migration
         Schema::create('nieuws_artikels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titel');
+            $table->string('type')->default('nieuwsArtikel');
             $table->string('image');
             $table->string('inleiding');
             $table->longText('wiziwig');

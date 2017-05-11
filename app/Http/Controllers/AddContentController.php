@@ -91,7 +91,7 @@ class AddContentController extends Controller
                     $visPlek = new VisPlek;
                     $visPlek->lat = $input['lat'];
                     $visPlek->lng = $input['lng'];
-                    $visPlek->naam = $input['naam'];
+                    $visPlek->titel = $input['naam'];
                     $visPlek->image = $fileName;
                     $visPlek->watertype = $input['watertype'];
                     $visPlek->viswater = $input['viswater'];
@@ -169,6 +169,7 @@ class AddContentController extends Controller
                     $user->lat = $input['lat'];
                     $user->lng = $input['lng'];
                     $user->name = $input['naam'];
+                    $user->titel = $input['naam'];
                     $user->image = $fileName;
                     $user->vraagprijs = $input['kostprijs'];
                     $user->geslacht = $input['geslacht'];

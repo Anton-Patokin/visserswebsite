@@ -35,6 +35,19 @@
                                 beriecht</a></li>
                         <li class="{{Menu::isActiveList('toevoegen/tutorial')}}"><a
                                     href="{{url('/toevoegen/tutorial')}}">Tutorial</a></li>
+                    @elseif(Menu::isActiveRoute(['dashboard']))
+                        <li class="{{Menu::isActiveList('dashboard')}}"><a
+                                    href="{{url('/dashboard')}}">Jouw overzicht</a></li>
+                        <li class="{{Menu::isActiveList('dashboard/toegevoegd-inhoud')}}"><a
+                                    href="{{url('dashboard/toegevoegd-inhoud')}}">Toegevoegd-inhoud</a></li>
+                        @if(Auth::user()->admin)
+                            <li class="{{Menu::isActiveList('dashboard/nieuw-toegevoegd-inhoud')}}"><a
+                                        href="{{url('dashboard/nieuw-toegevoegd-inhoud')}}">Nieuwe inhoud</a></li>
+                            <li class="{{Menu::isActiveList('dashboard/alle-verwijderde')}}"><a
+                                        href="{{url('dashboard/alle-verwijderde')}}">Gebruikers</a></li>
+                            <li class="{{Menu::isActiveList('dashboard/gebruikers')}}"><a
+                                        href="{{url('dashboard/gebruikers')}}">Gebruikers</a></li>
+                        @endif
                     @endif
                 </ul>
             </div>

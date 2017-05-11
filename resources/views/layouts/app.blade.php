@@ -21,14 +21,13 @@
     {{--</script>--}}
 
 </head>
-<body ng-app="myApp" ng-controller="MainController">
+<body ng-app="myApp" ng-controller="MainController"  class="background-gray">
 @include('layouts.top')
 @include('layouts.banner')
 @include('layouts.middel')
 @include('layouts.bottom')
 
-<div id="app" class="background-gray">
-
+<div id="app">
     @yield('content')
 </div>
 

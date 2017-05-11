@@ -19,6 +19,7 @@ class CreateWedstrijdsTable extends Migration
             $table->decimal('lng',12,8);
             $table->string('titel');
             $table->string('image');
+            $table->string('type')->default('wedstrijd');
             $table->string('prijzen')->nullable();
             $table->string('category');
             $table->string('hengel');
