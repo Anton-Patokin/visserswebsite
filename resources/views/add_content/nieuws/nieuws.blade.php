@@ -1,7 +1,14 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container" ng-init="initNieuwsArtikel('{{ old('titel') }}','{{ old('inleiding') }}')">
-        <form method="POST" id="submitNieuwForm" name="nieuwForm" accept-charset="UTF-8" enctype="multipart/form-data" role="form" ng-submit="submitNieuwForm()"
+    @if(isset($aanpasen))
+        <div ng-init="initAanpassenNieuwsArtikel('{{$aanpasen->titel}}','{{$aanpasen->inleiding}}','{{$aanpasen->image}}','true')"></div>
+    @endif
+    @if(old('titel') || old('inleiding'))
+        <div ng-init="initAanpassenNieuwsArtikel('{{ old('titel') }}','{{ old('inleiding') }}','',false')"></div>
+    @endif
+    <div class="container">
+        <form method="POST" id="submitNieuwForm" name="nieuwForm" accept-charset="UTF-8" enctype="multipart/form-data"
+              role="form" ng-submit="submitNieuwForm()"
               novalidate>
             {{ csrf_field() }}
             <div class="row">
@@ -28,16 +35,16 @@
                                            ng-class="{'alert-warning':nieuws.titel.length>245}">
                                     <div class="space-for-errors">
                                         {{--<p class="error alert alert-danger "--}}
-                                           {{--ng-show="nieuwForm.titel.$error.maxlength && showError">--}}
-                                            {{--<span class="glyphicon glyphicon-exclamation-sign"--}}
-                                                  {{--aria-hidden="true"></span>--}}
-                                            {{--Naam is te lang--}}
+                                        {{--ng-show="nieuwForm.titel.$error.maxlength && showError">--}}
+                                        {{--<span class="glyphicon glyphicon-exclamation-sign"--}}
+                                        {{--aria-hidden="true"></span>--}}
+                                        {{--Naam is te lang--}}
                                         {{--</p>--}}
                                         {{--<p class="error alert alert-danger"--}}
-                                           {{--ng-show="nieuwForm.titel.$error.required && showError">--}}
-                                            {{--<span class="glyphicon glyphicon-exclamation-sign"--}}
-                                                  {{--aria-hidden="true"></span>--}}
-                                            {{--Naam van de visplek is verplicht--}}
+                                        {{--ng-show="nieuwForm.titel.$error.required && showError">--}}
+                                        {{--<span class="glyphicon glyphicon-exclamation-sign"--}}
+                                        {{--aria-hidden="true"></span>--}}
+                                        {{--Naam van de visplek is verplicht--}}
                                         {{--</p>--}}
                                         <small ng-if="nieuws.titel.length>5 && !nieuwForm.titel.$error.required"
                                                class="pull-right max-charakters"
@@ -60,19 +67,20 @@
                             <div class="col-md-12">
                                 <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
                                     <label for="image">Kies een foto*</label>
-                                    <input name="image" class="form-control input-lg" type="file" ng-file-select="onFileSelect($files)">
+                                    <input name="image" class="form-control input-lg" type="file"
+                                           ng-file-select="onFileSelect($files)">
                                     <div class="space-for-errors">
                                         {{--<p class="error alert alert-danger" ng-show="showImageInvalideFileFormat">--}}
-                                            {{--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>--}}
-                                            {{--Afbeelding moet png,jpg of jpeg format zijn--}}
+                                        {{--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>--}}
+                                        {{--Afbeelding moet png,jpg of jpeg format zijn--}}
                                         {{--</p>--}}
                                         {{--<p class="error alert alert-danger" ng-show="showSelectImageValidation && showError">--}}
-                                            {{--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>--}}
-                                            {{--Je hebt nog geen afbeelding gekozen.--}}
+                                        {{--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>--}}
+                                        {{--Je hebt nog geen afbeelding gekozen.--}}
                                         {{--</p>--}}
                                         {{--<p class="error alert alert-danger" ng-show="ShowfileSizeValidation">--}}
-                                            {{--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>--}}
-                                            {{--Afbeelding mag niet groter zijn dan 5mb--}}
+                                        {{--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>--}}
+                                        {{--Afbeelding mag niet groter zijn dan 5mb--}}
                                         {{--</p>--}}
                                         @if ($errors->has('image'))
                                             <p class="error alert alert-danger">
@@ -98,16 +106,16 @@
 
                                     <div class="space-for-errors">
                                         {{--<p class="error alert alert-danger "--}}
-                                           {{--ng-show="nieuwForm.inleiding.$error.maxlength && showError">--}}
-                                            {{--<span class="glyphicon glyphicon-exclamation-sign"--}}
-                                                  {{--aria-hidden="true"></span>--}}
-                                            {{--Naam is te lang--}}
+                                        {{--ng-show="nieuwForm.inleiding.$error.maxlength && showError">--}}
+                                        {{--<span class="glyphicon glyphicon-exclamation-sign"--}}
+                                        {{--aria-hidden="true"></span>--}}
+                                        {{--Naam is te lang--}}
                                         {{--</p>--}}
                                         {{--<p class="error alert alert-danger"--}}
-                                           {{--ng-show="nieuwForm.inleiding.$error.required && showError">--}}
-                                            {{--<span class="glyphicon glyphicon-exclamation-sign"--}}
-                                                  {{--aria-hidden="true"></span>--}}
-                                            {{--Naam van de visplek is verplicht--}}
+                                        {{--ng-show="nieuwForm.inleiding.$error.required && showError">--}}
+                                        {{--<span class="glyphicon glyphicon-exclamation-sign"--}}
+                                        {{--aria-hidden="true"></span>--}}
+                                        {{--Naam van de visplek is verplicht--}}
                                         {{--</p>--}}
                                         <small ng-if="nieuws.inleiding.length>5 && !nieuwForm.inleiding.$error.required"
                                                class="pull-right max-charakters"
@@ -133,6 +141,9 @@
                                     <textarea id="wiziwig" name="wiziwig" class="form-control input-lg"
                                               rows="25">
                                         {{ old('wiziwig') }}
+                                        @if(isset($aanpasen))
+                                            {{$aanpasen->wiziwig}}
+                                        @endif
                                     </textarea>
                                     <div class="space-for-errors">
                                         @if ($errors->has('wiziwig'))

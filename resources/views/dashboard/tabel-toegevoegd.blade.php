@@ -34,10 +34,14 @@
                     </td>
                 @endif
                 <td class="text-center">
-                    <div class="glyphicon glyphicon-pencil"></div>
+                    <a href="{{url('/aanpasen/'.$content->type.'/'.$content->id)}}">
+                        <div class="glyphicon glyphicon-pencil"></div>
+                    </a>
                 </td>
                 <td class="text-center">
-                    <div class="glyphicon glyphicon-zoom-in"></div>
+                    <a href="{{url('/'.$content->type.'/'.$content->id.'/'.substr($content->titel,0,25))}}">
+                        <div class="glyphicon glyphicon-zoom-in"></div>
+                    </a>
                 </td>
                 <td class="text-center">
                     @if(!$content->deleted_at)

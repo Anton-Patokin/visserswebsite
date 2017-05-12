@@ -14,6 +14,7 @@ use App\NieuwsArtikel;
 //use App\VisPlek;
 use App\Wedstrijd;
 //use App\Tutorial;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -44,47 +45,61 @@ class HomeController extends Controller
     }
 
 
-    public function plaatsen($titel = null)
+    public function plaatsen($id = null, $titel = null)
     {
-        return $this->get_content_from_database('vis_pleks', 'titel', $titel,'plaats','plaatsen');
-    }
-    public function wedstrijden($titel = null)
-    {
-        return $this->get_content_from_database('wedstrijds', 'titel', $titel,'wedstrijd','wedstrijden');
+        return $this->get_content_from_database('vis_pleks', $id, 'plaats', 'plaatsen');
     }
 
-    public function nieuws($titel = null)
+    public function wedstrijden($id = null, $titel = null)
     {
-        return $this->get_content_from_database('nieuws_artikels', 'titel', $titel,'nieuws-artikel','nieuws-artikelen');
+        return $this->get_content_from_database('wedstrijds', $id, 'wedstrijd', 'wedstrijden');
     }
-    public function trainer($titel = null)
+
+    public function nieuws($id = null, $titel = null)
     {
-        return $this->get_content_from_database('users', 'titel', $titel,'trainer','trainers');
+        return $this->get_content_from_database('nieuws_artikels', $id, 'nieuws-artikel', 'nieuws-artikelen');
     }
-    public function tutorial($titel = null)
+
+    public function trainer($id = null, $titel = null)
     {
-        return $this->get_content_from_database('tutorials', 'titel', $titel,'tutorial','tutorials');
+        return $this->get_content_from_database('users', $id, 'trainer', 'trainers');
     }
+
+    public function tutorial($id = null, $titel = null)
+    {
+        return $this->get_content_from_database('tutorials', $id, 'tutorial', 'tutorials');
+    }
+
     public function contact()
     {
         return view('show/contact');
     }
-    public function overOns(){
+
+    public function overOns()
+    {
         return view('show/over-ons');
     }
 
-    public function get_content_from_database($tabel, $row_name = null, $titel = null,$view1,$view2,$view3=null)
+    public function get_content_from_database($tabel, $id = null, $view1, $view2, $view3 = null)
     {
-        if ($titel) {
-            $value = DB::table($tabel)->where($row_name, '=', $titel)->Where('active', 2)->first();
-//            $value = $tabel::where($row_name, $titel)->where('active', 1)->get();
-            if (count($value)) {
-                return view('show/'.$view1, ['content' => $value]);
+        if ($id) {
+            $show = false;
+            $value = DB::table($tabel)->find($id);
+            //ditai pagina veergeven
+            if (Auth::user()->id == $value->user_id) {
+                $show = true;
+            }
+            if ($value->active == "2") {
+                $show = true;
+            }
+            if ($show) {
+                return view('show/' . $view1, ['content' => $value]);
             }
         } else {
+            //bij het bezoeken van overzicht pagina
             $value = DB::table($tabel)->Where('active', 2)->get();
             if (count($value)) {
-                return view('show/'.$view2, ['contents' => $value]);
+                return view('show/' . $view2, ['contents' => $value]);
             }
         }
         return $this->paginaNietGevonden();

@@ -30,9 +30,6 @@
                                             <li><div class="box green"> </div> Toegevoegd</li>
                                             <li><div class="box blue"> </div> Niet goed gekeurd</li>
                                             <li><div class="box red"></div> Verwijderd</li>
-
-
-
                                         </ul>
                                     </div>
                                 </div>

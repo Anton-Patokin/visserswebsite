@@ -17,7 +17,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-left">
                     <?php
-                    $navbar = ['home', 'plaatsen', 'wedstrijden', 'nieuws', 'trainer', 'tutorial', 'over-ons', 'contact'];
+                    $navbar = ['home', 'plaats', 'wedstrijden', 'nieuws', 'trainer', 'tutorial', 'over-ons', 'contact'];
                     ?>
                     @if(Menu::isActiveRoute($navbar))
                         @foreach($navbar as $value)
