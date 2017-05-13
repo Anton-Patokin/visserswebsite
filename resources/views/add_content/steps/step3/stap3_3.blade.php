@@ -1,4 +1,4 @@
-<div class="col-xs-12  col-sm-7 col-md-8 col-lg-8" ng-init="initVisersPlek('{{$waterType->first()->waterType}}')">
+<div class="col-xs-12  col-sm-7 col-md-8 col-lg-8">
     <div class="row">
         <div class="col-md-12">
             <h1>Acha je wilt een vis plek delen met andere mesen dat is mooie initiatief</h1>

@@ -44,11 +44,11 @@ class DashboardController extends Controller
     {
         $array = [];
         if (Auth::user()->admin == 1) {
-            $array['wedstrijd'] = Wedstrijd::where('active', null)->orWhere('active', '1')->get();
+            $array['wedstrijd'] = Wedstrijd::where('active', null)->orWhere('active', '1')->orWhere('active', '0')->get();
             $array['trainers'] = User::where('active', null)->orWhere('active', '0')->get();
-            $array['nieuwsArtikel'] = NieuwsArtikel::where('active', null)->orWhere('active', '1')->get();
-            $array['tutorial'] = Tutorial::where('active', null)->orWhere('active', '1')->get();
-            $array['visPlaats'] = VisPlek::where('active', null)->orWhere('active', '1')->get();
+            $array['nieuwsArtikel'] = NieuwsArtikel::where('active', null)->orWhere('active', '1')->orWhere('active', '0')->get();
+            $array['tutorial'] = Tutorial::where('active', null)->orWhere('active', '1')->orWhere('active', '0')->get();
+            $array['visPlaats'] = VisPlek::where('active', null)->orWhere('active', '1')->orWhere('active', '0')->get();
         } else {
             return back();
         }

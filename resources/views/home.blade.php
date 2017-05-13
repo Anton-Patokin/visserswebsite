@@ -6,8 +6,6 @@
         <?php $head = 'home';$head_description = 'Vis activiteiten onder een dak';?>
         @include('header')
         <div class="row margin-top-1">
-
-
             <div class="col-md-3 box-card">
                 <div class="thumbnail ">
                     <div class="caption">

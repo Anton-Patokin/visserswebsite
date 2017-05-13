@@ -13,11 +13,15 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use App\TutorialCategory;
+use App\Http\Controllers\FileUploadController;
 
 class Add_contentController extends Controller
 {
+    protected $fileUpload;
+
     public function __construct()
     {
+        $this->fileUpload = new FileUploadController();
         $this->middleware('auth');
     }
 
@@ -34,85 +38,109 @@ class Add_contentController extends Controller
     {
         return view('add_content.nieuws.nieuws');
     }
-    public function tutorial(){
-        return view('add_content.tutorial.tutorial',['tutorialCategory'=>TutorialCategory::all()]);
+
+    public function tutorial()
+    {
+        return view('add_content.tutorial.tutorial', ['tutorialCategory' => TutorialCategory::all()]);
     }
 
-    public  function toevoegenTutorial(Request $request){
+    public function toevoegenTutorial(Request $request)
+    {
+        $success = false;
         $this->validate($request,
             [
-                'titel' => 'required|max:51',
+                'titel' => 'required|max:250',
                 'inleiding' => 'required|max:350',
-                'image' => 'required | mimes:jpeg,jpg,png | max:5000',
-                'category'=>'required |exists:tutorial_categories',
+                'category' => 'required |exists:tutorial_categories',
                 'wiziwig' => 'required|max:1000000',
             ]);
-
         $user = Auth::user();
-
-
         if ($user) {
+            if ($request->aanpasen) {
+                $tutorial = Tutorial::find($request->aanpasen);
 
-            $file = $request->image;
-            $fileName = date("Ymdsmd") . $file->getClientOriginalName();
-            $destinationPath = 'uploads\\';
+                if (Auth::user()->id == $tutorial->user_id) {
+                    if ($request->image) {
+                        $this->validate($request,
+                            [
+                                'image' => 'required | mimes:jpeg,jpg,png,| max:5000',
+                            ]);
+                        $fileName = $this->fileUpload->fileUpload($request->image);
 
-            if ($file->move($destinationPath, $fileName)) {
-                $max_with = 500;
-                $max_height = 300;
-                Image::make(public_path($destinationPath . $fileName))->resize($max_with, $max_height)->save($destinationPath . 'thumbnail\\' . $fileName);
-                Image::make(public_path($destinationPath . $fileName))->resize($max_with * 2, $max_height * 2)->save($destinationPath . 'big\\' . $fileName);
+                    } else {
+                        $fileName = $tutorial->image;
+                    }
+                }
+                $tutorial->active = 0;
+            } else {
+                $this->validate($request,
+                    [
+                        'image' => 'required | mimes:jpeg,jpg,png | max:5000',
+                    ]);
+                $fileName = $this->fileUpload->fileUpload($request->image);
+                $tutorial = new Tutorial;
             }
-            $tutorial = new Tutorial;
+        }
+        if ($fileName && $tutorial) {
             $tutorial->titel = $request->titel;
             $tutorial->inleiding = $request->inleiding;
             $tutorial->image = $fileName;
             $tutorial->category = $request->category;
             $tutorial->wiziwig = $request->category;
             $tutorial->user_id = $user->id;
-
             $tutorial->save();
             return "save";
-
         }
         return 'error';
     }
 
-    public function toaveogenNieuws(Request $request)
+    public function toevoegenNieuws(Request $request)
     {
+        $success = false;
+
         $this->validate($request,
             [
-                'titel' => 'required|max:51',
+                'titel' => 'required|max:250',
                 'inleiding' => 'required|max:350',
-                'image' => 'required | mimes:jpeg,jpg,png | max:5000',
                 'wiziwig' => 'required|max:1000000',
             ]);
 
+
         $user = Auth::user();
-
-
         if ($user) {
+            if ($request->aanpasen) {
+                $nieuwsArtikel = NieuwsArtikel::find($request->aanpasen);
+                if (Auth::user()->id == $nieuwsArtikel->user_id) {
 
-            $file = $request->image;
-            $fileName = date("Ymdsmd") . $file->getClientOriginalName();
-            $destinationPath = 'uploads\\';
+                    if ($request->image) {
+                        $this->validate($request,
+                            [
+                                'image' => 'required | mimes:jpeg,jpg,png,| max:5000',
+                            ]);
+                        $fileName = $this->fileUpload->fileUpload($request->image);
 
-            if ($file->move($destinationPath, $fileName)) {
-                $max_with = 500;
-                $max_height = 300;
-                Image::make(public_path($destinationPath . $fileName))->resize($max_with, $max_height)->save($destinationPath . 'thumbnail\\' . $fileName);
-                Image::make(public_path($destinationPath . $fileName))->resize($max_with * 2, $max_height * 2)->save($destinationPath . 'big\\' . $fileName);
+                    } else {
+                        $fileName = $nieuwsArtikel->image;
+                    }
+                }
+                $nieuwsArtikel->active = 0;
+            } else {
+                $this->validate($request,
+                    [
+                        'image' => 'required | mimes:jpeg,jpg,png | max:5000',
+                    ]);
+                $fileName = $this->fileUpload->fileUpload($request->image);
+                $nieuwsArtikel = new NieuwsArtikel;
             }
-            $nieuwsArtikel = new NieuwsArtikel;
+        }
+        if ($fileName && $nieuwsArtikel) {
             $nieuwsArtikel->titel = $request->titel;
             $nieuwsArtikel->inleiding = $request->inleiding;
             $nieuwsArtikel->image = $fileName;
             $nieuwsArtikel->wiziwig = $request->wiziwig;
             $nieuwsArtikel->user_id = $user->id;
-
             $nieuwsArtikel->save();
-            return "save";
-
+            return 'succes';
         }
         return 'error';
     }

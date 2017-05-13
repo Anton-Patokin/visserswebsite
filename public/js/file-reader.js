@@ -63,17 +63,14 @@ myApp.directive("ngFileSelect", function () {
                 var ext = $scope.file.name.match(/\.(.+)$/)[1];
                 if (angular.lowercase(ext) === 'jpg' || angular.lowercase(ext) === 'jpeg' || angular.lowercase(ext) === 'png') {
                     $scope.showImageInvalideFileFormat = false;
+                    $scope.ShowfileSizeValidation = true;
                     var size = $scope.file.size;
                     if (size < MAX_SIZE) {
                         $scope.ShowfileSizeValidation = false;
                         $scope.showSelectImageValidation = false;
                         $scope.input.file = $scope.file;
                         $scope.getFile();
-                    } else {
-                        $scope.ShowfileSiz
-                        eValidation = true;
                     }
-
                 }
                 else {
                     $scope.showImageInvalideFileFormat = true;
