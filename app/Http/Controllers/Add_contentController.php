@@ -128,7 +128,7 @@ class Add_contentController extends Controller
 
 
         if ($fileName && $user) {
-            $user->active = 0;
+            $user->active = 1;
             $user->lat = $request->lat;
             $user->lng = $request->lng;
             $user->name = $request->naam;

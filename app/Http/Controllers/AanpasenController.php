@@ -31,17 +31,23 @@ class AanpasenController extends Controller
     {
         if ($type == 'nieuwsArtikel') {
             $nieuwsArtikel = NieuwsArtikel::find($id);
-            if (Auth::user()->id == $nieuwsArtikel->user_id) {
+            if (Auth::user()->id == $nieuwsArtikel->user_id || Auth::user()->admin) {
                 return view('add_content.nieuws.nieuws', ['aanpasen' => $nieuwsArtikel]);
             }
         }
         if ($type == 'tutorial') {
             $tutorial = Tutorial::find($id);
-            if (Auth::user()->id == $tutorial->user_id) {
+            if (Auth::user()->id == $tutorial->user_id || Auth::user()->admin) {
                 return view('add_content.tutorial.tutorial', ['aanpasen' => $tutorial, 'tutorialCategory' => TutorialCategory::all()]);
             }
         }
-        if($type=='wedstrijd' || $type=='plaats' ||$type=='trainer'){
+        if($type=='trainer'){
+            $content = User::find($id);
+            if (Auth::user()->admin) {
+                return view('gebruiker/gebruiker',['aanpasen'=>$content]);
+            }
+        }
+        if($type=='wedstrijd' || $type=='plaats'){
             $content="";
             if($type=='wedstrijd'){
                 $content = Wedstrijd::find($id);
@@ -49,14 +55,7 @@ class AanpasenController extends Controller
             if($type=='plaats'){
                 $content = VisPlek::find($id);
             }
-            if($type=='trainer'){
-                $content = User::find($id);
-                return view('add_content.add',['aanpasen'=>$content,'type'=>$type])
-                    ->with('visserij', Visserij::all(['id', 'visserij']))
-                    ->with('category', Category::all(['id', 'category']))
-                    ->with('waterType', WaterType::all(['waterType']))
-                    ->with('hengel', Hengel::all(['id', 'hengel']));
-            }
+
             if (Auth::user()->id == $content->user_id) {
                 return view('add_content.add',['aanpasen'=>$content,'type'=>$type])
                     ->with('visserij', Visserij::all(['id', 'visserij']))

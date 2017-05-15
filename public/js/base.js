@@ -90,8 +90,6 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.showImageInvalideFileFormat = false;
         $scope.showSelectImageValidation = false;
     }
-
-
     $scope.initAanpasenVisplaats = function (id, lat, lng, titel, image, type, watertype, viswater, reglement, vergunigen, nachvissen, toilet, betaalwat, prive, vissoorte, text) {
         $scope.currentStep++;
         console.log(type)
@@ -116,9 +114,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.showImageInvalideFileFormat = false;
         $scope.showSelectImageValidation = false;
     }
-
-
-    $scope.initializeProfiel = function (name, lat, lng, ervaring, geslacht, leeftijd, vraagprijs, text, url,telefon) {
+    $scope.initializeProfiel = function (name, lat, lng, ervaring, geslacht, leeftijd, vraagprijs, text, url,telefon,aanpasen) {
         $scope.marker.coords = {latitude: lat, longitude: lng};
         $scope.input.naam = name;
         $scope.input.lat = lat;
@@ -130,6 +126,8 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.input.text = text;
         $scope.imageSrc = url;
         $scope.input.telefonnummer=telefon;
+        $scope.showImageInvalideFileFormat=!aanpasen;
+        $scope.showSelectImageValidation=!aanpasen;
     }
 
     $scope.initAanpassenNieuwsArtikel = function (titel, inleiding, url) {

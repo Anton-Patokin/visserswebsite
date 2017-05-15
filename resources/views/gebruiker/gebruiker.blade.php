@@ -1,6 +1,7 @@
 <?php $user = Auth::user();?>
 
 @if(isset($aanpasen))
+    <?php $user =$aanpasen?>
     <?php $head = 'Aanpasen';$head_description = 'Aanpasen van een bericht';?>
 @else
     <?php $head = 'Profiel';$head_description = 'Overzicht van profiel';?>
@@ -12,11 +13,13 @@
 @section('content')
     <div class="container-fluid">
 
+        @if ($errors->has('lat'))
+           <div ng-init="show_form=true"></div>
+        @endif
         @if(count(old()))
             <div ng-init="initializeProfiel('{{old('naam')}}','{{old('lat')}}','{{old('lng')}}','{{old('ervaring')}}','{{old('geslacht')}}','{{old('leeftijd')}}','{{old('kostprijs')}}','{{old('text')}}','http://placehold.it/500x300','{{old('telefonnummer')}}')"></div>
-
         @else
-            <div ng-init="initializeProfiel('{{$user->name}}','{{$user->lat}}','{{$user->lng}}','{{$user->ervaring}}','{{$user->geslacht}}','{{$user->leeftijd}}','{{$user->vraagprijs}}','{{$user->text}}','{{($user->image)?url('/uploads/thumbnail/'.$user->image):''}}','{{$user->telefonnummer}}')"></div>
+            <div ng-init="initializeProfiel('{{$user->name}}','{{$user->lat}}','{{$user->lng}}','{{$user->ervaring}}','{{$user->geslacht}}','{{$user->leeftijd}}','{{$user->vraagprijs}}','{{$user->text}}','{{($user->image)?url('/uploads/thumbnail/'.$user->image):'http://placehold.it/500x300'}}','{{$user->telefonnummer}}','{{($user->image)?'true':'false'}}')"></div>
         @endif
         <div class="row">
             <div class="col-md-12">
@@ -24,74 +27,14 @@
             </div>
         </div>
         <div class="row">
-            @if($user->active == 2)
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <div class="caption">
-                            <?php $image = (strlen($user->image)) ? 'uploads/thumbnail/' . $user->image : 'images/opvulling/profiel.jpg'?>
-                            <img src="{{url('/'.$image)}}" alt="profiel foto van {{$user->name}}">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <div class="caption" ng-controller="GoogleMapsConroller">
-                            <ui-gmap-google-map class="small" ng-class="smallGoogleMaps" class="small-google-maps"
-                                                options="map.options" center='map.center'
-                                                zoom='map.zoom'></ui-gmap-google-map>
-                        </div>
-                    </div>
-                </div>
+            @if($user->active)
+                @include('gebruiker.active')
+            @else
+                @include('gebruiker.inactive')
             @endif
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <div class="thumbnail-head">
-                            <h4 class="">
-                                Naam
-                            </h4>
-                        </div>
-                        <div class="thumbnail-body">
-                            <p class="">
-                                {{$user->name}}
-                            </p>
-                        </div>
-                        <div class="thumbnail-head">
-                            <h4 class="">
-                                Email
-                            </h4>
-                        </div>
-                        <div class="thumbnail-body">
-                            <p class="">
-                                {{$user->email}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <div class="thumbnail-head">
-                            <h4 class="">
-                                Trainer bekomen of gits worden
-                            </h4>
-                        </div>
-                        <div class="thumbnail-body">
-                            <p class="">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled it to make a type specimen book. It has
-                                survived not only five centuries, but a
-                            </p>
-                            <p ng-click="show_form=true"><a>Registreren</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <div class="row">
+        <div class="row" ng-if="show_form">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
@@ -118,14 +61,13 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row" ng-show="show_form">
 
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-12">
                         <?php $head = 'Formulier';$head_description = 'vul ontbrekende gegevens om jouw profiel te voltooien';?>
                         @include('header')
-                        <div class="container">{{$user->lat}}</div>
                     </div>
                 </div>
                 <form name="visTrainerForm" method="POST" id="submitNieuwForm" accept-charset="UTF-8"
@@ -135,7 +77,7 @@
                         <div class="caption">
                             {{ csrf_field() }}
                             <input name="id" value="{{$user->id}}" type="text" hidden>
-                            <input name="lat" type="text" ng-model="input.lat">
+                            <input name="lat" type="text" ng-model="input.lat" hidden>
                             <input name="lng" type="text" ng-model="input.lng" hidden>
                             <div class="row">
                                 <div class="col-md-12">
@@ -278,7 +220,7 @@
                     </div>
                 </form>
             </div>
-            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 @include('components.small-header')
                 <div class="thumbnail">
                     <img class="image_contest" ng-src="@{{imageSrc}}" alt="">
