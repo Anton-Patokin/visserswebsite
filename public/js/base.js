@@ -62,8 +62,6 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         betaalwater: 0,
         aanpasen: "",
     }
-
-
     $scope.initAanpasenWedstrijd = function (id, lat, lng, titel, image, type, prijzen, category, hengel, visserij, kostprijs, duur, water, datum, dag, maand, loting, text) {
         $scope.currentStep++;
         $scope.input.aanpasen = id;
@@ -80,11 +78,9 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.input.kostprijs = Number(kostprijs);
         $scope.input.wedstrijdduur = duur;
         $scope.input.wedstrijdwater = water;
-
         var myDate = datum;
         myDate = myDate.split("-");
         var newDate = myDate[1] + "," + myDate[2] + "," + myDate[0];
-
         $scope.input.myDate = new Date(newDate);
         $scope.input.dag = dag;
         $scope.input.maand = maand;
@@ -95,6 +91,46 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.showSelectImageValidation = false;
     }
 
+
+    $scope.initAanpasenVisplaats = function (id, lat, lng, titel, image, type, watertype, viswater, reglement, vergunigen, nachvissen, toilet, betaalwat, prive, vissoorte, text) {
+        $scope.currentStep++;
+        console.log(type)
+        $scope.input.aanpasen = id;
+        $scope.marker.coords = {latitude: lat, longitude: lng};
+        $scope.input.lat = lat;
+        $scope.input.lng = lng;
+        $scope.input.naam_visplek = titel;
+        $scope.imageSrc = image;
+        $scope.input.type = type;
+        $scope.input.watertype = watertype;
+        $scope.input.viswater = viswater;
+        $scope.input.reglementen = reglement;
+        $scope.input.vergunigen = vergunigen;
+        $scope.input.toilet = toilet;
+        $scope.input.nachvissen = nachvissen;
+        $scope.input.betaalwater = betaalwat;
+        $scope.input.prive = prive;
+        $scope.input.vissoorten = vissoorte;
+        $scope.input.text = text;
+        $scope.showSelectImageValidation = false;
+        $scope.showImageInvalideFileFormat = false;
+        $scope.showSelectImageValidation = false;
+    }
+
+
+    $scope.initializeProfiel = function (name, lat, lng, ervaring, geslacht, leeftijd, vraagprijs, text, url,telefon) {
+        $scope.marker.coords = {latitude: lat, longitude: lng};
+        $scope.input.naam = name;
+        $scope.input.lat = lat;
+        $scope.input.lng = lng;
+        $scope.input.ervaring = ervaring;
+        $scope.input.geslacht = geslacht;
+        $scope.input.leeftijd = Number(leeftijd);
+        $scope.input.kostprijs = Number(vraagprijs);
+        $scope.input.text = text;
+        $scope.imageSrc = url;
+        $scope.input.telefonnummer=telefon;
+    }
 
     $scope.initAanpassenNieuwsArtikel = function (titel, inleiding, url) {
         $scope.nieuws = {
@@ -155,6 +191,15 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         }
     }
 
+    $scope.submitFormProfiel = function () {
+        console.log('send form');
+        if ($scope.visTrainerForm.$valid && !$scope.showImageInvalideFileFormat && !$scope.showSelectImageValidation) {
+            $scope.showError = false;
+            document.getElementById('submitNieuwForm').submit(); //force to submit the form after clicking the button
+        } else {
+            $scope.showError = true;
+        }
+    }
     $scope.submitForm = function () {
         $scope.showError = false;
         // check to make sure the form is completely valid

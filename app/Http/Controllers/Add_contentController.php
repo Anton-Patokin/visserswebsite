@@ -94,6 +94,58 @@ class Add_contentController extends Controller
         return 'error';
     }
 
+    public function toevoegenProfiel(Request $request)
+    {
+
+        $success = false;
+
+        $this->validate($request,
+            [
+                'naam' => 'required|max:51',
+                'text' => 'required|max:1000',
+                'lat' => 'required|numeric',
+                'lng' => 'required|numeric',
+                'geslacht' => 'required|max:10',
+                'leeftijd' => 'required||min:1|max:2|regex:/^\d*(\.\d{1,2})?$/',
+                'ervaring' => 'required|max:100',
+                'telefonnummer' => '',
+                'kostprijs' => 'required|min:1|max:5|regex:/^\d*(\.\d{1,2})?$/',
+            ]);
+
+
+        $user = User::find($request->id);
+        if ($user->id == Auth::user()->id || Auth::user()->admin)
+            if ($request->image) {
+                $this->validate($request,
+                    [
+                        'image' => 'required | mimes:jpeg,jpg,png,| max:5000',
+                    ]);
+                $fileName = $this->fileUpload->fileUpload($request->image);
+
+            } else {
+                $fileName = $user->image;
+            }
+
+
+        if ($fileName && $user) {
+            $user->active = 0;
+            $user->lat = $request->lat;
+            $user->lng = $request->lng;
+            $user->name = $request->naam;
+            $user->titel = $request->naam;
+            $user->image = $fileName;
+            $user->vraagprijs = $request->kostprijs;
+            $user->geslacht = $request->geslacht;
+            $user->leeftijd = $request->leeftijd;
+            $user->ervaring = $request->ervaring;
+            $user->telefonnummer = $request->telefonnummer;
+            $user->text = $request->text;
+            $user->save();
+            return back();
+        }
+        return 'error';
+    }
+
     public function toevoegenNieuws(Request $request)
     {
         $success = false;

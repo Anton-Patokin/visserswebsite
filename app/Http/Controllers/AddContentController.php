@@ -32,51 +32,73 @@ class AddContentController extends Controller
     public function add(Request $request)
     {
         $input = json_decode($request->input, true);
+        if ($input['type'] == "plaats") {
+            $user = User::find($input['id']);
+            if ($user) {
+                $validator = Validator::make($input, [
+                    'id' => 'required',
+                    'naam_visplek' => 'required|max:51',
+                    'lat' => 'required|numeric',
+                    'lng' => 'required|numeric',
+                    'watertype' => 'required|max:50',
+                    'viswater' => 'required|max:1000',
+                    'reglementen' => 'max:1000',
+                    'nachvissen' => 'required|max:1',
+                    'toilet' => 'required|max:1',
+                    'betaalwater' => 'required||max:1',
+                    'prive' => 'required|max:1',
+                    'vissoorten' => 'max:255',
+                    'text' => 'max:1000',
+                ]);
+                if (!$validator->fails()) {
+                    $save = false;
 
-        if ($input['type'] == 'visPlek') {
-            $validator = Validator::make($input, [
-                'id' => 'required',
-                'naam' => 'required|max:51',
-                'lat' => 'required|numeric',
-                'lng' => 'required|numeric',
-                'watertype' => 'required|max:50',
-                'viswater' => 'required|max:1000',
-                'reglementen' => 'max:1000',
-                'nachvissen' => 'required|max:1',
-                'toilet' => 'required|max:1',
-                'betaalwater' => 'required||max:1',
-                'prive' => 'required|max:1',
-                'vissoorten' => 'max:255',
-                'text' => 'max:1000',
-            ]);
-
-            if ($validator->fails()) {
-                return $validator->messages();
-            }
-            if (Input::hasFile('file')) {
-                $file = Input::file('file');
-                $user = User::find($input['id']);
-                if ($user && $this->fileUpload->fileextExtensionValidation($file)) {
-                    $fileName = $this->fileUpload->fileUpload($file);
-                    $visPlek = new VisPlek;
-                    $visPlek->lat = $input['lat'];
-                    $visPlek->lng = $input['lng'];
-                    $visPlek->titel = $input['naam'];
-                    $visPlek->image = $fileName;
-                    $visPlek->watertype = $input['watertype'];
-                    $visPlek->viswater = $input['viswater'];
-                    $visPlek->reglementen = $input['reglementen'];
-                    $visPlek->toilet = $input['toilet'];
-                    $visPlek->betaalwater = $input['betaalwater'];
-                    $visPlek->prive = $input['prive'];
-                    $visPlek->vissoorten = $input['vissoorten'];
-                    $visPlek->text = $input['text'];
-                    $visPlek->user_id = $user->id;
-                    $visPlek->save();
-                    return $this->massage_success;
+                    if ($input['aanpasen']) {
+                        $visPlek = VisPlek::find($input['aanpasen']);
+                        if ($visPlek->user_id == $user->id) {
+                            if (Input::hasFile('file')) {
+                                $file = Input::file('file');
+                                $this->fileUpload->fileextExtensionValidation($file);
+                                $fileName = $this->fileUpload->fileUpload($file);
+                            } else {
+                                $fileName = $visPlek->image;
+                            }
+                            $save = true;
+                        }
+                    } else {
+                        if (Input::hasFile('file')) {
+                            $file = Input::file('file');
+                            $this->fileUpload->fileextExtensionValidation($file);
+                            $fileName = $this->fileUpload->fileUpload($file);
+                            $visPlek = new VisPlek;
+                            $save = true;
+                        }
+                    }
+                    if ($save) {
+                        $visPlek->lat = $input['lat'];
+                        $visPlek->lng = $input['lng'];
+                        $visPlek->titel = $input['naam_visplek'];
+                        $visPlek->image = $fileName;
+                        $visPlek->watertype = $input['watertype'];
+                        $visPlek->viswater = $input['viswater'];
+                        $visPlek->reglementen = $input['reglementen'];
+                        $visPlek->vergunigen= $input['vergunigen'];
+                        $visPlek->toilet = $input['toilet'];
+                        $visPlek->betaalwater = $input['betaalwater'];
+                        $visPlek->prive = $input['prive'];
+                        $visPlek->vissoorten = $input['vissoorten'];
+                        $visPlek->text = $input['text'];
+                        $visPlek->user_id = $user->id;
+                        $visPlek->save();
+                        return $this->massage_success;
+                    }
                 }
             }
         }
+
+
+
+
 
 
         if ($input['type'] == "trainer") {

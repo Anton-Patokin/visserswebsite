@@ -11,7 +11,13 @@ $leeftijd = 28;
 $ervaring = 'betje ervaring';
 $vraagprijs = 25;
 $naam = "Anton";
+$content = (object)['titel' => 'test', 'viswater' => 'test2', 'image' => 'http://placehold.it/500x300', 'id' => 1];
 
+$content = new stdClass();
+$content->titel = 'Here we go';
+$content->image = '2017-04-30-47-04-30trainer.jpeg';
+$content->viswater = 'test';
+$content->id = 1;
 ?>
 
 <div class="row">
@@ -42,9 +48,9 @@ $naam = "Anton";
                         Een visser plekje
                         <span class="arrow pull-right"></span>
                     </div>
-                    <div ng-click="gotoStep(2);putValue('visPlek')" class="well" ng-class="{'show-arrow':showArrow4}"
+                    <div ng-click="gotoStep(2);putValue('plaats')" class="well" ng-class="{'show-arrow':showArrow4}"
                          ng-mouseover="showArrow4=true;show_exampale=4" ng-mouseleave="showArrow4=false">
-                        Vis plek toevoegen
+                        Vis plaats toevoegen
                         <span class="arrow pull-right"></span>
                     </div>
                 </div>
@@ -62,7 +68,7 @@ $naam = "Anton";
             @include('components.new_contest')
         </div>
         <div ng-show="show_exampale==4">
-            {{--            @include('components.visplek_thumbnail')--}}
+            @include('components.visplek_thumbnail')
         </div>
     </div>
 </div>

@@ -1,36 +1,18 @@
 @if(isset($aanpasen))
     <?php $head = 'Aanpasen';$head_description = 'Aanpasen van een bericht';?>
-    @if(isset($type) || $type=="wedstrijd")
-        <div ng-init="initAanpasenWedstrijd(
-                '{{$aanpasen->id}}',
-                '{{$aanpasen->lat}}',
-                '{{$aanpasen->lng}}',
-                '{{$aanpasen->titel}}',
-                '{{url('/uploads/thumbnail/'.$aanpasen->image)}}',
-                '{{$aanpasen->type}}',
-                '{{$aanpasen->prijzen}}',
-                '{{$aanpasen->category}}',
-                '{{$aanpasen->hengel}}',
-                '{{$aanpasen->visserij}}',
-                '{{$aanpasen->kostprijs}}',
-                '{{$aanpasen->duur}}',
-                '{{$aanpasen->water}}',
-                '{{$aanpasen->datum}}',
-                '{{$aanpasen->dag}}',
-                '{{$aanpasen->maand}}',
-                '{{$aanpasen->loting}}',
-                '{{$aanpasen->text}}')">
+    @if(isset($type) && $type=="wedstrijd")
+        <div ng-init="initAanpasenWedstrijd('{{$aanpasen->id}}','{{$aanpasen->lat}}','{{$aanpasen->lng}}','{{$aanpasen->titel}}','{{url('/uploads/thumbnail/'.$aanpasen->image)}}','{{$aanpasen->type}}','{{$aanpasen->prijzen}}','{{$aanpasen->category}}','{{$aanpasen->hengel}}','{{$aanpasen->visserij}}','{{$aanpasen->kostprijs}}','{{$aanpasen->duur}}','{{$aanpasen->water}}','{{$aanpasen->datum}}','{{$aanpasen->dag}}','{{$aanpasen->maand}}','{{$aanpasen->loting}}','{{$aanpasen->text}}')">
         </div>
     @endif
-
+    @if(isset($type) && $type=="plaats")
+        <div ng-init="initAanpasenVisplaats('{{$aanpasen->id}}','{{$aanpasen->lat}}','{{$aanpasen->lng}}','{{$aanpasen->titel}}','{{url('/uploads/thumbnail/'.$aanpasen->image)}}','{{$aanpasen->type}}','{{$aanpasen->watertype}}','{{$aanpasen->viswater}}','{{$aanpasen->reglemente}}','{{$aanpasen->vergunigen}}','{{$aanpasen->nachvissen}}','{{$aanpasen->toilet}}','{{$aanpasen->betaalwater}}','{{$aanpasen->prive}}','{{$aanpasen->vissoorten}}','{{$aanpasen->text}}')"></div>
+    @endif
 @else
     <div ng-init="initContest('{{$category->first()->category}}','{{$hengel->first()->hengel}}','{{$visserij->first()->visserij}}')"></div>
     <div ng-init="initTrainerfunction('{{Auth::user()->name}}')"></div>
     <div ng-init="initVisersPlek('{{$waterType->first()->waterType}}')"></div>
     <?php $head = 'Toevoegen';$head_description = 'Nice je wilt content toevoegen hier kan je het doen';?>
 @endif
-
-
 @include('header')
 <div class="row">
     <div class="col-md-12">
@@ -145,7 +127,7 @@
 
                         </form>
                     </div>
-                    <div ng-show="input.type=='visPlek'" class="row">
+                    <div ng-show="input.type=='plaats'" class="row">
                         <form name="visPlekForm" class="margin-top-2 min-height-500" role="form"
                               ng-submit="submitForm()"
                               novalidate>

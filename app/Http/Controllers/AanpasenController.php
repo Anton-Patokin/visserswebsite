@@ -51,6 +51,11 @@ class AanpasenController extends Controller
             }
             if($type=='trainer'){
                 $content = User::find($id);
+                return view('add_content.add',['aanpasen'=>$content,'type'=>$type])
+                    ->with('visserij', Visserij::all(['id', 'visserij']))
+                    ->with('category', Category::all(['id', 'category']))
+                    ->with('waterType', WaterType::all(['waterType']))
+                    ->with('hengel', Hengel::all(['id', 'hengel']));
             }
             if (Auth::user()->id == $content->user_id) {
                 return view('add_content.add',['aanpasen'=>$content,'type'=>$type])

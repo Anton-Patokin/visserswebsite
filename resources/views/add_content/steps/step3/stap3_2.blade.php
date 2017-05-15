@@ -149,6 +149,4 @@
             <p><a href="#" class=" btn-xs" role="button">Meer</a></p>
         </div>
     </div>
-
-
 </div>

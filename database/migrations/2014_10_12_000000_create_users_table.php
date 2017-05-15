@@ -26,8 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('telefonnummer')->nullable();
             $table->integer('vraagprijs')->nullable();
             $table->integer('active')->default(0);
-            $table->integer('lat')->nullable();
-            $table->integer('lng')->nullable();
+            $table->decimal('lat',12,8)->nullable();
+            $table->decimal('lng',12,8)->nullable();
             $table->text('text')->nullable();
             $table->text('admin')->nullable();
             $table->string('password');

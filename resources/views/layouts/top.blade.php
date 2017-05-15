@@ -33,6 +33,9 @@
                                         class="caret pull-right"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
+                                    <a href="{{url('/gebruiker')}}">
+                                        Profiel
+                                    </a>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

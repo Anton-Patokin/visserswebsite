@@ -28,6 +28,7 @@ class CreateVisPleksTable extends Migration
             $table->boolean('betaalwater')->default(0);
             $table->boolean('prive')->default(0);
             $table->string('vissoorten')->nullable();
+            $table->string('vergunigen')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('active')->nullable();
