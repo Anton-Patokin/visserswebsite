@@ -21,9 +21,11 @@ class Add_contentController extends Controller
 
     protected $berichten;
     protected $fileUpload;
+    protected $status;
 
     public function __construct()
     {
+        $this->status = Config::get('constant.Status');
         $this->berichten = Config::get('constant.Berichten');
         $this->fileUpload = new FileUploadController();
         $this->middleware('auth');
@@ -74,7 +76,7 @@ class Add_contentController extends Controller
                     } else {
                         $fileName = $tutorial->image;
                     }
-                    $tutorial->active=0;
+                    $tutorial->active = $this->status['aangepast'];
                 }
             } else {
                 $this->validate($request,
@@ -83,6 +85,7 @@ class Add_contentController extends Controller
                     ]);
                 $fileName = $this->fileUpload->fileUpload($request->image);
                 $tutorial = new Tutorial;
+                $tutorial->active = $this->status['afwachting'];
             }
         }
         if ($fileName && $tutorial) {
@@ -125,14 +128,14 @@ class Add_contentController extends Controller
                         'image' => 'required | mimes:jpeg,jpg,png,| max:5000',
                     ]);
                 $fileName = $this->fileUpload->fileUpload($request->image);
+                $user->active = $this->status['afwachting'];
 
             } else {
                 $fileName = $user->image;
+                $user->active = $this->status['aangepast'];
+
             }
-
-
         if ($fileName && $user) {
-            $user->active = 0;
             $user->lat = $request->lat;
             $user->lng = $request->lng;
             $user->name = $request->naam;
@@ -178,7 +181,7 @@ class Add_contentController extends Controller
                     } else {
                         $fileName = $nieuwsArtikel->image;
                     }
-                    $nieuwsArtikel->active=0;
+                    $nieuwsArtikel->active = $this->status['aangepast'];
                 }
             } else {
                 $this->validate($request,
@@ -187,6 +190,7 @@ class Add_contentController extends Controller
                     ]);
                 $fileName = $this->fileUpload->fileUpload($request->image);
                 $nieuwsArtikel = new NieuwsArtikel;
+                $nieuwsArtikel->active=$this->status['afwachting'];
             }
         }
         if ($fileName && $nieuwsArtikel) {

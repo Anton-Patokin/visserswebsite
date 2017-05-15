@@ -14,6 +14,7 @@ use App\Category;
 use App\Hengel;
 use App\VisPlek;
 use App\Http\Controllers\FileUploadController;
+use Illuminate\Support\Facades\Config;
 
 
 class AddContentController extends Controller
@@ -21,9 +22,13 @@ class AddContentController extends Controller
     protected $massage_success = "success";
     protected $massage_error = 'error';
     protected $fileUpload;
+    protected $status;
+    
 
     public function __construct()
     {
+        $this->status = Config::get('constant.Status');
+
         $this->fileUpload = new FileUploadController();
 
 //        $this->middleware('CheckLoginAddContent');
@@ -53,7 +58,7 @@ class AddContentController extends Controller
                 if (!$validator->fails()) {
                     $save = false;
 
-                    if ($input['aanpasen']=='true') {
+                    if ($input['aanpasen']) {
                         $visPlek = VisPlek::find($input['aanpasen']);
                         if ($visPlek->user_id == $user->id) {
                             if (Input::hasFile('file')) {
@@ -63,7 +68,7 @@ class AddContentController extends Controller
                             } else {
                                 $fileName = $visPlek->image;
                             }
-                            $visPlek->active=0;
+                            $visPlek->active=$this->status['aangepast'];
                             $save = true;
                         }
                     } else {
@@ -73,6 +78,7 @@ class AddContentController extends Controller
                             $fileName = $this->fileUpload->fileUpload($file);
                             $visPlek = new VisPlek;
                             $save = true;
+                            $visPlek->active=$this.$this->status['afwachting'];
                         }
                     }
                     if ($save) {
@@ -123,6 +129,7 @@ class AddContentController extends Controller
                 $user = User::find($input['id']);
                 if ($user && $this->fileUpload->fileextExtensionValidation($file)) {
                     $fileName = $this->fileUpload->fileUpload($file);
+                    $user->active= $this->status['afwachting'];
                     $user->lat = $input['lat'];
                     $user->lng = $input['lng'];
                     $user->name = $input['naam'];
@@ -164,7 +171,7 @@ class AddContentController extends Controller
                 if (!$validator->fails()) {
                     $save = false;
 
-                    if ($input['aanpasen']=='true') {
+                    if ($input['aanpasen']) {
                         $wedstrijd = Wedstrijd::find($input['aanpasen']);
                         if ($wedstrijd->user_id == $user->id) {
                             if (Input::hasFile('file')) {
@@ -174,7 +181,7 @@ class AddContentController extends Controller
                             } else {
                                 $fileName = $wedstrijd->image;
                             }
-                            $wedstrijd->active=0;
+                            $wedstrijd->active=$this->status['aangepast'];
                             $save = true;
                         }
                     } else {
@@ -183,6 +190,7 @@ class AddContentController extends Controller
                             $this->fileUpload->fileextExtensionValidation($file);
                             $fileName = $this->fileUpload->fileUpload($file);
                             $wedstrijd = new Wedstrijd;
+                            $wedstrijd->active = $this->status['afwachting'];
                             $save = true;
                         }
                     }

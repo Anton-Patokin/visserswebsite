@@ -15,9 +15,12 @@ use Illuminate\Support\Facades\Config;
 class DashboardController extends Controller
 {
     protected $berichten;
+    protected $status;
 
     public function __construct()
     {
+        $this->status = Config::get('constant.Status');
+
         $this->berichten = Config::get('constant.Berichten');
         $this->middleware('auth');
     }
@@ -115,7 +118,7 @@ class DashboardController extends Controller
 
         if ($content) {
             if (Auth::user()->id == $content->user_id || Auth::user()->admin == 1) {
-                $content->active = 1;
+                $content->active = $this->status['NietMeerActive'];
                 $content->save();
                 $content->delete();
                 $bericht = $this->berichten['verwijderen'];
@@ -158,7 +161,7 @@ class DashboardController extends Controller
 
         if ($content) {
             if (Auth::user()->id == $content->user_id || Auth::user()->admin == 1) {
-                $content->active = 2;
+                $content->active = $this->status['active'];
                 $content->save();
                 $bericht = $this->berichten['aanvaarden'];
             }
@@ -176,7 +179,7 @@ class DashboardController extends Controller
 
         if ($content) {
             if (Auth::user()->id == $content->user_id || Auth::user()->admin == 1) {
-                $content->active = 3;
+                $content->active = $this->status['NietMeerActive'];
                 $content->save();
                 $bericht = $this->berichten['deactiveren'];
             }
