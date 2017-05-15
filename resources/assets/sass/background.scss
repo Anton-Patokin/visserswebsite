@@ -12,3 +12,24 @@
   background: url(#{$path}/images/vissen_background.jpg)no-repeat center center fixed;
 
 }
+.box {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
+.red {
+  background: #ebccd1;
+}
+.green {
+  background: #d6e9c6;
+}
+.blue {
+  background: #bce8f1;
+}
+.darck-blue{
+  background: #337ab7;
+}
+.orage{
+  background: rgba(221,92,0,0.38);
+}

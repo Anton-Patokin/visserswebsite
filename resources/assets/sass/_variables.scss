@@ -1,20 +1,20 @@
-
-
 //color palet
-$font-white:#fff;
-$red:#ac0d0d;
-$dark-blue:#323b44;
-$light-blue:#007d9b;
-$color-grey:#c0c0c2;
-$font-active:#eee;
-$navbar-bottom-font-color:$dark-blue;
-$navbar-bottom-background-color:#fff;
-
+$font-white: #fff;
+$red: #ac0d0d;
+$dark-blue: #323b44;
+$light-blue: #007d9b;
+$color-grey: #c0c0c2;
+$font-active: #eee;
+$navbar-bottom-font-color: $dark-blue;
+$navbar-bottom-background-color: #fff;
+$color-red: #E53935;
+$color-blauw: #0097a7;
+$color-groen: #9ccc65;
+$color-geel: #fbc02d;
 
 // Body
 $body-bg: #fff;
-$path:'http://localhost/einddwerk_visserswebsite/visserswebsite/public/';
-
+$path: 'http://localhost/einddwerk_visserswebsite/visserswebsite/public/';
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
@@ -54,8 +54,8 @@ $input-color-placeholder: lighten($text-color, 30%);
 $panel-default-heading-bg: #fff;
 
 //btn
-$btn-font-weight:                1.5em;
+$btn-font-weight: 1.5em;
 
-$btn-default-color:              $font-white;
-$btn-default-bg:                 $dark-blue;
-$btn-default-border:             $dark-blue;
+$btn-default-color: $font-white;
+$btn-default-bg: $dark-blue;
+$btn-default-border: $dark-blue;

@@ -53,7 +53,7 @@ class AddContentController extends Controller
                 if (!$validator->fails()) {
                     $save = false;
 
-                    if ($input['aanpasen']) {
+                    if ($input['aanpasen']=='true') {
                         $visPlek = VisPlek::find($input['aanpasen']);
                         if ($visPlek->user_id == $user->id) {
                             if (Input::hasFile('file')) {
@@ -63,6 +63,7 @@ class AddContentController extends Controller
                             } else {
                                 $fileName = $visPlek->image;
                             }
+                            $visPlek->active=0;
                             $save = true;
                         }
                     } else {
@@ -163,7 +164,7 @@ class AddContentController extends Controller
                 if (!$validator->fails()) {
                     $save = false;
 
-                    if ($input['aanpasen']) {
+                    if ($input['aanpasen']=='true') {
                         $wedstrijd = Wedstrijd::find($input['aanpasen']);
                         if ($wedstrijd->user_id == $user->id) {
                             if (Input::hasFile('file')) {
@@ -173,6 +174,7 @@ class AddContentController extends Controller
                             } else {
                                 $fileName = $wedstrijd->image;
                             }
+                            $wedstrijd->active=0;
                             $save = true;
                         }
                     } else {

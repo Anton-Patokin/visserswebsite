@@ -1,4 +1,4 @@
-#img-nav-top-full-screen{
+#img-nav-top-full-screen {
   width: 100%;
 }
 
@@ -7,4 +7,10 @@
   width: 100%;
   margin: -25px 0px 0px 0px;
   overflow: auto;
+}
+
+.box-card .thumbnail img.img-small{
+  height: 29px;
+  width: 23px;
+  margin: 0;
 }

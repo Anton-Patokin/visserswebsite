@@ -29,29 +29,33 @@ class DashboardController extends Controller
 
     public function toegevoegd_inhoud()
     {
+        $showContentToevoegen = false;
         $array = [];
-
         $user = Auth::user();
         $array['wedstrijden'] = $user->wedstrijden;
         $array['nieuwsArtikel'] = $user->nieuwsArtikelen;
         $array['tutorials'] = $user->tutorials;
         $array['visPlaats'] = $user->visPlaatsen;
 
-        return view('dashboard/toegevoegd-inhoud', ['contents' => $array]);
+        if (!count($array['wedstrijden']) && !count($array['nieuwsArtikel']) && !count($array['tutorials']) && !count($array['visPlaats'])) {
+            $showContentToevoegen = true;
+        }
+        return view('dashboard/toegevoegd-inhoud', ['contents' => $array, 'showContentToevoegen' => $showContentToevoegen]);
     }
 
     public function nieuw_toegevoegd_inhoud()
     {
         $array = [];
         if (Auth::user()->admin == 1) {
-            $array['wedstrijd'] = Wedstrijd::where('active', null)->orWhere('active', '1')->orWhere('active', '0')->get();
+            $array['wedstrijd'] = Wedstrijd::where('active', null)->orWhere('active', '0')->get();
             $array['trainers'] = User::where('active', null)->orWhere('active', '0')->get();
-            $array['nieuwsArtikel'] = NieuwsArtikel::where('active', null)->orWhere('active', '1')->orWhere('active', '0')->get();
-            $array['tutorial'] = Tutorial::where('active', null)->orWhere('active', '1')->orWhere('active', '0')->get();
-            $array['visPlaats'] = VisPlek::where('active', null)->orWhere('active', '1')->orWhere('active', '0')->get();
+            $array['nieuwsArtikel'] = NieuwsArtikel::where('active', null)->orWhere('active', '0')->get();
+            $array['tutorial'] = Tutorial::where('active', null)->orWhere('active', '0')->get();
+            $array['visPlaats'] = VisPlek::where('active', null)->orWhere('active', '0')->get();
         } else {
             return back();
         }
+
         return view('dashboard/toegevoegd-inhoud', ['contents' => $array]);
     }
 
@@ -60,7 +64,7 @@ class DashboardController extends Controller
         $array = [];
         if (Auth::user()->admin == 1) {
             $array['wedstrijd'] = Wedstrijd::all();
-            $array['trainers'] = User::where('active', 1)->orWhere('active', '0')->get();
+            $array['trainers'] = User::where('active', '>=', 0)->get();
             $array['nieuwsArtikel'] = NieuwsArtikel::all();
             $array['tutorial'] = Tutorial::all();
             $array['visPlaats'] = VisPlek::all();
@@ -85,6 +89,24 @@ class DashboardController extends Controller
         return view('dashboard/alle-verwijderde', ['contents' => $array]);
     }
 
+    public function admin($action, $id)
+    {
+        $cookie = cookie('error', $this->berichten['error'], 1);
+        if ($action == 'activeren' && Auth::user()->admin) {
+            $user = User::find($id);
+            $user->admin = 1;
+            $user->save();
+            $cookie = cookie('success', $this->berichten['admin_activeren'], 1);
+        }
+        if ($action == 'deactiveren' && Auth::user()->admin) {
+            $user = User::find($id);
+            $user->admin = 0;
+            $user->save();
+            $cookie = cookie('error', $this->berichten['admin_deactiveren'], 1);
+
+        }
+        return back()->cookie($cookie);
+    }
 
     public function verwijderen($tabel, $id)
     {
@@ -93,6 +115,8 @@ class DashboardController extends Controller
 
         if ($content) {
             if (Auth::user()->id == $content->user_id || Auth::user()->admin == 1) {
+                $content->active = 1;
+                $content->save();
                 $content->delete();
                 $bericht = $this->berichten['verwijderen'];
             }
@@ -114,15 +138,18 @@ class DashboardController extends Controller
         $cookie = cookie('bericht', $bericht, 1);
         return back()->cookie($cookie);
     }
-    public function gebruikers(){
+
+    public function gebruikers()
+    {
         $array = [];
         if (Auth::user()->admin == 1) {
             $array['trainers'] = User::withTrashed()->get();
         } else {
             return back();
         }
-        return view('dashboard/alle-verwijderde', ['contents' => $array]);
+        return view('dashboard/gebruikers', ['contents' => $array]);
     }
+
     public function aanvaarden($tabel, $id)
     {
         $bericht = $this->berichten['error'];
@@ -139,7 +166,24 @@ class DashboardController extends Controller
 
         $cookie = cookie('bericht', $bericht, 1);
         return back()->cookie($cookie);
+    }
 
+    public function aanvarden_deactiveren($tabel, $id)
+    {
+        $bericht = $this->berichten['error'];
+
+        $content = $this->selectTabele($tabel, $id);
+
+        if ($content) {
+            if (Auth::user()->id == $content->user_id || Auth::user()->admin == 1) {
+                $content->active = 3;
+                $content->save();
+                $bericht = $this->berichten['deactiveren'];
+            }
+        }
+
+        $cookie = cookie('bericht', $bericht, 1);
+        return back()->cookie($cookie);
     }
 
     public function selectTabele($tabel, $id)

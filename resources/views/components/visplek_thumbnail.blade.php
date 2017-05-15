@@ -1,7 +1,8 @@
 <div class="thumbnail">
     <img src="{{url('/uploads/thumbnail/'.$content->image)}}" alt="Ableding van trainer onder naam {{$content->titel}}">
     <div class="card-profile pull-right" >
-        <img src="{{url('/images/icon/vishak.jpg')}}">
+{{--        <img src="{{url('/images/icon/vishak.jpg')}}">--}}
+        <div class="icon-background plaats"></div>
     </div>
     <div class="caption margin-top-5">
         <h4>{{$content->titel}}</h4>

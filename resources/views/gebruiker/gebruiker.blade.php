@@ -12,7 +12,7 @@
 
 @section('content')
     <div class="container-fluid">
-
+        @include('berichten.error-handling')
         @if ($errors->has('lat'))
            <div ng-init="show_form=true"></div>
         @endif

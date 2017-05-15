@@ -14,13 +14,17 @@ use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use App\TutorialCategory;
 use App\Http\Controllers\FileUploadController;
+use Illuminate\Support\Facades\Config;
 
 class Add_contentController extends Controller
 {
+
+    protected $berichten;
     protected $fileUpload;
 
     public function __construct()
     {
+        $this->berichten = Config::get('constant.Berichten');
         $this->fileUpload = new FileUploadController();
         $this->middleware('auth');
     }
@@ -70,8 +74,8 @@ class Add_contentController extends Controller
                     } else {
                         $fileName = $tutorial->image;
                     }
+                    $tutorial->active=0;
                 }
-                $tutorial->active = 0;
             } else {
                 $this->validate($request,
                     [
@@ -96,8 +100,8 @@ class Add_contentController extends Controller
 
     public function toevoegenProfiel(Request $request)
     {
+        $cookie = cookie('error', $this->berichten['error'], 1);
 
-        $success = false;
 
         $this->validate($request,
             [
@@ -128,7 +132,7 @@ class Add_contentController extends Controller
 
 
         if ($fileName && $user) {
-            $user->active = 1;
+            $user->active = 0;
             $user->lat = $request->lat;
             $user->lng = $request->lng;
             $user->name = $request->naam;
@@ -141,9 +145,9 @@ class Add_contentController extends Controller
             $user->telefonnummer = $request->telefonnummer;
             $user->text = $request->text;
             $user->save();
-            return back();
+            $cookie = cookie('success', $this->berichten['profiel_success'], 1);
         }
-        return 'error';
+        return back()->cookie($cookie);
     }
 
     public function toevoegenNieuws(Request $request)
@@ -174,8 +178,8 @@ class Add_contentController extends Controller
                     } else {
                         $fileName = $nieuwsArtikel->image;
                     }
+                    $nieuwsArtikel->active=0;
                 }
-                $nieuwsArtikel->active = 0;
             } else {
                 $this->validate($request,
                     [

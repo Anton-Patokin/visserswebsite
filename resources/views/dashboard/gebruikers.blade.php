@@ -3,6 +3,7 @@
 @section('content')
     <div class="container-fluid">
         @include('berichten.cookieBericht')
+        @include('berichten.error-handling')
         <?php $head = 'Dashboard';$head_description = 'Overzicht van alle gebruikers';?>
         @include('header')
         <div class="row margin-top-1">

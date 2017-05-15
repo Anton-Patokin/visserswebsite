@@ -35,8 +35,9 @@ Route::get('/dashboard/alle-verwijderde', 'DashboardController@alle_verwijderde'
 Route::get('/verwijderen/{tabel}/{id}', 'DashboardController@verwijderen');
 Route::get('/verwijderen/activeren/{tabel}/{id}', 'DashboardController@verwijderen_deactiveren');
 Route::get('/aanvaarden/{tabel}/{id}/', 'DashboardController@aanvaarden');
+Route::get('/aanvarden_deactiveren/{tabel}/{id}/', 'DashboardController@aanvarden_deactiveren');
 Route::get('/dashboard/gebruikers', 'DashboardController@gebruikers');
-
+Route::get('/admin_deactivate/{action}/{id}', 'DashboardController@admin');
 
 Route::get('/aanpasen/{type}/{id}', 'AanpasenController@dashboard');
 
@@ -46,7 +47,7 @@ Route::get('/toevoegen/nieuws', 'Add_contentController@nieuws');
 Route::get('/toevoegen/tutorial', 'Add_contentController@tutorial');
 Route::post('/toevoegen/nieuws', 'Add_contentController@toevoegenNieuws');
 Route::post('/toevoegen/tutorial', 'Add_contentController@toevoegenTutorial');
-Route::post('/toevoegen/profiel','Add_contentController@toevoegenProfiel');
+Route::post('/toevoegen/profiel', 'Add_contentController@toevoegenProfiel');
 
 
 Route::post('/toevoegen/subscribe', 'EmailController@addSubscriber');

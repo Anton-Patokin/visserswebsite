@@ -14,6 +14,7 @@
   height: 75px;
 }
 
+
 .aas{
   background: url(#{$path}/images/icon/color-icon-sprite.jpg) 0px 0px;
 }
@@ -26,9 +27,10 @@
 .dobber{
   background: url(#{$path}/images/icon/color-icon-sprite.jpg) -225px 0px;
 }
-.interessant{
+.interessant, .plaats{
   background: url(#{$path}/images/icon/color-icon-sprite.jpg) -300px 0px;
 }
+
 .spinning{
   background: url(#{$path}/images/icon/color-icon-sprite.jpg) -375px 0px;
 }

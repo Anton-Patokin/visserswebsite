@@ -140,18 +140,21 @@
 
   .box {
     display: inline-block;
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
   }
 
   .red {
-    background: #ebccd1;
+    background: $color-red;
   }
   .green {
     background: #d6e9c6;
   }
   .blue {
     background: #bce8f1;
+  }
+  .darck-blue{
+    background: #337ab7;
   }
 
 
@@ -161,8 +164,8 @@
     padding: 0px;
   }
   ul {
-    font-size: 16px;
-    margin: -3px 0px 15px 0px;
+    font-size: 12px;
+    margin: 0px 0px 15px 0px;
     padding: 0;
   }
 
