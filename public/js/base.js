@@ -10,7 +10,6 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         types: '(cities)'
     };
     $scope.details1 = '';
-
     $scope.imageSrc = "http://placehold.it/500x300";
     var formValue = new FormData();
     $scope.showImageInvalideFileFormat = false;
@@ -114,7 +113,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.showImageInvalideFileFormat = false;
         $scope.showSelectImageValidation = false;
     }
-    $scope.initializeProfiel = function (name, lat, lng, ervaring, geslacht, leeftijd, vraagprijs, text, url,telefon,aanpasen) {
+    $scope.initializeProfiel = function (name, lat, lng, ervaring, geslacht, leeftijd, vraagprijs, text, url, telefon, aanpasen) {
         $scope.marker.coords = {latitude: lat, longitude: lng};
         $scope.input.naam = name;
         $scope.input.lat = lat;
@@ -125,9 +124,9 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.input.kostprijs = Number(vraagprijs);
         $scope.input.text = text;
         $scope.imageSrc = url;
-        $scope.input.telefonnummer=telefon;
-        $scope.showImageInvalideFileFormat=!aanpasen;
-        $scope.showSelectImageValidation=!aanpasen;
+        $scope.input.telefonnummer = telefon;
+        $scope.showImageInvalideFileFormat = !aanpasen;
+        $scope.showSelectImageValidation = !aanpasen;
     }
 
     $scope.initAanpassenNieuwsArtikel = function (titel, inleiding, url) {
@@ -409,6 +408,18 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
 
     }
 
+
+    $scope.zoekenOpGoogleMaps = function (input) {
+        $http({
+            method: 'POST',
+            url: ROUTEFRONT + '/api/zoeken/googleMaps',
+            data: {input: input}
+        }).success(function (data) {
+            console.log('requisttdata: ', data);
+        }).error(function (data, status, headers, config) {
+            console.log('error bij het zoeken');
+        });
+    }
 
     uiGmapGoogleMapApi.then(function (maps) {
         $scope.google = google;

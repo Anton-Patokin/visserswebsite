@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Tutorial;
+use App\VisPlek;
 use Illuminate\Http\Request;
 use App\City;
 use App\Wind;
@@ -39,9 +41,23 @@ class HomeController extends Controller
 
     public function index()
     {
-        $wedstrijden = Wedstrijd::all();
-        $trainers = User::where('active', 1)->get();
-        return view('home', ["wedstrijden" => $wedstrijden, "trainers" => $trainers]);
+        $recentPost = [];
+        $resentPostToSend = [];
+        array_push($recentPost, Wedstrijd::orderBy('id', 'desc')->where('active', 2)->take(5)->get());
+        array_push($recentPost, NieuwsArtikel::orderBy('id', 'desc')->where('active', 2)->take(5)->get());
+        array_push($recentPost, Tutorial::orderBy('id', 'desc')->where('active', 2)->take(5)->get());
+        array_push($recentPost, VisPlek::orderBy('id', 'desc')->where('active', 2)->take(5)->get());
+
+
+        foreach ($recentPost as $key => $content) {
+            foreach ($content as $count => $value) {
+                array_push($resentPostToSend, $value);
+            }
+        }
+
+        $numbers = range(1, 20);
+        shuffle($resentPostToSend);
+        return view('home', ["recentPost" => $resentPostToSend]);
     }
 
 

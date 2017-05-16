@@ -58,7 +58,7 @@ class AddContentController extends Controller
                 if (!$validator->fails()) {
                     $save = false;
 
-                    if ($input['aanpasen']) {
+                    if ($input['aanpasen'] >0) {
                         $visPlek = VisPlek::find($input['aanpasen']);
                         if ($visPlek->user_id == $user->id) {
                             if (Input::hasFile('file')) {
@@ -78,7 +78,7 @@ class AddContentController extends Controller
                             $fileName = $this->fileUpload->fileUpload($file);
                             $visPlek = new VisPlek;
                             $save = true;
-                            $visPlek->active=$this.$this->status['afwachting'];
+                            $visPlek->active=$this->status['afwachting'];
                         }
                     }
                     if ($save) {

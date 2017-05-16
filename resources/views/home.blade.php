@@ -6,30 +6,37 @@
         <?php $head = 'home';$head_description = 'Vis activiteiten onder een dak';?>
         @include('header')
         <div class="row margin-top-1">
-            <div class="col-md-3 box-card">
+            <div class="col-xs-12 col-sm-12 col-md-3 box-card">
                 <div class="thumbnail ">
                     <div class="caption">
                         <div class="box-card-head">
-                            <h3 class="text-center">RECENTS</h3>
+                            <h3 class="text-center">RECENT</h3>
                         </div>
                         <div class="box-card-body margin-bottom-4">
-                            <div class="row">
-                                @for($i=0;$i<5;$i++)
+                            <div class="row" id="vertikalscroll">
+                                <div class="circel top" id="go-to-top">
+                                    <div class="glyphicon glyphicon-menu-up center"></div>
+                                </div>
+                                <div class="circel bottom" id="go-to-bottom">
+                                    <div class="glyphicon glyphicon-menu-down center"></div>
+                                </div>
+                                <?php ?>
+                                @foreach($recentPost as $key=>$content)
                                     <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
                                         <div class="media">
                                             <div class="media-left">
                                                 <a href="#" class="popular-img">
-                                                    <img src="{{url('/uploads/thumbnail/20170504080504500-300.jpeg')}}">
+                                                    <img src="{{url('/uploads/thumbnail/'.$content->image)}}">
                                                     <div class="p-overlay"></div>
                                                 </a>
                                             </div>
                                             <div class="p-content">
-                                                <a href="#" class="text-uppercase">Home is peaceful Place</a>
-                                                <span class="p-date">February 15, 2016</span>
+                                                <a href="#" class="text-uppercase">{{substr($content->titel,0,40)}}</a>
+                                                <span class="p-date">{{ date("d-m-Y", strtotime($content->updated_at))}}</span>
                                             </div>
                                         </div>
                                     </div>
-                                @endfor
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -43,19 +50,25 @@
                                 <div class="box-card-body">
                                     <div class="row">
                                         <div class="form-group">
-                                            <div class="col-xs-12 col-sm-8 col-md-10 col-lg-10">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                                 <div ng-if="googleMaps" class="form-group move-down">
-                                                    <input type="text" id="Autocomplete" class="form-control"
-                                                           ng-autocomplete ng-model="latLngFromAdress.result"
-                                                           type="text" class="form-control ng-valid input-lg"
-                                                           details="details1" options="options1"
-                                                           placeholder="Zoeken">
+                                                    <input type="text"  class="form-control"
+                                                           type="text" class="form-control ng-valid input-lg" ng-keyup="zoekenOpGoogleMaps(inputZoekenOpGoogleMaps)"
+                                                           placeholder="Zoeken op google maps" ng-model="inputZoekenOpGoogleMaps">
                                                 </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">
-                                                <button ng-click="resenterGoogleMaps(latLngFromAdress.result)"
-                                                        type="submit" class="btn btn-default fullwidth">Zoeken
-                                                </button>
+
+                                                {{--<div ng-if="googleMaps" class="form-group move-down">--}}
+                                                    {{--<input type="text" id="Autocomplete" class="form-control"--}}
+                                                           {{--ng-autocomplete ng-model="latLngFromAdress.result"--}}
+                                                           {{--type="text" class="form-control ng-valid input-lg"--}}
+                                                           {{--details="details1" options="options1"--}}
+                                                           {{--placeholder="Zoeken">--}}
+                                                {{--</div>--}}
+                                                {{--<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">--}}
+                                                    {{--<button ng-click="resenterGoogleMaps(latLngFromAdress.result)"--}}
+                                                            {{--type="submit" class="btn btn-default fullwidth">Zoeken--}}
+                                                    {{--</button>--}}
+                                                {{--</div>--}}
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -97,36 +110,117 @@
             @endif
         </div>
     </div>
-    <div class="container-fluid">
-        <div class="row margin-top-2">
-            <div class="col-md-12">
-                <div class="row">
-                    @foreach($wedstrijden as $key=>$wedstrijd)
-                        <?php
-                        $title = $wedstrijd->titel;
-                        $description = substr($wedstrijd->text, 0, 350) . '...';
-                        $image = url('/uploads/thumbnail') . "/" . $wedstrijd->image;
-                        ?>
-                        <div class="col-md-3">
-                            @include('components.new_contest')
-                        </div>
-                    @endforeach
-                    @foreach($trainers as $key=>$trainer)
-                        <?php
-                        $leeftijd = $trainer->leeftijd;
-                        $ervaring = $trainer->ervaring;
-                        $vraagprijs = $trainer->vraagprijs;
-                        $naam = $trainer->name;
-                        $image = url('/uploads/thumbnail') . "/" . $trainer->image;
-                        $description = substr($trainer->text, 0, 350) . '...';
-                        ?>
-                        <div class="col-md-3">
-                            @include('components.trainer_thumbnail')
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--<div class="container-fluid">--}}
+    {{--<div class="row margin-top-2">--}}
+    {{--<div class="col-md-12">--}}
+    {{--<div class="row">--}}
+    {{--@foreach($wedstrijden as $key=>$wedstrijd)--}}
+    {{--<?php--}}
+    {{--$title = $wedstrijd->titel;--}}
+    {{--$description = substr($wedstrijd->text, 0, 350) . '...';--}}
+    {{--$image = url('/uploads/thumbnail') . "/" . $wedstrijd->image;--}}
+    {{--?>--}}
+    {{--<div class="col-md-3">--}}
+    {{--@include('components.new_contest')--}}
+    {{--</div>--}}
+    {{--@endforeach--}}
+    {{--@foreach($trainers as $key=>$trainer)--}}
+    {{--<?php--}}
+    {{--$leeftijd = $trainer->leeftijd;--}}
+    {{--$ervaring = $trainer->ervaring;--}}
+    {{--$vraagprijs = $trainer->vraagprijs;--}}
+    {{--$naam = $trainer->name;--}}
+    {{--$image = url('/uploads/thumbnail') . "/" . $trainer->image;--}}
+    {{--$description = substr($trainer->text, 0, 350) . '...';--}}
+    {{--?>--}}
+    {{--<div class="col-md-3">--}}
+    {{--@include('components.trainer_thumbnail')--}}
+    {{--</div>--}}
+    {{--@endforeach--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
 
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            var scrolled = 0;
+            var maxScroll = $("#vertikalscroll")[0].scrollHeight - 300;
+            var move = false;
+            var moveSize = 300;
+            $("#go-to-top").hide();
+            var moveDown = true;
+
+            setInterval(function () {
+                if (moveDown) {
+                    if (!move) {
+                        move = true;
+                        scrolled = scrolled + moveSize;
+                        $("#go-to-top").show();
+                        if (scrolled > maxScroll) {
+                            scrolled = maxScroll;
+                            scrolled = maxScroll - moveSize;
+                            $("#go-to-bottom").hide();
+                            moveDown = false;
+                        }
+                        scrolY(scrolled)
+                    }
+                } else {
+                    if (!move) {
+                        move = true;
+                        scrolled = scrolled - moveSize;
+                        $("#go-to-bottom").show();
+
+                        if (scrolled < 0) {
+                            scrolled = 0
+                            moveDown = true;
+                            $("#go-to-top").hide();
+                        }
+                        scrolY(scrolled)
+                    }
+                }
+
+            }, 5000);
+            $("#go-to-bottom").on("click", function () {
+                if (!move) {
+                    move = true;
+                    scrolled = scrolled + moveSize;
+                    $("#go-to-top").show();
+                    if (scrolled > maxScroll) {
+                        scrolled = maxScroll;
+                        scrolled = maxScroll - moveSize;
+                        $("#go-to-bottom").hide();
+
+                    }
+                    scrolY(scrolled)
+                }
+            });
+            $("#go-to-top").on("click", function () {
+                if (!move) {
+                    move = true;
+                    scrolled = scrolled - moveSize;
+                    $("#go-to-bottom").show();
+
+                    if (scrolled < 0) {
+                        scrolled = 0
+                        $("#go-to-top").hide();
+                    }
+                    scrolY(scrolled)
+                }
+            });
+            function scrolY(scroll) {
+                $("#vertikalscroll").animate({
+                    scrollTop: scrolled
+                }, 2000, function () {
+                    move = false;
+                });
+            }
+            $(".clearValue").on("click", function () {
+                scrolled = 0;
+            });
+        });
+    </script>
 @endsection
