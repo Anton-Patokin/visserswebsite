@@ -11,6 +11,13 @@ use App\VisPlek;
 class ApiZoekenController extends Controller
 {
     public function googleMapsZoeken(Request $request){
-        return $request->input;
+
+        $wedstrijden = Wedstrijd::where('active', '2')
+            ->search($request->input, null, true)->get();
+        $trainer = User::where('active', '2')
+            ->search($request->input, null, true)->get();
+        $visplaats = VisPlek::where('active', '2')
+            ->search($request->input, null, true,true)->get();
+        return ["wedstrijd"=>$wedstrijden,"trainer"=>$trainer,'plaats'=>$visplaats];
     }
 }

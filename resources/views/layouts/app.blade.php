@@ -49,7 +49,7 @@
 <script src="{{url('/js/libs/angular-aria.min.js')}}"></script>
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-messages.min.js"></script>--}}
 <script src="{{url('/js/libs/angular-material.min.js')}}"></script>
-<script src="{{url('/js/libs/ngAutocomplete.js')}}"></script>
+{{--<script src="{{url('/js/libs/ngAutocomplete.js')}}"></script>--}}
 <script src="{{ asset('js/base.js') }}"></script>
 <script src="{{url('/js/file-reader.js')}}"></script>
 <script src="{{url('/js/MainGoogleMaps.js')}}"></script>

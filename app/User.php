@@ -5,25 +5,42 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class User extends Authenticatable
 {
     use SoftDeletes;
 
     use Notifiable;
+    use SearchableTrait;
+
+    protected $searchable = [
+        'columns' => [
+            'users.name' => 10,
+            'users.vraagprijs' => 10,
+            'users.text' => 5,
+            'users.type' => 10,
+            'users.ervaring' => 5,
+            'users.leeftijd' => 2,
+            'users.geslacht' => 2,
+        ]
+    ];
 
     public function wedstrijden()
     {
         return $this->hasMany('App\Wedstrijd');
     }
+
     public function visPlaatsen()
     {
         return $this->hasMany('App\VisPlek');
     }
+
     public function tutorials()
     {
         return $this->hasMany('App\Tutorial');
     }
+
     public function nieuwsArtikelen()
     {
         return $this->hasMany('App\NieuwsArtikel');
@@ -34,14 +51,17 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Wedstrijd')->withTrashed();
     }
+
     public function visPlaatsen_withTrashed()
     {
         return $this->hasMany('App\VisPlek')->withTrashed();
     }
+
     public function tutorials_withTrashed()
     {
         return $this->hasMany('App\Tutorial')->withTrashed();
     }
+
     public function nieuwsArtikelen_withTrashed()
     {
         return $this->hasMany('App\NieuwsArtikel')->withTrashed();

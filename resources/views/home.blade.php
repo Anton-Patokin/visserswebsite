@@ -51,32 +51,55 @@
                                     <div class="row">
                                         <div class="form-group">
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                                <div ng-if="googleMaps" class="form-group move-down">
-                                                    <input type="text"  class="form-control"
-                                                           type="text" class="form-control ng-valid input-lg" ng-keyup="zoekenOpGoogleMaps(inputZoekenOpGoogleMaps)"
-                                                           placeholder="Zoeken op google maps" ng-model="inputZoekenOpGoogleMaps">
+                                                <div ng-if="googleMaps" class=" move-down">
+                                                    <input type="text" class="form-control"
+                                                           type="text" class="form-control ng-valid input-lg"
+                                                           ng-keyup="zoekenOpGoogleMaps(inputZoekenOpGoogleMaps)"
+                                                           placeholder="Zoeken op google maps"
+                                                           ng-model="inputZoekenOpGoogleMaps">
                                                 </div>
 
                                                 {{--<div ng-if="googleMaps" class="form-group move-down">--}}
-                                                    {{--<input type="text" id="Autocomplete" class="form-control"--}}
-                                                           {{--ng-autocomplete ng-model="latLngFromAdress.result"--}}
-                                                           {{--type="text" class="form-control ng-valid input-lg"--}}
-                                                           {{--details="details1" options="options1"--}}
-                                                           {{--placeholder="Zoeken">--}}
+                                                {{--<input type="text" id="Autocomplete" class="form-control"--}}
+                                                {{--ng-autocomplete ng-model="latLngFromAdress.result"--}}
+                                                {{--type="text" class="form-control ng-valid input-lg"--}}
+                                                {{--details="details1" options="options1"--}}
+                                                {{--placeholder="Zoeken">--}}
                                                 {{--</div>--}}
                                                 {{--<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">--}}
-                                                    {{--<button ng-click="resenterGoogleMaps(latLngFromAdress.result)"--}}
-                                                            {{--type="submit" class="btn btn-default fullwidth">Zoeken--}}
-                                                    {{--</button>--}}
+                                                {{--<button ng-click="resenterGoogleMaps(latLngFromAdress.result)"--}}
+                                                {{--type="submit" class="btn btn-default fullwidth">Zoeken--}}
+                                                {{--</button>--}}
                                                 {{--</div>--}}
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-3">
-                                                <input type="checkbox" id="test2" checked="checked"/>
-                                                <label for="test2">Yellow</label>
-                                            </div>
-                                        </div>
+                                        {{--<div class="form-group">--}}
+                                        {{--<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">--}}
+                                        {{--<div class="checkbox checkbox-inline">--}}
+                                        {{--<input type="checkbox" id="inlineCheckbox1" value="option1">--}}
+                                        {{--<label for="inlineCheckbox1"> Nachtvissen</label>--}}
+                                        {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">--}}
+                                        {{--<div class="checkbox checkbox-inline">--}}
+                                        {{--<input type="checkbox" id="inlineCheckbox1" value="option1">--}}
+                                        {{--<label for="inlineCheckbox1"> Nachtvissen</label>--}}
+                                        {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">--}}
+
+                                        {{--<div class="checkbox checkbox-inline">--}}
+                                        {{--<input type="checkbox" id="inlineCheckbox1" value="option1">--}}
+                                        {{--<label for="inlineCheckbox1"> Nachtvissen</label>--}}
+                                        {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">--}}
+                                        {{--<div class="checkbox checkbox-inline">--}}
+                                        {{--<input type="checkbox" id="inlineCheckbox1" value="option1">--}}
+                                        {{--<label for="inlineCheckbox1"> Nachtvissen</label>--}}
+                                        {{--</div>--}}
+                                        {{--</div>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -85,29 +108,32 @@
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="thumbnail">
                             <div class="caption">
-
-                                <div class="">
-                                    <ui-gmap-google-map options="map.options" center='map.center'
-                                                        zoom='map.zoom'>
-                                        <ui-gmap-markers models="visPlaatsMarkers" coords="'self'"
-                                                         icon="{url:'{{url('/images/icon/marker_vis.png')}}'}">
-                                        </ui-gmap-markers>
-                                        <ui-gmap-markers models="trainerMarkers" coords="'self'"
-                                                         icon="{url:'{{url('/images/icon/marker_trainer.png')}}'}">
-                                        </ui-gmap-markers>
-                                        <ui-gmap-markers models="wedsrijdMarkers" coords="'self'"
-                                                         icon="{url:'{{url('/images/icon/marker_wedstrijd.png')}}'}">
-                                        </ui-gmap-markers>
-                                    </ui-gmap-google-map>
-                                </div>
+                                <ui-gmap-google-map options="map.options" center='map.center' zoom='map.zoom'>
+                                    <ui-gmap-search-box options="map.searchbox.options"
+                                                        template="map.searchbox.template"
+                                                        events="map.searchbox.events"
+                                                        position="'top-left'"></ui-gmap-search-box>
+                                    <ui-gmap-markers models="plaatsMarkers" coords="'self'"
+                                                     icon="{url:'{{url('/images/icon/marker_vis.png')}}'}">
+                                    </ui-gmap-markers>
+                                    <ui-gmap-markers models="trainerMarkers" coords="'self'"
+                                                     icon="{url:'{{url('/images/icon/marker_trainer.png')}}'}">
+                                    </ui-gmap-markers>
+                                    <ui-gmap-markers models="wedsrijdMarkers" coords="'self'"
+                                                     icon="{url:'{{url('/images/icon/marker_wedstrijd.png')}}'}">
+                                    </ui-gmap-markers>
+                                </ui-gmap-google-map>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @include('components.calender')
+
             @if (!Cookie::has('subscriber'))
                 @include('components.subscribe')
             @endif
+
         </div>
     </div>
     {{--<div class="container-fluid">--}}
@@ -145,6 +171,10 @@
 @endsection
 
 @section('script')
+
+    <script id="searchbox.tpl.html" type="text/ng-template">
+        <input class="form-search input-sm" type="text" placeholder="Zoeken op locatie">
+    </script>
     <script>
         $(document).ready(function () {
             var scrolled = 0;
@@ -218,6 +248,7 @@
                     move = false;
                 });
             }
+
             $(".clearValue").on("click", function () {
                 scrolled = 0;
             });

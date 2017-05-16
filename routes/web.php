@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home/{titel?}', 'HomeController@index');
+Route::get('/home/{info?}', 'HomeController@index');
 Route::get('/plaats/{id?}/{titel?}', 'HomeController@plaatsen');
 Route::get('/tutorial/{titel?}', 'HomeController@tutorial');
 Route::get('/wedstrijden/{titel?}', 'HomeController@wedstrijden');
@@ -56,3 +56,5 @@ Route::post('/toevoegen/subscribe', 'EmailController@addSubscriber');
 Route::get('/gebruiker', 'GebruikerController@index');
 
 
+
+Route::get('/test/{string?}','TestController@index');

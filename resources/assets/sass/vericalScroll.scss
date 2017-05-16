@@ -1,12 +1,12 @@
 #vertikalscroll {
-  max-height: 425px;
+  max-height: 385px;
   overflow-y: hidden;
 }
 #vertikalscroll .circel {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  color: #d81b60;
+  color: $color-red;
   font-size: 14px;
   line-height: 5px;
   text-align: center;
@@ -28,7 +28,7 @@
 }
 .circel.bottom{
   right: 25px;
-  top: 485px;
+  top: 445px;
 }
 #vertikalscroll .circel:hover {
   /*transition: all 0.33s;*/

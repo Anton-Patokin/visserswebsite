@@ -1,0 +1,19 @@
+.table-style .today {
+  background: $dark-blue;
+  color: #ffffff;
+}
+
+.table-style th:nth-of-type(7), td:nth-of-type(7) {
+  color: $light-blue;
+}
+
+.table-style th:nth-of-type(1), td:nth-of-type(1) {
+  color: $color-red;
+}
+
+.table-style tr:first-child th {
+  background-color: #f3f1ed;
+  text-align: center;
+  font-size: 15px;
+}
+

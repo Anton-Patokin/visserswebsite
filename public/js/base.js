@@ -1,6 +1,6 @@
 var center = {latitude: 51.218826, longitude: 4.402950};
 var MAX_SIZE = 5000000;//5mb
-var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial', 'ngAutocomplete']);
+var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial']);
 
 
 myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader', '$http', '$window', function ($scope, uiGmapGoogleMapApi, fileReader, $http, $window) {
@@ -409,20 +409,9 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     }
 
 
-    $scope.zoekenOpGoogleMaps = function (input) {
-        $http({
-            method: 'POST',
-            url: ROUTEFRONT + '/api/zoeken/googleMaps',
-            data: {input: input}
-        }).success(function (data) {
-            console.log('requisttdata: ', data);
-        }).error(function (data, status, headers, config) {
-            console.log('error bij het zoeken');
-        });
-    }
+   
 
     uiGmapGoogleMapApi.then(function (maps) {
-        $scope.google = google;
         $scope.googleMaps = true;
     });
 

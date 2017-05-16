@@ -35,3 +35,25 @@
   }
 }
 
+.form-search{
+  margin-top: 8px;
+  width: 75%;
+  @media (max-width: 1400px) {
+    width: 75%;
+
+  }
+  @media (max-width: 600px) {
+    width: 50%;
+    .form-search.input-sm {
+      height: 35px;
+    }
+  }
+}
+.form-search.input-sm {
+  height: 31px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+

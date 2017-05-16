@@ -23,6 +23,8 @@
 @import "hideElements";
 @import "color";
 @import "vericalScroll";
+@import "checkbox";
+@import "calender";
 
 .text-uppercase {
   text-transform: uppercase;
@@ -38,7 +40,7 @@
 }
 
 .messages-cookie {
-  .alert{
+  .alert {
     margin-bottom: 0px;
   }
 }
