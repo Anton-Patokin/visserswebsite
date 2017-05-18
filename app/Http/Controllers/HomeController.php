@@ -39,26 +39,51 @@ class HomeController extends Controller
      */
 
 
-    public function index($datum=null)
+    public function index($datum = null)
     {
         $recentPost = [];
         $resentPostToSend = [];
-        array_push($recentPost, Wedstrijd::orderBy('id', 'desc')->where('active', 2)->take(5)->get());
-        array_push($recentPost, NieuwsArtikel::orderBy('id', 'desc')->where('active', 2)->take(5)->get());
-        array_push($recentPost, Tutorial::orderBy('id', 'desc')->where('active', 2)->take(5)->get());
-        array_push($recentPost, VisPlek::orderBy('id', 'desc')->where('active', 2)->take(5)->get());
+//        array_push($recentPost, Wedstrijd::orderBy('id', 'desc')->where('active', 2)->take(5)->get());
 
+
+        $wedstrijden = Wedstrijd::orderBy('id', 'desc')->where('active', 2);
+        $nieuwsartikel = NieuwsArtikel::orderBy('id', 'desc')->where('active', 2);
+        $tutorial = Tutorial::orderBy('id', 'desc')->where('active', 2);
+        $visplek = VisPlek::orderBy('id', 'desc')->where('active', 2);
+        $user = User::orderBy('id', 'desc')->where('active', 2);
+
+
+        array_push($recentPost, $wedstrijden->take(5)->get());
+        array_push($recentPost, $tutorial->take(5)->get());
+        array_push($recentPost, $visplek->take(5)->get());
 
         foreach ($recentPost as $key => $content) {
             foreach ($content as $count => $value) {
                 array_push($resentPostToSend, $value);
             }
         }
+        $recentPost = [];
+        $allposts = [];
+        $pagination=$wedstrijden->paginate(5);
+        array_push($recentPost, $wedstrijden->paginate(5));
+        array_push($recentPost, $nieuwsartikel->paginate(5));
+        array_push($recentPost, $tutorial->paginate(5));
+        array_push($recentPost, $visplek->paginate(5));
+        array_push($recentPost, $user->paginate(5));
 
-        $numbers = range(1, 20);
+
+
+        foreach ($recentPost as $key => $content) {
+            foreach ($content as $count => $value) {
+                array_push($allposts, $value);
+            }
+        }
+
+        shuffle($allposts);
         shuffle($resentPostToSend);
 
-        return view('home', ["recentPost" => $resentPostToSend]);
+//        return $pagination;
+        return view('home', ["recentPost" => $resentPostToSend,'contents'=>$allposts,'pagination'=>$pagination]);
     }
 
 
@@ -135,7 +160,7 @@ class HomeController extends Controller
 //            ->get();
 //        
 
-         $datumString=[];
+        $datumString = [];
         date_default_timezone_set('Asia/Dhaka');
 
 // Get prev & next month
@@ -157,13 +182,13 @@ class HomeController extends Controller
 
 // For H3 title
         $html_title = date('M - Y', $timestamp);
-        $datumString['titel']=$html_title;
+        $datumString['titel'] = $html_title;
 // Create prev & next month link     mktime(hour,minute,second,month,day,year)
         $prev = date('Y-m', mktime(0, 0, 0, date('m', $timestamp) - 1, 1, date('Y', $timestamp)));
         $next = date('Y-m', mktime(0, 0, 0, date('m', $timestamp) + 1, 1, date('Y', $timestamp)));
 
-        $datumString['vorige']=$prev;
-        $datumString['volgende']=$next;
+        $datumString['vorige'] = $prev;
+        $datumString['volgende'] = $next;
 // Number of days in the month
         $day_count = date('t', $timestamp);
 
@@ -205,7 +230,7 @@ class HomeController extends Controller
             }
 
         }
-        $datumString['weeks']=$weeks;
+        $datumString['weeks'] = $weeks;
         return $datumString;
     }
 }

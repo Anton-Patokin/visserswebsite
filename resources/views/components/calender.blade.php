@@ -1,4 +1,4 @@
-<div class="col-md-3 box-card">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 box-card">
     <div class="thumbnail">
         <div class="caption ">
             <div class="box-card-head">
@@ -40,15 +40,11 @@
                             </small>
                         </td>
                     </tr>
-
                     <style>
-
-
                         .calender-notification {
                             position: relative;
 
                         }
-
                         .calender-notification .calender-center {
                             position: absolute;
                             height: 20px;

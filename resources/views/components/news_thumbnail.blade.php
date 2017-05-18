@@ -1,8 +1,8 @@
     <div class="thumbnail">
-        <img src="http://placehold.it/500x300" alt="">
+        <img src="{{url('/uploads/thumbnail/'.$content->image)}}" alt="{{$content->titel}}" alt="">
         <div class="caption">
-            <h4>{{$title}}</h4>
-            <p>{{$description}}</p>
+            <h4>{{$content->titel}}</h4>
+            <p>{{$content->inleiding}}</p>
             <p><a href="#" class=" btn-xs" role="button">Meer</a></p>
         </div>
     </div>

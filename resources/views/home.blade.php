@@ -6,47 +6,28 @@
         <?php $head = 'home';$head_description = 'Vis activiteiten onder een dak';?>
         @include('header')
         <div class="row margin-top-1">
-            <div class="col-xs-12 col-sm-12 col-md-3 box-card">
-                <div class="thumbnail ">
-                    <div class="caption">
-                        <div class="box-card-head">
-                            <h3 class="text-center">RECENT</h3>
-                        </div>
-                        <div class="box-card-body margin-bottom-4">
-                            <div class="row" id="vertikalscroll">
-                                <div class="circel top" id="go-to-top">
-                                    <div class="glyphicon glyphicon-menu-up center"></div>
-                                </div>
-                                <div class="circel bottom" id="go-to-bottom">
-                                    <div class="glyphicon glyphicon-menu-down center"></div>
-                                </div>
-                                <?php ?>
-                                @foreach($recentPost as $key=>$content)
-                                    <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
-                                        <div class="media">
-                                            <div class="media-left">
-                                                <a href="#" class="popular-img">
-                                                    <img src="{{url('/uploads/thumbnail/'.$content->image)}}">
-                                                    <div class="p-overlay"></div>
-                                                </a>
-                                            </div>
-                                            <div class="p-content">
-                                                <a href="#" class="text-uppercase">{{substr($content->titel,0,40)}}</a>
-                                                <span class="p-date">{{ date("d-m-Y", strtotime($content->updated_at))}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
+                <div class="row">
+                    @include('components.calender')
+                    @if (!Cookie::has('subscriber'))
+                            @include('components.subscribe')
+                    @endif
                 </div>
             </div>
-            <div class="col-md-6 box-card">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 box-card">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="thumbnail">
                             <div class="caption">
+                                <div class="box-card-head">
+                                    <style>
+                                        .google-maps-titel {
+                                            margin-bottom: 0px;
+                                        }
+                                    </style>
+                                    <h3 class="google-maps-titel">Vis activiteiten op de kaart</h3>
+                                </div>
                                 <div class="box-card-body">
                                     <div class="row">
                                         <div class="form-group">
@@ -58,28 +39,11 @@
                                                            placeholder="Zoekterm"
                                                            ng-model="inputZoekenOpGoogleMaps">
                                                 </div>
-
-                                                {{--<div ng-if="googleMaps" class="form-group move-down">--}}
-                                                {{--<input type="text" id="Autocomplete" class="form-control"--}}
-                                                {{--ng-autocomplete ng-model="latLngFromAdress.result"--}}
-                                                {{--type="text" class="form-control ng-valid input-lg"--}}
-                                                {{--details="details1" options="options1"--}}
-                                                {{--placeholder="Zoeken">--}}
-                                                {{--</div>--}}
-                                                {{--<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">--}}
-                                                {{--<button ng-click="resenterGoogleMaps(latLngFromAdress.result)"--}}
-                                                {{--type="submit" class="btn btn-default fullwidth">Zoeken--}}
-                                                {{--</button>--}}
-                                                {{--</div>--}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="thumbnail">
                             <div class="caption">
                                 <ui-gmap-google-map options="map.options" center='map.center' zoom='map.zoom'>
                                     <ui-gmap-window coords="markers.coords" show="windowOptions.show"
@@ -123,45 +87,96 @@
                     </div>
                 </div>
             </div>
-            @include('components.calender')
-
-            @if (!Cookie::has('subscriber'))
-                @include('components.subscribe')
-            @endif
-
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 box-card">
+                <div class="thumbnail ">
+                    <div class="caption">
+                        <div class="box-card-head">
+                            <h3 class="text-center">RECENT</h3>
+                        </div>
+                        <div class="box-card-body margin-bottom-4">
+                            <div class="row" id="vertikalscroll">
+                                <div class="circel top" id="go-to-top">
+                                    <div class="glyphicon glyphicon-menu-up center"></div>
+                                </div>
+                                <div class="circel bottom" id="go-to-bottom">
+                                    <div class="glyphicon glyphicon-menu-down center"></div>
+                                </div>
+                                <?php ?>
+                                @foreach($recentPost as $key=>$content)
+                                    <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <a href="#" class="popular-img">
+                                                    <img src="{{url('/uploads/thumbnail/'.$content->image)}}">
+                                                    <div class="p-overlay"></div>
+                                                </a>
+                                            </div>
+                                            <div class="p-content">
+                                                <a href="#" class="text-uppercase">{{substr($content->titel,0,40)}}</a>
+                                                <span class="p-date">{{ date("d-m-Y", strtotime($content->updated_at))}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <?php
+                $length=count($contents);
+                $lengthRows =$length/3;
+                $lengthColumns=4;
+                $content="";
+                ?>
+                <div class="row">
+                    @for($e=0;$e<$lengthColumns;$e++)
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                            <div class="row">
+                                @for($i=0;$i<$lengthRows;$i++)
+                                    <div class="col-md-12 margin-top-2">
+                                        <?php $index =$i*$lengthColumns+$e;
+                                        if(isset($contents[$index])){
+                                        $content=$contents[$index];
+                                        }
+                                        ?>
+                                        @if($content->type =='wedstrijd')
+                                            @include('components.new_contest')
+                                        @endif
+                                        @if($content->type =='plaats')
+                                            @include('components.visplek_thumbnail')
+                                        @endif
+                                        @if($content->type =='nieuwsArtikel')
+                                            @include('components.news_thumbnail')
+                                        @endif
+                                        @if($content->type =='trainer')
+                                            @include('components.trainer_thumbnail')
+                                        @endif
+                                        @if($content->type =='tutorial')
+                                            @include('components.news_thumbnail')
+                                        @endif
+                                        @if($content->type !='tutorial' && $content->type !='plaats'&&$content->type !='nieuwsArtikel'&&$content->type !='trainer'&&$content->type !='wedstrijd')
+                                            {{$content}}
+                                        @endif
+                                    </div>
+                                @endfor
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        {{ $pagination->links() }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    {{--<div class="container-fluid">--}}
-    {{--<div class="row margin-top-2">--}}
-    {{--<div class="col-md-12">--}}
-    {{--<div class="row">--}}
-    {{--@foreach($wedstrijden as $key=>$wedstrijd)--}}
-    {{--<?php--}}
-    {{--$title = $wedstrijd->titel;--}}
-    {{--$description = substr($wedstrijd->text, 0, 350) . '...';--}}
-    {{--$image = url('/uploads/thumbnail') . "/" . $wedstrijd->image;--}}
-    {{--?>--}}
-    {{--<div class="col-md-3">--}}
-    {{--@include('components.new_contest')--}}
-    {{--</div>--}}
-    {{--@endforeach--}}
-    {{--@foreach($trainers as $key=>$trainer)--}}
-    {{--<?php--}}
-    {{--$leeftijd = $trainer->leeftijd;--}}
-    {{--$ervaring = $trainer->ervaring;--}}
-    {{--$vraagprijs = $trainer->vraagprijs;--}}
-    {{--$naam = $trainer->name;--}}
-    {{--$image = url('/uploads/thumbnail') . "/" . $trainer->image;--}}
-    {{--$description = substr($trainer->text, 0, 350) . '...';--}}
-    {{--?>--}}
-    {{--<div class="col-md-3">--}}
-    {{--@include('components.trainer_thumbnail')--}}
-    {{--</div>--}}
-    {{--@endforeach--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
+
+
+
+
 
 @endsection
 
@@ -250,3 +265,16 @@
         });
     </script>
 @endsection
+
+{{--<div ng-if="googleMaps" class="form-group move-down">--}}
+{{--<input type="text" id="Autocomplete" class="form-control"--}}
+{{--ng-autocomplete ng-model="latLngFromAdress.result"--}}
+{{--type="text" class="form-control ng-valid input-lg"--}}
+{{--details="details1" options="options1"--}}
+{{--placeholder="Zoeken">--}}
+{{--</div>--}}
+{{--<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2">--}}
+{{--<button ng-click="resenterGoogleMaps(latLngFromAdress.result)"--}}
+{{--type="submit" class="btn btn-default fullwidth">Zoeken--}}
+{{--</button>--}}
+{{--</div>--}}

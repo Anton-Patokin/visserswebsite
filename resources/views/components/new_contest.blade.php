@@ -8,10 +8,10 @@
         </div>
         <div class="icon-img-background-right dobber"></div>
     </div>
-    <img src="{{$image}}" alt="{{$title}}">
+    <img src="{{url('/uploads/thumbnail/'.$content->image)}}" alt="{{$content->titel}}">
     <div class="caption">
-        <h4>{{$title}}</h4>
-        <p>{{$description}}</p>
+        <h4>{{$content->titel}}</h4>
+        <p>{{$content->text}}</p>
         <p><a href="#" class=" btn-xs" role="button">Meer</a></p>
     </div>
 </div>

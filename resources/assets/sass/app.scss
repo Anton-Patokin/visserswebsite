@@ -5,7 +5,7 @@
 // Variables
 @import "variables";
 // Bootstrap
-@import "libs/angular-material.min.css";
+//@import "libs/angular-material.min.css";
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 @import "googleMaps/googleMpas";
 @import "nav/navbar";
@@ -122,4 +122,9 @@
   .border-right {
     border-right: none;
   }
+}
+
+.pagination .active span {
+  background-color: #d81b60;
+  border-color: #d81b60;
 }

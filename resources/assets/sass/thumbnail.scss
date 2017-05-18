@@ -90,13 +90,19 @@
       }
 
       h3 {
+          text-transform: uppercase;
+          font-size: 24px;
+          margin: 27px 0 25px;
+          letter-spacing: 0.5px;
+          color: #333333;
+        }
+      .subscribe {
         text-transform: uppercase;
-        font-size: 24px;
-        margin: 27px 0 25px;
+        font-size: 18px;
+        margin: 15px 0 14px;
         letter-spacing: 0.5px;
         color: #333333;
       }
-
     }
     .box-card-body {
       h3 {
