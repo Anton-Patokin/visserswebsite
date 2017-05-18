@@ -24,3 +24,5 @@ Route::get('/add/content',function(){
 Route::get('/get/markers/{type}','ApiGoogleMaps@markers');
 Route::get('/get/marker/{id}','ApiGoogleMaps@marker');
 Route::post('/zoeken/googleMaps','ApiZoekenController@googleMapsZoeken');
+
+Route::get('/get/wedstrijden/{year}/{month}','ApiCalenderController@index');

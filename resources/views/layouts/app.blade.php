@@ -22,6 +22,11 @@
 
 </head>
 <body ng-app="myApp" ng-controller="MainController"  class="background-gray">
+<style>
+    .background-gray{
+        /*background-color: #f5f5f5;*/
+    }
+</style>
 @include('layouts.top')
 @include('layouts.banner')
 @include('layouts.middel')

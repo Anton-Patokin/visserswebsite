@@ -55,7 +55,7 @@
                                                     <input type="text" class="form-control"
                                                            type="text" class="form-control ng-valid input-lg"
                                                            ng-keyup="zoekenOpGoogleMaps(inputZoekenOpGoogleMaps)"
-                                                           placeholder="Zoeken op google maps"
+                                                           placeholder="Zoekterm"
                                                            ng-model="inputZoekenOpGoogleMaps">
                                                 </div>
 
@@ -73,33 +73,6 @@
                                                 {{--</div>--}}
                                             </div>
                                         </div>
-                                        {{--<div class="form-group">--}}
-                                        {{--<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">--}}
-                                        {{--<div class="checkbox checkbox-inline">--}}
-                                        {{--<input type="checkbox" id="inlineCheckbox1" value="option1">--}}
-                                        {{--<label for="inlineCheckbox1"> Nachtvissen</label>--}}
-                                        {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">--}}
-                                        {{--<div class="checkbox checkbox-inline">--}}
-                                        {{--<input type="checkbox" id="inlineCheckbox1" value="option1">--}}
-                                        {{--<label for="inlineCheckbox1"> Nachtvissen</label>--}}
-                                        {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">--}}
-
-                                        {{--<div class="checkbox checkbox-inline">--}}
-                                        {{--<input type="checkbox" id="inlineCheckbox1" value="option1">--}}
-                                        {{--<label for="inlineCheckbox1"> Nachtvissen</label>--}}
-                                        {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">--}}
-                                        {{--<div class="checkbox checkbox-inline">--}}
-                                        {{--<input type="checkbox" id="inlineCheckbox1" value="option1">--}}
-                                        {{--<label for="inlineCheckbox1"> Nachtvissen</label>--}}
-                                        {{--</div>--}}
-                                        {{--</div>--}}
-                                        {{--</div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -109,18 +82,40 @@
                         <div class="thumbnail">
                             <div class="caption">
                                 <ui-gmap-google-map options="map.options" center='map.center' zoom='map.zoom'>
+                                    <ui-gmap-window coords="markers.coords" show="windowOptions.show"
+                                                    closeClick="closeClick()">
+                                        <div>Hello</div>
+                                    </ui-gmap-window>
                                     <ui-gmap-search-box options="map.searchbox.options"
                                                         template="map.searchbox.template"
                                                         events="map.searchbox.events"
                                                         position="'top-left'"></ui-gmap-search-box>
-                                    <ui-gmap-markers models="plaatsMarkers" coords="'self'"
+                                    <ui-gmap-markers fit="true" models="plaatsMarkers" coords="'self'"
                                                      icon="{url:'{{url('/images/icon/marker_vis.png')}}'}">
                                     </ui-gmap-markers>
-                                    <ui-gmap-markers models="trainerMarkers" coords="'self'"
+                                    <ui-gmap-markers fit="true" models="trainerMarkers" coords="'self'"
                                                      icon="{url:'{{url('/images/icon/marker_trainer.png')}}'}">
                                     </ui-gmap-markers>
-                                    <ui-gmap-markers models="wedsrijdMarkers" coords="'self'"
+                                    <ui-gmap-markers events="map.markers.wedstrijd.events" fit="true"
+                                                     models="wedsrijdMarkers" coords="'self'"
                                                      icon="{url:'{{url('/images/icon/marker_wedstrijd.png')}}'}">
+                                        <ui-gmap-windows show="map.mark.wedstrijd.wedstrijdWindowShow"
+                                                         closeClick="'closeClick'" ng-cloak>
+                                            <div ng-non-bindable>
+                                                {{--@{{ info.titel}}--}}
+                                                <div class="container-300px">
+                                                    <div class="post-container">
+                                                        <div class="post-thumb"><img
+                                                                    src="http://dummyimage.com/200x200/f0f/fff"/></div>
+                                                        <div class="post-content">
+                                                            <h5 class="post-title">Post titles sf qdf sdf sdf</h5>
+                                                            <p>sqf qsfsqf qsdf qsdf qsdf qsdf qsfq sdc post desc </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ui-gmap-windows>
+
                                     </ui-gmap-markers>
                                 </ui-gmap-google-map>
                             </div>
@@ -173,7 +168,7 @@
 @section('script')
 
     <script id="searchbox.tpl.html" type="text/ng-template">
-        <input class="form-search input-sm" type="text" placeholder="Zoeken op locatie">
+        <input class="form-search input-sm" type="text" placeholder="Locatie">
     </script>
     <script>
         $(document).ready(function () {

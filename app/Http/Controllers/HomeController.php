@@ -57,9 +57,8 @@ class HomeController extends Controller
 
         $numbers = range(1, 20);
         shuffle($resentPostToSend);
-        
-        $calender = $this->calender($datum);
-        return view('home', ["recentPost" => $resentPostToSend,'calender'=>$calender]);
+
+        return view('home', ["recentPost" => $resentPostToSend]);
     }
 
 

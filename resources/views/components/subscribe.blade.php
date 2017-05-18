@@ -2,7 +2,7 @@
     <div class="thumbnail">
         <div class="caption ">
             <div class="box-card-head">
-                <h3 class="widget-title text-uppercase text-center ">BLIJF OP DE HOOCHTE</h3>
+                <h3 class="widget-title text-uppercase text-center ">BLIJF OP DE HOOGHTE</h3>
             </div>
             <div class="box-card-body">
                 <form method="POST" name="subscribe"
