@@ -22,7 +22,13 @@
   }
 }
 
+.show-800{
+  display: none;
+}
 @media (max-width: 800px) {
+  .show-800{
+    display: block;
+  }
   .hide-800 {
     display: none;
   }

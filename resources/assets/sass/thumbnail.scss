@@ -90,12 +90,12 @@
       }
 
       h3 {
-          text-transform: uppercase;
-          font-size: 24px;
-          margin: 27px 0 25px;
-          letter-spacing: 0.5px;
-          color: #333333;
-        }
+        text-transform: uppercase;
+        font-size: 24px;
+        margin: 27px 0 25px;
+        letter-spacing: 0.5px;
+        color: #333333;
+      }
       .subscribe {
         text-transform: uppercase;
         font-size: 18px;
@@ -146,8 +146,8 @@
     margin-bottom: 0px;
     color: $dark-blue;
     height: 20px;
-    line-height:20px;
-    padding:0px 10px 20px;
+    line-height: 20px;
+    padding: 0px 10px 20px;
   }
 
   .thumbnail-head {
@@ -157,6 +157,44 @@
       letter-spacing: 0.5px;
       color: #333333;
       font-weight: 300;
+    }
+  }
+  .datum {
+    margin: 0;
+    a{
+      &:hover {
+        color: $dark-blue;
+        cursor: pointer;
+      }
+    }
+
+    .active {
+      color: $color-red;
+      .maand {
+        font-size: 24px;
+        text-space: 0.5px;
+        font-weight: 100;
+        margin-top: 0px;
+      }
+      .jaar {
+        margin-top: 0px;
+        font-size: 24px;
+        text-space: 0.5px;
+        font-weight: 100;
+      }
+    }
+    margin: 0;
+    .maand {
+      font-size: 18px;
+      text-space: 0.5px;
+      font-weight: 100;
+      margin-top: 20px;
+    }
+    .jaar {
+      margin-top: 0px;
+      font-size: 18px;
+      text-space: 0.5px;
+      font-weight: 100;
     }
   }
 

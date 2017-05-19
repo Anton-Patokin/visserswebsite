@@ -29,10 +29,11 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
             latitude: value['lat'],
             longitude: value['lng'],
             info: {
-                titel: value['titel'],
-                description: value['extra'],
-                type:value['type'],
-                image:value['image'],
+                id: value['id'],
+                titel: value['titel'].substring(0, 40),
+                text: value['text'].substring(0, 100),
+                type: value['type'],
+                image: 'uploads/thumbnail/' + value['image'],
             }
         };
         ret['id'] = value['id'];
@@ -57,40 +58,48 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
 
     }
 
-    $http({
-        method: 'GET',
-        url: ROUTEFRONT + '/api/get/markers/visPlaats'
-    }).success(function (data) {
-        angular.forEach(data, function (value, key) {
+    $scope.initVisPlaatsmarkers = function () {
+        $http({
+            method: 'GET',
+            url: ROUTEFRONT + '/api/get/markers/visPlaats'
+        }).success(function (data) {
+            angular.forEach(data, function (value, key) {
 
-            inializeMarkerVariabele(value, 'plaats');
+                inializeMarkerVariabele(value, 'plaats');
+            });
+        }).error(function () {
+            console.log('iets verkeerd met api call bij visplaatsen aanvraag');
         });
-    }).error(function () {
-        console.log('iets verkeerd met api call bij visplaatsen aanvraag');
-    });
+    }
 
-    $http({
-        method: 'GET',
-        url: ROUTEFRONT + '/api/get/markers/trainers'
-    }).success(function (data) {
-        angular.forEach(data, function (value, key) {
-            inializeMarkerVariabele(value, 'trainer');
+
+    $scope.initTrainersmarkers = function () {
+        $http({
+            method: 'GET',
+            url: ROUTEFRONT + '/api/get/markers/trainers'
+        }).success(function (data) {
+            angular.forEach(data, function (value, key) {
+                inializeMarkerVariabele(value, 'trainer');
+            });
+        }).error(function () {
+            console.log('iets verkeerd met api call bij trainer aanvraag');
         });
-    }).error(function () {
-        console.log('iets verkeerd met api call bij trainer aanvraag');
-    });
+    }
 
-    $http({
-        method: 'GET',
-        url: ROUTEFRONT + '/api/get/markers/wedstrijden'
-    }).success(function (data) {
-        angular.forEach(data, function (value, key) {
-            inializeMarkerVariabele(value, 'wedstrijd');
+    $scope.initWedstrijdmarkers = function () {
+        $http({
+            method: 'GET',
+            url: ROUTEFRONT + '/api/get/markers/wedstrijden'
+        }).success(function (data) {
+            angular.forEach(data, function (value, key) {
+                inializeMarkerVariabele(value, 'wedstrijd');
 
+            });
+        }).error(function () {
+            console.log('iets verkeerd met api call bij visplaatsen aanvraag');
         });
-    }).error(function () {
-        console.log('iets verkeerd met api call bij visplaatsen aanvraag');
-    });
+
+    }
 
 
     function resenterGoogleMaps(position) {

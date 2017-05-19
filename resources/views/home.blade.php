@@ -21,11 +21,7 @@
                         <div class="thumbnail">
                             <div class="caption">
                                 <div class="box-card-head">
-                                    <style>
-                                        .google-maps-titel {
-                                            margin-bottom: 0px;
-                                        }
-                                    </style>
+
                                     <h3 class="google-maps-titel">Vis activiteiten op de kaart</h3>
                                 </div>
                                 <div class="box-card-body">
@@ -46,39 +42,23 @@
                             </div>
                             <div class="caption">
                                 <ui-gmap-google-map options="map.options" center='map.center' zoom='map.zoom'>
-                                    <ui-gmap-window coords="markers.coords" show="windowOptions.show"
-                                                    closeClick="closeClick()">
-                                        <div>Hello</div>
-                                    </ui-gmap-window>
                                     <ui-gmap-search-box options="map.searchbox.options"
                                                         template="map.searchbox.template"
                                                         events="map.searchbox.events"
                                                         position="'top-left'"></ui-gmap-search-box>
-                                    <ui-gmap-markers fit="true" models="plaatsMarkers" coords="'self'"
+                                    <ui-gmap-markers ng-init="initVisPlaatsmarkers()" events="map.markers.wedstrijd.events" fit="true" models="plaatsMarkers" coords="'self'"
                                                      icon="{url:'{{url('/images/icon/marker_vis.png')}}'}">
+                                        @include('components.googleWindow')
                                     </ui-gmap-markers>
-                                    <ui-gmap-markers fit="true" models="trainerMarkers" coords="'self'"
+                                    <ui-gmap-markers ng-init="initTrainersmarkers()" events="map.markers.wedstrijd.events" fit="true" models="trainerMarkers" coords="'self'"
                                                      icon="{url:'{{url('/images/icon/marker_trainer.png')}}'}">
+                                        @include('components.googleWindow')
+
                                     </ui-gmap-markers>
-                                    <ui-gmap-markers events="map.markers.wedstrijd.events" fit="true"
+                                    <ui-gmap-markers ng-init="initWedstrijdmarkers()" events="map.markers.wedstrijd.events" fit="true"
                                                      models="wedsrijdMarkers" coords="'self'"
                                                      icon="{url:'{{url('/images/icon/marker_wedstrijd.png')}}'}">
-                                        <ui-gmap-windows show="map.mark.wedstrijd.wedstrijdWindowShow"
-                                                         closeClick="'closeClick'" ng-cloak>
-                                            <div ng-non-bindable>
-                                                {{--@{{ info.titel}}--}}
-                                                <div class="container-300px">
-                                                    <div class="post-container">
-                                                        <div class="post-thumb"><img
-                                                                    src="http://dummyimage.com/200x200/f0f/fff"/></div>
-                                                        <div class="post-content">
-                                                            <h5 class="post-title">Post titles sf qdf sdf sdf</h5>
-                                                            <p>sqf qsfsqf qsdf qsdf qsdf qsdf qsfq sdc post desc </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </ui-gmap-windows>
+                                       @include('components.googleWindow')
 
                                     </ui-gmap-markers>
                                 </ui-gmap-google-map>
@@ -124,47 +104,8 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <?php
-                $length=count($contents);
-                $lengthRows =$length/3;
-                $lengthColumns=4;
-                $content="";
-                ?>
-                <div class="row">
-                    @for($e=0;$e<$lengthColumns;$e++)
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                            <div class="row">
-                                @for($i=0;$i<$lengthRows;$i++)
-                                    <div class="col-md-12 margin-top-2">
-                                        <?php $index =$i*$lengthColumns+$e;
-                                        if(isset($contents[$index])){
-                                        $content=$contents[$index];
-                                        }
-                                        ?>
-                                        @if($content->type =='wedstrijd')
-                                            @include('components.new_contest')
-                                        @endif
-                                        @if($content->type =='plaats')
-                                            @include('components.visplek_thumbnail')
-                                        @endif
-                                        @if($content->type =='nieuwsArtikel')
-                                            @include('components.news_thumbnail')
-                                        @endif
-                                        @if($content->type =='trainer')
-                                            @include('components.trainer_thumbnail')
-                                        @endif
-                                        @if($content->type =='tutorial')
-                                            @include('components.news_thumbnail')
-                                        @endif
-                                        @if($content->type !='tutorial' && $content->type !='plaats'&&$content->type !='nieuwsArtikel'&&$content->type !='trainer'&&$content->type !='wedstrijd')
-                                            {{$content}}
-                                        @endif
-                                    </div>
-                                @endfor
-                            </div>
-                        </div>
-                    @endfor
-                </div>
+
+@include('components.listOfThumbnails')
                 <div class="row">
                     <div class="col-md-12 text-center">
                         {{ $pagination->links() }}
@@ -182,9 +123,7 @@
 
 @section('script')
 
-    <script id="searchbox.tpl.html" type="text/ng-template">
-        <input class="form-search input-sm" type="text" placeholder="Locatie">
-    </script>
+
     <script>
         $(document).ready(function () {
             var scrolled = 0;

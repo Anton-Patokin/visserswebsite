@@ -260,8 +260,8 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
 
 
     function getMaand(maandNumber) {
-        var monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
+        var monthNames = ["Januari", "Februari", "Maart", "April", "Mei", "Juni",
+            "Juli", "Augustus", "September", "Oktober", "November", "December"
         ];
         return monthNames[maandNumber].substring(0, 3);
     }

@@ -1,8 +1,54 @@
 #vertikalscroll {
   max-height: 440px;
   overflow-y: hidden;
+
+  .circel.top {
+    right: 25px;
+    top: 55px;
+  }
+  .circel.bottom {
+    right: 25px;
+    top: 500px;
+  }
 }
-#vertikalscroll .circel {
+
+#vertikalscrollWedstrijden {
+  height: 347px;
+  overflow-y: hidden;
+
+  h5 {
+    margin: 0;
+  }
+  .datum-dag{
+    font-size: 42px;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+    margin-bottom: -20px;
+    padding: 0;
+  }
+  .datum-maand{
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    font-weight: 100;
+  }
+  hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid $dark-blue;
+    padding: 0;
+  }
+  .circel.top {
+    right: 25px;
+    top: 55px;
+  }
+  .circel.bottom {
+    right: 25px;
+    top: 423px;
+  }
+}
+
+.circel {
   height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -22,15 +68,7 @@
   z-index: 1;
 }
 
-.circel.top{
-  right: 25px;
-  top: 55px;
-}
-.circel.bottom{
-  right: 25px;
-  top: 500px;
-}
-#vertikalscroll .circel:hover {
+.circel:hover {
   /*transition: all 0.33s;*/
   background-color: #eeeeee;
   opacity: 1;
@@ -49,4 +87,8 @@
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+}
+
+.vertikalscrollWedstrijden {
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Tutorial;
 use App\VisPlek;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\City;
 use App\Wind;
@@ -64,13 +65,12 @@ class HomeController extends Controller
         }
         $recentPost = [];
         $allposts = [];
-        $pagination=$wedstrijden->paginate(5);
+        $pagination = $wedstrijden->paginate(5);
         array_push($recentPost, $wedstrijden->paginate(5));
         array_push($recentPost, $nieuwsartikel->paginate(5));
         array_push($recentPost, $tutorial->paginate(5));
         array_push($recentPost, $visplek->paginate(5));
         array_push($recentPost, $user->paginate(5));
-
 
 
         foreach ($recentPost as $key => $content) {
@@ -83,7 +83,7 @@ class HomeController extends Controller
         shuffle($resentPostToSend);
 
 //        return $pagination;
-        return view('home', ["recentPost" => $resentPostToSend,'contents'=>$allposts,'pagination'=>$pagination]);
+        return view('home', ["recentPost" => $resentPostToSend, 'contents' => $allposts, 'pagination' => $pagination]);
     }
 
 
@@ -92,7 +92,38 @@ class HomeController extends Controller
         return $this->get_content_from_database('vis_pleks', $id, 'plaats', 'plaatsen');
     }
 
-    public function wedstrijden($id = null, $titel = null)
+    public function wedstrijden($datum = null)
+    {
+        $maand = ["Januari", "Februari", "Maart", "April", "Mei", "Juni",
+            "Juli", "Augustus", "September", "Oktober", "November", "December"
+        ];
+        $getDate = Carbon::now();
+        if ($datum) {
+            $getDate = Carbon::parse($datum);
+        }
+        $currentMoth = $getDate->month;
+        $currentYear = $getDate->year;
+
+        $nextdatum = Carbon::parse($getDate)->addMonth();
+        $prevdatum = Carbon::parse($getDate)->subMonths(1);
+
+        $prevMontText['maand'] = $maand[$prevdatum->month - 1];
+        $currentMontText['maand'] = $maand[$getDate->month - 1];
+        $nexMontText['maand'] = $maand[$nextdatum->month - 1];
+
+
+        $nexMontText['jaar'] = $nextdatum->year;
+        $currentMontText['jaar'] = $getDate->year;
+        $prevMontText['jaar'] = $prevdatum->year;
+
+
+        $wedstrijden = Wedstrijd::whereMonth('datum', '=', $currentMoth)->whereYear('datum', '=', $currentYear)
+            ->where('active', 2)->orderBy('datum', 'desc')
+            ->get();
+        return view('show/wedstrijden', ['contents' => $wedstrijden, 'nextdatum' => $nextdatum, 'prevdatum' => $prevdatum,'nexMontText'=>$nexMontText,'prevMontText'=>$prevMontText,'currentMontText'=>$currentMontText]);
+    }
+
+    public function wedstrijd($id = null, $titel = null)
     {
         return $this->get_content_from_database('wedstrijds', $id, 'wedstrijd', 'wedstrijden');
     }
@@ -139,7 +170,8 @@ class HomeController extends Controller
             }
         } else {
             //bij het bezoeken van overzicht pagina
-            $value = DB::table($tabel)->Where('active', 2)->get();
+            $value = DB::table($tabel)->Where('active', 2);
+            $value = $value->get();
             if (count($value)) {
                 return view('show/' . $view2, ['contents' => $value]);
             }
