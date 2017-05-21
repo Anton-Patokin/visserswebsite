@@ -9,5 +9,10 @@ class NieuwsArtikel extends Model
 {
     use SoftDeletes;
 
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
     protected $dates = ['deleted_at'];
 }

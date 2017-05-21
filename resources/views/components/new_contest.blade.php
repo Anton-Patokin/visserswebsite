@@ -12,6 +12,6 @@
     <div class="caption">
         <h4>{{substr($content->titel,0,150)}}</h4>
         <p>{{substr($content->text,0,350)}}</p>
-        <p><a href="#" class=" btn-xs" role="button">Meer</a></p>
+        <p><a href="{{url('/plaats/'.$content->id.'/'.substr($content->titel,0,25))}}" class=" btn-xs" role="button">Meer</a></p>
     </div>
 </div>

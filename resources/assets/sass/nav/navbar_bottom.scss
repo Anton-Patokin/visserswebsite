@@ -1,31 +1,36 @@
 #nav-bar-bottom {
-  .navbar-default{
+  .navbar-default {
     background-color: $navbar-bottom-background-color;
   }
-  .navbar{
-    border: 0;
+  .navbar-default .navbar-nav > li {
     margin: 0;
     padding: 0;
   }
   .navbar-default .navbar-nav > li > a {
     text-transform: uppercase;
-    margin: 5px 10px 5px 10px;
+    padding: 15px 20px 15px 20px;
     font-size: 14px;
     letter-spacing: 0.5px;
     color: #333333;
   }
-  .navbar-default .navbar-nav > li:hover {
-    background-color:  #f4f4f4;
-    a{
-      color: #333;
-    }
+  .navbar-default .navbar-nav > li > a:hover {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  .caret{
+    margin-left: 5px;
+    margin-top: 10px;
   }
   .navbar-default .navbar-nav > li.active {
-    background-color: #f4f4f4;
-    a{
+    a {
       background-color: #f4f4f4;
       color: #333;
     }
+  }
+
+  .navbar-default .navbar-nav .open .dropdown-menu > a{
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }
 

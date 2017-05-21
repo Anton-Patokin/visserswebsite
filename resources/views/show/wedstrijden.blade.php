@@ -1,8 +1,6 @@
 @extends('layouts.app')
 <?php
 $messages = Config::get('constant.Headings');
-
-
 ?>
 @section('content')
     <div class="container-fluid">
@@ -12,13 +10,22 @@ $messages = Config::get('constant.Headings');
 
 
         <div class="row margin-top-1 text-center">
+
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 box-card">
+                <a href="{{url('/wedstrijden/'.$prevdatum)}}">
+                    <div class="glyphicon glyphicon-menu-left nex-prev-arrow prev hide-400"></div>
+                </a>
+                <a href="{{url('/wedstrijden/'.$nextdatum)}}">
+                    <div class="glyphicon glyphicon-menu-right nex-prev-arrow next hide-400"></div>
+                </a>
                 <div class="thumbnail">
                     <div class="caption">
                         <div class="box-card-head text-center">
                             <div class="row datum">
                                 <a href="{{url('/wedstrijden/'.$prevdatum)}}">
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+
+
                                         <p class="text-center text-uppercase">
                                         <div class="maand">{{$nexMontText['maand']}}</div>
                                         /

@@ -89,6 +89,25 @@
   transform: translateX(-50%) translateY(-50%);
 }
 
-.vertikalscrollWedstrijden {
+.nex-prev-arrow {
+  position: absolute;
+  top: 40px;
+  z-index: 1;
+  font-size: 60px;
+  color: rgba(216, 27, 96, 0.3);
+  transition: all 0.2s ease-in-out;
+}
 
+.nex-prev-arrow:hover {
+  cursor: pointer;
+  color: rgba(216, 27, 96, 1);
+  transition: all 0.2s ease-in-out;
+}
+
+.prev {
+  left: 5%;
+}
+
+.next {
+  right: 5%;
 }

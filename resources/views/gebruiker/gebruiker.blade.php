@@ -1,7 +1,7 @@
 <?php $user = Auth::user();?>
 
 @if(isset($aanpasen))
-    <?php $user =$aanpasen?>
+    <?php $user = $aanpasen?>
     <?php $head = 'Aanpasen';$head_description = 'Aanpasen van een bericht';?>
 @else
     <?php $head = 'Profiel';$head_description = 'Overzicht van profiel';?>
@@ -14,7 +14,7 @@
     <div class="container-fluid">
         @include('berichten.error-handling')
         @if ($errors->has('lat'))
-           <div ng-init="show_form=true"></div>
+            <div ng-init="show_form=true"></div>
         @endif
         @if(count(old()))
             <div ng-init="initializeProfiel('{{old('naam')}}','{{old('lat')}}','{{old('lng')}}','{{old('ervaring')}}','{{old('geslacht')}}','{{old('leeftijd')}}','{{old('kostprijs')}}','{{old('text')}}','http://placehold.it/500x300','{{old('telefonnummer')}}')"></div>
@@ -28,7 +28,10 @@
         </div>
         <div class="row">
             @if($user->active)
-                @include('gebruiker.active')
+                <div class="col-md-12">
+                    @include('gebruiker.active')
+                </div>
+
             @else
                 @include('gebruiker.inactive')
             @endif

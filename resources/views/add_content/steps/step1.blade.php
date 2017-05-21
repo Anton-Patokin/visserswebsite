@@ -18,6 +18,14 @@ $content->titel = 'Here we go';
 $content->image = '2017-04-30-47-04-30trainer.jpeg';
 $content->viswater = 'test';
 $content->id = 1;
+$content->name = 'Anton';
+$content->inleiding  = 'Anton';
+$content->leeftijd  = 12;
+$content->ervaring  = 'veel';
+$content->vraagprijs  = 10;
+$content->text  = 'lorem ipsu';
+$content->maand  = 'mei';
+$content->dag  = 11;
 ?>
 
 <div class="row">

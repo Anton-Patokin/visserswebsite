@@ -87,8 +87,12 @@ class HomeController extends Controller
     }
 
 
-    public function plaatsen($id = null, $titel = null)
+    public function plaatsen($id = null, $titel = null, $amp = null)
     {
+        if ($amp == 'amp') {
+            $value = VisPlek::with('user')->where('id', $id)->get()->first();
+            return view('show/' . 'plaats' . '-amp', ['content' => $value]);
+        }
         return $this->get_content_from_database('vis_pleks', $id, 'plaats', 'plaatsen');
     }
 
@@ -120,7 +124,7 @@ class HomeController extends Controller
         $wedstrijden = Wedstrijd::whereMonth('datum', '=', $currentMoth)->whereYear('datum', '=', $currentYear)
             ->where('active', 2)->orderBy('datum', 'desc')
             ->get();
-        return view('show/wedstrijden', ['contents' => $wedstrijden, 'nextdatum' => $nextdatum, 'prevdatum' => $prevdatum,'nexMontText'=>$nexMontText,'prevMontText'=>$prevMontText,'currentMontText'=>$currentMontText]);
+        return view('show/wedstrijden', ['contents' => $wedstrijden, 'nextdatum' => $nextdatum, 'prevdatum' => $prevdatum, 'nexMontText' => $nexMontText, 'prevMontText' => $prevMontText, 'currentMontText' => $currentMontText]);
     }
 
     public function wedstrijd($id = null, $titel = null)
@@ -128,8 +132,12 @@ class HomeController extends Controller
         return $this->get_content_from_database('wedstrijds', $id, 'wedstrijd', 'wedstrijden');
     }
 
-    public function nieuws($id = null, $titel = null)
+    public function nieuws($id = null, $titel = null, $amp = null)
     {
+        if ($amp == 'amp') {
+            $value = DB::table('nieuws_artikels')->find($id);
+            return view('show/' . 'nieuws-artikel' . '-amp', ['content' => $value]);
+        }
         return $this->get_content_from_database('nieuws_artikels', $id, 'nieuws-artikel', 'nieuws-artikelen');
     }
 
@@ -153,24 +161,29 @@ class HomeController extends Controller
         return view('show/over-ons');
     }
 
-    public function get_content_from_database($tabel, $id = null, $view1, $view2, $view3 = null)
+    public function get_content_from_database($tabel, $id = null, $view1, $view2)
     {
         if ($id) {
             $show = false;
             $value = DB::table($tabel)->find($id);
+
             //ditai pagina veergeven
-            if (Auth::user()->id == $value->user_id) {
+            if (Auth::user() && Auth::user()->id == $value->user_id) {
                 $show = true;
             }
             if ($value->active == "2") {
                 $show = true;
             }
+
             if ($show) {
+                if ($tabel == 'vis_pleks') {
+                    $value = VisPlek::with('user')->where('id', $id)->get()->first();
+                }
                 return view('show/' . $view1, ['content' => $value]);
             }
         } else {
             //bij het bezoeken van overzicht pagina
-            $value = DB::table($tabel)->Where('active', 2);
+            $value = DB::table($tabel)->Where('active', 2)->orderBy('updated_at', 'desc');
             $value = $value->get();
             if (count($value)) {
                 return view('show/' . $view2, ['contents' => $value]);

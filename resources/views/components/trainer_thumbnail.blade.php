@@ -12,6 +12,6 @@
         <h4><span class="glyphicon glyphicon-tag"></span> Ervaring: {{$content->ervaring}}</h4>
         <h4><span class="glyphicon glyphicon-euro"></span> Vraagprijs: {{$content->vraagprijs}},- per les</h4>
         <p>{{$content->text}}</p>
-        <p><a href="{{url('/trainer/'.$content->naam)}}" class=" btn-xs" role="button">Meer</a></p>
+        <p><a href="{{url('/trainer/'.$content->name)}}" class=" btn-xs" role="button">Meer</a></p>
     </div>
 </div>

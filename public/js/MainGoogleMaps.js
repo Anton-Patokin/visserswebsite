@@ -4,6 +4,9 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
     $scope.wedsrijdMarkers = [];
 
 
+
+    
+
     $scope.zoekenOpGoogleMaps = function (input) {
         $http({
             method: 'POST',
@@ -57,6 +60,8 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
 
 
     }
+
+
 
     $scope.initVisPlaatsmarkers = function () {
         $http({

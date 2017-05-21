@@ -18,14 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home/{info?}', 'HomeController@index');
-Route::get('/plaats/{id?}/{titel?}', 'HomeController@plaatsen');
+Route::get('/plaats/{id?}/{titel?}/{amp?}', 'HomeController@plaatsen');
 Route::get('/tutorial/{titel?}', 'HomeController@tutorial');
 Route::get('/wedstrijden/{datum?}', 'HomeController@wedstrijden');
 Route::get('/wedstrijd/{id?}/{titel?}', 'HomeController@wedstrijd');
 Route::get('/trainer/{titel?}', 'HomeController@trainer');
 Route::get('/over-ons', 'HomeController@overOns');
 Route::get('/contact', 'HomeController@contact');
-Route::get('/nieuws/{titel?}', 'HomeController@nieuws');
+Route::get('/nieuws/{id?}/{titel?}/{amp?}', 'HomeController@nieuws');
 
 
 Route::get('/dashboard', 'DashboardController@index');

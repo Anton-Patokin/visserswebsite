@@ -22,17 +22,8 @@ use Illuminate\Support\Facades\DB;
 class TestController extends Controller
 {
     public function index($string){
-
-
-
-        $wedstrijd = DB::table('wedstrijds')
-            ->where('active','=',2);
-
-        $users = DB::table('users')
-            ->where('active','=',2)
-            ->union($wedstrijd)
-            ->get();
-        return $users;
+        $value = VisPlek::with('user')->where('id',2)->get()->first();
+        return            $value->user->name ;
 
     }
 }

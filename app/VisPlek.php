@@ -21,5 +21,10 @@ class VisPlek extends Model
             'vis_pleks.text' => 5,
         ]
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
     protected $dates = ['deleted_at'];
 }

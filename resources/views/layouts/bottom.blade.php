@@ -1,3 +1,4 @@
+<?php $tutorialCategories = \App\TutorialCategory::all()?>
 <div id="nav-bar-bottom">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
@@ -19,13 +20,9 @@
                     <?php
                     $navbar = ['home', 'plaats', 'wedstrijden', 'nieuws', 'trainer', 'tutorial', 'over-ons', 'contact'];
                     ?>
-                    @if(Menu::isActiveRoute($navbar))
-                        @foreach($navbar as $value)
-                            <li class="{{Menu::isActiveHomeList($value)}}"><a
-                                        href="{{url('/'.$value)}}">{{$value}}</a>
-                            </li>
-                        @endforeach
-                    @elseif(Menu::isActiveRoute(['toevoegen']))
+                    {{--@if(Menu::isActiveRoute($navbar))--}}
+
+                    @if(Menu::isActiveRoute(['toevoegen']))
                         <li><a ng-click="gotoStep(2);putValue('visPlek')" href="">Visplaats</a></li>
                         <li><a ng-click="gotoStep(2);putValue('wedstrijd')" href="">Wedstrijd</a></li>
                         @if(Auth::user()->trainer=='')
@@ -56,6 +53,29 @@
                                 <a href="{{url('dashboard/gebruikers')}}">Gebruikers</a>
                             </li>
                         @endif
+                    @else
+                        @foreach($navbar as $value)
+                            @if($value=='tutorial')
+                                <li><a id="user-fish-line-icon" href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                       role="button"
+                                       aria-expanded="false">Tutorial
+                                        <span class="caret pull-right "></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        @foreach($tutorialCategories as $key=>$category)
+                                            <li>
+                                                <a href="{{url('/gebruiker')}}">
+                                                    {{$category->category}}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @else
+                                <li class="{{Menu::isActiveHomeList($value)}}"><a
+                                            href="{{url('/'.$value)}}">{{$value}}</a>
+                                </li>
+                            @endif
+                        @endforeach
                     @endif
                 </ul>
             </div>
