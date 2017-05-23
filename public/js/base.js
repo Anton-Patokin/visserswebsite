@@ -19,6 +19,8 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     $scope.show_exampale = 1;
     $scope.currentStep = 1;
     $scope.serverErrorMassage = false;
+    $scope.showMarker = false;
+
     var d = new Date();
 
     $scope.nieuws = {
@@ -60,11 +62,21 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         vissoorten: "",
         betaalwater: 0,
         aanpasen: "",
+        adres: {
+            nummer: '',
+            straat: '',
+            provincie: '',
+            postCode: '',
+            gewest: '',
+            stad: '',
+            land: '',
+        }
     }
     $scope.initAanpasenWedstrijd = function (id, lat, lng, titel, image, type, prijzen, category, hengel, visserij, kostprijs, duur, water, datum, dag, maand, loting, text) {
         $scope.currentStep++;
         $scope.input.aanpasen = id;
-        $scope.marker.coords = {latitude: lat, longitude: lng,};
+        // $scope.marker.coords = {latitude: lat, longitude: lng,};
+        initAdressAndMarker(lat, lng);
         $scope.input.lat = lat;
         $scope.input.lng = lng;
         $scope.input.titel = titel;
@@ -88,12 +100,17 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.showSelectImageValidation = false;
         $scope.showImageInvalideFileFormat = false;
         $scope.showSelectImageValidation = false;
+        $scope.showMarker = true;
+
+        console.log('wedstrijd');
+
     }
     $scope.initAanpasenVisplaats = function (id, lat, lng, titel, image, type, watertype, viswater, reglement, vergunigen, nachvissen, toilet, betaalwat, prive, vissoorte, text) {
         $scope.currentStep++;
         console.log(type)
         $scope.input.aanpasen = id;
-        $scope.marker.coords = {latitude: lat, longitude: lng};
+        // $scope.marker.coords = {latitude: lat, longitude: lng};
+        initAdressAndMarker(lat, lng);
         $scope.input.lat = lat;
         $scope.input.lng = lng;
         $scope.input.naam_visplek = titel;
@@ -112,12 +129,17 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.showSelectImageValidation = false;
         $scope.showImageInvalideFileFormat = false;
         $scope.showSelectImageValidation = false;
+        $scope.showMarker = true;
+
+        console.log('plaats');
+
     }
     $scope.initializeProfiel = function (name, lat, lng, ervaring, geslacht, leeftijd, vraagprijs, text, url, telefon, aanpasen) {
         $scope.marker.coords = {latitude: lat, longitude: lng};
         $scope.input.naam = name;
         $scope.input.lat = lat;
         $scope.input.lng = lng;
+        initAdressAndMarker(lat, lng);
         $scope.input.ervaring = ervaring;
         $scope.input.geslacht = geslacht;
         $scope.input.leeftijd = Number(leeftijd);
@@ -127,6 +149,9 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         $scope.input.telefonnummer = telefon;
         $scope.showImageInvalideFileFormat = !aanpasen;
         $scope.showSelectImageValidation = !aanpasen;
+        $scope.showMarker = true;
+
+        console.log('Profiel');
     }
 
     $scope.initAanpassenNieuwsArtikel = function (titel, inleiding, url) {
@@ -300,9 +325,12 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         },
     ];
 
+
     function refreschAddContent() {
+        console.log('refreschAddContent');
+
         if ($scope.currentStep == 1) {
-            $scope.marker.coords = {latitude: 0, longitude: 0,};
+            $scope.marker.coords = {latitude: '', longitude: '',};
             $scope.showError = false;
             $scope.imageSrc = "http://placehold.it/500x300";
             $scope.input.ervaring = "";
@@ -328,10 +356,11 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
             $scope.input.text = "";
             $scope.input.viswater = "";
             $scope.input.aanpasen = 'false';
-
+            $scope.input.adres = {};
             $scope.showSelectImageValidation = true;
 
         }
+        $scope.showMarker = false;
     }
 
 //Functions
@@ -352,6 +381,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     }
     $scope.next = function () {
         if ($scope.currentStep < 4) $scope.currentStep++;
+        console.log($scope.currentStep);
     }
 
     $scope.putValue = function (type) {
@@ -377,27 +407,129 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         },
         options: {
             scrollwheel: false,
+            minZoom: 7,
+            maxZoom: 17,
         },
         control: {
             refresh: {
                 latitude: center.latitude,
                 longitude: center.longitude,
             },
+        }, searchbox: {
+            template: 'searchbox.tpl.html',
+            events: {
+                // places_changed: function (autocomplete) {
+                //     console.log(autocomplete.getPlace());
+                //     place = autocomplete.getPlace();
+                //     var lat = place.geometry.location.lat();
+                //     var lng = place.geometry.location.lng();
+                //     $scope.mapAdd.center.latitude = lat;
+                //     $scope.mapAdd.center.longitude = lng;
+                //     $scope.mapAdd.zoom = 15
+                //     addmarker(place.geometry.location);
+                // },
+                places_changed: function (searchBox) {
+                    console.log('search pleas');
+                    var place = searchBox.getPlaces()[0].geometry.location;
+                    console.log(searchBox.getPlaces());
+                    var lat = place.lat();
+                    var lng = place.lng();
+                    $scope.mapAdd.center.latitude = lat;
+                    $scope.mapAdd.center.longitude = lng;
+                    $scope.mapAdd.zoom = 15
+                    addmarker(place.lat(), place.lng());
+                    $scope.adress(place.lat(), place.lng());
+                }
+            },
+            options: {
+                autocomplete: false,
+                types: ['(cities)'],
+                componentRestrictions: {country: ['be', 'nl'],}
+            }
         },
-        zoom: 8,
+        zoom: 10,
         events: {
             click: function ($marker, $event, $position) {
+                console.log($marker.data)
                 var coordinats = $position[0].latLng;
-                $scope.marker.coords = {
-                    latitude: coordinats.lat(),
-                    longitude: coordinats.lng(),
-                };
-                $scope.input.lat = coordinats.lat();
-                $scope.input.lng = coordinats.lng();
-                $scope.$apply();
+                addmarker(coordinats.lat(), coordinats.lng());
+                $scope.adress(coordinats.lat(), coordinats.lng());
+
             }
         }
     };
+
+    $scope.adress = function (lat, lng) {
+        $http({
+            method: 'GET',
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&key=AIzaSyDJBGY58S0ptq6KlFxYIpNLTIEW8mBKhk4',
+        }).success(function (data) {
+            console.log(data);
+
+            var adresArray = data.results[0].address_components;
+
+            var nummer = '';
+            var straat = '';
+            var provincie = '';
+            var postcode = '';
+            var geweest = '';
+            var stad = '';
+            var land = '';
+
+            if (adresArray[0]) {
+                nummer = adresArray[0].long_name
+            }
+            if (adresArray[1]) {
+                straat = adresArray[1].long_name
+            }
+            if (adresArray[3]) {
+                provincie = adresArray[3].long_name
+            }
+            if (adresArray[6]) {
+                postcode = adresArray[6].long_name
+            }
+            if (adresArray[4]) {
+                geweest = adresArray[4].long_name
+            }
+            if (adresArray[2]) {
+                stad = adresArray[2].long_name
+            }
+            if (adresArray[5]) {
+                land = adresArray[5].long_name
+            }
+
+            $scope.input.adres = {
+                nummer: nummer,
+                straat: straat,
+                provincie: provincie,
+                postCode: postcode,
+                gewest: geweest,
+                stad: stad,
+                land: land,
+            };
+            console.log($scope.input.adres);
+        }).error(function () {
+            console.log('iets fout met ophalen van adress');
+        });
+
+    }
+
+    function addmarker(lat, lng) {
+        $scope.showMarker = true;
+        $scope.marker.coords = {
+            latitude: lat,
+            longitude: lng,
+        };
+        $scope.input.lat = lat;
+        $scope.input.lng = lng;
+    }
+
+    function initAdressAndMarker(lat, lng) {
+        addmarker(lat, lng);
+        $scope.adress(lat, lng);
+
+    }
+
     $scope.marker = {
         id: 1,
         coords: {
@@ -407,17 +539,11 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         options: '',
 
     }
-
-
-   
-
     uiGmapGoogleMapApi.then(function (maps) {
         $scope.googleMaps = true;
     });
 
-}])
-;
-
+}]);
 myApp.config(function (uiGmapGoogleMapApiProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyDJBGY58S0ptq6KlFxYIpNLTIEW8mBKhk4',
@@ -425,7 +551,6 @@ myApp.config(function (uiGmapGoogleMapApiProvider) {
         libraries: "places,geometry,visualization"
     });
 });
-
 myApp.directive('filterList', function ($timeout) {
     return {
         link: function (scope, element, attrs) {

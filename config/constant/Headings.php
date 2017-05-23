@@ -9,8 +9,11 @@ return [
     'trainers_titel' => 'Trainer & Gids',
     'trainers_discription' => 'Overzicht van alle gidsen',
     'tutorial_titel' => 'Tutorial & lessen',
-    'tutorial_discription' => 'overzicht van lessen'
-
+    'tutorial_discription' => 'overzicht van lessen',
+    'viePlaats_titel'=>'Vis plaats',
+    'locatie'=>'Locatie',
+    'locatie_description'=>'Kies Locaite die best past',
+    'invulen'=>'Vul de formulier in'
 
 ]
 ?>

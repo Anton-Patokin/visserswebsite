@@ -15,7 +15,6 @@ $content = (object)['titel' => 'test', 'viswater' => 'test2', 'image' => 'http:/
 
 $content = new stdClass();
 $content->titel = 'Here we go';
-$content->image = '2017-04-30-47-04-30trainer.jpeg';
 $content->viswater = 'test';
 $content->id = 1;
 $content->name = 'Anton';
@@ -26,6 +25,7 @@ $content->vraagprijs  = 10;
 $content->text  = 'lorem ipsu';
 $content->maand  = 'mei';
 $content->dag  = 11;
+
 ?>
 
 <div class="row">
@@ -36,14 +36,13 @@ $content->dag  = 11;
                     <h3 class="text-center">Kies soort inhoud je wilt toevoegen</h3>
                 </div>
                 <div class="box-card-body margin-top-4 margin-bottom-4">
-
-                    <div ng-click="gotoStep(2);putValue('nieuws')" class="well text"
-                         ng-class="{'show-arrow':showArrow1}"
-                         ng-mouseover="showArrow1=true;show_exampale=1" ng-mouseleave="showArrow1=false">Een artikel
+                    {{--<div ng-click="gotoStep(2);putValue('nieuws')" class="well text"--}}
+                         {{--ng-class="{'show-arrow':showArrow1}"--}}
+                         {{--ng-mouseover="showArrow1=true;show_exampale=1" ng-mouseleave="showArrow1=false">Een artikel--}}
                         {{--<div  class="arrow-right"></div>--}}
-                        <span class="arrow pull-right"></span>
-                    </div>
-                    @if(Auth::user()->trainer=='')
+                        {{--<span class="arrow pull-right"></span>--}}
+                    {{--</div>--}}
+                    @if(Auth::user()->trainer!=2 &&  Auth::user()->trainer!=1)
                         <div ng-click="gotoStep(2);putValue('trainer')" class="well"
                              ng-class="{'show-arrow':showArrow2}"
                              ng-mouseover="showArrow2=true;show_exampale=2" ng-mouseleave="showArrow2=false">
@@ -66,16 +65,19 @@ $content->dag  = 11;
         </div>
     </div>
     <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4 min-height-800">
-        <div ng-show="show_exampale==1">
-            @include('components.news_thumbnail')
-        </div>
+        {{--<div ng-show="show_exampale==1">--}}
+            {{--@include('components.news_thumbnail')--}}
+        {{--</div>--}}
         <div ng-show="show_exampale==2">
+            <?php $content->image = 'trainer.jpg';?>
             @include('components.trainer_thumbnail')
         </div>
         <div ng-show="show_exampale==3">
+            <?php $content->image = 'wedstrijd.jpg';?>
             @include('components.new_contest')
         </div>
         <div ng-show="show_exampale==4">
+            <?php $content->image = 'plaats.jpg';?>
             @include('components.visplek_thumbnail')
         </div>
     </div>

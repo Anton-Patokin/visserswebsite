@@ -4,8 +4,13 @@ return [
     'waterType' => 'Over water',
     'reglementen'=>'Reglementen',
     'extra'=>'Extra informatie',
-    'kermerken'=>'Kermerken'
-
-
+    'kermerken'=>'Kermerken',
+    'vis_plaats_uitgebreiding'=>'Bijkomende informatie',
+    'relevant'=>'relevant',
+    'loting'=>'Loting',
+    'water'=>'Water',
+    'duur'=>'Duur',
+    'kostprijs'=>'Kostprijs',
+    'prijzen'=>'Prijzen',
 ]
 ?>

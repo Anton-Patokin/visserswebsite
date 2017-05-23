@@ -22,6 +22,8 @@
     {{--]) !!};--}}
     {{--</script>--}}
 
+    @yield('head')
+
 </head>
 <body ng-app="myApp" ng-controller="MainController" class="background-gray">
 
@@ -34,96 +36,7 @@
     @yield('content')
 </div>
 
-<footer class="mt-5">
-    <div class="container-fluid bg-faded mt-5">
-        <div class="container-fluid">
-            <div class="row margin-top-2 margin-bottom-2">
-                <!-- footer column 1 start -->
-                <div class="col-md-4">
-                    <!-- row start -->
-                    <div class="row">
-                        <a href="https://www.facebook.com/groups/403149159889643/">
-                            <div class="col-sm-3 hidden-md-down">
-                                <div class="icon-background facebook"></div>
-                            </div>
-                        </a>
-                        <div class="col-sm-9">
-                            <h4>Facebook</h4>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip.
-                            <a href="https://www.facebook.com/groups/403149159889643/"><p>meer</p></a>
-                        </div>
-                    </div>
-                    <!-- row end -->
-                </div>
-                <!-- footer column 1 end -->
-                <!-- footer column 2 start -->
-                <div class="col-md-4">
-                    <!-- row start -->
-                    <div class="row">
-                        <a href="{{url('/contact')}}">
-                            <div class="col-sm-3 hidden-md-down">
-                                <div class="icon-background home"></div>
-                            </div>
-                        </a>
-                        <div class="col-sm-9">
-                           <h4>Contacteer ons</h4>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            <p>Waarom niet?</p>
-                            <a href="{{url('/contact')}}"><p>meer</p></a>
-                        </div>
-                    </div>
-                    <!-- row end -->
-                    <!-- row start -->
-                    {{--<div class="row">--}}
-                        {{--<a class=" " href="{{url('/cookie')}} ">--}}
-                            {{--<div class="col-sm-3 hidden-md-down">--}}
-                                {{--<a class="bg-circle bg-info" href="#">--}}
-                                    {{--<i class="fa fa-2x fa-fw fa-laptop" aria-hidden="true "></i>--}}
-                                {{--</a>--}}
-                            {{--</div>--}}
-                        {{--</a>--}}
-                        {{--<div class="col-sm-9">--}}
-                            {{--<h4>Cookie beleid</h4>--}}
-                            {{--<p class=" ">Wij gebruiken <a class=" " href="{{url('/cookie')}} ">cookies </a></p>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    <!-- row end -->
-                </div>
-                <!-- footer column 2 end -->
-                <!-- footer column 3 start -->
-                <div class="col-md-4">
-                    <div class="row">
-                        <a href="{{url('/over-ons')}}">
-                            <div class="col-sm-3 hidden-md-down">
-                                <div class="icon-background winkel"></div>
-                            </div>
-                        </a>
-                        <div class="col-sm-9">
-                            <h4>Info</h4>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            <a href="{{url('/over-ons')}}"><p>Over ons</p></a>
-                        </div>
-                    </div>
-                    <!-- row ended -->
-                </div>
-                <!-- footer column 3 end -->
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container-fluid bg-primary py-3">
-        <div class="container-fluid text-center">
-            <div class="row">
-                <div class="col-md-12 margin-top-1">
-                    <p class="text-white">Gemaakt door Patokin anton</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
+@include('components.footer')
 
 <!-- Scripts -->
 {{--<script src="{{url('/js/angular-min.js')}}"></script>--}}
@@ -153,7 +66,96 @@
 <script id="searchbox.tpl.html" type="text/ng-template">
     <input class="form-search input-sm" type="text" placeholder="Locatie">
 </script>
+<script>
+    $(document).ready(function () {
+        if ($("#vertikalscroll").length) {
 
+
+            var scrolled = 0;
+            var maxScroll = $("#vertikalscroll")[0].scrollHeight - 300;
+            var move = false;
+            var moveSize = 300;
+            $("#go-to-top").hide();
+            var moveDown = true;
+
+
+            if (maxScroll < 400) {
+                $("#go-to-bottom").hide();
+                $("#go-to-top").hide();
+            } else {
+                setInterval(function () {
+                    if (moveDown) {
+                        if (!move) {
+                            move = true;
+                            scrolled = scrolled + moveSize;
+                            $("#go-to-top").show();
+                            if (scrolled > maxScroll) {
+                                scrolled = maxScroll;
+                                scrolled = maxScroll - moveSize;
+                                $("#go-to-bottom").hide();
+                                moveDown = false;
+                            }
+                            scrolY(scrolled)
+                        }
+                    } else {
+                        if (!move) {
+                            move = true;
+                            scrolled = scrolled - moveSize;
+                            $("#go-to-bottom").show();
+
+                            if (scrolled < 0) {
+                                scrolled = 0
+                                moveDown = true;
+                                $("#go-to-top").hide();
+                            }
+                            scrolY(scrolled)
+                        }
+                    }
+
+                }, 5000);
+            }
+
+            $("#go-to-bottom").on("click", function () {
+                if (!move) {
+                    move = true;
+                    scrolled = scrolled + moveSize;
+                    $("#go-to-top").show();
+                    if (scrolled > maxScroll) {
+                        scrolled = maxScroll;
+                        scrolled = maxScroll - moveSize;
+                        $("#go-to-bottom").hide();
+
+                    }
+                    scrolY(scrolled)
+                }
+            });
+            $("#go-to-top").on("click", function () {
+                if (!move) {
+                    move = true;
+                    scrolled = scrolled - moveSize;
+                    $("#go-to-bottom").show();
+
+                    if (scrolled < 0) {
+                        scrolled = 0
+                        $("#go-to-top").hide();
+                    }
+                    scrolY(scrolled)
+                }
+            });
+            function scrolY(scroll) {
+                $("#vertikalscroll").animate({
+                    scrollTop: scrolled
+                }, 2000, function () {
+                    move = false;
+                });
+            }
+
+            $(".clearValue").on("click", function () {
+                scrolled = 0;
+            });
+        }
+    });
+</script>
 
 @yield('script')
 

@@ -13,7 +13,7 @@
                 <div ng-init="initAanpassenNieuwsArtikel('{{$aanpasen->titel}}','{{$aanpasen->inleiding}}','{{url('/uploads/thumbnail/'.$aanpasen->image)}}','true')"></div>
                 <input name="aanpasen" type="text" value="{{$aanpasen->id}}" hidden>
             @else
-                <div ng-init="initAanpassenNieuwsArtikel('{{ old('titel') }}','{{ old('inleiding') }}','http://placehold.it/500x300',false')"></div>
+                <div ng-init="initAanpassenNieuwsArtikel('{{ old('titel') }}','{{ old('inleiding') }}','http://placehold.it/500x300','false')"></div>
             @endif
             {{ csrf_field() }}
             <div class="row">

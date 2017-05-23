@@ -21,7 +21,7 @@ Route::get('/home/{info?}', 'HomeController@index');
 Route::get('/plaats/{id?}/{titel?}/{amp?}', 'HomeController@plaatsen');
 Route::get('/tutorial/{titel?}', 'HomeController@tutorial');
 Route::get('/wedstrijden/{datum?}', 'HomeController@wedstrijden');
-Route::get('/wedstrijd/{id?}/{titel?}', 'HomeController@wedstrijd');
+Route::get('/wedstrijd/{id?}/{titel?}/{amp?}', 'HomeController@wedstrijd');
 Route::get('/trainer/{titel?}', 'HomeController@trainer');
 Route::get('/over-ons', 'HomeController@overOns');
 Route::get('/contact', 'HomeController@contact');

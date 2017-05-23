@@ -142,7 +142,7 @@
 }
 
 .thumbnail {
-  a{
+  a {
     &:hover {
       color: $dark-blue;
       cursor: pointer;
@@ -156,18 +156,73 @@
     padding: 0px 10px 20px;
   }
 
-  .thumbnail-head {
+  .caption {
+    .adres h3{
+      margin: 0;
+      padding: 0;
+    }
+    .adres h4{
+      margin: 5px;
+    }
+
+    h3 {
+      text-transform: uppercase;
+      font-size: 18px;
+      margin: 15px 0 15px 0;
+      letter-spacing: 0.5px;
+      color: #333;
+      font-weight: 400;
+    }
     h4 {
+      font-size: 14px;
+      margin: 15px 0 15px 0;
+      letter-spacing: 0.5px;
+      color: #666;
+      font-weight: 100;
+    }
+    p {
+      letter-spacing: 0.5px;
+      color: #666;
+    }
+  }
+
+
+  .caption.detail {
+
+    h3 {
+      text-transform: uppercase;
       font-size: 18px;
       margin: 15px 0 15px 0;
       letter-spacing: 0.5px;
       color: #333333;
+    }
+    h4 {
+      font-size: 16px;
+      margin: 15px 0 15px 0;
+      letter-spacing: 0.5px;
+      color: #666;
       font-weight: 300;
     }
+    h5 {
+      font-size: 14px;
+      margin: 5px 0 5px 0;
+      letter-spacing: 0.5px;
+      color: #666;
+      font-weight: 100;
+    }
+    p {
+      letter-spacing: 0.5px;
+    }
+  }
+
+
+  .post-thumb img {
+    position: relative;
+    width: 100px;
   }
   .datum {
     margin: 0;
-    a{
+    a {
       &:hover {
         color: $dark-blue;
         cursor: pointer;

@@ -91,7 +91,9 @@ class HomeController extends Controller
     {
         if ($amp == 'amp') {
             $value = VisPlek::with('user')->where('id', $id)->get()->first();
-            return view('show/' . 'plaats' . '-amp', ['content' => $value]);
+            $relevente =$visplaats = VisPlek::where('active', '2')->search($titel, null, true,true)->take(15)->get();;
+
+            return view('show/' . 'plaats' . '-amp', ['content' => $value,'relevente'=>$relevente]);
         }
         return $this->get_content_from_database('vis_pleks', $id, 'plaats', 'plaatsen');
     }
@@ -127,8 +129,14 @@ class HomeController extends Controller
         return view('show/wedstrijden', ['contents' => $wedstrijden, 'nextdatum' => $nextdatum, 'prevdatum' => $prevdatum, 'nexMontText' => $nexMontText, 'prevMontText' => $prevMontText, 'currentMontText' => $currentMontText]);
     }
 
-    public function wedstrijd($id = null, $titel = null)
+    public function wedstrijd($id = null, $titel = null,$amp=null)
     {
+
+        if ($amp == 'amp') {
+            $value = Wedstrijd::with('user')->where('id', $id)->get()->first();
+            $relevente  = Wedstrijd::where('active', '2')->search($value->category, null, true,true)->take(15)->get();;
+            return view('show/' . 'wedstrijd' . '-amp', ['content' => $value,'relevente'=>$relevente]);
+        }
         return $this->get_content_from_database('wedstrijds', $id, 'wedstrijd', 'wedstrijden');
     }
 
@@ -174,10 +182,16 @@ class HomeController extends Controller
             if ($value->active == "2") {
                 $show = true;
             }
-
             if ($show) {
                 if ($tabel == 'vis_pleks') {
                     $value = VisPlek::with('user')->where('id', $id)->get()->first();
+                    $relevente =$visplaats = VisPlek::where('active', '2')->search($value->vissoorten, null, true,true)->take(15)->get();;
+                    return view('show/' . $view1, ['content' => $value,'relevente'=>$relevente]);
+                }
+                if ($tabel == 'wedstrijds') {
+                    $value = Wedstrijd::with('user')->where('id', $id)->get()->first();
+                    $relevente =$visplaats = Wedstrijd::where('active', '2')->search($value->category, null, true,true)->take(15)->get();;
+                    return view('show/' . $view1, ['content' => $value,'relevente'=>$relevente]);
                 }
                 return view('show/' . $view1, ['content' => $value]);
             }

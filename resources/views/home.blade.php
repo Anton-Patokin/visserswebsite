@@ -86,13 +86,14 @@
                                     <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
                                         <div class="media">
                                             <div class="media-left">
-                                                <a href="#" class="popular-img">
-                                                    <img src="{{url('/uploads/thumbnail/'.$content->image)}}">
+                                                <?php $content_url= url('/'.$content->type.'/'.$content->id.'/'.substr($content->titel,0,40))?>
+                                                <a href="{{$content_url}}" class="popular-img">
+                                                    <img src="{{url('/uploads/thumbnail/'.$content->image)}}" alt="{{$content->titel}}">
                                                     <div class="p-overlay"></div>
                                                 </a>
                                             </div>
                                             <div class="p-content">
-                                                <a href="#" class="text-uppercase">{{substr($content->titel,0,40)}}</a>
+                                                <a href="{{$content_url}}" class="text-uppercase">{{substr($content->titel,0,40)}}</a>
                                                 <span class="p-date">{{ date("d-m-Y", strtotime($content->updated_at))}}</span>
                                             </div>
                                         </div>
@@ -124,85 +125,7 @@
 @section('script')
 
 
-    <script>
-        $(document).ready(function () {
-            var scrolled = 0;
-            var maxScroll = $("#vertikalscroll")[0].scrollHeight - 300;
-            var move = false;
-            var moveSize = 300;
-            $("#go-to-top").hide();
-            var moveDown = true;
 
-            setInterval(function () {
-                if (moveDown) {
-                    if (!move) {
-                        move = true;
-                        scrolled = scrolled + moveSize;
-                        $("#go-to-top").show();
-                        if (scrolled > maxScroll) {
-                            scrolled = maxScroll;
-                            scrolled = maxScroll - moveSize;
-                            $("#go-to-bottom").hide();
-                            moveDown = false;
-                        }
-                        scrolY(scrolled)
-                    }
-                } else {
-                    if (!move) {
-                        move = true;
-                        scrolled = scrolled - moveSize;
-                        $("#go-to-bottom").show();
-
-                        if (scrolled < 0) {
-                            scrolled = 0
-                            moveDown = true;
-                            $("#go-to-top").hide();
-                        }
-                        scrolY(scrolled)
-                    }
-                }
-
-            }, 5000);
-            $("#go-to-bottom").on("click", function () {
-                if (!move) {
-                    move = true;
-                    scrolled = scrolled + moveSize;
-                    $("#go-to-top").show();
-                    if (scrolled > maxScroll) {
-                        scrolled = maxScroll;
-                        scrolled = maxScroll - moveSize;
-                        $("#go-to-bottom").hide();
-
-                    }
-                    scrolY(scrolled)
-                }
-            });
-            $("#go-to-top").on("click", function () {
-                if (!move) {
-                    move = true;
-                    scrolled = scrolled - moveSize;
-                    $("#go-to-bottom").show();
-
-                    if (scrolled < 0) {
-                        scrolled = 0
-                        $("#go-to-top").hide();
-                    }
-                    scrolY(scrolled)
-                }
-            });
-            function scrolY(scroll) {
-                $("#vertikalscroll").animate({
-                    scrollTop: scrolled
-                }, 2000, function () {
-                    move = false;
-                });
-            }
-
-            $(".clearValue").on("click", function () {
-                scrolled = 0;
-            });
-        });
-    </script>
 @endsection
 
 {{--<div ng-if="googleMaps" class="form-group move-down">--}}
