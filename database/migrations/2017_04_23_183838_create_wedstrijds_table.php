@@ -39,6 +39,7 @@ class CreateWedstrijdsTable extends Migration
             $table->string('straat');
             $table->string('provincie');
             $table->string('geweest');
+            $table->string('postCode');
             $table->string('stad');
             $table->string('land');
             $table->softDeletes();

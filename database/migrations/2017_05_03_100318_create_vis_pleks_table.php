@@ -36,6 +36,7 @@ class CreateVisPleksTable extends Migration
             $table->string('nummer');
             $table->string('straat');
             $table->string('provincie');
+            $table->string('postCode');
             $table->string('geweest');
             $table->string('stad');
             $table->string('land');

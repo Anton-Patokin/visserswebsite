@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->string('straat')->nullable();
             $table->string('provincie')->nullable();
             $table->string('geweest')->nullable();
+            $table->string('postCode');
             $table->string('stad')->nullable();
             $table->string('land')->nullable();
             $table->rememberToken();

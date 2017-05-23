@@ -101,6 +101,7 @@ class AddContentController extends Controller
                         $visPlek->straat = $input['adres']['straat'];
                         $visPlek->provincie = $input['adres']['provincie'];
                         $visPlek->geweest = $input['adres']['gewest'];
+                        $visPlek->postCode = $input['adres']['postCode'];
                         $visPlek->stad = $input['adres']['stad'];
                         $visPlek->land = $input['adres']['land'];
                         $visPlek->save();
@@ -154,6 +155,7 @@ class AddContentController extends Controller
                     $user->straat = $input['adres']['straat'];
                     $user->provincie = $input['adres']['provincie'];
                     $user->geweest = $input['adres']['gewest'];
+                    $user->postCode = $input['adres']['postCode'];
                     $user->stad = $input['adres']['stad'];
                     $user->land = $input['adres']['land'];
                     $user->save();
@@ -234,6 +236,7 @@ class AddContentController extends Controller
                         $wedstrijd->straat = $input['adres']['straat'];
                         $wedstrijd->provincie = $input['adres']['provincie'];
                         $wedstrijd->geweest = $input['adres']['gewest'];
+                        $wedstrijd->postCode = $input['adres']['postCode'];
                         $wedstrijd->stad = $input['adres']['stad'];
                         $wedstrijd->land = $input['adres']['land'];
 
