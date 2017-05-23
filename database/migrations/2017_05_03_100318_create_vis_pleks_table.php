@@ -33,6 +33,12 @@ class CreateVisPleksTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('active')->nullable();
             $table->text('text')->nullable();
+            $table->string('nummer');
+            $table->string('straat');
+            $table->string('provincie');
+            $table->string('geweest');
+            $table->string('stad');
+            $table->string('land');
             $table->softDeletes();
             $table->timestamps();
         });

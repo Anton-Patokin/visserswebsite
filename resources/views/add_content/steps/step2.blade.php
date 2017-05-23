@@ -23,7 +23,6 @@ $head_description = $message['locatie_description']; ?>
                     </div>
 
 
-
                     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 adres">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>Land:</h3></div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.land }}</h4></div>
@@ -39,21 +38,24 @@ $head_description = $message['locatie_description']; ?>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.straat }}</h4></div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>Nummer:</h3></div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.nummer }}</h4></div>
-                        <ul ng-show="currentStep>1" class="list-inline text-center margin-top-1">
-                            <li>
-                                <button ng-click="prev()" type="button" class="btn-lg btn-default">
-                                    Vorige
-                                </button>
-                            </li>
-                            <li>
-                                <button ng-if="currentStep ==2 " ng-click="next()" type=""
-                                        class="btn-lg btn-default"
-                                        ng-disabled="input.lat=='' && input.lng == ''">Volgende
-                                </button>
-                            </li>
-                        </ul>
+                        <div class="col-md-12">
+                            <ul ng-show="currentStep>1" class="list-inline text-center margin-top-5">
+                                <li>
+                                    <button ng-click="prev()" type="button" class="btn-lg btn-default">
+                                        Vorige
+                                    </button>
+                                </li>
+                                <li>
+                                    <button ng-if="currentStep ==2 " ng-click="next()" type=""
+                                            class="btn-lg btn-default"
+                                            ng-disabled="input.lat=='' && input.lng == ''">Volgende
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

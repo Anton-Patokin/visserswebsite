@@ -17,7 +17,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <section>
+        <section  class="hide-600">
             <div class="wizard ">
                 <div class="wizard-inner">
                     <div class="connecting-line"></div>
@@ -39,8 +39,6 @@
                 </div>
             </div>
         </section>
-
-
         @include('add_content.forms_select')
 
         {{--                {{ Form::open(array('url' => 'foo/bar','files' => true,'ng-submit'=>'submitForm()','novalidate')) }}--}}

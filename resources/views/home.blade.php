@@ -46,10 +46,7 @@
                                                         template="map.searchbox.template"
                                                         events="map.searchbox.events"
                                                         position="'top-left'"></ui-gmap-search-box>
-                                    <ui-gmap-markers ng-init="initVisPlaatsmarkers()" events="map.markers.wedstrijd.events" fit="true" models="plaatsMarkers" coords="'self'"
-                                                     icon="{url:'{{url('/images/icon/marker_vis.png')}}'}">
-                                        @include('components.googleWindow')
-                                    </ui-gmap-markers>
+
                                     <ui-gmap-markers ng-init="initTrainersmarkers()" events="map.markers.wedstrijd.events" fit="true" models="trainerMarkers" coords="'self'"
                                                      icon="{url:'{{url('/images/icon/marker_trainer.png')}}'}">
                                         @include('components.googleWindow')
@@ -60,6 +57,10 @@
                                                      icon="{url:'{{url('/images/icon/marker_wedstrijd.png')}}'}">
                                        @include('components.googleWindow')
 
+                                    </ui-gmap-markers>
+                                    <ui-gmap-markers ng-init="initVisPlaatsmarkers()" events="map.markers.wedstrijd.events" fit="true" models="plaatsMarkers" coords="'self'"
+                                                     icon="{url:'{{url('/images/icon/marker_vis.png')}}'}">
+                                        @include('components.googleWindow')
                                     </ui-gmap-markers>
                                 </ui-gmap-google-map>
                             </div>

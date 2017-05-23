@@ -54,6 +54,7 @@ class AddContentController extends Controller
                     'prive' => 'required|max:1',
                     'vissoorten' => 'max:255',
                     'text' => 'max:1000',
+                    'adres'=>'required'
                 ]);
                 if (!$validator->fails()) {
                     $save = false;
@@ -96,6 +97,12 @@ class AddContentController extends Controller
                         $visPlek->vissoorten = $input['vissoorten'];
                         $visPlek->text = $input['text'];
                         $visPlek->user_id = $user->id;
+                        $visPlek->nummer = $input['adres']['nummer'];
+                        $visPlek->straat = $input['adres']['straat'];
+                        $visPlek->provincie = $input['adres']['provincie'];
+                        $visPlek->geweest = $input['adres']['gewest'];
+                        $visPlek->stad = $input['adres']['stad'];
+                        $visPlek->land = $input['adres']['land'];
                         $visPlek->save();
                         return $this->massage_success;
                     }
@@ -120,6 +127,8 @@ class AddContentController extends Controller
                 'ervaring' => 'required|max:100',
                 'telefonnummer' => '',
                 'kostprijs' => 'required|min:1|max:5|regex:/^\d*(\.\d{1,2})?$/',
+                'adres'=>'required'
+
             ]);
             if ($validator->fails()) {
                 return $validator->messages();
@@ -141,6 +150,12 @@ class AddContentController extends Controller
                     $user->ervaring = $input['ervaring'];
                     $user->telefonnummer = $input['telefonnummer'];
                     $user->text = $input['text'];
+                    $user->nummer = $input['adres']['nummer'];
+                    $user->straat = $input['adres']['straat'];
+                    $user->provincie = $input['adres']['provincie'];
+                    $user->geweest = $input['adres']['gewest'];
+                    $user->stad = $input['adres']['stad'];
+                    $user->land = $input['adres']['land'];
                     $user->save();
                     return $this->massage_success;
                 }
@@ -167,7 +182,10 @@ class AddContentController extends Controller
                     'maand' => 'required|max:5',
                     'loting' => 'max:200',
                     'id' => 'required',
+                    'adres'=>'required'
+
                 ]);
+
                 if (!$validator->fails()) {
                     $save = false;
 
@@ -194,6 +212,7 @@ class AddContentController extends Controller
                             $save = true;
                         }
                     }
+
                     if ($save) {
                         $wedstrijd->lat = $input['lat'];
                         $wedstrijd->lng = $input['lng'];
@@ -211,6 +230,14 @@ class AddContentController extends Controller
                         $wedstrijd->maand = $input['maand'];
                         $wedstrijd->loting = $input['loting'];
                         $wedstrijd->text = $input['text'];
+                        $wedstrijd->nummer = $input['adres']['nummer'];
+                        $wedstrijd->straat = $input['adres']['straat'];
+                        $wedstrijd->provincie = $input['adres']['provincie'];
+                        $wedstrijd->geweest = $input['adres']['gewest'];
+                        $wedstrijd->stad = $input['adres']['stad'];
+                        $wedstrijd->land = $input['adres']['land'];
+
+
                         $wedstrijd->user_id = $user->id;
                         $wedstrijd->save();
                         return $this->massage_success;
