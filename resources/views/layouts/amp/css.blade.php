@@ -1366,4 +1366,23 @@
         margin: 0px 0 0px 0;
 
     }
+
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 22px;
+    }
+    .table-bordered {
+        border: 1px solid #ddd;
+    }
+    .table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td {
+        border: 1px solid #ddd;
+    }
+
+    .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+        padding: 8px;
+        line-height: 1.6;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
 </style>

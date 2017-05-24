@@ -200,7 +200,7 @@ class Add_contentController extends Controller
             $nieuwsArtikel->wiziwig = $request->wiziwig;
             $nieuwsArtikel->user_id = $user->id;
             $nieuwsArtikel->save();
-            return 'succes';
+            return redirect('/nieuws/'.$nieuwsArtikel->id.'/'.str_replace(' ', '-', substr($nieuwsArtikel->titel,0,25)) );
         }
         return 'error';
     }

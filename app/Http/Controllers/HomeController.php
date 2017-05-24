@@ -148,8 +148,10 @@ class HomeController extends Controller
     public function nieuws($id = null, $titel = null, $amp = null)
     {
         if ($amp == 'amp') {
+            
             $value = DB::table('nieuws_artikels')->find($id);
-            return view('show/' . 'nieuws-artikel' . '-amp', ['content' => $value]);
+            $relevente  = NieuwsArtikel::where('active', '2')->search($value->inleiding, null, true,true)->take(10)->get();;
+            return view('show/' . 'nieuws-artikel' . '-amp', ['content' => $value,'relevente'=>$relevente]);
         }
         return $this->get_content_from_database('nieuws_artikels', $id, 'nieuws-artikel', 'nieuws-artikelen');
     }

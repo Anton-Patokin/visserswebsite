@@ -86,7 +86,6 @@ $message = Config::get('constant.Headings');
                 <h3 class="text-uppercase text-center text-relevant">{{$termen['relevant']}}</h3>
 
 
-                <?php $content_url = url('/' . $content->type . '/' . $content->id . '/' . substr($content->titel, 0, 40))?>
                 @if(count($relevente)>1)
                     @foreach($relevente as $key=>$content)
                         <?php $content_url = url('/' . $content->type . '/' . $content->id . '/' . substr($content->titel, 0, 40) . '/amp')?>
