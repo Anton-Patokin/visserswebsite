@@ -22,10 +22,6 @@
                             </div>
                             <div class="col-md-12 box-card">
                                 <ui-gmap-google-map options="map.options" center='map.center' zoom='map.zoom'>
-                                    <ui-gmap-search-box options="map.searchbox.options"
-                                                        template="map.searchbox.template"
-                                                        events="map.searchbox.events"
-                                                        position="'top-left'"></ui-gmap-search-box>
                                     <ui-gmap-markers ng-init="initVisPlaatsmarkers()"
                                                      events="map.markers.wedstrijd.events"
                                                      fit="true" models="plaatsMarkers" coords="'self'"

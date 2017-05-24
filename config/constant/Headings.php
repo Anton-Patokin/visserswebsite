@@ -11,6 +11,7 @@ return [
     'tutorial_titel' => 'Tutorial & lessen',
     'tutorial_discription' => 'overzicht van lessen',
     'viePlaats_titel'=>'Vis plaats',
+    'trainer_titel'=>'Trainer',
     'locatie'=>'Locatie',
     'locatie_description'=>'Kies Locaite die best past',
     'invulen'=>'Vul de formulier in'

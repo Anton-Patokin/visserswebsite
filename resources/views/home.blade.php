@@ -42,10 +42,10 @@
                             </div>
                             <div class="caption">
                                 <ui-gmap-google-map options="map.options" center='map.center' zoom='map.zoom'>
-                                    <ui-gmap-search-box options="map.searchbox.options"
-                                                        template="map.searchbox.template"
-                                                        events="map.searchbox.events"
-                                                        position="'top-left'"></ui-gmap-search-box>
+                                    {{--<ui-gmap-search-box options="map.searchbox.options"--}}
+                                                        {{--template="map.searchbox.template"--}}
+                                                        {{--events="map.searchbox.events"--}}
+                                                        {{--position="'top-left'"></ui-gmap-search-box>--}}
 
                                     <ui-gmap-markers ng-init="initTrainersmarkers()" events="map.markers.wedstrijd.events" fit="true" models="trainerMarkers" coords="'self'"
                                                      icon="{url:'{{url('/images/icon/marker_trainer.png')}}'}">

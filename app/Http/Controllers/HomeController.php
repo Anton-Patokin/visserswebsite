@@ -134,8 +134,13 @@ class HomeController extends Controller
 
         if ($amp == 'amp') {
             $value = Wedstrijd::with('user')->where('id', $id)->get()->first();
-            $relevente  = Wedstrijd::where('active', '2')->search($value->category, null, true,true)->take(15)->get();;
-            return view('show/' . 'wedstrijd' . '-amp', ['content' => $value,'relevente'=>$relevente]);
+            if($value->active==2){
+                $relevente  = Wedstrijd::where('active', '2')->search($value->category, null, true,true)->take(15)->get();;
+                return view('show/' . 'wedstrijd' . '-amp', ['content' => $value,'relevente'=>$relevente]);
+            }else{
+                return $this->paginaNietGevonden();
+            }
+
         }
         return $this->get_content_from_database('wedstrijds', $id, 'wedstrijd', 'wedstrijden');
     }
@@ -149,8 +154,17 @@ class HomeController extends Controller
         return $this->get_content_from_database('nieuws_artikels', $id, 'nieuws-artikel', 'nieuws-artikelen');
     }
 
-    public function trainer($id = null, $titel = null)
+    public function trainer($id = null, $titel = null,$amp=null)
     {
+        if ($amp == 'amp') {
+            $value = DB::table('users')->find($id);
+            if($value->active==2){
+                $relevente = User::where('active', '2')->search($value->provincie, null, true,true)->take(15)->get();
+                return view('show/' . 'trainer' . '-amp', ['content' => $value,'relevente'=>$relevente]);
+            }else{
+                return $this->paginaNietGevonden();
+            }
+        }
         return $this->get_content_from_database('users', $id, 'trainer', 'trainers');
     }
 
@@ -176,7 +190,7 @@ class HomeController extends Controller
             $value = DB::table($tabel)->find($id);
 
             //ditai pagina veergeven
-            if (Auth::user() && Auth::user()->id == $value->user_id) {
+            if ($tabel =='users'||Auth::user() && Auth::user()->id == $value->user_id) {
                 $show = true;
             }
             if ($value->active == "2") {
@@ -193,11 +207,17 @@ class HomeController extends Controller
                     $relevente =$visplaats = Wedstrijd::where('active', '2')->search($value->category, null, true,true)->take(15)->get();;
                     return view('show/' . $view1, ['content' => $value,'relevente'=>$relevente]);
                 }
+                if ($tabel == 'users') {
+                    $relevente = User::where('active', '2')->search($value->provincie, null, true,true)->take(15)->get();;
+                    return view('show/' . $view1, ['content' => $value,'relevente'=>$relevente]);
+                }
                 return view('show/' . $view1, ['content' => $value]);
             }
         } else {
+
             //bij het bezoeken van overzicht pagina
             $value = DB::table($tabel)->Where('active', 2)->orderBy('updated_at', 'desc');
+
             $value = $value->get();
             if (count($value)) {
                 return view('show/' . $view2, ['contents' => $value]);

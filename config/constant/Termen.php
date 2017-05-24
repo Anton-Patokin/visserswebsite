@@ -12,5 +12,15 @@ return [
     'duur'=>'Duur',
     'kostprijs'=>'Kostprijs',
     'prijzen'=>'Prijzen',
+    'naam'=>'Naam',
+    'email'=>'Email',
+    'telefonnummer'=>'Telefonnummer',
+    'geslacht'=>'geslacht',
+    'vraagprijs'=>'Graagprijs',
+    'active_sinds'=>'Active sinds',
+    'trainer_of_gids'=>'Trainer of gids',
+    'ervaring'=>'Ervaring',
+    'Jouw_verhaal'=>'Jouw verhaal',
+
 ]
 ?>

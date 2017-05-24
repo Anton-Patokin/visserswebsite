@@ -79,10 +79,10 @@ $messages = Config::get('constant.Headings');
                             </div>
                             <div class="caption">
                                 <ui-gmap-google-map options="map.options" center='map.center' zoom='map.zoom'>
-                                    <ui-gmap-search-box options="map.searchbox.options"
-                                                        template="map.searchbox.template"
-                                                        events="map.searchbox.events"
-                                                        position="'top-left'"></ui-gmap-search-box>
+                                    {{--<ui-gmap-search-box options="map.searchbox.options"--}}
+                                                        {{--template="map.searchbox.template"--}}
+                                                        {{--events="map.searchbox.events"--}}
+                                                        {{--position="'top-left'"></ui-gmap-search-box>--}}
                                     <ui-gmap-markers ng-init="initWedstrijdmarkers()"
                                                      events="map.markers.wedstrijd.events" fit="true"
                                                      models="wedsrijdMarkers" coords="'self'"
