@@ -20,9 +20,9 @@ class FaqController extends Controller
     {
         $content= Faq::orderBy('volgerde','asc')->get();
         if ($amp == 'amp') {
-            return view('show.faq-amp',['content'=>$content]);
+            return view('show.faq-amp',['contents'=>$content]);
         }
-        return view('show.faq',['content'=>$content]);
+        return view('show.faq',['contents'=>$content]);
     }
 
     public function toevoegenFaqView(){

@@ -20,6 +20,12 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     $scope.currentStep = 1;
     $scope.serverErrorMassage = false;
     $scope.showMarker = false;
+    $scope.oneAtATime = true;
+    $scope.status = {
+        isCustomHeaderOpen: false,
+        isFirstOpen: true,
+        isFirstDisabled: false
+    };
 
     var d = new Date();
 
