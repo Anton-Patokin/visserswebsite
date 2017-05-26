@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Subscribe;
 use Symfony\Component\HttpFoundation\Cookie;
 use Illuminate\Support\Facades\Config;
+use Mail;
+use App\Mail\Contact;
 
 class EmailController extends Controller
 {
@@ -40,6 +42,8 @@ class EmailController extends Controller
             'mail'=>'required|max:255|email',
             'bericht'=>'required|max:1500'
         ]);
+
+        Mail::to('patokin.anton@gmail.com')->send(new Contact($request->naam,$request->mail,$request->bericht));
         return 'okey';
     }
 }
