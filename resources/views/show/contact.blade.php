@@ -6,6 +6,7 @@ $message = Config::get('constant.Headings');
 
 @section('content')
     <div class="container-fluid">
+        @include('berichten.cookieBericht')
         <?php $head = $message['contact'];$head_description = $message['contact_description'];?>
         @include('header')
         <div class="row margin-top-1">
@@ -34,7 +35,13 @@ $message = Config::get('constant.Headings');
                                     <label for="naam" class="col-md-12">Naam</label>
                                     <div class="col-md-12">
                                         <input id="naam" type="text" class="form-control" name="naam"
-                                               value="{{ old('naam') }}" placeholder="Anton" autofocus>
+                                               value="<?php
+                                                       if(old('naam')){
+                                                           echo old('naam');
+                                                       }elseif(Auth::user()){
+                                                           echo Auth::user()->name;
+                                                       }
+                                               ?>" placeholder="Anton" value="" autofocus required>
 
                                         <div class="space-for-errors">
                                             @if ($errors->has('naam'))
@@ -51,7 +58,13 @@ $message = Config::get('constant.Headings');
                                     <label for="mail" class="col-md-12">E-Mail</label>
                                     <div class="col-md-12">
                                         <input id="mail" type="email" class="form-control" name="mail"
-                                               value="{{ old('mail') }}" placeholder="Patokin.anton@gmail.com">
+                                               value="<?php
+                                               if(old('mail')){
+                                                   echo old('mail');
+                                               }elseif(Auth::user()){
+                                                   echo Auth::user()->email;
+                                               }
+                                               ?>" placeholder="Patokin.anton@gmail.com">
                                         <div class="space-for-errors">
                                             @if ($errors->has('mail'))
                                                 <p class="error alert alert-danger">
@@ -67,13 +80,13 @@ $message = Config::get('constant.Headings');
                                     <label for="bericht" class="col-md-12">Bericht</label>
 
                                     <div class="col-md-12">
-                                   <textarea id="inleiding" type="text" class="form-control" name="bericht"
+                                   <textarea ng-init="bericht = '{{old('bericht')}}'" id="inleiding" type="text" class="form-control" name="bericht"
                                              class="form-control input-lg" ng-focus="classInleidingFocus =true"
-                                             ng-blur="classInleidingFocus =false" ng-model="nieuws.inleiding"
-                                             maxlength="1500" rows="7" cols="50"></textarea>
-                                        <small ng-if="nieuws.inleiding.length>5"
+                                             ng-blur="classInleidingFocus =false" ng-model="bericht"
+                                             maxlength="1500" rows="7" cols="50" ></textarea>
+                                        <small ng-if="bericht.length>5"
                                                class="pull-right max-charakters"
-                                               ng-class="{'show':classInleidingFocus}">@{{1500-nieuws.inleiding.length}}
+                                               ng-class="{'show':classInleidingFocus}">@{{1500-bericht.length}}
                                             karakters
                                             over
                                         </small>

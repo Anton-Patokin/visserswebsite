@@ -32,7 +32,7 @@
     <amp-img class="amp-close-image" src="{{url('/images/icon/close.jpg')}}" width="20" height="20" alt="close sidebar"
              on="tap:sidebar.close" role="button" tabindex="0"></amp-img>
     <ul>
-        <?php $navbar = ['home', 'plaats', 'wedstrijden', 'nieuws', 'trainer', 'tutorial', 'over-ons', 'contact'];?>
+        <?php $navbar = ['home', 'plaats', 'wedstrijden', 'nieuws', 'trainer', 'tutorial', 'over-ons', 'contact','faq'];?>
         @foreach($navbar as $value)
             {{--@if($value=='tutorial')--}}
             {{--<li><a id="user-fish-line-icon" href="#" class="dropdown-toggle" data-toggle="dropdown"--}}

@@ -14,6 +14,7 @@ class EmailController extends Controller
     protected $berichten;
     public function __construct()
     {
+
         $this->berichten = Config::get('constant.Berichten');
     }
 
@@ -43,7 +44,10 @@ class EmailController extends Controller
             'bericht'=>'required|max:1500'
         ]);
 
+
         Mail::to('patokin.anton@gmail.com')->send(new Contact($request->naam,$request->mail,$request->bericht));
-        return 'okey';
+        $cookie = cookie('bericht', $this->berichten['contact_success'], 1);
+
+        return redirect('/contact')->cookie($cookie);
     }
 }

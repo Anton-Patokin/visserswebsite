@@ -19,6 +19,9 @@ return [
     'overOns_description'=>'Hier vind je overzicht over ons',
     'contact'=>'Contact',
     'contact_description'=>'Vul formulier in om ons te contacteren',
+    'faq'=>'FAQ',
+    'faq_description'=>'Meest voorkomende vragen',
+    'faq_toevoegen'=>'Voeg nieuw faq toe',
 
 ]
 ?>

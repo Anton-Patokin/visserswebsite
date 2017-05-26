@@ -18,20 +18,24 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-left">
                     <?php
-                    $navbar = ['home', 'plaats', 'wedstrijden', 'nieuws', 'trainer', 'tutorial', 'over-ons', 'contact'];
+                    $navbar = ['home', 'plaats', 'wedstrijden', 'nieuws', 'trainer', 'tutorial', 'over-ons', 'contact', 'faq'];
                     ?>
                     {{--@if(Menu::isActiveRoute($navbar))--}}
 
                     @if(Menu::isActiveRoute(['toevoegen']))
                         <li><a ng-click="gotoStep(2);putValue('visPlek')" href="">Visplaats</a></li>
                         <li><a ng-click="gotoStep(2);putValue('wedstrijd')" href="">Wedstrijd</a></li>
-                        @if(Auth::user()->trainer=='')
+                        @if(Auth::user()->trainer==2)
                             <li><a ng-click="gotoStep(2);putValue('trainer')" href="">Trainer worden</a></li>
                         @endif
                         <li class="{{Menu::isActiveList('toevoegen/nieuws')}}"><a href="{{url('/toevoegen/nieuws')}}">Nieuws
                                 beriecht</a></li>
                         <li class="{{Menu::isActiveList('toevoegen/tutorial')}}"><a
                                     href="{{url('/toevoegen/tutorial')}}">Tutorial</a></li>
+                        @if(Auth::user()->admin)
+                                <li class="{{Menu::isActiveList('toevoegen/faq')}}"><a
+                                            href="{{url('/toevoegen/faq')}}">FAQ</a></li>
+                        @endif
                     @elseif(Menu::isActiveRoute(['dashboard']))
                         <li class="{{Menu::isActiveList('dashboard')}}">
                             <a href="{{url('/dashboard')}}">Jouw overzicht</a>

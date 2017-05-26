@@ -39,7 +39,7 @@ Route::get('/aanvaarden/{tabel}/{id}/', 'DashboardController@aanvaarden');
 Route::get('/aanvarden_deactiveren/{tabel}/{id}/', 'DashboardController@aanvarden_deactiveren');
 Route::get('/dashboard/gebruikers', 'DashboardController@gebruikers');
 Route::get('/admin_deactivate/{action}/{id}', 'DashboardController@admin');
-
+Route::get('/faq/{amp?}','FaqController@index');
 Route::get('/aanpasen/{type}/{id}', 'AanpasenController@dashboard');
 
 
@@ -49,6 +49,8 @@ Route::get('/toevoegen/tutorial', 'Add_contentController@tutorial');
 Route::post('/toevoegen/nieuws', 'Add_contentController@toevoegenNieuws');
 Route::post('/toevoegen/tutorial', 'Add_contentController@toevoegenTutorial');
 Route::post('/toevoegen/profiel', 'Add_contentController@toevoegenProfiel');
+Route::post('/toevoegen/faq', 'FaqController@toevoegenFaq');
+Route::get('/toevoegen/faq','FaqController@toevoegenFaqView');
 
 Route::post('/contact','EmailController@contact');
 
