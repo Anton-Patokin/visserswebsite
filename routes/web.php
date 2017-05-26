@@ -50,6 +50,7 @@ Route::post('/toevoegen/nieuws', 'Add_contentController@toevoegenNieuws');
 Route::post('/toevoegen/tutorial', 'Add_contentController@toevoegenTutorial');
 Route::post('/toevoegen/profiel', 'Add_contentController@toevoegenProfiel');
 
+Route::post('/contact','EmailController@contact');
 
 Route::post('/toevoegen/subscribe', 'EmailController@addSubscriber');
 

@@ -1,8 +1,11 @@
-<?php $messages = Config::get('constant.Headings');?>
+<?php
+$termen = Config::get('constant.Termen');
+$message = Config::get('constant.Headings');
+?>
 @extends('layouts.app')
 @section('content')
     <div class="container-fluid">
-        <?php $head = $messages['nieuws_titel_artikel'];$head_description = $content->titel;?>
+        <?php $head = $message['nieuws_titel_artikel'];$head_description = $content->titel;?>
         @include('header')
 
         <?php
@@ -14,7 +17,7 @@
                 <div class="thumbnail">
                     <div class="caption">
 
-                        {{--                        {!! $content->wiziwig !!}--}}
+                        {!! $content->wiziwig !!}
                     </div>
                 </div>
             </div>

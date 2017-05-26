@@ -91,9 +91,9 @@ class HomeController extends Controller
     {
         if ($amp == 'amp') {
             $value = VisPlek::with('user')->where('id', $id)->get()->first();
-            $relevente =$visplaats = VisPlek::where('active', '2')->search($titel, null, true,true)->take(15)->get();;
+            $relevente = $visplaats = VisPlek::where('active', '2')->search($titel, null, true, true)->take(15)->get();;
 
-            return view('show/' . 'plaats' . '-amp', ['content' => $value,'relevente'=>$relevente]);
+            return view('show/' . 'plaats' . '-amp', ['content' => $value, 'relevente' => $relevente]);
         }
         return $this->get_content_from_database('vis_pleks', $id, 'plaats', 'plaatsen');
     }
@@ -129,15 +129,15 @@ class HomeController extends Controller
         return view('show/wedstrijden', ['contents' => $wedstrijden, 'nextdatum' => $nextdatum, 'prevdatum' => $prevdatum, 'nexMontText' => $nexMontText, 'prevMontText' => $prevMontText, 'currentMontText' => $currentMontText]);
     }
 
-    public function wedstrijd($id = null, $titel = null,$amp=null)
+    public function wedstrijd($id = null, $titel = null, $amp = null)
     {
 
         if ($amp == 'amp') {
             $value = Wedstrijd::with('user')->where('id', $id)->get()->first();
-            if($value->active==2){
-                $relevente  = Wedstrijd::where('active', '2')->search($value->category, null, true,true)->take(15)->get();;
-                return view('show/' . 'wedstrijd' . '-amp', ['content' => $value,'relevente'=>$relevente]);
-            }else{
+            if ($value->active == 2 || Auth::user()->id) {
+                $relevente = Wedstrijd::where('active', '2')->search($value->category, null, true, true)->take(15)->get();;
+                return view('show/' . 'wedstrijd' . '-amp', ['content' => $value, 'relevente' => $relevente]);
+            } else {
                 return $this->paginaNietGevonden();
             }
 
@@ -148,22 +148,26 @@ class HomeController extends Controller
     public function nieuws($id = null, $titel = null, $amp = null)
     {
         if ($amp == 'amp') {
-            
+
             $value = DB::table('nieuws_artikels')->find($id);
-            $relevente  = NieuwsArtikel::where('active', '2')->search($value->inleiding, null, true,true)->take(10)->get();;
-            return view('show/' . 'nieuws-artikel' . '-amp', ['content' => $value,'relevente'=>$relevente]);
+            if ($value->active == 2 || Auth::user()->id ) {
+                $relevente = NieuwsArtikel::where('active', '2')->search($value->inleiding, null, true, true)->take(10)->get();;
+                return view('show/' . 'nieuws-artikel' . '-amp', ['content' => $value, 'relevente' => $relevente]);
+            } else {
+                return $this->paginaNietGevonden();
+            }
         }
         return $this->get_content_from_database('nieuws_artikels', $id, 'nieuws-artikel', 'nieuws-artikelen');
     }
 
-    public function trainer($id = null, $titel = null,$amp=null)
+    public function trainer($id = null, $titel = null, $amp = null)
     {
         if ($amp == 'amp') {
             $value = DB::table('users')->find($id);
-            if($value->active==2){
-                $relevente = User::where('active', '2')->search($value->provincie, null, true,true)->take(15)->get();
-                return view('show/' . 'trainer' . '-amp', ['content' => $value,'relevente'=>$relevente]);
-            }else{
+            if ($value->active == 2) {
+                $relevente = User::where('active', '2')->search($value->provincie, null, true, true)->take(15)->get();
+                return view('show/' . 'trainer' . '-amp', ['content' => $value, 'relevente' => $relevente]);
+            } else {
                 return $this->paginaNietGevonden();
             }
         }
@@ -192,7 +196,7 @@ class HomeController extends Controller
             $value = DB::table($tabel)->find($id);
 
             //ditai pagina veergeven
-            if ($tabel =='users'||Auth::user() && Auth::user()->id == $value->user_id) {
+            if ($tabel == 'users' || Auth::user() && Auth::user()->id == $value->user_id) {
                 $show = true;
             }
             if ($value->active == "2") {
@@ -201,17 +205,17 @@ class HomeController extends Controller
             if ($show) {
                 if ($tabel == 'vis_pleks') {
                     $value = VisPlek::with('user')->where('id', $id)->get()->first();
-                    $relevente =$visplaats = VisPlek::where('active', '2')->search($value->vissoorten, null, true,true)->take(15)->get();;
-                    return view('show/' . $view1, ['content' => $value,'relevente'=>$relevente]);
+                    $relevente = $visplaats = VisPlek::where('active', '2')->search($value->vissoorten, null, true, true)->take(15)->get();;
+                    return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 if ($tabel == 'wedstrijds') {
                     $value = Wedstrijd::with('user')->where('id', $id)->get()->first();
-                    $relevente =$visplaats = Wedstrijd::where('active', '2')->search($value->category, null, true,true)->take(15)->get();;
-                    return view('show/' . $view1, ['content' => $value,'relevente'=>$relevente]);
+                    $relevente = $visplaats = Wedstrijd::where('active', '2')->search($value->category, null, true, true)->take(15)->get();;
+                    return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 if ($tabel == 'users') {
-                    $relevente = User::where('active', '2')->search($value->provincie, null, true,true)->take(15)->get();;
-                    return view('show/' . $view1, ['content' => $value,'relevente'=>$relevente]);
+                    $relevente = User::where('active', '2')->search($value->provincie, null, true, true)->take(15)->get();;
+                    return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 return view('show/' . $view1, ['content' => $value]);
             }

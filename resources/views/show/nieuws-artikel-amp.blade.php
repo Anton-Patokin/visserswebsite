@@ -29,19 +29,19 @@ $message = Config::get('constant.Headings');
     <div class="row">
         <div class="col-xs-12 margin-bottom-2 margin-bottom-2">
             <div class="thumbnail">
-                ------------>{!!strlen($content->wiziwig) !!}
                 <?php
-
                 $output = preg_replace('/(<[^>]+) style=".*?"/i', '$1', $content->wiziwig);
-
                 function ampify($html = '')
                 {
                     # Replace img, audio, and video elements with amp custom elements
 
-                    $html = preg_replace_callback('/' . 'src="(.*?)"' . '/',
+                    $html = preg_replace_callback('/<img ' . 'src="(.*?)"' . '/',
                             function($match) {
-                                $size = getimagesize($match[1],$size);
-                                return "src='".$match[1]."'".$size[3] .' layout="responsive"';
+                                if(getimagesize($match[1],$size)){
+                                    $size = getimagesize($match[1],$size);
+                                    return "<img src='".$match[1]."'".$size[3] .' layout="responsive" >';
+                                }
+                                return "<img src='".$match[1]."'>";
                             }, $html);
 
                     $html = str_ireplace(
@@ -49,6 +49,7 @@ $message = Config::get('constant.Headings');
                             ['<amp-img  ', '<amp-video', '/amp-video>', '<amp-audio', '/amp-audio>'],
                             $html
                     );
+
                     $html = preg_replace('/<amp-img(.*?)>/', '<amp-img$1></amp-img>', $html);
                     # Whitelist of HTML tags allowed by AMP
                     $html = strip_tags($html, '<h1><h2><h3><h4><h5><h6><a><p><ul><ol><li><blockquote><q><cite><ins><del><strong><em><code><pre><svg><table><thead><tbody><tfoot><th><tr><td><dl><dt><dd><article><section><header><footer><aside><figure><time><abbr><div><span><hr><small><br><amp-img><amp-audio><amp-video><amp-ad><amp-anim><amp-carousel><amp-fit-rext><amp-image-lightbox><amp-instagram><amp-lightbox><amp-twitter><amp-youtube>');

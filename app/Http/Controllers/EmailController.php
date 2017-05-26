@@ -32,4 +32,14 @@ class EmailController extends Controller
         }
         return redirect('/home')->withCookie(cookie()->forever('subscriber', 'true'))->cookie($cookie);
     }
+    
+    
+    public function contact(Request $request){
+        $this->validate($request,[
+            'naam'=>'required|max:255',
+            'mail'=>'required|max:255|email',
+            'bericht'=>'required|max:1500'
+        ]);
+        return 'okey';
+    }
 }

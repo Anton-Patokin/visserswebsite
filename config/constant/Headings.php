@@ -14,7 +14,11 @@ return [
     'trainer_titel'=>'Trainer',
     'locatie'=>'Locatie',
     'locatie_description'=>'Kies Locaite die best past',
-    'invulen'=>'Vul de formulier in'
+    'invulen'=>'Vul de formulier in',
+    'overOns'=>'Over Ons',
+    'overOns_description'=>'Hier vind je overzicht over ons',
+    'contact'=>'Contact',
+    'contact_description'=>'Vul formulier in om ons te contacteren',
 
 ]
 ?>
