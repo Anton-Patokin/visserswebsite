@@ -1385,4 +1385,51 @@
         vertical-align: top;
         border-top: 1px solid #ddd;
     }
+
+
+    amp-accordion section h3{
+        text-align: left;
+        background-color: #007d9b;
+        padding:10px 0 10px 0;
+    }
+    amp-accordion section p{
+        text-align: left;
+        font-size: 1.2em;
+    }
+
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+        margin: 22px 0;
+        border-radius: 0px;
+    }
+    .pagination > li {
+        display: inline;
+    }
+    .disabled {
+        cursor: default;
+    }
+
+    .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+        z-index: 3;
+        color: #fff;
+        background-color: #3097D1;
+        border-color: #3097D1;
+        cursor: default;
+    }
+    .pagination > li > a, .pagination > li > span {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        line-height: 1.6;
+        text-decoration: none;
+        color: #3097D1;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        margin-left: -1px;
+    }
+    .pagination .active span {
+        background-color: #d81b60;
+        border-color: #d81b60;
+    }
 </style>

@@ -33,6 +33,7 @@ Route::get('/dashboard/toegevoegd-inhoud', 'DashboardController@toegevoegd_inhou
 Route::get('/dashboard/nieuw-toegevoegd-inhoud', 'DashboardController@nieuw_toegevoegd_inhoud');
 Route::get('/dashboard/alle-toegevoegd-inhoud', 'DashboardController@alle_toegevoegd_inhoud');
 Route::get('/dashboard/alle-verwijderde', 'DashboardController@alle_verwijderde');
+
 Route::get('/verwijderen/{tabel}/{id}', 'DashboardController@verwijderen');
 Route::get('/verwijderen/activeren/{tabel}/{id}', 'DashboardController@verwijderen_deactiveren');
 Route::get('/aanvaarden/{tabel}/{id}/', 'DashboardController@aanvaarden');
@@ -41,7 +42,8 @@ Route::get('/dashboard/gebruikers', 'DashboardController@gebruikers');
 Route::get('/admin_deactivate/{action}/{id}', 'DashboardController@admin');
 Route::get('/faq/{amp?}','FaqController@index');
 Route::get('/aanpasen/{type}/{id}', 'AanpasenController@dashboard');
-
+Route::get('/verwijderFaq/{id}','FaqController@verwijderFaq');
+Route::get('/editFaq/{id}','FaqController@toevoegenFaqView');
 
 Route::get('/toevoegen', 'Add_contentController@index');
 Route::get('/toevoegen/nieuws', 'Add_contentController@nieuws');
@@ -50,6 +52,7 @@ Route::post('/toevoegen/nieuws', 'Add_contentController@toevoegenNieuws');
 Route::post('/toevoegen/tutorial', 'Add_contentController@toevoegenTutorial');
 Route::post('/toevoegen/profiel', 'Add_contentController@toevoegenProfiel');
 Route::post('/toevoegen/faq', 'FaqController@toevoegenFaq');
+Route::post('/update/faq/{id}','FaqController@updateFaq');
 Route::get('/toevoegen/faq','FaqController@toevoegenFaqView');
 
 Route::post('/contact','EmailController@contact');

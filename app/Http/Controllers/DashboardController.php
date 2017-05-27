@@ -29,6 +29,8 @@ class DashboardController extends Controller
     {
         return view('dashboard/main-dashboard');
     }
+    
+
 
     public function toegevoegd_inhoud()
     {

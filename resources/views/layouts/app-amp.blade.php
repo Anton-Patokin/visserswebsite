@@ -10,8 +10,7 @@
     @include('layouts.amp.ampCss')
     @include('layouts.amp.css')
     <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-    <script async custom-element="amp-iframe"
-            src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    @yield('script')
 </head>
 <body class="background-gray">
 <div class="container-fluid">

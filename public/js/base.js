@@ -160,6 +160,11 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         console.log('Profiel');
     }
 
+
+    $scope.faqinit=function (vraag,antwoord) {
+        $scope.vraag=vraag;
+        $scope.antwoord = antwoord;
+    }
     $scope.initAanpassenNieuwsArtikel = function (titel, inleiding, url) {
         $scope.nieuws = {
             inleiding: inleiding,

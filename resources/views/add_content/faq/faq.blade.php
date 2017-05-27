@@ -7,7 +7,7 @@ $message = Config::get('constant.Headings');
     <div class="container-fluid">
         @include('berichten.cookieBericht')
 
-        <?php $head = $message['faq'];$head_description = $message['faq_toevoegen'];?>
+        <?php $head = (isset($update)) ? $message['update'] : $message['faq'];$head_description = (isset($update)) ? $message['update_faq'] : $message['faq_toevoegen'];?>
         @include('header')
 
         <div class="row">
@@ -16,14 +16,20 @@ $message = Config::get('constant.Headings');
                     <div class="caption">
                         <div class="box-card-body">
                             <h3 class="text-uppercase">Formulier</h3>
-                            <form class="form-horizontal" role="form" method="POST" action="{{url('/toevoegen/faq')}}">
+                            <form class="form-horizontal" role="form" method="POST" action="<?php
+                            if (isset($update)) {
+                                echo url('/update/faq/'.$update->id);
+                            } else {
+                                echo url('/toevoegen/faq');
+                            }
+                            ?>">
                                 {{ csrf_field() }}
 
                                 <div class="form-group{{ $errors->has('vraag') ? ' has-error' : '' }}">
                                     <label for="vraag" class="col-md-12">Wat is het vraag</label>
 
                                     <div class="col-md-12">
-                                   <textarea ng-init="vraag='{{old('vraag')}}'" id="vraag" type="text"
+                                   <textarea  id="vraag" type="text"
                                              class="form-control" name="vraag"
                                              class="form-control input-lg" ng-focus="classVraagFocus =true"
                                              ng-blur="classVraagFocus =false" ng-model="vraag"
@@ -49,7 +55,7 @@ $message = Config::get('constant.Headings');
                                     <label for="antwoord" class="col-md-12">Schrijf hier antwoord</label>
 
                                     <div class="col-md-12">
-                                   <textarea ng-init="antwoord='{{old('antwoord')}}'" id="antwoord" type="text"
+                                   <textarea  id="antwoord" type="text"
                                              class="form-control" name="antwoord"
                                              class="form-control input-lg" ng-focus="classAntwoordFocus =true"
                                              ng-blur="classAntwoordFocus =false" ng-model="antwoord"
@@ -79,6 +85,8 @@ $message = Config::get('constant.Headings');
                                                value="<?php
                                                if (old('volgerde')) {
                                                    echo old('volgerde');
+                                               } elseif (isset($update)){
+                                                   echo  $update->volgerde;
                                                } elseif ($max) {
                                                    echo $max;
                                                }
@@ -101,6 +109,11 @@ $message = Config::get('constant.Headings');
                                         </button>
                                     </div>
                                 </div>
+                                @if(isset($update) && !old('vraag')&& !old('antwoord'))
+                                    <div ng-init='faqinit("{{$update->vraag}}","{{$update->antwoord}}")'></div>
+                                @else
+                                    <div ng-init="vraag='{{old('vraag')}}';antwoord='{{old('antwoord')}}'"></div>
+                                @endif
                             </form>
                         </div>
                     </div>

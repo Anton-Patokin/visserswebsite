@@ -156,6 +156,22 @@
     padding: 0px 10px 20px;
   }
 
+
+  .panel.margin-0 {
+    margin-bottom: 0px;
+
+  }
+
+  .panel .panel-body {
+    background-color: #323b44;
+  }
+  .panel .panel-body h3 {
+    color: #fff;
+  }
+  .panel .panel-body p {
+    font-size: 1.2em;
+  }
+
   .caption {
     .adres h3{
       margin: 0;

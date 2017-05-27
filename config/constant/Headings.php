@@ -22,6 +22,8 @@ return [
     'faq'=>'FAQ',
     'faq_description'=>'Meest voorkomende vragen',
     'faq_toevoegen'=>'Voeg nieuw faq toe',
+    'update'=>'Aanpasen',
+    'update_faq'=>'Pas het faq aan',
 
 ]
 ?>
