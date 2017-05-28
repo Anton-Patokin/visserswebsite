@@ -19,7 +19,7 @@ class CreateNieuwsArtikelsTable extends Migration
             $table->string('type')->default('nieuwsArtikel');
             $table->string('image');
             $table->string('inleiding');
-            $table->longText('wiziwig');
+            $table->string('url');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('active')->nullable();

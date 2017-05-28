@@ -23,7 +23,7 @@ $head_description = $message['locatie_description']; ?>
                     </div>
 
 
-                    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 adres">
+                    <div ng-show='input.adres.land' class="col-xs-12 col-sm-3 col-md-3 col-lg-3 adres">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>Land:</h3></div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.land }}</h4></div>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>Gewest:</h3></div>

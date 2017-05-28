@@ -1,5 +1,5 @@
 button:disabled,
-button[disabled]{
+button[disabled] {
   border: 1px solid #999999;
   background-color: $dark-blue*2;
 }
@@ -17,8 +17,9 @@ button[disabled]{
   padding: 9px 0;
   font-family: 'Open Sans', sans-serif;
 }
-.box-card{
-  button{
+
+.box-card {
+  button {
     width: 100%;
     background-color: $dark-blue;
     color: #fff;
@@ -33,6 +34,50 @@ button[disabled]{
   }
 }
 
+.modal .form-group .nogEenVisSoort {
+  min-width: 45px;
+  min-height: 45px;
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
+
+//.modal .form-group {
+//  .btn-circle {
+//    width: 30px;
+//    height: 30px;
+//    text-align: center;
+//    padding: 6px 0;
+//    font-size: 12px;
+//    line-height: 1.428571429;
+//    border-radius: 15px;
+//  }
+//  .btn-circle.btn-lg {
+//    width: 45px;
+//    height: 45px;
+//    padding: 10px 16px;
+//    font-size: 18px;
+//    line-height: 1.33;
+//    border-radius: 25px;
+//    i {
+//      position: absolute;
+//      top: 50%;
+//      left: 50%;
+//      transform: translateX(-50%) translateY(-50%);
+//    }
+//  }
+//  .btn-circle.btn-xl {
+//    width: 70px;
+//    height: 70px;
+//    padding: 10px 16px;
+//    font-size: 24px;
+//    line-height: 1.33;
+//    border-radius: 35px;
+//  }
+//}
 
 //button[disabled], html input[disabled] {
 //  background-color: #fff;

@@ -31,28 +31,21 @@ class FaqController extends Controller
     public function verwijderFaq($id)
     {
         $bericht = $this->berichten['error'];
-
         if (Auth::user()->admin) {
             $faq = Faq::find($id);
             $nextNumbar = $faq->volgerde;
             $faq->delete();
-
             $bericht = $this->berichten['verwijderen'];
-
             $nextNumbar = $nextNumbar + 1;
             $oldFaqs = Faq::orderBy('volgerde', 'asc')->where('volgerde', '>=', $nextNumbar)->get();
             $nextNumbar = $nextNumbar - 1;
-
             foreach ($oldFaqs as $oldFaq) {
                 $oldFaq->volgerde = $nextNumbar;
                 $oldFaq->save();
                 $nextNumbar++;
             }
-
-
         }
         $cookie = cookie('bericht', $bericht, 1);
-
         return back()->cookie($cookie);
     }
 

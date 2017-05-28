@@ -5,8 +5,9 @@ $messages = Config::get('constant.Headings');
 @section('content')
     <div class="container-fluid">
         @include('berichten.cookieBericht')
-        <?php $head = $messages['tutorial_titel'];$head_description = $messages['tutorial_discription'];?>
+        <?php $head = $messages['tutorial_titel_short'] . $category;$head_description = $messages['tutorial_discription'];?>
         @include('header')
+
         @include('components.listOfThumbnails')
 
     </div>

@@ -1,6 +1,6 @@
 var center = {latitude: 51.218826, longitude: 4.402950};
 var MAX_SIZE = 5000000;//5mb
-var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial']);
+var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial','ngCookies']);
 
 
 myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader', '$http', '$window', function ($scope, uiGmapGoogleMapApi, fileReader, $http, $window) {
@@ -561,6 +561,16 @@ myApp.config(function (uiGmapGoogleMapApiProvider) {
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: "places,geometry,visualization"
     });
+});
+
+
+myApp.config(function($mdDateLocaleProvider) {
+    $mdDateLocaleProvider.formatDate = function(date) {
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+        return day + '/' + (monthIndex + 1) + '/' + year;
+    };
 });
 myApp.directive('filterList', function ($timeout) {
     return {

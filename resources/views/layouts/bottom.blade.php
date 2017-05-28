@@ -67,7 +67,7 @@
                                     <ul class="dropdown-menu" role="menu">
                                         @foreach($tutorialCategories as $key=>$category)
                                             <li>
-                                                <a href="{{url('/gebruiker')}}">
+                                                <a href="{{url('/tutorials/'.$category->category)}}">
                                                     {{$category->category}}
                                                 </a>
                                             </li>

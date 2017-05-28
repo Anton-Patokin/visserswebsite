@@ -8,7 +8,7 @@ $message = Config::get('constant.Headings');
         @include('add_content.progress')
     </div>
 @endsection
-@section('script')
-    <link href="{{ asset('css/angular-material.min.css') }}" rel="stylesheet">
+{{--@section('script')--}}
+    {{--<link href="{{ asset('css/angular-material.min.css') }}" rel="stylesheet">--}}
 
-@endsection
+{{--@endsection--}}

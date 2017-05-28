@@ -19,7 +19,7 @@ class CreateTutorialsTable extends Migration
             $table->string('image');
             $table->string('type')->default('tutorial');
             $table->string('inleiding');
-            $table->longText('wiziwig');
+            $table->string('url');
             $table->string('category');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

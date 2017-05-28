@@ -24,6 +24,8 @@ return [
     'faq_toevoegen'=>'Voeg nieuw faq toe',
     'update'=>'Aanpasen',
     'update_faq'=>'Pas het faq aan',
-
+    'tutorial_titel_short'=>'tutorial & ',
+    'dashboard'=>'Dashboard',
+    'dahboard_description'=>'In deze sectie vind u overzicht van u activiteiten op de website',
 ]
 ?>

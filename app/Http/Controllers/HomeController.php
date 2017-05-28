@@ -174,8 +174,22 @@ class HomeController extends Controller
         return $this->get_content_from_database('users', $id, 'trainer', 'trainers');
     }
 
-    public function tutorial($id = null, $titel = null)
+
+    public  function tutorials_by_category($category){
+        $contents =Tutorial::where('active', '2')->where('category',$category)->paginate(25);
+        return view('show.tutorials',['contents'=>$contents,'category'=>$category]);
+    }
+    public function tutorial($id = null, $titel = null,$amp=null)
     {
+        if ($amp == 'amp') {
+            $value = DB::table('tutorials')->find($id);
+            if ($value->active == 2) {
+                $relevente = Tutorial::where('active', '2')->search($value->inleiding, null, true, true)->take(15)->get();
+                return view('show/' . 'tutorial' . '-amp', ['content' => $value, 'relevente' => $relevente]);
+            } else {
+                return $this->paginaNietGevonden();
+            }
+        }
         return $this->get_content_from_database('tutorials', $id, 'tutorial', 'tutorials');
     }
 
@@ -215,6 +229,10 @@ class HomeController extends Controller
                 }
                 if ($tabel == 'users') {
                     $relevente = User::where('active', '2')->search($value->provincie, null, true, true)->take(15)->get();;
+                    return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
+                }
+                if ($tabel == 'tutorials') {
+                    $relevente = Tutorial::where('active', '2')->search($value->inleiding, null, true, true)->take(15)->get();;
                     return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 return view('show/' . $view1, ['content' => $value]);

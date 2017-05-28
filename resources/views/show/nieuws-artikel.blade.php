@@ -17,7 +17,7 @@ $message = Config::get('constant.Headings');
                 <div class="thumbnail">
                     <div class="caption">
 
-                        {!! $content->wiziwig !!}
+                        {!! File::get('files/'.$content->url.'.php') !!}
                     </div>
                 </div>
             </div>
