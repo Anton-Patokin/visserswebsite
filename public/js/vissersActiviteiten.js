@@ -4,7 +4,7 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
     $scope.visVagnstShowGoolgeMaps = false;
     $scope.visvanstMapMarkershowMarker = false;
 
-
+var datumVandaag= new Date();
     $scope.visVagst = {
         id:'',
         vissen: [{aantal: 0, soort: ''}],
@@ -13,9 +13,10 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
         gevangen: '3',
         nietGevangen: '3',
         vangst: '',
-        myDate: new Date(),
+        myDate: datumVandaag,
         isOpen: false
     }
+  
 
     $scope.nogEenVisSoort = function () {
         $scope.visVagst.vissen.push({aantal: 0, soort: ''})
@@ -23,19 +24,28 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
     $scope.verwijderVisSoort = function ($index) {
         $scope.visVagst.vissen.splice($index, 1);
     }
+
+
+var nummerVanDeDag = datumVandaag.getDate();
+    $scope.onlyWeekendsPredicate=function (date) {
+        var day = date.getDate();
+        return day<= nummerVanDeDag;
+    };
     $scope.minDate = new Date(
-        $scope.visVagst.myDate.getFullYear(),
-        $scope.visVagst.myDate.getMonth() - 1,
-        $scope.visVagst.myDate.getDate());
+        datumVandaag.getFullYear(),
+        datumVandaag.getMonth() - 1,
+        datumVandaag.getDate());
 
     $scope.maxDate = new Date(
-        $scope.visVagst.myDate.getFullYear(),
-        $scope.visVagst.myDate.getMonth(),
-        $scope.visVagst.myDate.getDate());
+        datumVandaag.getFullYear(),
+        datumVandaag.getMonth(),
+        datumVandaag.getDate());
 
     $scope.submitVisVangstModalForm = function () {
+        console.log($scope.visVangstModalForm.$valid);
+        console.log($scope.visVangstModalForm);
         if ($scope.visVangstModalForm.$valid) {
-
+            console.log('send form');
             $scope.showError = false;
             $scope.model = {
                 name: "",
@@ -46,6 +56,7 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
                 url: ROUTEFRONT + '/api/save/visVangst',
                 data: {input: $scope.visVagst}
             }).success(function (data, status, headers, config) {
+                console.log(data);
                 if (data == 'success') {
                     $scope.serverErrorMassage = false;
                 } else {
@@ -136,7 +147,7 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 1);
         //activeren van cookie haal dat uit comentaar na het debugen
-        $cookies.put('visActiviteitenWeek', 'false', {'expires': expireDate});
+        // $cookies.put('visActiviteitenWeek', 'false', {'expires': expireDate});
 
         if (answare == 'ja') {
             $scope.$watch('visVagst.myDate', function () {

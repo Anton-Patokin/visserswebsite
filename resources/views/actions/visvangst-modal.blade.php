@@ -21,7 +21,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                 <label for="datum ">Wanneer ben je gaan vissen?</label>
                                 <md-datepicker class="col-md-12" md-min-date="minDate" md-max-date="maxDate"
-                                               ng-model="visVagst.myDate" md-placeholder="Enter date"></md-datepicker>
+                                               ng-model="visVagst.myDate" md-placeholder="Enter date" md-date-filter="onlyWeekendsPredicate"></md-datepicker>
                                 <input name="datum" type="text" ng-model="visVagst.myDate" required hidden>
                                 <div class="space-for-errors" ng-messages="visVangstModalForm.datum.$error"
                                      ng-if="visVangstModalForm.datum.$dirty || showError">
@@ -108,25 +108,6 @@
 
                             <div class="col-md-12" ng-if="visVagnstShowGoolgeMaps">
                                 <div class="form-group">
-                                    <style>
-                                        .pac-container {
-                                            background-color: #FFF;
-                                            z-index: 20;
-                                            position: fixed;
-                                            display: inline-block;
-                                            float: left;
-                                        }
-
-                                        .modal {
-                                            z-index: 20;
-                                        }
-
-                                        .modal-backdrop {
-                                            z-index: 10;
-                                        }
-
-                                        ​
-                                    </style>
                                     <label for="sel1">Waar heb je gevist?</label>
                                     <ui-gmap-google-map events="visvanstMap.events" options="visvanstMap.options"
                                                         center='visvanstMap.center'
@@ -201,6 +182,11 @@
                                             <span class="glyphicon glyphicon-exclamation-sign"
                                                   aria-hidden="true"></span>
                                                         Och, 100 is genoeg
+                                                    </p>
+                                                    <p ng-message="min" class="error alert alert-danger">
+                                            <span class="glyphicon glyphicon-exclamation-sign"
+                                                  aria-hidden="true"></span>
+                                                        Heb je 0 vissen gevangen?
                                                     </p>
                                                     <p ng-message="pattern" class="error alert alert-danger">
                                             <span class="glyphicon glyphicon-exclamation-sign"

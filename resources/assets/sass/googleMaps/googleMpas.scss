@@ -150,3 +150,10 @@ div.card.bordered.small
   letter-spacing: 0.5px;
   color: #333333;
 }
+.pac-container {
+  background-color: #FFF;
+  z-index: 20;
+  position: fixed;
+  display: inline-block;
+  float: left;
+}
