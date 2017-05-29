@@ -46,6 +46,9 @@
 
 <script src="{{url('/js/libs/angular-simple-logger.min.js')}}"></script>
 <script src="{{url('/js/libs/angular-google-maps.js')}}"></script>
+<script src="{{url('/js/libs/angular-messages.js')}}"></script>
+
+
 <script src="{{url('/js/libs/angular-animate.min.js')}}"></script>
 <script src="{{url('/js/libs/angular-aria.min.js')}}"></script>
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-messages.min.js"></script>--}}
@@ -54,32 +57,28 @@
 <script src="{{ asset('js/base.js') }}"></script>
 <script src="{{url('/js/file-reader.js')}}"></script>
 <script src="{{url('/js/MainGoogleMaps.js')}}"></script>
+<script src="{{asset('js/vissersActiviteiten.js')}}"></script>
 <script src="{{url('/js/smallGoogleMaps.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/libs/angular-cookies.min.js')}}"></script>
 
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="{{asset('js/vissersActiviteiten.js')}}"></script>
 <script id="searchbox.tpl.html" type="text/ng-template">
-    <input class="form-search input-sm" type="text" placeholder="Locatie">
+    <input class="form-search input-sm" type="text" placeholder="Locatie" z-index="50000">
 </script>
 <link href="{{ asset('css/angular-material.min.css') }}" rel="stylesheet">
 
 <script>
     $(document).ready(function () {
+
+        if($('#snackbar').length){
+            var x = document.getElementById("snackbar")
+            x.className = "show";
+            setTimeout(function () {
+                x.className = x.className.replace("show", "");
+            }, 30000);
+            $('[data-toggle="tooltip"]').tooltip();
+        }
         if ($("#vertikalscroll").length) {
-
-
-            if($('#snackbar').length){
-                var x = document.getElementById("snackbar")
-                x.className = "show";
-                setTimeout(function () {
-                    x.className = x.className.replace("show", "");
-                }, 30000);
-                $('[data-toggle="tooltip"]').tooltip();
-            }
-
-
-
             var scrolled = 0;
             var maxScroll = $("#vertikalscroll")[0].scrollHeight - 300;
             var move = false;
