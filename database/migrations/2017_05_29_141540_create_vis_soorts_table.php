@@ -17,6 +17,7 @@ class CreateVisSoortsTable extends Migration
             $table->increments('id');
             $table->integer('aantal');
             $table->string('soort');
+            $table->date('datum');
             $table->integer('vis_dag_id')->unsigned();
             $table->foreign('vis_dag_id')->references('id')->on('vis_dags');
             $table->timestamps();

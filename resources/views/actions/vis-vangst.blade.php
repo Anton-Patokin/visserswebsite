@@ -106,8 +106,13 @@
         vertical-align: middle;
     }
     .md-datepicker-calendar-pane.md-pane-open{
-        z-index: 20000!important;
+        z-index: 100000;
     }
+    .md-datepicker-input-mask{
+        overflow: hidden;
+    }
+
+
 </style>
 <div ng-controller="vissersActiviteitenController">
     <div id="snackbar" ng-if="ShowvisActiviteitenPopUp">

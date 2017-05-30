@@ -15,20 +15,21 @@ class CreateVisDagsTable extends Migration
     {
         Schema::create('vis_dags', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('temp');
-            $table->time('sunrise');
-            $table->time('sunset');
-            $table->integer('humidity');
-            $table->decimal('pressure',7,2);
-            $table->integer('rising');
-            $table->decimal('visibility',4,2);
-            $table->integer('chill');
-            $table->decimal('speed', 5, 3);
-            $table->integer('direction');
-            $table->integer('visGevangenSucces');
-            $table->string('beordeling');
+            $table->integer('temp')->nullable();
+            $table->time('sunrise')->nullable();
+            $table->time('sunset')->nullable();
+            $table->integer('humidity')->nullable();
+            $table->decimal('pressure',7,2)->nullable();
+            $table->integer('rising')->nullable();
+            $table->decimal('visibility',4,2)->nullable();
+            $table->integer('chill')->nullable();
+            $table->decimal('speed', 5, 3)->nullable();
+            $table->integer('direction')->nullable();
+            $table->integer('visGevangenSucces')->nullable();
+            $table->string('beordeling')->nullable();
             $table->decimal('lat',12,8)->nullable();
             $table->decimal('lng',12,8)->nullable();
+            $table->date('datum');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
