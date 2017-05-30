@@ -4,7 +4,7 @@
     <div class="container-fluid">
         @include('berichten.cookieBericht')
 
-        <?php $head = 'Dashboard';$head_description = 'Hier vind ja overzicht van alle door jouw toegevoegde inhoud';?>
+        <?php $head = 'Dashboard';$head_description = 'Hier vind je een overzicht van de nieuw toegevoegde inhoud';?>
         @include('header')
         <div class="row margin-top-1">
             <div class="col-md-12 box-card">

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         @include('berichten.cookieBericht')
-        <?php $head = 'Dashboard';$head_description = 'Hier vind ja overzicht van alle door jouw toegevoegde inhoud';?>
+        <?php $head = 'Dashboard';$head_description = 'Verwijderde inhoud';?>
         @include('header')
 
 

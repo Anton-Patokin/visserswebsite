@@ -17,30 +17,22 @@ $message = Config::get('constant.Headings');
                         </div>
                         <div class="box-card-body margin-top-2">
                             <h4>Idee</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled it to make a type specimen book. It has
-                                survived not only five centuries, but also th</p>
+                            <p>Fishing Friends is begonnen als een Facebook pagina waarop hengelaars uit de hele wereld </p>
+                            elkaar kunnen ontmoeten. Met deze website willen we het delen van gegevens zoals ideale
+                            visomstandigheden kwantificeren.
                             <h4>Uitwerking</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled it to make a type specimen book. It has
-                                survived not only five centuries, but also th</p>
+                            <p>FishingFriends.be is opgemaakt met de nieuwste webtechnologieën, met oog voor: snelheid,
+                                gebruiksgemak en overzichtelijkheid.</p>
+
                             <h4>Doel</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled it to make a type specimen book. It has
-                                survived not only five centuries, but also th</p>
+                            <p>Naar de toekomst toe willen we hengelaars uit de hele wereld samen brengen zodat ze</p>
+                            gegevens kunnen delen maar ook kunnen afspreken en gezamelijke doelstellingen kunnen verwezenlijken.
                             <h4>Voor wie is het?</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled it to make a type specimen book. It has
-                                survived not only five centuries, but also th</p>
+                            <p>Vool alle soorten hengelaars die op zoek zijn naar informatie.</p>
+                            Voor gidsen en hengelsportzaken of andere organistaties die hierbij betrokken zijn en die
+                            leden, klanten, geïnteresseerden, ... zoeken.
                             <h4>Vragen?</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry's standard dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled it to make a type specimen book. It has
-                                survived not only five centuries, but also th</p>
+                            <p>Contacteer ons met al uw vragen en/of verzoeken.</p>
 
                         </div>
                     </div>
@@ -61,7 +53,7 @@ $message = Config::get('constant.Headings');
                         </div>
                         <div class="box-card-head text-center">
                             <h3 class="google-maps-titel ">Anton Patokin</h3>
-                            <p>Web develper in opleiding bij kdg hoboken.</p>
+                            <p>Web developer in opleiding bij kdg hoboken.</p>
                             <div class="col-md-12">
                                 <hr>
                             </div>
@@ -96,8 +88,8 @@ $message = Config::get('constant.Headings');
                         </div>
                         <div class="box-card-head text-center">
                             <h3 class="google-maps-titel ">Nieuwe colega</h3>
-                            <p>Onze website is altijd op zoek naar vrijwileges die zien hebben om inpreng te brengen in
-                                visser wereld</p>
+                            <p>Onze website is altijd op zoek naar vrijwilligers die zin hebben om iets bij te brengen aan de
+                            hengelsportwereld</p>
                             <div class="col-md-12">
                                 <hr>
                             </div>

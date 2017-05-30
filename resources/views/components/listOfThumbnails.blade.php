@@ -46,9 +46,8 @@ $lengthColumns = 4;
             <div class="thumbnail">
                 <div class="caption">
 
-                    <h1>Deze category is leeg</h1>
-                    <p>Op deze website kunnen mensen zelf dingen posten zo dat andere er ook iets aan hebben je kunt dat
-                        ook doen hier</p>
+                    <h1>Deze categorie is leeg</h1>
+                    <p>Op deze website kunnen mensen zelf dingen posten zodat anderen er ook iets aan hebben.</p>
                     <a href="{{url('/toevoegen')}}"><p>meer</p></a>
                 </div>
             </div>

@@ -33,7 +33,7 @@ $content->dag  = 11;
         <div class="thumbnail ">
             <div class="caption">
                 <div class="box-card-head">
-                    <h3 class="text-center">Kies soort inhoud je wilt toevoegen</h3>
+                    <h3 class="text-center">Kies soort inhoud die je wilt delen</h3>
                 </div>
                 <div class="box-card-body margin-top-4 margin-bottom-4">
                     {{--<div ng-click="gotoStep(2);putValue('nieuws')" class="well text"--}}
@@ -46,18 +46,18 @@ $content->dag  = 11;
                         <div ng-click="gotoStep(2);putValue('trainer')" class="well"
                              ng-class="{'show-arrow':showArrow2}"
                              ng-mouseover="showArrow2=true;show_exampale=2" ng-mouseleave="showArrow2=false">
-                            Word Trainer voor andere mensen
+                            Maak een profiel aan als gids
                             <span class="arrow pull-right"></span>
                         </div>
                     @endif
                     <div ng-click="gotoStep(2);putValue('wedstrijd')" class="well" ng-class="{'show-arrow':showArrow3}"
                          ng-mouseover="showArrow3=true;show_exampale=3" ng-mouseleave="showArrow3=false">
-                        Een visser plekje
+                        Organiseer een wedstrijd
                         <span class="arrow pull-right"></span>
                     </div>
                     <div ng-click="gotoStep(2);putValue('plaats')" class="well" ng-class="{'show-arrow':showArrow4}"
                          ng-mouseover="showArrow4=true;show_exampale=4" ng-mouseleave="showArrow4=false">
-                        Vis plaats toevoegen
+                        Visstek toevoegen
                         <span class="arrow pull-right"></span>
                     </div>
                 </div>

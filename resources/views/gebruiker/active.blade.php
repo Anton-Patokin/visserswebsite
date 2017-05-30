@@ -20,7 +20,6 @@
                                 </ui-gmap-marker>
                             </ui-gmap-google-map>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -53,7 +52,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
                             <h4 class="">
-                                telefonnummer
+                                telefoonnummer
                             </h4>
                         </div>
                         <div class="thumbnail-body">
@@ -91,7 +90,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
                             <h4 class="">
-                                Active sinds
+                                Actief sinds
                             </h4>
                         </div>
                         <div class="thumbnail-body">
@@ -103,7 +102,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
                             <h4 class="">
-                                Trainer of gids
+                                Gids
                             </h4>
                         </div>
                         <div class="thumbnail-body">
@@ -115,7 +114,7 @@
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
                             <h4 class="">
-                                Aanpasen
+                                Aanpassen
                             </h4>
                         </div>
                         <div class="thumbnail-body">

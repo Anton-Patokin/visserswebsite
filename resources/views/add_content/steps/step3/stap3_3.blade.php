@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="naam_visplek">Naam van de vis plek*</label>
+                                <label for="naam_visplek">Naam van de visstek*</label>
                                 <input name="naam_visplek" ng-class="{'alert-danger':input.naam_visplek.length>50}"
                                        type="text"
                                        class="form-control input-lg" ng-focus="classnaam_visplekFocus =true"
@@ -25,7 +25,7 @@
                                     <p class="error alert alert-danger"
                                        ng-show="visPlekForm.naam_visplek.$error.required && showError">
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        Naam van de visplek is verplicht
+                                        Naam van de visstek is verplicht
                                     </p>
                                     <small ng-if="input.naam_visplek.length>5 && !visPlekForm.naam_visplek.$error.required"
                                            class="pull-right max-charakters"
@@ -80,7 +80,7 @@
                                     <p class="error alert alert-danger"
                                        ng-show="visPlekForm.viswater.$error.required && showError">
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        Viswater en visstekken uitleeg is verplicht
+                                        Viswater en visstekken uitleg is verplicht
                                     </p>
                                     <small ng-if="input.viswater.length>5" class="pull-right max-charakters" ng-cloak=""
                                            ng-class="{'show':classViswaterFocus}">@{{1000-input.viswater.length}}
@@ -103,12 +103,12 @@
                                     <p class="error alert alert-danger "
                                        ng-show="visPlekForm.reglementen.$error.maxlength && showError">
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        Reglementen visvijver uitleeg is te lang
+                                        Reglementen visvijver uitleg is te lang
                                     </p>
                                     <p class="error alert alert-danger"
                                        ng-show="visPlekForm.reglementen.$error.required && showError">
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        Reglementen visvijver uitlig is verplicht
+                                        Reglementen visvijver uitleg is verplicht
                                     </p>
                                     <small ng-if="input.reglementen.length>5" class="pull-right max-charakters"
                                            ng-cloak=""
@@ -121,7 +121,7 @@
                     </div>
                     <div class="row margin-bottom-3">
                         <div class="col-md-6">
-                            <label for="nachvissen">Mach je er nachvissen?</label>
+                            <label for="nachvissen">Mag je er nachtvissen?</label>
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="radio-inline"><input type="radio" name="nachvissen"
@@ -173,7 +173,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="vergunigen">Vergunigen en rechten</label>
+                                <label for="vergunigen">Vergunningen en rechten</label>
                                 <input name="vergunigen" ng-class="{'alert-danger':input.vergunigen.length>250}"
                                        type="text"
                                        class="form-control input-lg" ng-focus="classVergunigenFocus =true"
@@ -184,12 +184,12 @@
                                     <p class="error alert alert-danger "
                                        ng-show="visPlekForm.vergunigen.$error.maxlength && showError">
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        Vergunigen en rechten is te lang
+                                        Vergunningen en rechten is te lang
                                     </p>
                                     <p class="error alert alert-danger"
                                        ng-show="visPlekForm.vergunigen.$error.required && showError">
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        Vergunigen en rechten is verplicht
+                                        Vergunningen en rechten is verplicht
                                     </p>
                                     <small ng-if="input.vergunigen.length>5 && !visPlekForm.vergunigen.$error.required"
                                            class="pull-right max-charakters"
@@ -203,7 +203,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="vissoorten">Belangrijkste vissoorte*</label>
+                                <label for="vissoorten">Belangrijkste vissoorten*</label>
                                 <input name="vissoorten" ng-class="{'alert-danger':input.vissoorten.length>250}"
                                        type="text"
                                        class="form-control input-lg" ng-focus="classVissoortenFocus =true"
@@ -241,12 +241,12 @@
                                     <p class="error alert alert-danger "
                                        ng-show="visPlekForm.text.$error.maxlength && showError">
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        Extra uitleeg is te lang
+                                        Extra uitleg is te lang
                                     </p>
                                     <p class="error alert alert-danger"
                                        ng-show="visPlekForm.text.$error.required && showError">
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        Extra uitlig is verplicht
+                                        Extra uitleg is verplicht
                                     </p>
                                     <small ng-if="input.text.length>5" class="pull-right max-charakters" ng-cloak=""
                                            ng-class="{'show':classTextFocus}">@{{1000-input.text.length}} karakters over

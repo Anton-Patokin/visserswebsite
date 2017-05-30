@@ -41,7 +41,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
-                        <?php $head = 'Locatie kiezen';$head_description = 'Kies locatie waar je meest actiev bent';?>
+                        <?php $head = 'Locatie kiezen';$head_description = 'Kies locatie waar je meest actief bent';?>
                         @include('header')
                     </div>
                 </div>
@@ -69,7 +69,7 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-12">
-                        <?php $head = 'Formulier';$head_description = 'vul ontbrekende gegevens om jouw profiel te voltooien';?>
+                        <?php $head = 'Formulier';$head_description = 'vul ontbrekende gegevens in om jouw profiel te voltooien';?>
                         @include('header')
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="sel1">geslacht*</label>
+                                        <label for="sel1">Geslacht*</label>
                                         <select class="form-control input-lg ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
                                                 ng-model="input.geslacht" required="required" name="geslacht"
                                                 aria-invalid="true">
@@ -128,7 +128,7 @@
                                                ng-show="visTrainerForm.leeftijd.range.$valid && showError">
                                                 <span class="glyphicon glyphicon-exclamation-sign"
                                                       aria-hidden="true"></span>
-                                                leeftijd moet tussen 16 en 100 jaar zijn.
+                                                leeftijd moet tussen 15 en 100 jaar zijn.
                                             </p>
                                             <p class="error alert alert-danger"
                                                ng-show="visTrainerForm.leeftijd.$error.required && showError">
@@ -153,7 +153,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="kostprijs ">kostprijs in euro per les*</label>
+                                        <label for="kostprijs ">kostprijs in euro per sessie*</label>
                                         <input name="kostprijs" type="number" step="0.50"
                                                ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"
                                                class="form-control input-lg" id="" placeholder="34.15"
@@ -166,7 +166,7 @@
                                                ng-show="!visTrainerForm.kostprijs.$valid">
                                                 <span class="glyphicon glyphicon-exclamation-sign"
                                                       aria-hidden="true"></span>
-                                                Ongeldig bedraag
+                                                Ongeldig bedrag
                                             </p>
                                             <p class="error alert alert-danger "
                                                ng-show="visTrainerForm.kostprijs.$error.maxlength && showError">
@@ -202,13 +202,13 @@
                                                ng-show="visTrainerForm.text.$error.maxlength && showError">
                                                 <span class="glyphicon glyphicon-exclamation-sign"
                                                       aria-hidden="true"></span>
-                                                Extra uitleeg is te lang
+                                                Extra uitleg is te lang
                                             </p>
                                             <p class="error alert alert-danger"
                                                ng-show="visTrainerForm.text.$error.required && showError">
                                                 <span class="glyphicon glyphicon-exclamation-sign"
                                                       aria-hidden="true"></span>
-                                                Extra uitlig is verplicht
+                                                Extra uitleg is verplicht
                                             </p>
                                             <small ng-if="input.text.length>5" class="pull-right max-charakters"
                                                    ng-cloak=""

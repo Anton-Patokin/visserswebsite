@@ -15,9 +15,9 @@ class ContestList extends Seeder
         DB::table('categories')->delete();
         DB::table('hengels')->delete();
 
-        $visserijs = ['Op tijd', 'Op gewicht'];
-        $categories = [ 'Vaste hengel','Werphengel','dobber','Hengelkeuze vrij'];
-        $hengels = [ 'Vaste hengel','Werphengel','dobber','Hengelkeuze vrij'];
+        $visserijs = ['Op aantal', 'Op gewicht','Totale lengte'];
+        $categories = [ 'Witvissen','Vliegvissen','Karpervissen','Roofvissen','Zeevissen','Bootvissen','Andere'];
+        $hengels = [ 'Vaste stok','Matchhengel','Feeder','Vliegenlat','Dropshot/Jighengel','Spinhengel','Surfcasting','Boothengel','Andere'];
 
         foreach ($visserijs as $key => $type) {
             DB::table('visserijs')->insert([

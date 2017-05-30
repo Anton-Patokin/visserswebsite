@@ -41,14 +41,14 @@
                             <a href="{{url('/dashboard')}}">Jouw overzicht</a>
                         </li>
                         <li class="{{Menu::isActiveList('dashboard/toegevoegd-inhoud')}}">
-                            <a href="{{url('dashboard/toegevoegd-inhoud')}}">Toegevoegd-inhoud</a>
+                            <a href="{{url('dashboard/toegevoegd-inhoud')}}">Toegevoegde inhoud</a>
                         </li>
                         @if(Auth::user()->admin)
                             <li class="{{Menu::isActiveList('dashboard/nieuw-toegevoegd-inhoud')}}">
                                 <a href="{{url('dashboard/nieuw-toegevoegd-inhoud')}}">Nieuwe inhoud</a>
                             </li>
                             <li class="{{Menu::isActiveList('dashboard/alle-toegevoegd-inhoud')}}">
-                                <a href="{{url('dashboard/alle-toegevoegd-inhoud')}}">Alle toegevoegd-inhoud</a>
+                                <a href="{{url('dashboard/alle-toegevoegd-inhoud')}}">Overzicht toegevoegde inhoud</a>
                             </li>
                             <li class="{{Menu::isActiveList('dashboard/alle-verwijderde')}}">
                                 <a href="{{url('dashboard/alle-verwijderde')}}">Verwijderde</a>

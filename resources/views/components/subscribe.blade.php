@@ -9,7 +9,7 @@
                       role="form" action="{{url('/toevoegen/subscribe')}}">
                     {{ csrf_field() }}
                         <input name="email" class="form-control grey" type="text"
-                               placeholder="Jouw e-mail adress">
+                               placeholder="Jouw email adres">
                         <input name="naam" type="text" hidden>
 
                         @if ($errors->has('email'))

@@ -112,13 +112,14 @@
 <div ng-controller="vissersActiviteitenController">
     <div id="snackbar" ng-if="ShowvisActiviteitenPopUp">
         <a href="#" class="snackbar-icon" data-toggle="tooltip"
-           title="We verzamelen gegevens van vissers om later voorspelingen te kunnen doen">
+           title="We verzamelen gegevens van vissers om later voorspelingen te kunnen maken over vangstkansen van toekomstige visdagen.
+             ">
             <div class=" glyphicon glyphicon-question-sign pull-right">
             </div>
         </a>
         <div class="row">
             <div class="col-md-12 margin-bottom-3">
-                Heb je deze week gaan vissen?
+                Ben je deze week gaan vissen?
             </div>
             <div class="row">
                 <div class="col-md-12">

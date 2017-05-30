@@ -47,7 +47,7 @@ $message = Config::get('constant.Headings');
                                             </div>
                                         @endforeach
                                     @else
-                                        <h1>Momentel zijn er nog geen vragen gesteld wees eerste die het doen</h1>
+                                        <h1>Momenteel zijn er nog geen vragen gesteld. Wees de eerste die het doet.</h1>
                                         <a href="{{url('/contact')}}"><p>Contact</p></a>
                                     @endif
                                 </div>

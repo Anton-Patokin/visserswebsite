@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                <label for="sel1">Vorm van visserij*</label>
+                                <label for="sel1">Criteria winnaar*</label>
                                 {{--                {{Form::select('visserij', $visserij, 'Op tijd',['class'=>'form-control input-lg','ng-model'=>'input.visserij','required'])}}--}}
                                 <select class="form-control input-lg ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
                                         ng-model="input.visserij" required="required" name="category"
@@ -95,7 +95,7 @@
                                     <p class="error alert alert-danger"
                                        ng-show="visWedstrijdForm.visserij.$error.required && showError">
                                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                        Soort Visserij is verplicht
+                                        Soort Criteria is verplicht
                                     </p>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@
 
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                                <label for="loting ">Loting</label>
+                                <label for="loting ">Start</label>
                                 <input ng-class="{'alert-danger':input.loting.length>198}"
                                        ng-focus="classLotingFocus =true"
                                        ng-blur="classLotingFocus =false" type="loting" class="form-control input-lg"

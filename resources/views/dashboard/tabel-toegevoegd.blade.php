@@ -119,15 +119,15 @@
                         </li>
                         <li>
                             <div class="glyphicon glyphicon-ok color-groen"></div>
-                            Is active
+                            Is actief
                         </li>
                         <li>
                             <div class="glyphicon glyphicon-ok color-frey"></div>
-                            Is deactiveerd
+                            Is gedeactiveerd
                         </li>
                             <li>
                                 <div class="glyphicon glyphicon-trash color-red"></div>
-                                Verwijdert
+                                Verwijderd
                             </li>
                     @endif
                     <li>

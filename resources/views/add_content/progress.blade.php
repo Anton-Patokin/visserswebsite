@@ -85,8 +85,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <p class="alert alert-danger" ng-if="serverErrorMassage">Er ging iets mis
-                        probeer pagina
-                        te refreshen een opnieuw te proberen</p>
+                        probeer pagina te refreshen een probeer opnieuw</p>
                 </div>
             </div>
         </div>

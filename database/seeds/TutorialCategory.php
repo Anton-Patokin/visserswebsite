@@ -13,7 +13,7 @@ class TutorialCategory extends Seeder
     public function run()
     {
         DB::table('tutorial_categories')->delete();
-        $navBar = ['Aas','Vistuig','Doe-het-zelf','Dobber','Interessant','Spinning','Trainer','Vishaken','Winkel','Lokaas','Knopen'];
+        $navBar = ['Aas','Vistuig','Doe-het-zelf','Witvissen','Vliegvissen','Karpervissen','Roofvissen','Zeevissen','Bootvissen','Knopen','Andere'];
         foreach ($navBar as $key => $value) {
             DB::table('tutorial_categories')->insert([
                 'category' => $value,

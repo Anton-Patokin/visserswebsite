@@ -14,13 +14,8 @@ $message = Config::get('constant.Headings');
                 <div class="thumbnail">
                     <div class="caption">
                         <h3 class="text-uppercase">Werkwijze</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including
-                            versions of Lorem Ipsum.</p>
+                        <p>Bij FAQ staan reeds veel antwoorden op frequente vragen. VInd je hier niet de gewenste info,</p>
+                        stuur ons dan via deze pagina je vraag of verzoek.
                     </div>
                 </div>
             </div>

@@ -13,9 +13,7 @@
                         </a>
                         <div class="col-sm-9">
                             <h4>Facebook</h4>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip.
+                            Volg ons op Facebook en ontmoet nieuwe hengelaars wereldwijd waarmee je in contact kan komen.
                             <a href="https://www.facebook.com/groups/403149159889643/"><p>meer</p></a>
                         </div>
                     </div>
@@ -33,9 +31,7 @@
                         </a>
                         <div class="col-sm-9">
                             <h4>Contacteer ons</h4>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip
+                            Heb je vragen of verzoeken? Contacteer ons!
                             <p>Waarom niet?</p>
                             <a href="{{url('/contact')}}"><p>meer</p></a>
                         </div>
@@ -68,9 +64,8 @@
                         </a>
                         <div class="col-sm-9">
                             <h4>Info</h4>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip
+                            Fishing Friends is een online platform waarmee hengelaars informatie kunnen delen met elkaar
+                             en zelfs internationale contacten kunnen onderhouden.
                             <a href="{{url('/over-ons')}}"><p>Over ons</p></a>
                         </div>
                     </div>
@@ -84,7 +79,7 @@
         <div class="container-fluid text-center">
             <div class="row">
                 <div class="col-md-12 margin-top-1">
-                    <p class="text-white">Gemaakt door Patokin anton</p>
+                    <p class="text-white">Gemaakt door Patokin Anton</p>
                 </div>
             </div>
         </div>

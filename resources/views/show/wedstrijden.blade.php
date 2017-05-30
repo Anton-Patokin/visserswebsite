@@ -102,7 +102,7 @@ $messages = Config::get('constant.Headings');
                         <div class="box-card-head">
                             <div class="row ">
                                 <h3 class="col-xs-12 col-sm-3 col-md-2 col-lg-2 border-right">Datum</h3>
-                                <h3 class="col-xs-12 col-sm-3 col-md-3 col-lg-3  border-right">Loting</h3>
+                                <h3 class="col-xs-12 col-sm-3 col-md-3 col-lg-3  border-right">Start</h3>
                                 <h3 class="col-xs-12 col-sm-6 col-md-7 col-lg-7">Informatie</h3>
                             </div>
                         </div>

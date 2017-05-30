@@ -13,7 +13,7 @@ class WaterType extends Seeder
     public function run()
     {
         DB::table('water_types')->delete();
-        $water_types = [ 'Rievier','Kanaal','Meer','Strand'];
+        $water_types = [ 'Rivier','Kanaal','Meer','Strand','Volle zee','Gracht','Vijver','Andere'];
         foreach ($water_types as $key => $type) {
             DB::table('water_types')->insert([
                 'waterType' => $type,

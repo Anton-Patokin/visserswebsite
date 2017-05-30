@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid" ng-controller="GoogleMapsConroller">
         @include('berichten.cookieBericht')
-        <?php $head = 'home';$head_description = 'Vis activiteiten onder een dak';?>
+        <?php $head = 'home';$head_description = 'Vis activiteiten onder één dak';?>
         @include('header')
         <div class="row margin-top-1">
 
@@ -104,6 +104,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-12">
+                <h1>News feed</h1>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
