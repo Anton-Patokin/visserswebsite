@@ -21,7 +21,9 @@ class VisvangsController extends Controller
     {
         $this->locatieMesur = new LocatieDichtBij();
     }
-    public function opslaanVanVisVangst(Request $request){
+
+    public function opslaanVanVisVangst(Request $request)
+    {
         $validator = Validator::make($request->input, [
             'id' => 'required',
             'vissen' => 'required',
@@ -36,7 +38,7 @@ class VisvangsController extends Controller
             return 'error';
         }
 
-        $datum = substr($request->input['myDate'],0,10);
+        $datum = substr($request->input['myDate'], 0, 10);
 
         $weerMerLocaties = $weer = Weather::whereDate('created_at', '=', date($datum))->with('city')->get();
         $angeduideLocatieLat = $request->input['lat'];
@@ -50,58 +52,49 @@ class VisvangsController extends Controller
             $weerLocatieLong = $weerMerLocatie->city->long;
             $afstand = $this->locatieMesur->DistAB($angeduideLocatieLat, $angeduideLocatielong, $weerLocatieLat, $weerLocatieLong);
             if ($afstand < $KlijnsteAfstand) {
-                $dichtbijzijndeLocatie=$weerMerLocatie;
-                $KlijnsteAfstand=$afstand;
+                $dichtbijzijndeLocatie = $weerMerLocatie;
+                $KlijnsteAfstand = $afstand;
             }
         }
 
         $visdag = new VisDag;
 
 
-        $visdag->temp=$dichtbijzijndeLocatie->temp;
-        $visdag->sunrise=$dichtbijzijndeLocatie->sunrise;
-        $visdag->sunset=$dichtbijzijndeLocatie->sunset;
-        $visdag->humidity=$dichtbijzijndeLocatie->humidity;
-        $visdag->pressure=$dichtbijzijndeLocatie->presure;
-        $visdag->rising=$dichtbijzijndeLocatie->rising;
-        $visdag->visibility=$dichtbijzijndeLocatie->visibility;
-        $visdag->chill=$dichtbijzijndeLocatie->chill;
-        $visdag->speed=$dichtbijzijndeLocatie->speed;
-        $visdag->direction=$dichtbijzijndeLocatie->direction;
-        $visdag->visGevangenSucces=$request->input['vangst'];
-        $visdag->beordeling=$request->input['nietGevangen'];
-        
-        if($request->input['vangst']=='ja'){
-            $visdag->beordeling=$request->input['gevangen'];
+        $visdag->temp = $dichtbijzijndeLocatie->temp;
+        $visdag->sunrise = $dichtbijzijndeLocatie->sunrise;
+        $visdag->sunset = $dichtbijzijndeLocatie->sunset;
+        $visdag->humidity = $dichtbijzijndeLocatie->humidity;
+        $visdag->pressure = $dichtbijzijndeLocatie->presure;
+        $visdag->rising = $dichtbijzijndeLocatie->rising;
+        $visdag->visibility = $dichtbijzijndeLocatie->visibility;
+        $visdag->chill = $dichtbijzijndeLocatie->chill;
+        $visdag->speed = $dichtbijzijndeLocatie->speed;
+        $visdag->direction = $dichtbijzijndeLocatie->direction;
+        $visdag->visGevangenSucces = ($request->input['vangst']=='nee')?0:1;
+        $visdag->beordeling = $request->input['nietGevangen'];
+
+        if ($request->input['vangst'] == 'ja') {
+            $visdag->beordeling = $request->input['gevangen'];
         }
-        $visdag->lat=$request->input['lat'];
-        $visdag->lng=$request->input['lng'];
-        $visdag->datum=date($datum);
-        $visdag->user_id= $request->input['id'];
+        $visdag->lat = $request->input['lat'];
+        $visdag->lng = $request->input['lng'];
+        $visdag->datum = date($datum);
+        $visdag->user_id = $request->input['id'];
         $visdag->save();
-        
-        
-        
-        return $visdag;
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    $id =  $request->input['id'];
-        $vissen =  $request->input['vissen'];
-        $lat =  $request->input['lat'];
-        $lng =  $request->input['lng'];
-        $hoeWashetVangst =  $request->input['gevangen'];
-        $redenVaromNieksGevangen =  $request->input['nietGevangen'];
-        $datum = substr($request->input['myDate'],0,10);
-        $ietsGevangen = $request->input['vangst'];
-return $id .' '.$lat.' '.$lng.' '.$hoeWashetVangst.' '.$redenVaromNieksGevangen.' '.$datum.' '.$ietsGevangen;
+
+
+        if ($visdag->visGevangenSucces == "ja") {
+            foreach ($request->input['vissen'] as $vangst) {
+                $visSoort = new VisSoort;
+                $visSoort->aantal = $vangst['aantal'];
+                $visSoort->soort = $vangst['soort'];
+                $visSoort->datum = date($datum);
+                $visSoort->vis_dag_id = $visdag->id;
+                $visSoort->user_id = $request->input['id'];
+                $visSoort->save();
+            }
+        }
+
+        return 'succes';
     }
 }

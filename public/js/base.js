@@ -1,6 +1,6 @@
 var center = {latitude: 51.218826, longitude: 4.402950};
 var MAX_SIZE = 5000000;//5mb
-var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial','ngCookies','ngMessages']);
+var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial','ngCookies','ngMessages','googlechart']);
 
 
 myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader', '$http', '$window', function ($scope, uiGmapGoogleMapApi, fileReader, $http, $window) {

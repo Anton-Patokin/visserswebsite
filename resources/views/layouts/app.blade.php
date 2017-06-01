@@ -58,8 +58,10 @@
 <script src="{{url('/js/file-reader.js')}}"></script>
 <script src="{{url('/js/MainGoogleMaps.js')}}"></script>
 <script src="{{asset('js/vissersActiviteiten.js')}}"></script>
+<script src="{{asset('js/GenericChartCtrl.js')}}"></script>
 <script src="{{url('/js/smallGoogleMaps.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/libs/angular-cookies.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/1.0.0-beta.1/ng-google-chart.min.js" type="text/javascript"></script>
 
 <script src="{{ asset('js/app.js') }}"></script>
 <script id="searchbox.tpl.html" type="text/ng-template">
@@ -69,15 +71,6 @@
 
 <script>
     $(document).ready(function () {
-
-        if($('#snackbar').length){
-            var x = document.getElementById("snackbar")
-            x.className = "show";
-            setTimeout(function () {
-                x.className = x.className.replace("show", "");
-            }, 30000);
-            $('[data-toggle="tooltip"]').tooltip();
-        }
         if ($("#vertikalscroll").length) {
             var scrolled = 0;
             var maxScroll = $("#vertikalscroll")[0].scrollHeight - 300;

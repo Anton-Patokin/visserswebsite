@@ -8,7 +8,7 @@
                 <h4 class="modal-title">Deel je ervaring</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
+                <div class="row" ng-hide="show_message">
                     <div class="col-md-12">
                         <p>We verzamelen gegevens van vissers om later voorspelingen te kunnen maken over vangstkansen
                             van toekomstige visdagen.
@@ -149,19 +149,19 @@
                                                             class="form-control input-lg ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
                                                             ng-model="vis.soort" required="required"
                                                             aria-invalid="true">
-                                                        <option value="5">Witvis</option>
-                                                        <option value="5">Karper</option>
-                                                        <option value="4">Salmoniden</option>
-                                                        <option value="3">Platvis</option>
-                                                        <option value="5">Baarsachtigen</option>
-                                                        <option value="2">Snoek</option>
-                                                        <option value="1">Paling</option>
-                                                        <option value="5">Meerval</option>
-                                                        <option value="5">Roofblei</option>
-                                                        <option value="5">Kopvoorn</option>
-                                                        <option value="5">Barbeel</option>
-                                                        <option value="5">Haaien</option>
-                                                        <option value="0">Andere</option>
+                                                        <option value="Witvis">Witvis</option>
+                                                        <option value="Karper">Karper</option>
+                                                        <option value="Salmoniden">Salmoniden</option>
+                                                        <option value="Platvis">Platvis</option>
+                                                        <option value="Baarsachtigen">Baarsachtigen</option>
+                                                        <option value="Snoek">Snoek</option>
+                                                        <option value="Paling">Paling</option>
+                                                        <option value="Meerval">Meerval</option>
+                                                        <option value="Roofblei">Roofblei</option>
+                                                        <option value="Kopvoorn">Kopvoorn</option>
+                                                        <option value="Barbeel">Barbeel</option>
+                                                        <option value="Haaien">Haaien</option>
+                                                        <option value="Andere">Andere</option>
                                                     </select>
 
 
@@ -229,7 +229,14 @@
                                         Opslaan
                                     </button>
                                 </div>
+                            </div>
                         </form>
+
+                    </div>
+                </div>
+                <div class="row" ng-hide="!show_message">
+                    <div class="col-md-12">
+                        Form is successvol verzonden
                     </div>
                 </div>
             </div>

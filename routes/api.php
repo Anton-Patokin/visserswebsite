@@ -28,3 +28,5 @@ Route::post('/zoeken/googleMaps','ApiZoekenController@googleMapsZoeken');
 Route::get('/get/wedstrijden/{year}/{month}','ApiCalenderController@index');
 
 route::post('/save/visVangst','VisvangsController@opslaanVanVisVangst');
+
+Route::post('/get/pieChart','ApiAdminMainController@pieChart');

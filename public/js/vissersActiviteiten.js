@@ -1,12 +1,17 @@
-myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
-    $scope.ShowvisActiviteitenPopUp = !$cookies.get('visActiviteitenWeek');
+myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies', '$timeout', function ($scope, $http, $cookies, $timeout) {
+    $scope.ShowvisActiviteitenPopUp=!$cookies.get('visActiviteitenWeek');
     $scope.showModalVisActiviteiten = false;
+    $scope.animatePopUp=false;
     $scope.visVagnstShowGoolgeMaps = false;
     $scope.visvanstMapMarkershowMarker = false;
-
-var datumVandaag= new Date();
+    if (!$cookies.get('visActiviteitenWeek')) {
+        $timeout(function () {
+            $scope.animatePopUp = !$cookies.get('visActiviteitenWeek');
+        }, 5000)
+    }
+    var datumVandaag = new Date();
     $scope.visVagst = {
-        id:'',
+        id: '',
         vissen: [{aantal: 0, soort: ''}],
         lat: '',
         lng: '',
@@ -16,7 +21,7 @@ var datumVandaag= new Date();
         myDate: datumVandaag,
         isOpen: false
     }
-  
+
 
     $scope.nogEenVisSoort = function () {
         $scope.visVagst.vissen.push({aantal: 0, soort: ''})
@@ -26,10 +31,10 @@ var datumVandaag= new Date();
     }
 
 
-var nummerVanDeDag = datumVandaag.getDate();
-    $scope.onlyWeekendsPredicate=function (date) {
+    var nummerVanDeDag = datumVandaag.getDate();
+    $scope.onlyWeekendsPredicate = function (date) {
         var day = date.getDate();
-        return day<= nummerVanDeDag;
+        return day <= nummerVanDeDag;
     };
     $scope.minDate = new Date(
         datumVandaag.getFullYear(),
@@ -42,8 +47,7 @@ var nummerVanDeDag = datumVandaag.getDate();
         datumVandaag.getDate());
 
     $scope.submitVisVangstModalForm = function () {
-        console.log($scope.visVangstModalForm.$valid);
-        console.log($scope.visVangstModalForm);
+     
         if ($scope.visVangstModalForm.$valid) {
             console.log('send form');
             $scope.showError = false;
@@ -66,6 +70,7 @@ var nummerVanDeDag = datumVandaag.getDate();
                 $scope.serverErrorMassage = true;
             });
 
+            $scope.show_message=true;
         } else {
             $scope.showError = true;
         }
@@ -140,6 +145,7 @@ var nummerVanDeDag = datumVandaag.getDate();
         options: '',
     }
     $scope.saveViserActiviteit = function (answare) {
+        $scope.animatePopUp = false;
         $scope.vangstVanVandaag = function () {
             $scope.show_gevangen = $scope.visVagst.vangst;
             $scope.visVagnstShowGoolgeMaps = true;
@@ -147,8 +153,7 @@ var nummerVanDeDag = datumVandaag.getDate();
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 1);
         //activeren van cookie haal dat uit comentaar na het debugen
-        // $cookies.put('visActiviteitenWeek', 'false', {'expires': expireDate});
-
+        $cookies.put('visActiviteitenWeek', 'false', {'expires': expireDate});
         if (answare == 'ja') {
             $scope.$watch('visVagst.myDate', function () {
                 var date_picker = $scope.visVagst.myDate;

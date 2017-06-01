@@ -27,9 +27,33 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('dashboard/main-dashboard');
+
+        $user = Auth::user();
+        $visdagen=$user->visdagen;
+        $aantalDagenGaanWissen=$visdagen->count();
+        $aantalvissen= $user->visSoortenAantal;
+        $totaalvissen = $this->getSum($aantalvissen);
+        $gemmideldeVangst =round($this->gemiddelde($totaalvissen,$aantalDagenGaanWissen));
+        $dagenWaarIetsgevangenWerd =$visdagen->where('visGevangenSucces','1')->count();
+        $DagenNietGevangen =$visdagen->where('visGevangenSucces','0')->count();
+
+        return view('dashboard/main-dashboard',['totaalVissen'=>$totaalvissen,
+            'totaalDagen'=>$aantalDagenGaanWissen,
+            'gemmideldeGevangenVissen'=>$gemmideldeVangst,
+            'vangsDagen'=>$dagenWaarIetsgevangenWerd,
+            'nietVnagsDagen'=>$DagenNietGevangen]);
     }
-    
+
+    public function getSum($values){
+        $totaal=0;
+        foreach ($values as $value){
+            $totaal+=$value->aantal;
+        }
+        return $totaal;
+    }
+    public function gemiddelde($vlaue1,$value2){
+        return $vlaue1/$value2;
+    }
 
 
     public function toegevoegd_inhoud()

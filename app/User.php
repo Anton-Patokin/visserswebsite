@@ -30,6 +30,18 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Wedstrijd');
     }
+    public function visSoortenAantal()
+    {
+        return $this->hasMany('App\VisSoort')->select('aantal');
+    }
+    public function visSoorten()
+    {
+        return $this->hasMany('App\VisSoort');
+    }
+    public function visdagen()
+    {
+        return $this->hasMany('App\VisDag');
+    }
 
     public function visPlaatsen()
     {

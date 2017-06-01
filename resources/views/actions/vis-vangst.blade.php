@@ -17,8 +17,13 @@
 
     #snackbar.show {
         visibility: visible;
-        -webkit-animation: fadein 0.5s, fadeout 0.5s 29.5s;
-        animation: fadein 0.5s, fadeout 0.5s 29.5s;
+        -webkit-animation: fadein 1s;
+        animation: fadein 1s;
+    }
+    #snackbar.hide {
+        visibility: visible;
+        -webkit-animation:fadeout 0.5s 29.5s;
+        animation: fadeout 0.5s 29.5s;
     }
 
     @-webkit-keyframes fadein {
@@ -54,16 +59,7 @@
         }
     }
 
-    @keyframes fadeout {
-        from {
-            bottom: 10px;
-            opacity: 1;
-        }
-        to {
-            bottom: 0;
-            opacity: 0;
-        }
-    }
+
 
     .snackbar-icon {
         font-size: 10px;
@@ -115,8 +111,8 @@
 
 </style>
 <div ng-controller="vissersActiviteitenController">
-    <div id="snackbar" ng-if="ShowvisActiviteitenPopUp">
-        <a href="#" class="snackbar-icon" data-toggle="tooltip"
+    <div id="snackbar" ng-if="ShowvisActiviteitenPopUp" ng-class='{show:animatePopUp,hide:!animatePopUp}'>
+        <a href="#" class="snackbar-icon"  data-toggle="tooltip"
            title="We verzamelen gegevens van vissers om later voorspelingen te kunnen maken over vangstkansen van toekomstige visdagen.
              ">
             <div class=" glyphicon glyphicon-question-sign pull-right">

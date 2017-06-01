@@ -20,6 +20,8 @@ class CreateVisSoortsTable extends Migration
             $table->date('datum');
             $table->integer('vis_dag_id')->unsigned();
             $table->foreign('vis_dag_id')->references('id')->on('vis_dags');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
