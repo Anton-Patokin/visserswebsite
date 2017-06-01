@@ -30,12 +30,22 @@ class DashboardController extends Controller
 
         $user = Auth::user();
         $visdagen=$user->visdagen;
-        $aantalDagenGaanWissen=$visdagen->count();
-        $aantalvissen= $user->visSoortenAantal;
-        $totaalvissen = $this->getSum($aantalvissen);
-        $gemmideldeVangst =round($this->gemiddelde($totaalvissen,$aantalDagenGaanWissen));
-        $dagenWaarIetsgevangenWerd =$visdagen->where('visGevangenSucces','1')->count();
-        $DagenNietGevangen =$visdagen->where('visGevangenSucces','0')->count();
+        $aantalDagenGaanWissen="";
+        $aantalvissen="";
+        $totaalvissen="";
+        $gemmideldeVangst="";
+        $dagenWaarIetsgevangenWerd="";
+        $DagenNietGevangen="";
+        if(count($visdagen)){
+            $aantalDagenGaanWissen=$visdagen->count();
+            $aantalvissen= $user->visSoortenAantal;
+            $totaalvissen = $this->getSum($aantalvissen);
+            $gemmideldeVangst =round($this->gemiddelde($totaalvissen,$aantalDagenGaanWissen));
+            $dagenWaarIetsgevangenWerd =$visdagen->where('visGevangenSucces','1')->count();
+            $DagenNietGevangen =$visdagen->where('visGevangenSucces','0')->count();
+
+        }
+
 
         return view('dashboard/main-dashboard',['totaalVissen'=>$totaalvissen,
             'totaalDagen'=>$aantalDagenGaanWissen,
