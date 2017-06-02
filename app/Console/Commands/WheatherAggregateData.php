@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use App\Weather;
 use App\City;
 use Carbon\Carbon;
+
 class WheatherAggregateData extends Command
 {
     /**
@@ -44,6 +45,12 @@ class WheatherAggregateData extends Command
 
         foreach ($cities as $key => $city) {
 
+            $weerGisterenTemp = $city->weerGisteren()->get();
+            if(count($weerGisterenTemp)){
+                $weerGisterenTemp = $weerGisterenTemp->last()->temp;
+            }else{
+                $weerGisterenTemp=null;
+            }
             $yahooWeatherZipCode = $city->code;
             $yahooWeatherUnits = "c";
 
@@ -65,12 +72,17 @@ class WheatherAggregateData extends Command
             $yahooWind = $channel['wind'];
 
             $weather = new Weather;
-            $high= $phpObj['query']['results']["channel"]['item']['forecast'][0]['high'];
-            $low =$phpObj['query']['results']["channel"]['item']['forecast'][0]['low'];
+            $high = $phpObj['query']['results']["channel"]['item']['forecast'][0]['high'];
+            $low = $phpObj['query']['results']["channel"]['item']['forecast'][0]['low'];
 
             $weather->high = $high;
             $weather->low = $low;
-            $weather->temp=$condition['temp'];
+            $weather->temp = $condition['temp'];
+            if($weerGisterenTemp){
+                $weather->verschilTemp=  $weerGisterenTemp -$condition['temp'];
+            }else{
+                $weather->verschilTemp=  0;
+            }
             $weather->text = $condition['text'];
 
             $weather->sunrise = $this->am_pm_to_24($astronomy['sunrise']);
@@ -85,6 +97,7 @@ class WheatherAggregateData extends Command
             $weather->pressure = (double)$yahooAtmosphere['pressure'];
             $weather->rising = (int)$yahooAtmosphere['rising'];
             $weather->visibility = (double)$yahooAtmosphere['visibility'];
+            $weather->seizoen = floor((((Carbon::now()->format('m') + 9) % 12) / 3 + 1) % 4);
 
             $weather->city_id = $city->id;
 
@@ -94,6 +107,13 @@ class WheatherAggregateData extends Command
 
 
         foreach ($cities as $key => $city) {
+            $weerGisterenTemp = $city->weerGisteren()->get();
+            if(count($weerGisterenTemp)){
+                $weerGisterenTemp = $weerGisterenTemp->last()->temp;
+            }else{
+                $weerGisterenTemp=null;
+            }
+
             $cityWeather = Weather::whereDate('created_at', Carbon::yesterday())->where('city_id', $city->id)->get();
             $totaalWeater = count($cityWeather);
             if (count($cityWeather)) {
@@ -101,6 +121,11 @@ class WheatherAggregateData extends Command
                 $newWeather->high = $cityWeather->sum('high') / $totaalWeater;
                 $newWeather->low = $cityWeather->sum('low') / $totaalWeater;
                 $newWeather->temp = $cityWeather->sum('temp') / $totaalWeater;
+                if($weerGisterenTemp){
+                    $newWeather->verschilTemp=  $weerGisterenTemp -$newWeather->temp;
+                }else{
+                    $newWeather->verschilTemp=  0;
+                }
                 $newWeather->text = $cityWeather->first()->text;
                 $newWeather->sunrise = $cityWeather->first()->sunrise;
                 $newWeather->sunset = $cityWeather->first()->sunset;
@@ -112,12 +137,13 @@ class WheatherAggregateData extends Command
                 $newWeather->rising = $cityWeather->sum('rising') / $totaalWeater;
                 $newWeather->visibility = $cityWeather->sum('visibility') / $totaalWeater;
                 $newWeather->visibility = $cityWeather->sum('visibility') / $totaalWeater;
+                $newWeather->seizoen=$cityWeather->first()->seizoen;
                 $newWeather->created_at = $cityWeather->first()->created_at;
                 $newWeather->city_id = $cityWeather->first()->city_id;
                 $newWeather->save();
                 $cityWeather = Weather::whereDate('created_at', Carbon::yesterday())->where('city_id', $city->id);
                 $totaalWeater = count($cityWeather->get());
-                $cityWeather= $cityWeather->limit($totaalWeater-1);
+                $cityWeather = $cityWeather->limit($totaalWeater - 1);
                 $cityWeather->delete();
             }
         }
@@ -128,10 +154,10 @@ class WheatherAggregateData extends Command
     private function am_pm_to_24($string)
     {
         $new_string = "";
-        $value = explode(':',$string);
-        (strlen ($value[0]) == 1) ? $new_string = "0" . $value[0] : $new_string = $value[0];
-        $value = explode( ' ',$value[1]);
-        (strlen ($value[0]) == 1) ? $new_string = $new_string . ":0" . $value[0] : $new_string = $new_string . ':' . $value[0];
+        $value = explode(':', $string);
+        (strlen($value[0]) == 1) ? $new_string = "0" . $value[0] : $new_string = $value[0];
+        $value = explode(' ', $value[1]);
+        (strlen($value[0]) == 1) ? $new_string = $new_string . ":0" . $value[0] : $new_string = $new_string . ':' . $value[0];
         $new_string = $new_string . ' ' . $value[1];
         return date("H:i", strtotime($new_string));
     }

@@ -18,6 +18,7 @@ class CreateVisDagsTable extends Migration
             $table->integer('low');
             $table->integer('high');
             $table->integer('temp')->nullable();
+            $table->integer('verschilTemp');
             $table->time('sunrise')->nullable();
             $table->time('sunset')->nullable();
             $table->integer('humidity')->nullable();
@@ -31,6 +32,7 @@ class CreateVisDagsTable extends Migration
             $table->string('beordeling')->nullable();
             $table->decimal('lat',12,8)->nullable();
             $table->decimal('lng',12,8)->nullable();
+            $table->integer('seizoen');
             $table->date('datum');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');

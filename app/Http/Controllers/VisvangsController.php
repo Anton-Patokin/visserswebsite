@@ -62,6 +62,7 @@ class VisvangsController extends Controller
         $visdag->low = $dichtbijzijndeLocatie->low;
         $visdag->high = $dichtbijzijndeLocatie->high;
         $visdag->temp = $dichtbijzijndeLocatie->temp;
+        $visdag->verschilTemp=$dichtbijzijndeLocatie->verschilTemp;
         $visdag->sunrise = $dichtbijzijndeLocatie->sunrise;
         $visdag->sunset = $dichtbijzijndeLocatie->sunset;
         $visdag->humidity = $dichtbijzijndeLocatie->humidity;
@@ -71,6 +72,7 @@ class VisvangsController extends Controller
         $visdag->chill = $dichtbijzijndeLocatie->chill;
         $visdag->speed = $dichtbijzijndeLocatie->speed;
         $visdag->direction = $dichtbijzijndeLocatie->direction;
+        $visdag->seizoen = $dichtbijzijndeLocatie->seizoen;
         $visdag->visGevangenSucces = ($request->input['vangst']=='nee')?0:1;
         $visdag->beordeling = $request->input['nietGevangen'];
 

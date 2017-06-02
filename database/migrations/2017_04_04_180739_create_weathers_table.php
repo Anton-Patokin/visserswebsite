@@ -18,6 +18,7 @@ class CreateWeathersTable extends Migration
             $table->integer('low');
             $table->integer('high');
             $table->integer('temp');
+            $table->integer('verschilTemp');
             $table->string('text');
             $table->time('sunrise');
             $table->time('sunset');
@@ -28,6 +29,7 @@ class CreateWeathersTable extends Migration
             $table->integer('chill');
             $table->decimal('speed', 5, 3);
             $table->integer('direction');
+            $table->integer('seizoen');
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();
