@@ -34,6 +34,11 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\VisSoort')->select('aantal');
     }
+
+    public function weerVoorspelingDagen()
+    {
+        return $this->hasMany('App\VisDag')->select('temp','sunrise','sunset','humidity','pressure','rising','visibility','chill','speed','direction');
+    }
     public function visSoorten()
     {
         return $this->hasMany('App\VisSoort');

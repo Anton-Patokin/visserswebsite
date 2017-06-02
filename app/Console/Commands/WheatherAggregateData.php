@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Weather;
 use App\City;
-
+use Carbon\Carbon;
 class WheatherAggregateData extends Command
 {
     /**
@@ -65,8 +65,12 @@ class WheatherAggregateData extends Command
             $yahooWind = $channel['wind'];
 
             $weather = new Weather;
+            $high= $phpObj['query']['results']["channel"]['item']['forecast'][0]['high'];
+            $low =$phpObj['query']['results']["channel"]['item']['forecast'][0]['low'];
 
-            $weather->temp = $condition['temp'];
+            $weather->high = $high;
+            $weather->low = $low;
+            $weather->temp=$condition['temp'];
             $weather->text = $condition['text'];
 
             $weather->sunrise = $this->am_pm_to_24($astronomy['sunrise']);
@@ -86,6 +90,36 @@ class WheatherAggregateData extends Command
 
             $weather->save();
 
+        }
+
+
+        foreach ($cities as $key => $city) {
+            $cityWeather = Weather::whereDate('created_at', Carbon::yesterday())->where('city_id', $city->id)->get();
+            $totaalWeater = count($cityWeather);
+            if (count($cityWeather)) {
+                $newWeather = new Weather;
+                $newWeather->high = $cityWeather->sum('high') / $totaalWeater;
+                $newWeather->low = $cityWeather->sum('low') / $totaalWeater;
+                $newWeather->temp = $cityWeather->sum('temp') / $totaalWeater;
+                $newWeather->text = $cityWeather->first()->text;
+                $newWeather->sunrise = $cityWeather->first()->sunrise;
+                $newWeather->sunset = $cityWeather->first()->sunset;
+                $newWeather->chill = $cityWeather->sum('chill') / $totaalWeater;
+                $newWeather->direction = $cityWeather->sum('direction') / $totaalWeater;
+                $newWeather->speed = $cityWeather->sum('speed') / $totaalWeater;
+                $newWeather->humidity = $cityWeather->sum('humidity') / $totaalWeater;
+                $newWeather->pressure = $cityWeather->sum('pressure') / $totaalWeater;
+                $newWeather->rising = $cityWeather->sum('rising') / $totaalWeater;
+                $newWeather->visibility = $cityWeather->sum('visibility') / $totaalWeater;
+                $newWeather->visibility = $cityWeather->sum('visibility') / $totaalWeater;
+                $newWeather->created_at = $cityWeather->first()->created_at;
+                $newWeather->city_id = $cityWeather->first()->city_id;
+                $newWeather->save();
+                $cityWeather = Weather::whereDate('created_at', Carbon::yesterday())->where('city_id', $city->id);
+                $totaalWeater = count($cityWeather->get());
+                $cityWeather= $cityWeather->limit($totaalWeater-1);
+                $cityWeather->delete();
+            }
         }
 
 

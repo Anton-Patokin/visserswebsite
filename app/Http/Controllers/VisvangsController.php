@@ -59,12 +59,13 @@ class VisvangsController extends Controller
 
         $visdag = new VisDag;
 
-
+        $visdag->low = $dichtbijzijndeLocatie->low;
+        $visdag->high = $dichtbijzijndeLocatie->high;
         $visdag->temp = $dichtbijzijndeLocatie->temp;
         $visdag->sunrise = $dichtbijzijndeLocatie->sunrise;
         $visdag->sunset = $dichtbijzijndeLocatie->sunset;
         $visdag->humidity = $dichtbijzijndeLocatie->humidity;
-        $visdag->pressure = $dichtbijzijndeLocatie->presure;
+        $visdag->pressure = $dichtbijzijndeLocatie->pressure;
         $visdag->rising = $dichtbijzijndeLocatie->rising;
         $visdag->visibility = $dichtbijzijndeLocatie->visibility;
         $visdag->chill = $dichtbijzijndeLocatie->chill;

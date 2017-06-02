@@ -15,6 +15,8 @@ class CreateVisDagsTable extends Migration
     {
         Schema::create('vis_dags', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('low');
+            $table->integer('high');
             $table->integer('temp')->nullable();
             $table->time('sunrise')->nullable();
             $table->time('sunset')->nullable();

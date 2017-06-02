@@ -15,6 +15,8 @@ class CreateWeathersTable extends Migration
     {
         Schema::create('weathers', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('low');
+            $table->integer('high');
             $table->integer('temp');
             $table->string('text');
             $table->time('sunrise');

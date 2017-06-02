@@ -10,4 +10,6 @@ class Weather extends Model
     {
         return $this->belongsTo('App\City');
     }
+    
+    
 }
