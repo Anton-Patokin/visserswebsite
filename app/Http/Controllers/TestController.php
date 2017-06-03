@@ -28,41 +28,26 @@ require_once base_path('vendor/autoload.php');
 use Phpml\Classification\KNearestNeighbors;
 
 
+use App\helpers\MaanStand;
+
 class TestController extends Controller
 {
     protected $locatieMesur;
+    protected $maan;
 
     public function __construct()
     {
         $this->locatieMesur = new LocatieDichtBij();
+        $this->maan = new MaanStand();
     }
 
     public function index($string)
     {
-
+        return $this->maan->new_moon();
 
 
 
     }
 
-    private function am_pm_to_24($string)
-    {
-        $new_string = "";
-        $value = explode(':', $string);
-        (strlen($value[0]) == 1) ? $new_string = "0" . $value[0] : $new_string = $value[0];
-        $value = explode(' ', $value[1]);
-        (strlen($value[0]) == 1) ? $new_string = $new_string . ":0" . $value[0] : $new_string = $new_string . ':' . $value[0];
-        $new_string = $new_string . ' ' . $value[1];
-        return date("H:i", strtotime($new_string));
-    }
-    public function count($values)
-    {
-        $total = 0;
-        $totalElements = count($values);
-        foreach ($values as $value) {
 
-            $total += (float)$value;
-        }
-        return $total;
-    }
 }

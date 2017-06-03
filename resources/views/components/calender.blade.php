@@ -33,32 +33,14 @@
                     <tr ng-repeat="input in calender.html">
                         <td class="calender-notification" ng-repeat="value in input"
                             ng-click="toon_wedstrijd_list(value.activity)"
-                            ng-class="value.today">
+                            ng-class="[value.today,value.fishActivity]">
                             @{{value.day}}
                             <small class="calender-center" ng-if="value.activity.length>0">
                                 @{{ value.activity.length }}
                             </small>
                         </td>
                     </tr>
-                    <style>
-                        .calender-notification {
-                            position: relative;
 
-                        }
-                        .calender-notification .calender-center {
-                            position: absolute;
-                            height: 20px;
-                            width: 20px;
-                            top: 0;
-                            right: 0;
-                            font-size: 11px;
-                            padding-top: 1px;
-                            border-radius: 50%;
-                            background-color: #d81b60;
-                            color: #fff;
-                            text-align: center;
-                        }
-                    </style>
                 </table>
             </div>
         </div>

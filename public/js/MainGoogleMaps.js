@@ -4,9 +4,6 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
     $scope.wedsrijdMarkers = [];
 
 
-
-    
-
     $scope.zoekenOpGoogleMaps = function (input) {
         $http({
             method: 'POST',
@@ -60,7 +57,6 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
 
 
     }
-
 
 
     $scope.initVisPlaatsmarkers = function () {
@@ -178,8 +174,57 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
             });
         }
     }
+
+
+    var THarviMoon = new Object();
+    THarviMoon = function () {
+        this.Day = 0;
+        this.Month = 0;
+        this.Year = 0;
+        this.GetMoonDay = function (day, month, year) {
+            this.Day = day;
+            this.Month = month;
+            this.Year = year;
+
+            if (month <= 2) {
+                month += 12;
+                year -= 1;
+            }
+            ;
+            var nc = Math.floor(year / 100);
+            var vc = ((Math.floor(nc / 3) + Math.floor(nc / 4)) + 6) - nc;
+            var a = (year / 19);
+            var b = ((a - parseInt(a)) * 209);
+            var c = ( b + month + day + vc ) / 30;
+            var MoonDay = Math.round(((c - parseInt(c)) * 30) + 1);
+            return MoonDay;
+        };
+
+        this.SetNowDate = function (date) {
+
+            if (date) {
+                var dNow = date;
+            } else {
+                var dNow = new Date();
+
+            }
+            this.Day = dNow.getDate();
+            this.Month = dNow.getMonth() + 1;
+            this.Year = dNow.getYear();
+            if (this.Year < 1000) this.Year += 1900;
+        };
+
+        this.NowMoonDay = function (date) {
+
+            this.SetNowDate(date);
+            return this.GetMoonDay(this.Day, this.Month, this.Year);
+        };
+    };
+
+
     calender();
     function calender(custumDate) {
+        var hm = new THarviMoon();
         var datumString = [];
         var $ym = "";
         var $timestamp = "";
@@ -249,6 +294,11 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
         var html_bulder_weeks = [];
 
 
+        var badDayToFish = [1, 2, 12, 13, 14, 15, 16, 26, 27, 28, 29,30];
+        var notSadDayToFish = [11, 17,18, 23, 24, 25];
+        var veryGoodDayToFish = [4,5,6,7, 8, 19];
+        var goodDayToFish = [3, 9, 10, 20, 21, 22];
+
         for (var i = 0; i < offset; i++) {
             html_bulder_week.push({day: '', today: false, activity: ''});
         }
@@ -258,7 +308,25 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
             if ($today == i && thisMonth == month) {
                 today = 'today';
             }
-            html_bulder_week.push({day: day, today: today, activity: ''});
+
+            var dd = new Date($timestamp.getFullYear(), $timestamp.getMonth(), $timestamp.getDate() + (i - 1));
+
+            var moon_day = hm.NowMoonDay(dd);
+            var fishResult="";
+            if(moon_day in badDayToFish){
+                fishResult ='fish-bad';
+            }
+            if(moon_day in notSadDayToFish){
+                fishResult ='fish-meddium';
+            }
+            if(moon_day in veryGoodDayToFish){
+                fishResult ='fish-veryGood';
+            }
+            if(moon_day in goodDayToFish){
+                fishResult ='fish-good';
+            }
+
+            html_bulder_week.push({day: day, today: today, activity: '',fishActivity:fishResult});
             if (offset % 7 == 6 || day == $day_count) {
                 html_bulder_weeks.push(html_bulder_week);
                 html_bulder_week = [];
@@ -266,6 +334,7 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
             offset++;
         }
         $scope.calender.html = html_bulder_weeks;
+        console.log($scope.calender.html);
         $http({
             method: 'GET',
             url: ROUTEFRONT + '/api/get/wedstrijden/' + year + '/' + month
