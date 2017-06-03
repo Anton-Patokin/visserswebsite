@@ -69,7 +69,6 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
             }).error(function (data, status, headers, config) {
                 $scope.serverErrorMassage = true;
             });
-
             $scope.show_message=true;
         } else {
             $scope.showError = true;

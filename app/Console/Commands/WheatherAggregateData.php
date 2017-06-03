@@ -6,6 +6,11 @@ use Illuminate\Console\Command;
 use App\Weather;
 use App\City;
 use Carbon\Carbon;
+use App\VisDag;
+use App\helpers\LocatieDichtBij;
+require_once base_path('vendor/autoload.php');
+use Phpml\Classification\KNearestNeighbors;
+use App\Vorspeling;
 
 class WheatherAggregateData extends Command
 {
@@ -28,8 +33,13 @@ class WheatherAggregateData extends Command
      *
      * @return void
      */
+
+    protected $locatieMesur;
+
+
     public function __construct()
     {
+        $this->locatieMesur = new LocatieDichtBij();
         parent::__construct();
     }
 
@@ -146,6 +156,73 @@ class WheatherAggregateData extends Command
                 $cityWeather = $cityWeather->limit($totaalWeater - 1);
                 $cityWeather->delete();
             }
+        }
+
+
+
+
+
+
+
+
+        $weerVandag = Weather::whereDate('created_at', Carbon::today())->with('city');
+
+
+        $cities = City::with('weerVandag')->get();
+        $allPositivDays = [];
+        $labelsVisdag = [];
+        $visDagenSucces = VisDag::all();
+        foreach ($visDagenSucces as $dagenSucce) {
+            $nieuwDag = [];
+            // ->pressure toevoegen
+            array_push($nieuwDag,
+                $dagenSucce->low,
+                $dagenSucce->high,
+                $dagenSucce->temp,
+                $dagenSucce->verschilTemp,
+                time($dagenSucce->sunrise),
+                time($dagenSucce->sunset),
+                $dagenSucce->humidity,
+                $dagenSucce->pressure,
+                $dagenSucce->rising,
+                (float)$dagenSucce->visibility,
+                $dagenSucce->chill,
+                (float)$dagenSucce->speed,
+                $dagenSucce->direction,
+                $dagenSucce->seizoen
+            );
+            array_push($allPositivDays, $nieuwDag);
+            array_push($labelsVisdag, (string)$dagenSucce->visGevangenSucces);
+        }
+
+        $samples = $allPositivDays;
+        $labels = $labelsVisdag;
+        $classifier = new KNearestNeighbors();
+        $classifier->train($samples, $labels);
+
+        foreach ($cities as $city) {
+            $weerCityVandaag = $city->weerVandag->last();
+
+            $voorspeling = $classifier->predict([
+                $weerCityVandaag->low,
+                $weerCityVandaag->high,
+                $weerCityVandaag->temp,
+                $weerCityVandaag->verschilTemp,
+                time($weerCityVandaag->sunrise),
+                time($weerCityVandaag->sunset),
+                $weerCityVandaag->humidity,
+                $weerCityVandaag->pressure,
+                $weerCityVandaag->rising,
+                (float)$weerCityVandaag->visibility,
+                $weerCityVandaag->chill,
+                (float)$weerCityVandaag->speed,
+                $weerCityVandaag->direction,
+                $weerCityVandaag->seizoen
+            ]);
+            $newVoorspeling = new Vorspeling;
+            $newVoorspeling->voorspelling = $voorspeling;
+            $newVoorspeling->city_id = $city->id;
+            $newVoorspeling->save();
         }
 
 
