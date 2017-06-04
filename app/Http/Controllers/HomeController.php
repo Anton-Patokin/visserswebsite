@@ -39,6 +39,10 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function welcome()
+    {
+    return view('welcome');
+    }
 
     public function index($datum = null)
     {
@@ -150,7 +154,7 @@ class HomeController extends Controller
         if ($amp == 'amp') {
 
             $value = DB::table('nieuws_artikels')->find($id);
-            if ($value->active == 2 || Auth::user()->id ) {
+            if ($value->active == 2 || Auth::user()->id) {
                 $relevente = NieuwsArtikel::where('active', '2')->search($value->inleiding, null, true, true)->take(10)->get();;
                 return view('show/' . 'nieuws-artikel' . '-amp', ['content' => $value, 'relevente' => $relevente]);
             } else {
@@ -175,11 +179,13 @@ class HomeController extends Controller
     }
 
 
-    public  function tutorials_by_category($category){
-        $contents =Tutorial::where('active', '2')->where('category',$category)->paginate(25);
-        return view('show.tutorials',['contents'=>$contents,'category'=>$category]);
+    public function tutorials_by_category($category)
+    {
+        $contents = Tutorial::where('active', '2')->where('category', $category)->paginate(25);
+        return view('show.tutorials', ['contents' => $contents, 'category' => $category]);
     }
-    public function tutorial($id = null, $titel = null,$amp=null)
+
+    public function tutorial($id = null, $titel = null, $amp = null)
     {
         if ($amp == 'amp') {
             $value = DB::table('tutorials')->find($id);

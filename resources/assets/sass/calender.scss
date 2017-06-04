@@ -48,28 +48,6 @@
   text-align: center;
 }
 
-.bad {
-  position: absolute;
-  right: 32px;
-  top: 32px;
-  width: 32px;
-  height: 32px;
-  opacity: 0.3;
-}
 
-.bad:before, .bad:after {
-  position: absolute;
-  left: 15px;
-  content: ' ';
-  height: 33px;
-  width: 2px;
-  background-color: #333;
-}
-.bad:before {
-  transform: rotate(45deg);
-}
-.bad:after {
-  transform: rotate(-45deg);
-}
 
 

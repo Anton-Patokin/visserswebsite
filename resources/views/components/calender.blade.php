@@ -40,7 +40,13 @@
                             </small>
                         </td>
                     </tr>
-
+                    <style>
+                        .fish-bad {
+                            /*background-color: #007d9b;*/
+                            background-color: rgba(0, 125, 155, 0.3);
+                           /*background-color: rgba(0 125 155 0.3);*/
+                        }
+                    </style>
                 </table>
             </div>
         </div>
