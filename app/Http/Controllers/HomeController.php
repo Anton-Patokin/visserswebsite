@@ -41,7 +41,7 @@ class HomeController extends Controller
 
     public function welcome()
     {
-    return redirect('/home');
+    return view('welcome');
     }
 
     public function index($datum = null)
@@ -51,14 +51,14 @@ class HomeController extends Controller
 //        array_push($recentPost, Wedstrijd::orderBy('id', 'desc')->where('active', 2)->take(5)->get());
 
 
-        $wedstrijden = Wedstrijd::orderBy('id', 'desc')->where('active', 2);
+//        $wedstrijden = Wedstrijd::orderBy('id', 'desc')->where('active', 2);
         $nieuwsartikel = NieuwsArtikel::orderBy('id', 'desc')->where('active', 2);
         $tutorial = Tutorial::orderBy('id', 'desc')->where('active', 2);
         $visplek = VisPlek::orderBy('id', 'desc')->where('active', 2);
         $user = User::orderBy('id', 'desc')->where('active', 2);
 
 
-        array_push($recentPost, $wedstrijden->take(5)->get());
+//        array_push($recentPost, $wedstrijden->take(5)->get());
         array_push($recentPost, $tutorial->take(5)->get());
         array_push($recentPost, $visplek->take(5)->get());
 
@@ -69,8 +69,8 @@ class HomeController extends Controller
         }
         $recentPost = [];
         $allposts = [];
-        $pagination = $wedstrijden->paginate(5);
-        array_push($recentPost, $wedstrijden->paginate(5));
+        $pagination = $nieuwsartikel->paginate(5);
+//        array_push($recentPost, $wedstrijden->paginate(5));
         array_push($recentPost, $nieuwsartikel->paginate(5));
         array_push($recentPost, $tutorial->paginate(5));
         array_push($recentPost, $visplek->paginate(5));

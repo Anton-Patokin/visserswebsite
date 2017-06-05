@@ -1,6 +1,6 @@
 var center = {latitude: 51.218826, longitude: 4.402950};
 var MAX_SIZE = 5000000;//5mb
-var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial','ngCookies','ngMessages','googlechart']);
+var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial', 'ngCookies', 'ngMessages', 'googlechart']);
 
 
 myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader', '$http', '$window', function ($scope, uiGmapGoogleMapApi, fileReader, $http, $window) {
@@ -78,6 +78,60 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
             land: '',
         }
     }
+
+    $scope.wearPrognose = {};
+    $scope.initweaterPrognose = function () {
+        console.log('weater');
+        $http({
+            method: 'GET',
+            url: ROUTEFRONT + '/api/get/wheater/f',
+        }).success(function (data) {
+            var array = ['Tornado', 'Tropische storm', 'Orkaan', 'Onweersbui', 'Onweer', 'Gemengde regen en sneeuw', 'Gemengde regen en sleet', 'Gemengde sneeuw en sleet', 'Bevroren motregen', 'Motregen', 'Ijskoude regen', 'Douches', 'Douches', 'Sneeuwvlotten', 'Lichte sneeuwbuien', 'Sneeuw blazen', 'Sneeuw', 'Wees gegroet', 'Natte sneeuw', 'Stof', 'Mistig', 'Nevel', 'Rokerig', 'Stormachtige', 'Winderig', 'Koude', 'Bewolkt', 'Meestal bewolkt (nacht)', 'Meestal bewolkt (dag)', 'Gedeeltelijk bewolkt (nacht)', 'Gedeeltelijk bewolkt (dag)', 'Heldere nacht)', 'Zonnig', 'Eerlijk (night)', 'Eerlijk (dag)', 'Gemengde regen en hagel', 'Warm', 'Geïsoleerde onweersbui', 'Verspreide onweersbui', 'Verspreide onweersbui', 'Verspreide douches', 'zware sneeuw', 'Verspreide sneeuwbuien', 'zware sneeuw', 'Half bewolkt', 'Onweersbuien', 'Sneeuwbuien', 'Geïsoleerde onweersbuien'];
+            var dag = ['Mon', 'Ma', 'Tue', 'Di', 'Wed', 'Wo', 'Thu', 'Do', 'Fri', 'Vr', 'Sat', 'Za', 'Sun', 'Zo'];
+            var channel = data['weater']['query']['results']['channel'];
+            var code = channel['item']['condition']['code'];
+
+            $scope.wearPrognose = {
+                vandaag: {
+
+                    humidity: channel['atmosphere']['humidity'],
+                    pressure: Math.floor(channel['atmosphere']['pressure']),
+                    windDirection: Math.floor(channel['wind']['direction']),
+                    moon: {
+                        icon: data['moon'],
+                        moonPhase: data['moonPhase'],
+                    },
+                    wind: channel['wind']['speed'],
+                    temp: channel['item']['condition']['temp'],
+                    icon: 'wi-yahoo-' + code,
+                    text: array[code],
+                },
+                voorspeling: {
+                    1: {
+                        low: channel['item']['forecast'][0]['low'],
+                        high: channel['item']['forecast'][0]['high'],
+                        day: dag[dag.indexOf(channel['item']['forecast'][0]['day']) + 1],
+                        icon: 'wi-yahoo-' + Math.floor(channel['item']['forecast'][0]['code']),
+                    },
+                    2: {
+                        low: channel['item']['forecast'][1]['low'],
+                        high: channel['item']['forecast'][1]['high'],
+                        day: dag[dag.indexOf(channel['item']['forecast'][1]['day']) + 1],
+                        icon: 'wi-yahoo-' + Math.floor(channel['item']['forecast'][1]['code']),
+                    },
+                    3: {
+                        low: channel['item']['forecast'][2]['low'],
+                        high: channel['item']['forecast'][2]['high'],
+                        day: dag[dag.indexOf(channel['item']['forecast'][2]['day']) + 1],
+                        icon: 'wi-yahoo-' + Math.floor(channel['item']['forecast'][2]['code']),
+                    }
+                }
+            }
+            console.log('weater', channel['item']['forecast'][2]['code']);
+        });
+    }
+
+
     $scope.initAanpasenWedstrijd = function (id, lat, lng, titel, image, type, prijzen, category, hengel, visserij, kostprijs, duur, water, datum, dag, maand, loting, text) {
         $scope.currentStep++;
         $scope.input.aanpasen = id;
@@ -161,8 +215,8 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     }
 
 
-    $scope.faqinit=function (vraag,antwoord) {
-        $scope.vraag=vraag;
+    $scope.faqinit = function (vraag, antwoord) {
+        $scope.vraag = vraag;
         $scope.antwoord = antwoord;
     }
     $scope.initAanpassenNieuwsArtikel = function (titel, inleiding, url) {
@@ -564,8 +618,8 @@ myApp.config(function (uiGmapGoogleMapApiProvider) {
 });
 
 
-myApp.config(function($mdDateLocaleProvider) {
-    $mdDateLocaleProvider.formatDate = function(date) {
+myApp.config(function ($mdDateLocaleProvider) {
+    $mdDateLocaleProvider.formatDate = function (date) {
         var day = date.getDate();
         var monthIndex = date.getMonth();
         var year = date.getFullYear();

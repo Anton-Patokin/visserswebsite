@@ -43,7 +43,6 @@
                                                      models="trainerMarkers" coords="'self'"
                                                      icon="{url:'{{url('/images/icon/marker_trainer.png')}}'}">
                                         @include('components.googleWindow')
-
                                     </ui-gmap-markers>
                                     <ui-gmap-markers ng-init="initWedstrijdmarkers()"
                                                      events="map.markers.wedstrijd.events" fit="true"
@@ -79,6 +78,7 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
                 <div class="row">
+                    @include('components.wheater')
                     @include('components.calender')
                     @if (!Cookie::has('subscriber'))
                         @include('components.subscribe')

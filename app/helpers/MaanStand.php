@@ -277,7 +277,7 @@ class MaanStand
         return $this->get_phase( 7 );
     }
     function phase_name() {
-        $names = array( 'New Moon', 'Waxing Crescent', 'First Quarter', 'Waxing Gibbous', 'Full Moon', 'Waning Gibbous', 'Third Quarter', 'Waning Crescent', 'New Moon' );
+        $names = array( 'moon-new ', 'waxing-crescent-2', 'first-quarter', 'waxing-gibbous-4', 'moon-full', 'waning-gibbous-3', 'third-quarter', 'waning-crescent-4', 'moon-new' );
         // There are eight phases, evenly split. A "New Moon" occupies the 1/16th phases either side of phase = 0, and the rest follow from that.
         return $names[ floor( ( $this->phase + 0.0625 ) * 8 ) ];
     }
