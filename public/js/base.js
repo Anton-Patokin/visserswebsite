@@ -95,7 +95,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
                 vandaag: {
 
                     humidity: channel['atmosphere']['humidity'],
-                    pressure: Math.floor(channel['atmosphere']['pressure']),
+                    pressure: Math.floor(channel['atmosphere']['rising']),
                     windDirection: Math.floor(channel['wind']['direction']),
                     moon: {
                         icon: data['moon'],

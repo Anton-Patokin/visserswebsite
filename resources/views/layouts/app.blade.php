@@ -71,7 +71,10 @@
 
 <script>
     $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+
         if ($("#vertikalscroll").length) {
+            console.lo
             var scrolled = 0;
             var maxScroll = $("#vertikalscroll")[0].scrollHeight - 300;
             var move = false;
@@ -80,7 +83,7 @@
             var moveDown = true;
 
 
-            if (maxScroll < 200) {
+            if (maxScroll < 400) {
                 $("#go-to-bottom").hide();
                 $("#go-to-top").hide();
             } else {

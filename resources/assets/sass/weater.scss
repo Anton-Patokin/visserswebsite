@@ -3588,3 +3588,40 @@
   -o-transform: rotate(0deg);
   transform: rotate(0deg);
 }
+
+.weer-vandaag-icon {
+  font-size: 75px;
+}
+
+.weer-vandaag-temp {
+  font-size: 95px;
+  font-weight: 600;
+}
+
+.voorspeling-weer {
+  font-size: 22px;
+  border-right: 1px solid grey;
+}
+
+.weer-icon-top {
+  margin-top: -25px;
+  font-size: 50px;
+}
+
+.weater-sub-icon-font {
+  text-align: center;
+  margin-top: -20px;
+  font-size: 18px;
+}
+
+.voorspeling-weer:last-child {
+  border-right: none;
+}
+
+.weer-icon-top a {
+  color: #666;
+}
+
+.weer-icon-top a:hover {
+  color: #333;
+}

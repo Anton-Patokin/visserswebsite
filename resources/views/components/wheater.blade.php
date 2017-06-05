@@ -3,58 +3,44 @@
         <div class="caption ">
             <div class="box-card-body text-center">
                 <div class="row">
-
-                    <style>
-                        .weer-vandaag-icon {
-                            font-size: 75px;
-                        }
-
-                        .weer-vandaag-temp {
-                            font-size: 95px;
-                            font-weight: 600;
-                        }
-
-                        .voorspeling-weer {
-                            font-size: 22px;
-                            border-right: 1px solid grey;
-                        }
-
-                        .weer-icon-top{
-                            margin-top: -25px;
-                            font-size: 50px;
-                        }
-                        .weater-sub-icon-font{
-                            text-align: center;
-                            margin-top: -20px;
-                            font-size: 18px;
-                        }
-                        .voorspeling-weer:last-child { border-right: none; }
-                    </style>
                     <div class="col-xs-12">
-
                         <div class="weer-vandaag-temp">@{{ wearPrognose.vandaag.temp }}&#8451;
                             <i class="weer-vandaag-icon color-red wi" ng-class="wearPrognose.vandaag.icon"></i>
                         </div>
                         <div class="row weer-icon-top">
+
                             <div class="col-xs-3 text-center">
-                                <i class="wi" ng-class="'wi-moon-'+wearPrognose.vandaag.moon.icon"></i>
-                                <div class="weater-sub-icon-font">@{{ wearPrognose.vandaag.moon.moonPhase }}/8</div>
+                                <a href="#" data-toggle="tooltip"
+                                   title="Actuele stand van de maan, 1 nieuwe maan - 3 eerste kwartier - 5 volle maan - 7 laatste kwartier">
+                                    <i class="color-red wi" ng-class="'wi-moon-'+wearPrognose.vandaag.moon.icon"></i>
+                                </a>
+                                <div class="weater-sub-icon-font">@{{ wearPrognose.vandaag.moon.moonPhase+1 }}/8</div>
 
                             </div>
+
                             <div class="col-xs-3 ">
-                                <i class="wi wi-wind" ng-class="'towards-'+wearPrognose.vandaag.windDirection+'-deg'"></i>
+                                <a href="#" data-toggle="tooltip"
+                                   title="Windrichting van 0 - 360 graden">
+                                    <i class="color-red wi wi-wind"
+                                       ng-class="'towards-'+wearPrognose.vandaag.windDirection+'-deg'"></i>
+                                </a>
                                 <div class="weater-sub-icon-font">@{{ wearPrognose.vandaag.windDirection }}</div>
                             </div>
 
                             <div class="col-xs-3 text-center">
-                                <i class="wi wi-barometer"></i>
-                                <br>
+                                <a href="#" data-toggle="tooltip"
+                                   title="Barometrische druk: stabiel 0, stijgende 1 of dalende 2">
+                                    <i class="color-red wi wi-barometer"></i>
+                                </a>
                                 <div class="weater-sub-icon-font">@{{ wearPrognose.vandaag.pressure }}</div>
                             </div>
                             <div class="col-xs-3 text-center">
-                                <i class="wi wi-wind" ng-class="wearPrognose.vandaag.windDirection"></i>
+                                <a href="#" data-toggle="tooltip"
+                                   title="De relatieve luchtvochtigheid, in procenten, geeft aan hoeveel waterdamp zich in de lucht bevindt ten opzichte van de maximale hoeveelheid waterdamp">
+                                    <i class="color-red wi wi-humidity"></i>
+                                </a>
+                                <div class="weater-sub-icon-font">@{{ wearPrognose.vandaag.humidity }}</div>
                             </div>
-
                         </div>
                         <hr>
                     </div>
