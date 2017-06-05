@@ -1,22 +1,28 @@
 <?php
 $length = count($contents);
 $lengthRows = $length / 3;
-$lengthColumns = 4;
+$lengthColumns = 2;
+$showCallToAction = rand(4, $length);
+$countRows = 0;
 ?>
 
 @if(count($contents))
     <div class="row">
         @for($e=0;$e<$lengthColumns;$e++)
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                 <div class="row">
                     @for($i=0;$i<$lengthRows;$i++)
                         <div class="col-md-12 margin-top-2">
                             <?php $index = $i * $lengthColumns + $e;
                             $content = "";
+                            $countRows++;
                             if (isset($contents[$index])) {
                                 $content = $contents[$index];
                             }
                             ?>
+                            @if($showCallToAction == $countRows)
+                                @include('components.call_to_action')
+                            @endif
                             @if($content!="")
                                 @if($content->type =='wedstrijd')
                                     @include('components.new_contest')

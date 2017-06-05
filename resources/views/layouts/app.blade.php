@@ -80,7 +80,7 @@
             var moveDown = true;
 
 
-            if (maxScroll < 400) {
+            if (maxScroll < 200) {
                 $("#go-to-bottom").hide();
                 $("#go-to-top").hide();
             } else {

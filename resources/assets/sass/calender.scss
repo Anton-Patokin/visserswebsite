@@ -1,6 +1,5 @@
 .table-style .today {
-  background: $dark-blue;
-  color: #ffffff;
+  border: solid 2px $dark-blue;
 }
 
 .table-style th:nth-of-type(7), td:nth-of-type(7) {

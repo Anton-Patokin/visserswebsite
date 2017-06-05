@@ -58,7 +58,7 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
 
     }
 
-
+var counterror=0;
     $scope.initVisPlaatsmarkers = function () {
         $http({
             method: 'GET',
@@ -69,6 +69,10 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
                 inializeMarkerVariabele(value, 'plaats');
             });
         }).error(function () {
+            counterror++;
+            if(counterror<5){
+                $scope.initVisPlaatsmarkers();
+            }
             console.log('iets verkeerd met api call bij visplaatsen aanvraag');
         });
     }
@@ -83,6 +87,10 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
                 inializeMarkerVariabele(value, 'trainer');
             });
         }).error(function () {
+            counterror++;
+            if(counterror<5){
+                $scope.initTrainersmarkers();
+            }
             console.log('iets verkeerd met api call bij trainer aanvraag');
         });
     }
@@ -97,6 +105,10 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
 
             });
         }).error(function () {
+            counterror++;
+            if(counterror<5){
+                $scope.initWedstrijdmarkers();
+            }
             console.log('iets verkeerd met api call bij visplaatsen aanvraag');
         });
 
@@ -295,7 +307,7 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
 
 
         var badDayToFish = [1, 2, 12, 13, 14, 15, 16, 26, 27, 28, 29,30];
-        var notSadDayToFish = [11, 17,18, 23, 24, 25];
+        var notSadDayToFish = [11, 17,18, 23, 24,25];
         var veryGoodDayToFish = [4,5,6,7, 8, 19];
         var goodDayToFish = [3, 9, 10, 20, 21, 22];
 
@@ -312,20 +324,20 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
             var dd = new Date($timestamp.getFullYear(), $timestamp.getMonth(), $timestamp.getDate() + (i - 1));
 
             var moon_day = hm.NowMoonDay(dd);
+            // moon_day= moon_day.toString();
             var fishResult="";
-            if(moon_day in badDayToFish){
+            if(badDayToFish.indexOf(moon_day)!=-1){
                 fishResult ='fish-bad';
             }
-            if(moon_day in notSadDayToFish){
+            if(notSadDayToFish.indexOf(moon_day)!=-1){
                 fishResult ='fish-meddium';
             }
-            if(moon_day in veryGoodDayToFish){
+            if(veryGoodDayToFish.indexOf(moon_day)!=-1){
                 fishResult ='fish-veryGood';
             }
-            if(moon_day in goodDayToFish){
+            if(goodDayToFish.indexOf(moon_day)!=-1){
                 fishResult ='fish-good';
             }
-
             html_bulder_week.push({day: day, today: today, activity: '',fishActivity:fishResult});
             if (offset % 7 == 6 || day == $day_count) {
                 html_bulder_weeks.push(html_bulder_week);

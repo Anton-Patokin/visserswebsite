@@ -2,7 +2,7 @@
     <div class="thumbnail">
         <div class="caption ">
             <div class="box-card-head">
-                <h3 class="widget-title text-uppercase text-center ">Wedstrijden</h3>
+                <h3 class="widget-title text-uppercase text-center ">Calender</h3>
             </div>
             <div class="box-card-body">
                 <table class="table table-bordered table-style table-responsive">
@@ -43,11 +43,65 @@
                     <style>
                         .fish-bad {
                             /*background-color: #007d9b;*/
-                            background-color: rgba(0, 125, 155, 0.3);
-                           /*background-color: rgba(0 125 155 0.3);*/
+                            background-color: rgba(243, 133, 51, 0.1);
+
+                            /*background-color: rgba(0 125 155 0.3);*/
+                        }
+                        .fish-meddium {
+                            /*background-color: #007d9b;*/
+                            background-color: rgba(0, 125, 155, 0.05);
+
+                            /*background-color: rgba(0 125 155 0.3);*/
+                        }
+                        .fish-good{
+                            /*background-color: #007d9b;*/
+                            background-color: rgba(165, 162, 63, 0.3);
+
+                            /*background-color: rgba(0 125 155 0.3);*/
+                        }
+                        .fish-veryGood {
+                            /*background-color: #007d9b;*/
+                            background-color: rgba(128, 214, 81, 0.1);
+                            /*background-color: rgba(0 125 155 0.3);*/
+                        }
+                        .circel-rood-legenda{
+                            background-color: #d81b60;
+                            height: 15px;
+                            width:  15px;
+                            border-radius: 50%;
                         }
                     </style>
                 </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Legenda</h4>
+                        <table class="table table-bordered table-style table-responsive">
+                            <tr>
+                                <td class="fish-bad"></td>
+                                <td>Slecht dag om te gaan vissen</td>
+
+                            </tr>
+                            <tr>
+                                <td class="fish-meddium"></td>
+                                <td>Vis is niet active</td>
+                            </tr>
+                            <tr>
+                                <td class="fish-good"></td>
+                                <td>Goede dag om te gaan vissen</td>
+                            </tr>
+                            <tr>
+                                <td class="fish-veryGood"></td>
+                                <td>Beste dag om te gaan vissen</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="circel-rood-legenda"></div>
+                                </td>
+                                <td>Antaal westrijden op deze dag</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

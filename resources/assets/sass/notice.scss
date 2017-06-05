@@ -1,0 +1,17 @@
+.notice {
+  padding: 15px;
+  background-color: #fff;
+  -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+  box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+}
+.notice-green{
+  border-left: 6px solid #a5a23f;
+}
+.notice-font-green{
+  color: #a5a23f;
+}
+.notice-lg {
+  padding: 35px;
+  font-size: large;
+}
