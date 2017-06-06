@@ -24,8 +24,6 @@ $messages = Config::get('constant.Headings');
                             <div class="row datum">
                                 <a href="{{url('/wedstrijden/'.$prevdatum)}}">
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-
-
                                         <p class="text-center text-uppercase">
                                         <div class="maand">{{$nexMontText['maand']}}</div>
                                         /
@@ -80,9 +78,9 @@ $messages = Config::get('constant.Headings');
                             <div class="caption">
                                 <ui-gmap-google-map options="map.options" center='map.center' zoom='map.zoom'>
                                     {{--<ui-gmap-search-box options="map.searchbox.options"--}}
-                                                        {{--template="map.searchbox.template"--}}
-                                                        {{--events="map.searchbox.events"--}}
-                                                        {{--position="'top-left'"></ui-gmap-search-box>--}}
+                                    {{--template="map.searchbox.template"--}}
+                                    {{--events="map.searchbox.events"--}}
+                                    {{--position="'top-left'"></ui-gmap-search-box>--}}
                                     <ui-gmap-markers ng-init="initWedstrijdmarkers()"
                                                      events="map.markers.wedstrijd.events" fit="true"
                                                      models="wedsrijdMarkers" coords="'self'"
@@ -113,6 +111,12 @@ $messages = Config::get('constant.Headings');
                                 </div>
                                 <div class="col-md-12 margin-bottom-10">
                                     <div class="row">
+
+                                        @if(!count($contents))
+                                            <div class="col-xs-12">
+                                                @include('components.call_to_action_wedstrijden')
+                                            </div>
+                                        @endif
                                         @foreach($contents as $key=>$content)
                                             <div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
                                                 <div class="row text-center">
@@ -180,6 +184,7 @@ $messages = Config::get('constant.Headings');
                 </div>
             </div>
         </div>
+        <?php $smallThumbnail = true;?>
         @include('components.listOfThumbnails')
         <div class="row">
             <div class="col-md-12 text-center">

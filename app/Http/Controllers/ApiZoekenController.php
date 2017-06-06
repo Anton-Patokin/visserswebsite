@@ -20,4 +20,9 @@ class ApiZoekenController extends Controller
             ->search($request->input, null, true,true)->get();
         return ["wedstrijd"=>$wedstrijden,"trainer"=>$trainer,'plaats'=>$visplaats];
     }
+    public function googleMapsZoekenVisPlatsen(Request $request){
+        $visplaats = VisPlek::where('active', '2')
+            ->search($request->input, null, true,true)->get();
+        return ['plaats'=>$visplaats];
+    }
 }

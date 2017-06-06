@@ -1,7 +1,14 @@
 <?php
 $length = count($contents);
-$lengthRows = $length / 3;
-$lengthColumns = 2;
+if(isset($smallThumbnail)){
+    $lengthRows = $length / 3;
+    $lengthColumns = 3;
+}    else{
+
+    $lengthRows = $length / 2;
+    $lengthColumns = 2;
+}
+
 $showCallToAction = rand(4, $length);
 $countRows = 0;
 ?>
@@ -9,7 +16,7 @@ $countRows = 0;
 @if(count($contents))
     <div class="row">
         @for($e=0;$e<$lengthColumns;$e++)
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <div class="col-xs-12 col-sm-6 <?php echo (isset($smallThumbnail)? 'col-md-4 col-lg-4':'col-md-6 col-lg-6')?>">
                 <div class="row">
                     @for($i=0;$i<$lengthRows;$i++)
                         <div class="col-md-12 margin-top-2">

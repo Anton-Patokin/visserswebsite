@@ -28,7 +28,27 @@ $message = Config::get('constant.Headings');
                                     </div>
                                 </div>
                             </div>
+
+                            <style>
+                                .weisted{
+                                    z-index: 20000;
+                                    width: 25%;
+                                }
+                            </style>
+                            @if(strtotime($content->datum)<strtotime(\Carbon\Carbon::now()))
+                                <div class="col-md-9 weisted">
+                                    <img  src="{{url('/images/vorbij.png')}}" alt="stempel vorbij">
+                                </div>
+                            @endif
                             <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Datum </h3>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4>{{$content->datum}}</h4>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h3>{{$termen['kermerken']}}</h3>
@@ -46,13 +66,16 @@ $message = Config::get('constant.Headings');
                                 <div class="row margin-top-3">
                                     <div class="row">
                                         <div class="col-md-12">
+
                                             <div class="col-md-6">
                                                 <h3 class="text-left">
                                                     {{$termen['prijzen']}}
                                                 </h3>
                                                 <p class="text-left">
+                                                    @if(empty($content->prijzen))
+                                                        ...
+                                                    @endif
                                                     {{$content->prijzen}}
-
                                                 </p>
                                             </div>
                                             <div class="col-md-6">
@@ -60,6 +83,9 @@ $message = Config::get('constant.Headings');
                                                     {{$termen['duur']}}
                                                 </h3>
                                                 <p class="text-left">
+                                                    @if(empty($content->duur))
+                                                        ...
+                                                    @endif
                                                     {{$content->duur}}
                                                 </p>
                                             </div>
@@ -70,6 +96,9 @@ $message = Config::get('constant.Headings');
                                             {{$termen['kostprijs']}}
                                         </h3>
                                         <p class="text-left">
+                                            @if(empty($content->kostprijs))
+                                                ...
+                                            @endif
                                             {{$content->kostprijs}}
                                         </p>
                                     </div>
@@ -79,6 +108,9 @@ $message = Config::get('constant.Headings');
                                             {{$termen['water']}}
                                         </h3>
                                         <p class="text-left">
+                                            @if(empty($content->water))
+                                                ...
+                                            @endif
                                             {{$content->water}}
                                         </p>
                                     </div>
@@ -87,6 +119,9 @@ $message = Config::get('constant.Headings');
                                             {{$termen['loting']}}
                                         </h3>
                                         <p class="text-left">
+                                            @if(empty($content->loting))
+                                                ...
+                                            @endif
                                             {{$content->loting}}
                                         </p>
                                     </div>
@@ -95,6 +130,9 @@ $message = Config::get('constant.Headings');
                                             {{$termen['extra']}}
                                         </h3>
                                         <p class="text-left">
+                                            @if(empty($content->text))
+                                                ...
+                                            @endif
                                             {{$content->text}}
                                         </p>
                                     </div>
@@ -104,7 +142,7 @@ $message = Config::get('constant.Headings');
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 box-card">
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 box-card">
                 <div class="thumbnail ">
                     <div class="caption">
                         <div class="box-card-head">

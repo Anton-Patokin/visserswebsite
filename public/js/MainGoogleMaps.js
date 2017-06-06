@@ -4,6 +4,26 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
     $scope.wedsrijdMarkers = [];
 
 
+
+
+    $scope.zoekenOpGoogleMapsnaarVisPlatsen=function (input) {
+        $http({
+            method: 'POST',
+            url: ROUTEFRONT + '/api/zoeken/googleMaps/visPlatsen',
+            data: {input: input}
+        }).success(function (data) {
+            eraseMarkers();
+            angular.forEach(data, function (content, key) {
+                angular.forEach(content, function (value, id) {
+                    inializeMarkerVariabele(value, key);
+                });
+            });
+        }).error(function (data, status, headers, config) {
+            console.log('error bij het zoeken');
+        });
+    }
+
+
     $scope.zoekenOpGoogleMaps = function (input) {
         $http({
             method: 'POST',
