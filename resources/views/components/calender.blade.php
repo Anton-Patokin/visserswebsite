@@ -85,11 +85,10 @@
                                 <tr>
                                     <td class="fish-bad"></td>
                                     <td>Slecht dag om te gaan vissen</td>
-
                                 </tr>
                                 <tr>
                                     <td class="fish-meddium"></td>
-                                    <td>Vis is niet active</td>
+                                    <td>Vis is niet actief</td>
                                 </tr>
                                 <tr>
                                     <td class="fish-good"></td>

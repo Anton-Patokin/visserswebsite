@@ -59,9 +59,11 @@
 
 
 
-.ship{
+.Bootvissen{
   background: url(#{$path}/images/icon/fishing-sprite.png) -60px 0px;
 }
+
+
 .dobber{
   background: url(#{$path}/images/icon/fishing-sprite.png) 0px 0px;
 }
@@ -69,18 +71,27 @@
   background: url(#{$path}/images/icon/fishing-sprite.png) -300px 0px;
 }
 
-
-.Op.aantal{
+.Totale.lengte{
   background: url(#{$path}/images/icon/fishing-sprite.png) -360px 0px;
+}
+.Op.aantal{
+  background: url(#{$path}/images/icon/fishing-sprite.png) -660px 0px;
 }
 .Op.gewicht{
   background: url(#{$path}/images/icon/fishing-sprite.png) -420px 0px;
 }
-
-
 .Roofvissen{
   background: url(#{$path}/images/icon/fishing-sprite.png) -480px 0px;
 }
 .Witvissen{
   background: url(#{$path}/images/icon/fishing-sprite.png) -540px 0px;
+}
+.Vliegvissen{
+  background: url(#{$path}/images/icon/fishing-sprite.png) -600px 0px;
+}
+.Zeevissen{
+  background: url(#{$path}/images/icon/fishing-sprite.png) -720px 0px;
+}
+.Karpervissen{
+  background: url(#{$path}/images/icon/fishing-sprite.png) -780px 0px;
 }
