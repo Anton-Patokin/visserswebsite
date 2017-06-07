@@ -59,3 +59,28 @@
 
 
 
+.ship{
+  background: url(#{$path}/images/icon/fishing-sprite.png) -60px 0px;
+}
+.dobber{
+  background: url(#{$path}/images/icon/fishing-sprite.png) 0px 0px;
+}
+.monney{
+  background: url(#{$path}/images/icon/fishing-sprite.png) -300px 0px;
+}
+
+
+.Op.aantal{
+  background: url(#{$path}/images/icon/fishing-sprite.png) -360px 0px;
+}
+.Op.gewicht{
+  background: url(#{$path}/images/icon/fishing-sprite.png) -420px 0px;
+}
+
+
+.Roofvissen{
+  background: url(#{$path}/images/icon/fishing-sprite.png) -480px 0px;
+}
+.Witvissen{
+  background: url(#{$path}/images/icon/fishing-sprite.png) -540px 0px;
+}

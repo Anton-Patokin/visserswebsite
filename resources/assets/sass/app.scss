@@ -144,9 +144,11 @@ footer{
   }
 }
 
-a{
+.notice a{
   &:hover{
-    color: $dark-blue;
+    color: $light-blue;
+
   }
-  color: $color-red;
+  color: $dark-blue;
+
 }

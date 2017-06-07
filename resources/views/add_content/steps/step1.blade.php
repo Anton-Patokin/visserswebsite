@@ -25,6 +25,8 @@ $content->vraagprijs  = 10;
 $content->text  = 'lorem ipsu';
 $content->maand  = 'mei';
 $content->dag  = 11;
+$content->visserij  = 'Op gewicht';
+$content->category  = 'Witvissen';
 
 ?>
 

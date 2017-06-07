@@ -1,12 +1,12 @@
 <div class="thumbnail">
     <div class="head-thumbnail">
-        <div class="icon-img-background-left ship"></div>
+        <div class="icon-img-background-left {{$content->category}}"></div>
         <div class="icon">
             {{--            <img class="pull-left" src="{{url('/images/icon/dobber.png')}}">--}}
             <div class="date-string">{{$content->maand}}</div>
             <div class="date-nummber">{{$content->dag}}</div>
         </div>
-        <div class="icon-img-background-right dobber"></div>
+        <div class="icon-img-background-right {{$content->visserij}}"></div>
     </div>
     <img src="{{url('/uploads/thumbnail/'.$content->image)}}" alt="{{$content->titel}}">
     <div class="caption">

@@ -57,15 +57,7 @@
     height: 60px;
     width: 60px;
   }
-  .ship{
-    background: url(#{$path}/images/icon/fishing-sprite.png) -60px 0px;
-  }
-  .dobber{
-    background: url(#{$path}/images/icon/fishing-sprite.png) 0px 0px;
-  }
-  .monney{
-    background: url(#{$path}/images/icon/fishing-sprite.png) -300px 0px;
-  }
+
 
   height: 63px;
   background-color: $dark-blue;
