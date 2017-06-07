@@ -25,6 +25,7 @@ Route::get('/get/markers/{type}','ApiGoogleMaps@markers');
 Route::get('/get/marker/{id}','ApiGoogleMaps@marker');
 Route::post('/zoeken/googleMaps','ApiZoekenController@googleMapsZoeken');
 Route::post('/zoeken/googleMaps/visPlatsen','ApiZoekenController@googleMapsZoekenVisPlatsen');
+Route::post('/zoeken/googleMaps/gids','ApiZoekenController@googleMapsZoekenGids');
 
 Route::get('/get/wedstrijden/{year}/{month}','ApiCalenderController@index');
 

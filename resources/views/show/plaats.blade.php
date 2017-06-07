@@ -6,6 +6,15 @@ $message = Config::get('constant.Headings');
 @extends('layouts.app')
 
 @section('head')
+    <title>Vis plaats |{{$content->land}}|$content->stad | {{$content->titel}}</title>
+    <meta name="description" content="Overzicht van de vis plaats  {{substr($content->text, 0,250 ) }}">
+    <link rel="amphtml" href="{{url('/'.$content->type.'/'.$content->id.'/'.str_replace(' ','-',substr($content->titel, 0,25 )).'/amp')}}">
+    <meta property='og:title' content='Vis plaats |{{$content->land}}|$content->stad | {{$content->titel}}'/>
+    <meta property='og:type' content='article'/>
+    <meta property='og:url' content='{{url('/'.$content->type.'/'.$content->id.'/'.str_replace(' ','-',substr($content->titel, 0,25 )))}}'/>
+    <meta property='og:image' content='{{url('/uploads/thumbnail/'.$content->image)}}'/>
+    <meta property='og:site_name' content='fishingfriends.be Alles voor vissers'/>
+    <meta property='og:description' content='Overzicht van de vis plaats  {{substr($content->text, 0,250 ) }}'/>
     @include('jsonLd.nieuwsArtikel-jsonLd')
 @endsection
 
@@ -30,12 +39,29 @@ $message = Config::get('constant.Headings');
                                              alt="{{$content->titel}}">
                                     </div>
                                     <div class="col-md-12 margin-top-2">
-                                        <ui-gmap-google-map options="map.options" center='map.center'
-                                                            zoom='map.zoom'></ui-gmap-google-map>
+                                        <ui-gmap-google-map options="map.options"
+                                                            center='{latitude: {{$content->lat}},longitude: {{$content->lng}}}'
+                                                            zoom='map.zoom'>
+                                            <ui-gmap-marker
+                                                    idKey='{{$content->id}}'
+                                                    coords='{latitude: {{$content->lat}},longitude: {{$content->lng}}}'
+                                                    icon="{url:'{{url('/images/icon/marker_vis.png')}}'}">
+                                            </ui-gmap-marker>
+
+                                        </ui-gmap-google-map>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Adres </h3>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4>{{$content->land}} - {{$content->stad}}
+                                            - {{$content->straat}} {{$content->nummer}} - {{$content->postCode}}</h4>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h3>{{$termen['kermerken']}}</h3>

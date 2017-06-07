@@ -225,16 +225,16 @@ class HomeController extends Controller
             if ($show) {
                 if ($tabel == 'vis_pleks') {
                     $value = VisPlek::with('user')->where('id', $id)->get()->first();
-                    $relevente = $visplaats = VisPlek::where('active', '2')->search($value->vissoorten, null, true, true)->take(15)->get();;
+                    $relevente = $visplaats = VisPlek::where('active', '2')->search($value->vissoorten, null, true, true)->take(15)->get();
                     return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 if ($tabel == 'wedstrijds') {
                     $value = Wedstrijd::with('user')->where('id', $id)->get()->first();
-                    $relevente = $visplaats = Wedstrijd::where('active', '2')->search($value->category, null, true, true)->take(15)->get();;
+                    $relevente = $visplaats = Wedstrijd::where('active', '2')->search($value->category, null, true, true)->take(15)->get();
                     return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 if ($tabel == 'users') {
-                    $relevente = User::where('active', '2')->search($value->provincie, null, true, true)->take(15)->get();;
+                    $relevente = User::where('active', '2')->search($value->provincie, null, true, true)->take(15)->get();
                     return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 if ($tabel == 'tutorials') {
@@ -247,8 +247,8 @@ class HomeController extends Controller
 
             //bij het bezoeken van overzicht pagina
             $value = DB::table($tabel)->Where('active', 2)->orderBy('updated_at', 'desc');
-
-            $value = $value->get();
+            $value = $value->paginate(25);
+            
             if (count($value)) {
                 return view('show/' . $view2, ['contents' => $value]);
             }

@@ -9,10 +9,9 @@ if(isset($smallThumbnail)){
     $lengthColumns = 2;
 }
 
-$showCallToAction = rand(4, $length);
+$showCallToAction = rand(0, $length);
 $countRows = 0;
 ?>
-
 @if(count($contents))
     <div class="row">
         @for($e=0;$e<$lengthColumns;$e++)
@@ -40,7 +39,7 @@ $countRows = 0;
                                 @if($content->type =='nieuwsArtikel')
                                     @include('components.news_thumbnail')
                                 @endif
-                                @if($content->type =='trainer')
+                                @if($content->type =='gids')
                                     @include('components.trainer_thumbnail')
                                 @endif
                                 @if($content->type =='tutorial')

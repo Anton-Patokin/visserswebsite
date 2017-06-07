@@ -135,3 +135,19 @@
 .normaal-font{
   color: $dark-blue;
 }
+
+
+
+footer{
+  a{
+
+    color: $light-blue;
+  }
+}
+
+a{
+  &:hover{
+    color: $dark-blue;
+  }
+  color: $color-red;
+}

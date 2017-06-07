@@ -37,12 +37,11 @@
                 <?php $smallThumbnail = true;?>
                 @include('components.listOfThumbnails')
             </div>
-
-            {{--@foreach($contents as $key=>$content)--}}
-                {{--<div class="col-md-3">--}}
-                    {{--@include('components.visplek_thumbnail')--}}
-                {{--</div>--}}
-            {{--@endforeach--}}
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                {{ $contents->links() }}
+            </div>
         </div>
 
     </div>

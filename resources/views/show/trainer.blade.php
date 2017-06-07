@@ -13,7 +13,7 @@ $message = Config::get('constant.Headings');
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
                 <div class="thumbnail">
-                    <div class="caption">
+                    <div class="caption detail">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="row">
@@ -109,7 +109,7 @@ $message = Config::get('constant.Headings');
                                         </div>
                                         <div class="thumbnail-body">
                                             <p class="">
-                                                {{$content->created_at}}
+                                                {{substr($content->created_at,0,10) }}
                                             </p>
                                         </div>
                                     </div>

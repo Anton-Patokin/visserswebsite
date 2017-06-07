@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('titel')->nullable();
-            $table->string('type')->default('trainer');
+            $table->string('type')->default('gids');
             $table->string('email')->unique();
             $table->string('image')->nullable();
             $table->integer('leeftijd')->nullable();

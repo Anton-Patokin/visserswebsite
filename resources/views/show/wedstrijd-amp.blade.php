@@ -5,8 +5,9 @@ $message = Config::get('constant.Headings');
 @extends('layouts.app-amp')
 
 @section('head')
-    <title>{{$message['wedstrijd']}} | {{substr($content->titel, 0,150 ) }}</title>
-    <meta name="description" content="{{substr($content->text, 0,250 ) }}">
+    <title>Vis wedstrijd | {{$content->titel}}</title>
+    <meta name="description" content="Overzicht van de  vis wedstrijd met algemene informatie zoals locatie, loting, adres ...
+    {{substr($content->text, 0,250 ) }}">
     <link rel="canonical" href="{{url('/'.$content->type.'/'.$content->id)}}"/>
 @endsection
 @section('jsonLd')

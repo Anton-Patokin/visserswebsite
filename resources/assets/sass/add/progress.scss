@@ -80,7 +80,7 @@ span.round-tab i {
 }
 
 .wizard li.active span.round-tab i {
-  color: #007d9b;
+  color: $color-red;
 }
 
 span.round-tab:hover {
@@ -107,7 +107,7 @@ span.round-tab:hover {
 .wizard li.active:after {
   content: " ";
   position: absolute;
-  left: 46%;
+  left: 47%;
   opacity: 1;
   margin: 0 auto;
   bottom: 0px;

@@ -18,7 +18,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-left">
                     <?php
-                    $navbar = ['home', 'plaats', 'wedstrijden', 'nieuws', 'trainer', 'tutorial', 'over-ons', 'contact', 'faq'];
+                    $navbar = ['home', 'plaats', 'wedstrijden', 'nieuws', 'gids', 'tutorial', 'over-ons', 'contact', 'faq'];
                     ?>
                     {{--@if(Menu::isActiveRoute($navbar))--}}
 

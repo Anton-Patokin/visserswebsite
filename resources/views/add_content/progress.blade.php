@@ -25,7 +25,7 @@
                         <li ng-repeat="step in steps" ng-click="progress_clicked(step.step)"
                             ng-class="{active: step.step<=currentStep,'disabled':step.step>currentStep}">
                             <a ng-href="@{{step.url}}" title="Step @{{step.step}}">
-                            <span class="round-tab">
+                            <span class="round-tab color-red">
                                 <i class="glyphicon" ng-class="step.glyphicon">
                                     <div ng-hide="step.glyphicon!=''">@{{ $index }}</div>
                                 </i>
@@ -54,23 +54,6 @@
             <div ng-if="currentStep == 2">
                 <div class="margin-top-3">
                     @include('add_content.steps.step2')
-                    <ul ng-show="currentStep>1" class="list-inline text-center margin-top-1">
-                        <li>
-                            <button ng-click="prev()" type="button" class="btn-lg btn-default">
-                                Vorige
-                            </button>
-                        </li>
-                        <li>
-                            <button ng-if="currentStep ==2 " ng-click="next()" type=""
-                                    class="btn-lg btn-default"
-                                    ng-disabled="input.lat=='' && input.lng == ''">Volgende
-                            </button>
-                            <button ng-if="currentStep == 3" type="submit"
-                                    class="btn-lg btn-default">
-                                Verzenden
-                            </button>
-                        </li>
-                    </ul>
                 </div>
                 <input type="text" name="lat" ng-model="input.lat" hidden>
                 <input type="text" name="lng" ng-model="input.lng" hidden>
@@ -78,8 +61,7 @@
 
 
             <div ng-show="currentStep == 4">
-                <h3>Complete</h3>
-                <p>Jou bericht is goed opgeslagen</p>
+               @include('add_content.steps.step4')
             </div>
             <div class="clearfix"></div>
             <div class="row">

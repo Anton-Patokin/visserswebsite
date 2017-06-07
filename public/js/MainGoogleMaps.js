@@ -4,9 +4,25 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
     $scope.wedsrijdMarkers = [];
 
 
+    $scope.zoekenOpGoogleMapsnaarGidsen = function (input) {
 
+        $http({
+            method: 'POST',
+            url: ROUTEFRONT + '/api/zoeken/googleMaps/gids',
+            data: {input: input}
+        }).success(function (data) {
+            eraseMarkers();
+            angular.forEach(data, function (content, key) {
+                angular.forEach(content, function (value, id) {
+                    inializeMarkerVariabele(value, key);
+                });
+            });
+        }).error(function (data, status, headers, config) {
+            console.log('error bij het zoeken');
+        });
+    }
 
-    $scope.zoekenOpGoogleMapsnaarVisPlatsen=function (input) {
+    $scope.zoekenOpGoogleMapsnaarVisPlatsen = function (input) {
         $http({
             method: 'POST',
             url: ROUTEFRONT + '/api/zoeken/googleMaps/visPlatsen',
@@ -78,7 +94,7 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
 
     }
 
-var counterror=0;
+    var counterror = 0;
     $scope.initVisPlaatsmarkers = function () {
         $http({
             method: 'GET',
@@ -90,7 +106,7 @@ var counterror=0;
             });
         }).error(function () {
             counterror++;
-            if(counterror<5){
+            if (counterror < 5) {
                 $scope.initVisPlaatsmarkers();
             }
             console.log('iets verkeerd met api call bij visplaatsen aanvraag');
@@ -108,7 +124,7 @@ var counterror=0;
             });
         }).error(function () {
             counterror++;
-            if(counterror<5){
+            if (counterror < 5) {
                 $scope.initTrainersmarkers();
             }
             console.log('iets verkeerd met api call bij trainer aanvraag');
@@ -126,7 +142,7 @@ var counterror=0;
             });
         }).error(function () {
             counterror++;
-            if(counterror<5){
+            if (counterror < 5) {
                 $scope.initWedstrijdmarkers();
             }
             console.log('iets verkeerd met api call bij visplaatsen aanvraag');
@@ -326,9 +342,9 @@ var counterror=0;
         var html_bulder_weeks = [];
 
 
-        var badDayToFish = [1, 2, 12, 13, 14, 15, 16, 26, 27, 28, 29,30];
-        var notSadDayToFish = [11, 17,18, 23, 24,25];
-        var veryGoodDayToFish = [4,5,6,7, 8, 19];
+        var badDayToFish = [1, 2, 12, 13, 14, 15, 16, 26, 27, 28, 29, 30];
+        var notSadDayToFish = [11, 17, 18, 23, 24, 25];
+        var veryGoodDayToFish = [4, 5, 6, 7, 8, 19];
         var goodDayToFish = [3, 9, 10, 20, 21, 22];
 
         for (var i = 0; i < offset; i++) {
@@ -345,20 +361,20 @@ var counterror=0;
 
             var moon_day = hm.NowMoonDay(dd);
             // moon_day= moon_day.toString();
-            var fishResult="";
-            if(badDayToFish.indexOf(moon_day)!=-1){
-                fishResult ='fish-bad';
+            var fishResult = "";
+            if (badDayToFish.indexOf(moon_day) != -1) {
+                fishResult = 'fish-bad';
             }
-            if(notSadDayToFish.indexOf(moon_day)!=-1){
-                fishResult ='fish-meddium';
+            if (notSadDayToFish.indexOf(moon_day) != -1) {
+                fishResult = 'fish-meddium';
             }
-            if(veryGoodDayToFish.indexOf(moon_day)!=-1){
-                fishResult ='fish-veryGood';
+            if (veryGoodDayToFish.indexOf(moon_day) != -1) {
+                fishResult = 'fish-veryGood';
             }
-            if(goodDayToFish.indexOf(moon_day)!=-1){
-                fishResult ='fish-good';
+            if (goodDayToFish.indexOf(moon_day) != -1) {
+                fishResult = 'fish-good';
             }
-            html_bulder_week.push({day: day, today: today, activity: '',fishActivity:fishResult});
+            html_bulder_week.push({day: day, today: today, activity: '', fishActivity: fishResult});
             if (offset % 7 == 6 || day == $day_count) {
                 html_bulder_weeks.push(html_bulder_week);
                 html_bulder_week = [];

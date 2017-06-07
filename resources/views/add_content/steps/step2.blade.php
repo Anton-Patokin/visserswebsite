@@ -5,7 +5,7 @@ $head_description = $message['locatie_description']; ?>
 <div class="row margin-bottom-5">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="thumbnail">
-            <div class="caption">
+            <div class="caption detail">
                 <div class="row">
                     <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                         <ui-gmap-google-map events="mapAdd.events" options="mapAdd.options" center='mapAdd.center'
@@ -23,22 +23,14 @@ $head_description = $message['locatie_description']; ?>
                     </div>
 
 
-                    <div ng-show='input.adres.land' class="col-xs-12 col-sm-3 col-md-3 col-lg-3 adres">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>Land:</h3></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.land }}</h4></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>Gewest:</h3></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.gewest }}</h4></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>Provincie:</h3></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.provincie }}</h4></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>Stad:</h3></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.stad }}</h4></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>PostCode:</h3></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.postCode }}</h4></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>Straat:</h3></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.straat }}</h4></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4"><h3>Nummer:</h3></div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8"><h4>@{{ input.adres.nummer }}</h4></div>
-                        <div class="col-md-12">
+                    <div  class="col-xs-12 col-sm-3 col-md-3 col-lg-3 adres">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3>Land: <small ng-show='input.adres.land'>@{{ input.adres.land }}</small></h3></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3>Gewest: <small ng-show='input.adres.land'>@{{ input.adres.gewest }}</small> </h3></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3>Provincie: <small ng-show='input.adres.land'>@{{ input.adres.provincie }}</small></h3></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3>Stad: <small ng-show='input.adres.land'>@{{ input.adres.stad }}</small></h3></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3>PostCode: <small ng-show='input.adres.land'>@{{ input.adres.postCode }}</small></h3></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3>Straat: <small ng-show='input.adres.land'>@{{ input.adres.straat }}</small></h3></div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><h3>Nummer: <small ng-show='input.adres.land'>@{{ input.adres.nummer }}</small></h3></div><div class="col-md-12">
                             <ul ng-show="currentStep>1" class="list-inline text-center margin-top-5">
                                 <li>
                                     <button ng-click="prev()" type="button" class="btn-lg btn-default">

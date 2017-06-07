@@ -4,6 +4,26 @@ $message = Config::get('constant.Headings');
 ?>
 
 @extends('layouts.app')
+
+@section('head')
+    <title>Vis wedstrijd | {{$content->titel}}</title>
+    <meta name="description" content="Overzicht van de  vis wedstrijd met algemene informatie zoals locatie, loting, adres ...
+    {{substr($content->text, 0,250 ) }}
+    ">
+    <link rel="amphtml" href="{{url('/'.$content->type.'/'.$content->id.'/'.str_replace(' ','-',substr($content->titel, 0,25 )).'/amp')}}">
+    <meta property='og:title' content='Vis wedstrijd | {{$content->titel}}'/>
+    <meta property='og:type' content='article'/>
+    <meta property='og:url' content='{{url('/'.$content->type.'/'.$content->id.'/'.str_replace(' ','-',substr($content->titel, 0,25 )))}}'/>
+    <meta property='og:image' content='{{url('/uploads/thumbnail/'.$content->image)}}'/>
+    <meta property='og:site_name' content='Apen.be voor Antwerpen'/>
+    <meta property='og:description' content='Overzicht van de  vis wedstrijd met algemene informatie zoals locatie, loting, adres ...
+    {{substr($content->text, 0,250 ) }}'/>
+
+
+
+    @include('jsonLd.event')
+
+@endsection
 @section('content')
     <?php
     $text["waterTypeLeeg"] = "Water type is onbekend";
@@ -23,21 +43,22 @@ $message = Config::get('constant.Headings');
                                              alt="{{$content->titel}}">
                                     </div>
                                     <div class="col-md-12 margin-top-2">
-                                        <ui-gmap-google-map options="map.options" center='map.center'
-                                                            zoom='map.zoom'></ui-gmap-google-map>
+                                        <ui-gmap-google-map options="map.options"
+                                                            center='{latitude: {{$content->lat}},longitude: {{$content->lng}}}'
+                                                            zoom='map.zoom'>
+                                            <ui-gmap-marker
+                                                    idKey='{{$content->id}}'
+                                                    coords='{latitude: {{$content->lat}},longitude: {{$content->lng}}}'
+                                                    icon="{url:'{{url('/images/icon/marker_wedstrijd.png')}}'}">
+                                            </ui-gmap-marker>
+
+                                        </ui-gmap-google-map>
                                     </div>
                                 </div>
                             </div>
-
-                            <style>
-                                .weisted{
-                                    z-index: 20000;
-                                    width: 25%;
-                                }
-                            </style>
-                            @if(strtotime($content->datum)<strtotime(\Carbon\Carbon::now()))
+                            @if(strtotime($content->datum)<=strtotime(\Carbon\Carbon::now()))
                                 <div class="col-md-9 weisted">
-                                    <img  src="{{url('/images/vorbij.png')}}" alt="stempel vorbij">
+                                    <img src="{{url('/images/vorbij.png')}}" alt="stempel vorbij">
                                 </div>
                             @endif
                             <div class="col-md-9">
@@ -47,6 +68,15 @@ $message = Config::get('constant.Headings');
                                     </div>
                                     <div class="col-md-12">
                                         <h4>{{$content->datum}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Adres </h3>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4>{{$content->land}} - {{$content->stad}}
+                                            - {{$content->straat}} {{$content->nummer}} - {{$content->postCode}}</h4>
                                     </div>
                                 </div>
                                 <div class="row">

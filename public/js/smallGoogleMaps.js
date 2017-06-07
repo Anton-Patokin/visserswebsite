@@ -1,13 +1,12 @@
 
 myApp.controller('GoogleMapsSmaalConroller', ['$scope', function ($scope) {
     $scope.map = {
-        center: {
-            latitude: center.latitude,
-            longitude: center.longitude
-        },
+        
         options: {
             scrollwheel: false,
+            minZoom: 7,
+            maxZoom: 17,
         },
-        zoom: 8
+        zoom:10
     };
 }]);
