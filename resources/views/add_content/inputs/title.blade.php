@@ -2,7 +2,7 @@
     <label for="titel">titel*</label>
     <input name="titel" ng-class="{'alert-danger':input.titel.length>140}" type="text"
            class="form-control input-lg" ng-focus="classTextFocus =true" ng-blur="classTextFocus =false"
-           id="" placeholder="Titel" ng-model="input.titel" ng-maxlength="150" maxlength="150" required>
+           id="" placeholder="Titel" ng-model="input.titel" ng-maxlength="150" maxlength="150" required autofocus>
     {{--<p ng-show="userForm.username.$error.minlength">Username is too short.</p>--}}
     <div class="space-for-errors">
         <p class="error alert alert-danger " ng-show="visWedstrijdForm.titel.$error.maxlength && showError">
