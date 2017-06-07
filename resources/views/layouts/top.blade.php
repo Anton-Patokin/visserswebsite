@@ -22,8 +22,8 @@
             <div class="collapse {{(Auth::guest())?'navbar-collapse navbar-menubuilder':''}} navbar-collapse ">
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
-                        <li><a href="{{ route('login') }}">Login</a></li>
-                        <li><a href="{{ route('register') }}">Register</a></li>
+                        <li><a href="{{ route('login') }}">Inloggen</a></li>
+                        <li><a href="{{ route('register') }}">Registreren</a></li>
                     @else
                         <li><a id="user-fish-line-icon" href="#" class="dropdown-toggle" data-toggle="dropdown"
                                role="button"
@@ -39,7 +39,7 @@
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Logout
+                                        Uitloggen
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                           style="display: none;">
