@@ -6,5 +6,6 @@ myApp.controller('OccordionConroller', ['$scope', function ($scope) {
        console.log($( h3).find(".glyphicon").toggleClass('glyphicon-chevron-down'));
        var p =div.children()[1];
        $(p).slideToggle(200);
-   }
+   };
+    
 }]);

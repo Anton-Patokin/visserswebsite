@@ -1,8 +1,8 @@
-myApp.controller('GenericChartCtrl', ['$scope', '$http','$timeout', function ($scope, $http, $timeout) {
+myApp.controller('GenericChartCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
 
     $scope.myChartObject = {};
-    $scope.totaalAantalVissenGevangen={};
-
+    $scope.totaalAantalVissenGevangen = {};
+    $scope.alleVisOpDag = '';
     $scope.myChartObject.type = "PieChart";
     $scope.totaalAantalVissenGevangen.type = "ColumnChart";
     $scope.onions = [
@@ -11,9 +11,8 @@ myApp.controller('GenericChartCtrl', ['$scope', '$http','$timeout', function ($s
     ];
 
 
-
     $scope.initUser = function ($id) {
-        console.log('user',$id);
+        console.log('user', $id);
         var url = '/api/get/pieChart/' + $id;
 
         if ($id.length) {
@@ -44,8 +43,41 @@ myApp.controller('GenericChartCtrl', ['$scope', '$http','$timeout', function ($s
             }, 200);
 
         }
+
+        if ($id.length) {
+            $timeout(function () {
+                $http({
+                    method: 'POST',
+                    url: ROUTEFRONT + '/api/get/alleVissen',
+                    data: {id: $id}
+                }).success(function (datas, status, headers, config) {
+                    console.log(datas)
+                    $scope.alleVisOpDag = datas;
+                })
+            }, 200);
+
+        }
+
+
     }
 
+    $scope.visDagGegevens='';
+    $scope.toggelOccordion = function ($event,$id) {
+        $('.panel-footer').hide();
+        $http({
+            method: 'POST',
+            url: ROUTEFRONT + '/api/get/visWeer',
+            data: {id: $id}
+        }).success(function (datas, status, headers, config) {
+            console.log(datas)
+            $scope.visDagGegevens=datas;
+        })
+        var div =angular.element(event.currentTarget);
+        var h3 =div.children()[0];
+        console.log($( h3).find(".glyphicon").toggleClass('glyphicon-chevron-down'));
+        var p =div.children()[1];
+        $(p).slideToggle(200);
+    };
 
     function pichartInitalize($soortValues) {
         $scope.myChartObject.data = {
@@ -58,18 +90,19 @@ myApp.controller('GenericChartCtrl', ['$scope', '$http','$timeout', function ($s
             'title': 'Percentual gevangen vissoorten'
         };
     }
+
     function totaalAantalVissenGevangenInitialize($aantalvissenArray) {
-        $scope.totaalAantalVissenGevangen.data = {"cols": [
-            {id: "t", label: "Soort", type: "string"},
-            {id: "s", label: "Aantal", type: "number"}
-        ], "rows": $aantalvissenArray};
+        $scope.totaalAantalVissenGevangen.data = {
+            "cols": [
+                {id: "t", label: "Soort", type: "string"},
+                {id: "s", label: "Aantal", type: "number"}
+            ], "rows": $aantalvissenArray
+        };
 
         $scope.totaalAantalVissenGevangen.options = {
             'title': 'Aantal gevangen vissoorten per soort'
         };
     }
-
-
 
 
 }]);

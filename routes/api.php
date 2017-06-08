@@ -32,4 +32,7 @@ Route::get('/get/wedstrijden/{year}/{month}','ApiCalenderController@index');
 route::post('/save/visVangst','VisvangsController@opslaanVanVisVangst');
 
 Route::post('/get/pieChart','ApiAdminMainController@pieChart');
+Route::post('/get/alleVissen','ApiAdminMainController@allGavnagenVis');
+Route::post('/get/visWeer','ApiAdminMainController@visWeer');
+
 Route::get('/get/wheater/{location?}','ApiWeaterControllr@index');
