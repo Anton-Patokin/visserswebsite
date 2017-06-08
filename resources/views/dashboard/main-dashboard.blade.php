@@ -52,4 +52,5 @@ $message = Config::get('constant.Headings');
             </div>
         </div>
     </div>
+
 @endsection

@@ -1,134 +1,30 @@
-<style>
-    #snackbar {
-        visibility: hidden;
-        min-width: 250px;
-        margin-left: -125px;
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        border-radius: 2px;
-        padding: 16px;
-        position: fixed;
-        z-index: 100;
-        left: 15%;
-        bottom: 10px;
-        font-size: 17px;
-    }
-
-    #snackbar.show {
-        visibility: visible;
-        -webkit-animation: fadein 1s;
-        animation: fadein 1s;
-    }
-    #snackbar.hide {
-        visibility: visible;
-        -webkit-animation:fadeout 0.5s 29.5s;
-        animation: fadeout 0.5s 29.5s;
-    }
-
-    @-webkit-keyframes fadein {
-        from {
-            bottom: 0;
-            opacity: 0;
-        }
-        to {
-            bottom: 10px;
-            opacity: 1;
-        }
-    }
-
-    @keyframes fadein {
-        from {
-            bottom: 0;
-            opacity: 0;
-        }
-        to {
-            bottom: 10px;
-            opacity: 1;
-        }
-    }
-
-    @-webkit-keyframes fadeout {
-        from {
-            bottom: 10px;
-            opacity: 1;
-        }
-        to {
-            bottom: 0;
-            opacity: 0;
-        }
-    }
-
-
-
-    .snackbar-icon {
-        font-size: 10px;
-        position: absolute;
-        right: 5%;
-        top: 5%;
-    }
-
-    .snackbar-icon + .tooltip > .tooltip-inner {
-        background-color: #323b44;
-        color: #fff;
-    }
-
-    .modal-header-success {
-        color: #fff;
-        background-color: #007d9b;
-        margin-right: -1px;
-    }
-
-    .modal {
-        text-align: center;
-    }
-
-    @media screen and (min-width: 768px) {
-        .modal:before {
-            display: inline-block;
-            vertical-align: middle;
-            content: " ";
-            height: 100%;
-        }
-    }
-
-    .modal-content {
-        border-radius: 5px;
-    }
-
-    .modal-dialog {
-        display: inline-block;
-        text-align: left;
-        vertical-align: middle;
-    }
-    .md-datepicker-calendar-pane.md-pane-open{
-        z-index: 100000;
-    }
-    .md-datepicker-input-mask{
-        overflow: hidden;
-    }
-
-
-</style>
 <div ng-controller="vissersActiviteitenController">
+    @if(Menu::isActiveRoute(['dashboard']))
+        <button class="btn btn-default button-add" ng-click="saveViserActiviteit('ja')" data-toggle="modal"
+                data-target="#myModal"><i class="glyphicon glyphicon-plus"></i></button>
+    @endif
     <div id="snackbar" ng-if="ShowvisActiviteitenPopUp" ng-class='{show:animatePopUp,hide:!animatePopUp}'>
-        <a href="#" class="snackbar-icon"  data-toggle="tooltip"
-           title="We verzamelen gegevens van vissers om later voorspelingen te kunnen maken over vangstkansen van toekomstige visdagen.
-             ">
-            <div class=" glyphicon glyphicon-question-sign pull-right">
-            </div>
-        </a>
-        <div class="row">
-            <div class="col-md-12 margin-bottom-3">
-                Ben je deze week gaan vissen?
-            </div>
+
+        <img class="worm-icon col-xs-3" src="{{url('/images/icon/worm.png')}}">
+        <div class="snackbar-box col-xs-9">
+            <a href="#" class="snackbar-icon" data-toggle="tooltip"
+               title="We verzamelen gegevens van vissers om later voorspelingen te kunnen maken over vangstkansen van toekomstige visdagen.">
+                <div class=" glyphicon glyphicon-question-sign pull-right">
+                </div>
+            </a>
             <div class="row">
-                <div class="col-md-12">
-                    <button ng-click="saveViserActiviteit('nee')" class="btn btn-default col-md-4 col-md-offset-1">Nee
-                    </button>
-                    <button ng-click="saveViserActiviteit('ja')" data-toggle="modal" data-target="#myModal"
-                            class="btn btn-default col-md-4 col-md-offset-2">Ja
-                    </button>
+                <div class="col-md-12 margin-bottom-3">
+                    Ben je deze week gaan vissen?
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button ng-click="saveViserActiviteit('nee')" class="btn btn-default col-md-4 col-md-offset-1">
+                            Nee
+                        </button>
+                        <button  ng-click="saveViserActiviteit('ja')" data-toggle="modal" data-target="#myModal"
+                                class="btn btn-default col-md-4 col-md-offset-2">Ja
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

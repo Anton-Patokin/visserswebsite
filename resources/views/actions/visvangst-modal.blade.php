@@ -225,7 +225,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn-lg btn-default">
+                                    <button ng-click="reloadPgage('{{(Menu::isActiveRoute(['dashboard']))?'1"':''}}')" type="submit" class="btn-lg btn-default">
                                         Opslaan
                                     </button>
                                 </div>
@@ -241,7 +241,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
             </div>
         </div>
 

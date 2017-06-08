@@ -1,5 +1,5 @@
 <div class="thumbnail">
-    <div class="caption">
+    <div class="caption detail">
         <div class="row">
             <div class="col-md-3">
                 <div class="row">
@@ -27,9 +27,9 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
-                            <h4 class="">
+                            <h3 class="">
                                 Naam
-                            </h4>
+                            </h3>
                         </div>
                         <div class="thumbnail-body">
                             <p class="">
@@ -39,9 +39,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
-                            <h4 class="">
+                            <h3 class="">
                                 Email
-                            </h4>
+                            </h3>
                         </div>
                         <div class="thumbnail-body">
                             <p class="">
@@ -51,9 +51,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
-                            <h4 class="">
+                            <h3 class="">
                                 telefoonnummer
-                            </h4>
+                            </h3>
                         </div>
                         <div class="thumbnail-body">
                             <p class="">
@@ -63,9 +63,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
-                            <h4 class="">
+                            <h3 class="">
                                 geslacht
-                            </h4>
+                            </h3>
                         </div>
                         <div class="thumbnail-body">
                             <p class="">
@@ -77,9 +77,9 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
-                            <h4 class="">
+                            <h3 class="">
                                 vraagprijs
-                            </h4>
+                            </h3>
                         </div>
                         <div class="thumbnail-body">
                             <p class="">
@@ -89,9 +89,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
-                            <h4 class="">
+                            <h3 class="">
                                 Actief sinds
-                            </h4>
+                            </h3>
                         </div>
                         <div class="thumbnail-body">
                             <p class="">
@@ -101,9 +101,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
-                            <h4 class="">
+                            <h3 class="">
                                 Gids
-                            </h4>
+                            </h3>
                         </div>
                         <div class="thumbnail-body">
                             <p class="">
@@ -113,9 +113,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
                         <div class="thumbnail-head">
-                            <h4 class="">
+                            <h3 class="">
                                 Aanpassen
-                            </h4>
+                            </h3>
                         </div>
                         <div class="thumbnail-body">
                             <p ng-click="show_form=true"><a>klik hier</a></p>
@@ -126,9 +126,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="thumbnail-head">
-                            <h4 class="">
+                            <h3 class="">
                                 Ervaring
-                            </h4>
+                            </h3>
                         </div>
                         <div class="thumbnail-body">
                             <p class="">
@@ -138,9 +138,9 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="thumbnail-head">
-                            <h4 class="">
+                            <h3 class="">
                                 Jouw verhaal
-                            </h4>
+                            </h3>
                         </div>
                         <div class="thumbnail-body">
                             <p class="">

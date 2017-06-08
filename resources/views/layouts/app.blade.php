@@ -28,6 +28,9 @@
 <div id="app">
     @yield('content')
 </div>
+
+<button id="go_top" class="btn btn-default button-up"><i class="glyphicon glyphicon-menu-up"></i></button>
+
 @if(Auth::user())
 @include('actions.vis-vangst')
 @endif
@@ -71,6 +74,22 @@
 
 <script>
     $(document).ready(function () {
+
+        $(document).scroll(function ($this) {
+
+            var y = window.scrollY;
+            if (y >= 400) {
+                $('#go_top').fadeIn();
+            } else {
+                $('#go_top').fadeOut();
+            }
+
+
+        })
+        $('#go_top').click(function () {
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+        })
+
         $('[data-toggle="tooltip"]').tooltip();
 
         if ($("#vertikalscroll").length) {

@@ -45,6 +45,38 @@ button[disabled] {
   }
 }
 
+.button-up {
+  z-index: 2000;
+  display: none;
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #f6bd1c;
+  border: none;
+  right: 25px;
+  bottom: 25px;
+  -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+  box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+}
+
+.button-add {
+  z-index: 2000;
+  position: fixed;
+  border: none;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: $color-red;
+  color: #fff;
+  right: 80px;
+  bottom: 25px;
+  -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+  -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+  box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+}
+
 //.modal .form-group {
 //  .btn-circle {
 //    width: 30px;

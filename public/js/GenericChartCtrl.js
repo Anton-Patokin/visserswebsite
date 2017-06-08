@@ -13,6 +13,7 @@ myApp.controller('GenericChartCtrl', ['$scope', '$http','$timeout', function ($s
 
 
     $scope.initUser = function ($id) {
+        console.log('user',$id);
         var url = '/api/get/pieChart/' + $id;
 
         if ($id.length) {

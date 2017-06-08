@@ -1,7 +1,7 @@
-myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies', '$timeout', function ($scope, $http, $cookies, $timeout) {
-    $scope.ShowvisActiviteitenPopUp=!$cookies.get('visActiviteitenWeek');
+myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies', '$timeout','$window', function ($scope, $http, $cookies, $timeout,$window) {
+    $scope.ShowvisActiviteitenPopUp = !$cookies.get('visActiviteitenWeek');
     $scope.showModalVisActiviteiten = false;
-    $scope.animatePopUp=false;
+    $scope.animatePopUp = false;
     $scope.visVagnstShowGoolgeMaps = false;
     $scope.visvanstMapMarkershowMarker = false;
     if (!$cookies.get('visActiviteitenWeek')) {
@@ -47,7 +47,7 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
         datumVandaag.getDate());
 
     $scope.submitVisVangstModalForm = function () {
-     
+
         if ($scope.visVangstModalForm.$valid) {
             console.log('send form');
             $scope.showError = false;
@@ -66,10 +66,14 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
                 } else {
                     $scope.serverErrorMassage = true;
                 }
+                if(reload){
+                    $window.location.reload();
+                    console.log('reload page now');
+                }
             }).error(function (data, status, headers, config) {
                 $scope.serverErrorMassage = true;
             });
-            $scope.show_message=true;
+            $scope.show_message = true;
         } else {
             $scope.showError = true;
         }
@@ -143,7 +147,14 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
         },
         options: '',
     }
+
+    var reload = false;
+    $scope.reloadPgage = function (value) {
+        reload = value;
+    }
     $scope.saveViserActiviteit = function (answare) {
+        $scope.show_message = false;
+
         $scope.animatePopUp = false;
         $scope.vangstVanVandaag = function () {
             $scope.show_gevangen = $scope.visVagst.vangst;

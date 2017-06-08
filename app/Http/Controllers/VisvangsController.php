@@ -38,6 +38,8 @@ class VisvangsController extends Controller
             return 'error';
         }
 
+
+
         $datum = substr($request->input['myDate'], 0, 10);
 
         $weerMerLocaties = $weer = Weather::whereDate('created_at', '=', date($datum))->with('city')->get();
@@ -58,6 +60,9 @@ class VisvangsController extends Controller
         }
 
         $visdag = new VisDag;
+
+
+
 
         $visdag->low = $dichtbijzijndeLocatie->low;
         $visdag->high = $dichtbijzijndeLocatie->high;
@@ -86,7 +91,7 @@ class VisvangsController extends Controller
         $visdag->save();
 
 
-        if ($visdag->visGevangenSucces == "ja") {
+        if ($visdag->visGevangenSucces == 1) {
             foreach ($request->input['vissen'] as $vangst) {
                 $visSoort = new VisSoort;
                 $visSoort->aantal = $vangst['aantal'];
