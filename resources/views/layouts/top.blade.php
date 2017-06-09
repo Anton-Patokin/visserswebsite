@@ -11,7 +11,7 @@
                     <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>
                     <span class="icon-bar"></span><span class="icon-bar"></span>
                 @else
-                    <a href="{{url("/user")}}"><span class="user-icon"><img
+                    <a href="{{url("/gebruiker")}}"><span class="user-icon"><img
                                     src="{{url('/images/icon/user-icon.png')}}"></span>
                     </a>
                 @endif
@@ -21,6 +21,27 @@
 
             <div class="collapse {{(Auth::guest())?'navbar-collapse navbar-menubuilder':''}} navbar-collapse ">
                 <ul class="nav navbar-nav navbar-right">
+
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <div id="imaginary_container">
+                                <div class="input-group stylish-input-group">
+                                    <input ng-keyup="zoeken(zoeken_alles)" ng-model="zoeken_alles" type="text" class="form-control" placeholder="Zoeken">
+                    <span class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+
+                                    <ul id="myUL">
+                                        <li><a href="#" class="header">A</a></li>
+                                        <li><a href="#">Adele</a></li>
+                                        <li><a href="#">Agnes</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     @if (Auth::guest())
                         <li><a href="{{ route('login') }}">Inloggen</a></li>
                         <li><a href="{{ route('register') }}">Registreren</a></li>

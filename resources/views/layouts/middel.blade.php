@@ -2,9 +2,6 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="">
-                <?php
-
-                ?>
                 <ul class="nav navbar-nav">
                     <li><a class="{{Menu::isActiveRoute(['home'])}}" href="{{url('/home')}}">Home</a></li>
                     <li><a class="{{Menu::isActiveRoute(['dashboard'])}}" href="{{url('/dashboard')}}">Dashboard</a></li>

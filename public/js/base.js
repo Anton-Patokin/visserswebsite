@@ -79,6 +79,18 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         }
     }
 
+
+    $scope.zoeken=function (zoeken) {
+        $http({
+            method: 'POST',
+            url: ROUTEFRONT + '/api/zoeken/alles',
+            data: {input: zoeken}
+        }).success(function (data) {
+            console.log(data);
+        }).error(function (data, status, headers, config) {
+            console.log('error bij het zoeken');
+        });
+    }
     $scope.wearPrognose = {};
     $scope.initweaterPrognose = function () {
         console.log('weater');

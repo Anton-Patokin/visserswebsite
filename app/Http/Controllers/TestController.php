@@ -43,10 +43,6 @@ class TestController extends Controller
 
     public function index($string)
     {
-        return $this->maan->new_moon();
-
-
-
     }
 
 
