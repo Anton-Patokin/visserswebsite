@@ -79,14 +79,15 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         }
     }
 
-
-    $scope.zoeken=function (zoeken) {
+    $scope.search_all_resualt = "";
+    $scope.zoeken = function (zoeken) {
         $http({
             method: 'POST',
             url: ROUTEFRONT + '/api/zoeken/alles',
             data: {input: zoeken}
         }).success(function (data) {
-            console.log(data);
+            console.log(data)
+            $scope.search_all_resualt = data;
         }).error(function (data, status, headers, config) {
             console.log('error bij het zoeken');
         });

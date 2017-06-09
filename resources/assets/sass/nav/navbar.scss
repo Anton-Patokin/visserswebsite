@@ -3,7 +3,7 @@
 @import "navbar_bottom";
 
 #nav-bar-top {
-  z-index: 1;
+  z-index: 10000;
   #user-fish-line-icon {
     background-image: url(#{$path}/images/fish-line-background.png);
     min-width: 150px;

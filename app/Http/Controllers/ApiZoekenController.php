@@ -52,25 +52,25 @@ class ApiZoekenController extends Controller
             ->search($request->input, null, true, true)->take(5)->get();
 
 
-//        foreach ($nieuws as $value) {
-//            array_push($search, $value);
-//        }
-//        foreach ($tutorial as $value) {
-//            array_push($search, $value);
-//        }
-//        foreach ($visplaats as $value) {
-//            array_push($search, $value);
-//        }
-//        foreach ($wedstrijden as $value) {
-//            array_push($search, $value);
-//        }
-//        foreach ($visplaats as $value) {
-//            array_push($search, $value);
-//        }
-//        foreach ($trainer as $value) {
-//            array_push($search, $value);
-//        }
-                    array_push($search, $nieuws,$tutorial,$visplaats,$wedstrijden,$trainer);
+        foreach ($nieuws as $value) {
+            array_push($search, $value);
+        }
+        foreach ($tutorial as $value) {
+            array_push($search, $value);
+        }
+        foreach ($visplaats as $value) {
+            array_push($search, $value);
+        }
+        foreach ($wedstrijden as $value) {
+            array_push($search, $value);
+        }
+        foreach ($visplaats as $value) {
+            array_push($search, $value);
+        }
+        foreach ($trainer as $value) {
+            array_push($search, $value);
+        }
+//                    array_push($search, $nieuws,$tutorial,$visplaats,$wedstrijden,$trainer);
 
         return $search;
     }
