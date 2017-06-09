@@ -268,7 +268,7 @@
             <img src="{{url('/images/icon/vishak.jpg')}}">
         </div>
         <div class="caption margin-top-5">
-            <h4>@{{input.naam_visplek}}</h4>
+            <h3>@{{input.naam_visplek}}</h3>
             <p>@{{input.viswater| limitTo:350}}@{{input.viswater.length > 350 ? '...' : ''}}</p>
             <p><a href="#" class=" btn-xs" role="button">Meer</a></p>
         </div>

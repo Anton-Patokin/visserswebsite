@@ -201,7 +201,7 @@
                             <div ng-class="['icon-background',tutorialCategory]"></div>
                         </div>
                         <div class="caption margin-top-5">
-                            <h4>@{{nieuws.titel}}</h4>
+                            <h3>@{{nieuws.titel}}</h3>
                             <p>@{{nieuws.inleiding}}</p>
                             <p><a href="" class=" btn-xs" role="button">Meer</a></p>
                         </div>

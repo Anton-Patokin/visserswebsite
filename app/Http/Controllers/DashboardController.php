@@ -152,7 +152,7 @@ class DashboardController extends Controller
         $bericht = $this->berichten['error'];
 
         if($tabel == 'gids'){
-            $tabel ='users';
+            $tabel ='tutorial';
         }
         $content = $this->selectTabele($tabel, $id);
 

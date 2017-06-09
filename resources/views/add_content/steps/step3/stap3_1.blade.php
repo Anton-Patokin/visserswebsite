@@ -199,7 +199,7 @@
         </div>
         <img class="image_contest" ng-src="@{{imageSrc}}" alt="">
         <div class="caption">
-            <h4>@{{input.titel| limitTo:150}}</h4>
+            <h3>@{{input.titel| limitTo:150}}</h3>
             <p>@{{input.text| limitTo:350}}@{{input.text.length > 350 ? '...' : ''}}</p>
             <p><a href="#" class=" btn-xs" role="button" disabled="true">Meer</a></p>
         </div>

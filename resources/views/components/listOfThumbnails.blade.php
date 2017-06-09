@@ -43,7 +43,7 @@ $countRows = 0;
                                     @include('components.trainer_thumbnail')
                                 @endif
                                 @if($content->type =='tutorial')
-                                    @include('components.news_thumbnail')
+                                    @include('components.tutorial')
                                 @endif
                             @endif
                         </div>
