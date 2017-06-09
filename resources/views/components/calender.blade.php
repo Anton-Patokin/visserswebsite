@@ -84,7 +84,7 @@
                             <table class="table table-bordered table-style table-responsive">
                                 <tr>
                                     <td class="fish-bad"></td>
-                                    <td>Slecht dag om te gaan vissen</td>
+                                    <td>Slechte dag om te gaan vissen</td>
                                 </tr>
                                 <tr>
                                     <td class="fish-meddium"></td>
@@ -102,7 +102,7 @@
                                     <td>
                                         <div class="circel-rood-legenda"></div>
                                     </td>
-                                    <td>Antaal westrijden op deze dag</td>
+                                    <td>Aantal westrijden op deze dag</td>
                                 </tr>
                             </table>
                         </a>

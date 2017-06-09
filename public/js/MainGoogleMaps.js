@@ -392,7 +392,7 @@ myApp.controller('GoogleMapsConroller', ['$scope', '$http', function ($scope, $h
                 angular.forEach(week, function (day, day_key) {
                     wedstrijden_array = [];
                     angular.forEach(data, function (content, data_key) {
-                        var contestDate = new Date(content.updated_at).getDate();
+                        var contestDate = new Date(content.datum).getDate();
                         if (day.day == contestDate) {
                             wedstrijden_array.push(content);
                             data.splice(data_key, 1);

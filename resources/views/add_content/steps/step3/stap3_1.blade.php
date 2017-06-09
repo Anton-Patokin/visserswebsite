@@ -190,12 +190,12 @@
     @include('components.small-header')
     <div class="thumbnail">
         <div class="head-thumbnail">
-            <div class="icon-img-background-left ship"></div>
+            <div class="icon-img-background-left" ng-class="input.category"></div>
             <div class="icon">
                 <div class="date-string">@{{ input.maand }}</div>
                 <div class="date-nummber">@{{ input.dag }}</div>
             </div>
-            <div class="icon-img-background-right" ng-class="input.hengel"></div>
+            <div class="icon-img-background-right" ng-class="input.visserij"></div>
         </div>
         <img class="image_contest" ng-src="@{{imageSrc}}" alt="">
         <div class="caption">
