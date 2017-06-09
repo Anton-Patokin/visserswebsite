@@ -150,6 +150,10 @@ class DashboardController extends Controller
     public function verwijderen($tabel, $id)
     {
         $bericht = $this->berichten['error'];
+
+        if($tabel == 'gids'){
+            $tabel ='users';
+        }
         $content = $this->selectTabele($tabel, $id);
 
         if ($content) {
@@ -193,6 +197,9 @@ class DashboardController extends Controller
     {
         $bericht = $this->berichten['error'];
 
+        if($tabel == 'gids'){
+            $tabel = 'trainer';
+        }
         $content = $this->selectTabele($tabel, $id);
 
         if ($content) {

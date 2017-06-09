@@ -244,11 +244,10 @@ class HomeController extends Controller
                 return view('show/' . $view1, ['content' => $value]);
             }
         } else {
-
             //bij het bezoeken van overzicht pagina
             $value = DB::table($tabel)->Where('active', 2)->orderBy('updated_at', 'desc');
             $value = $value->paginate(25);
-            
+
             if (count($value)) {
                 return view('show/' . $view2, ['contents' => $value]);
             }

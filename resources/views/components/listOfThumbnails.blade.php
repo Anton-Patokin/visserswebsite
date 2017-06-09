@@ -55,13 +55,14 @@ $countRows = 0;
 @else
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <div class="thumbnail">
-                <div class="caption">
 
-                    <h1>Deze categorie is leeg</h1>
-                    <p>Op deze website kunnen mensen zelf dingen posten zodat anderen er ook iets aan hebben.</p>
-                    <a href="{{url('/toevoegen')}}"><p>meer</p></a>
-                </div>
+            <div class="notice notice-lg notice-red margin-bottom-5">
+                <strong class="color-red text-uppercase">Deze categorie is leeg</strong>
+                <p>Op deze website kunnen mensen zelf dingen posten zodat anderen er ook iets aan hebben.</p>
+                <p>
+                    Mis deze opportuniteit niet en ga direct aan de slag.
+                </p>
+                <a href="{{url('/toevoegen')}}">meer</a>
             </div>
         </div>
     </div>

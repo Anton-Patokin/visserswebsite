@@ -31,7 +31,7 @@ $message = Config::get('constant.Headings');
                                                     <p class="margin-top-1 margin-bottom-1">{{$content->antwoord}}</p>
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            @if(Auth::user()->admin)
+                                                            @if(isset(Auth::user()->admin) && Auth::user()->admin)
                                                                 <div class="pull-right">
                                                                     <a href="{{url('/editFaq/'.$content->id)}}">
                                                                         <div class="glyphicon glyphicon-pencil"></div>

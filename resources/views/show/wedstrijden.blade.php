@@ -114,7 +114,7 @@ $messages = Config::get('constant.Headings');
 
                                         @if(!count($contents))
                                             <div class="col-xs-12">
-                                                @include('components.call_to_action_wedstrijden')
+                                                <h3>Voor deze maand zijn er nog geen wedstrijden gepland</h3>
                                             </div>
                                         @endif
                                         @foreach($contents as $key=>$content)
