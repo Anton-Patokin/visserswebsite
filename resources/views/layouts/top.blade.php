@@ -26,73 +26,14 @@
                         <div class="form-group">
                             <div id="imaginary_container">
                                 <div class="input-group stylish-input-group">
-                                    <input ng-keyup="zoeken(zoeken_alles)" ng-model="zoeken_alles" type="text"
+                                    <input ng-focus="search_show = true" ng-blur="search_show = false" ng-keyup="zoeken(zoeken_alles)" ng-model="zoeken_alles" type="text"
                                            class="form-control" placeholder="Zoeken">
                     <span class="input-group-addon">
                         <button type="submit">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
-
-                                    <style>
-
-                                        #imaginary_container {
-                                            position: relative;
-                                            display: inline-block;
-                                        }
-
-                                        .stylish-input-group .input-group-addon {
-                                            background: none;
-                                            border: none;
-                                            border-bottom: 1px solid white;
-                                            color: #fff;
-                                        }
-
-                                        .stylish-input-group .form-control {
-                                            border: none;
-                                            border-bottom: 1px solid white;
-                                            background: none;
-                                        }
-
-                                        .stylish-input-group .form-control:focus {
-                                            color: #fff;
-                                            box-shadow: none;
-                                            -moz-box-shadow: none;
-                                            -webkit-box-shadow: none;
-                                        }
-
-                                        .stylish-input-group button {
-                                            border: none;
-                                            border: 0;
-                                            background: none;
-                                        }
-
-                                        #myUL {
-                                            /*display: none;*/
-                                            top:50px;
-                                            left: 0;
-                                            padding: 0;
-                                            position: absolute;
-                                            min-width: 100%;
-                                            z-index: 1;
-                                            list-style-type: none;
-                                            margin: 0;
-                                        }
-
-                                        #myUL li a {
-                                            border: 1px solid #ddd; /* Add a border to all links */
-                                            background-color: #f6f6f6; /* Grey background color */
-                                            padding: 12px; /* Add some padding */
-                                            text-decoration: none; /* Remove default text underline */
-                                            font-size: 18px; /* Increase the font-size */
-                                            color: black; /* Add a black text color */
-                                            display: block; /* Make it into a block element to fill the whole list */
-                                        }
-
-                                    </style>
-
-
-                                    <ul id="myUL">
+                                    <ul id="myUL" ng-if="search_show">
                                         <div ng-repeat="search in search_all_resualt">
                                             <li ><a href="#">@{{ search.titel }}</a></li>
                                         </div>

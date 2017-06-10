@@ -79,6 +79,9 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
         }
     }
 
+
+
+
     $scope.search_all_resualt = "";
     $scope.zoeken = function (zoeken) {
         $http({
@@ -464,6 +467,7 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
 
     $scope.putValue = function (type) {
         $scope.input.type = type;
+        console.log(type);
         switch (type) {
             case "recept":
                 $scope.steps[1]["glyphicon"] = "glyphicon-map-marker"

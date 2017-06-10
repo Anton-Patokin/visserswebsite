@@ -23,18 +23,26 @@
                     {{--@if(Menu::isActiveRoute($navbar))--}}
 
                     @if(Menu::isActiveRoute(['toevoegen']))
-                        <li><a ng-click="gotoStep(2);putValue('visPlek')" href="">Visplaats</a></li>
-                        <li><a ng-click="gotoStep(2);putValue('wedstrijd')" href="">Wedstrijd</a></li>
+
+                        <?php
+                        if (isset($_GET["type"])) {
+                            echo "<div ng-init='gotoStep(2);putValue(\"".$_GET["type"]."\")'></div>";
+                        }
+                        ?>
+                        {{--<li><a ng-click="gotoStep(2);putValue('visPlek')" href="">Visplaats</a></li>--}}
+                        <li ng-class="{active:input.type == 'plaats'}"><a href="{{url('/toevoegen?type=plaats')}}">Visplaats</a></li>
+
+                        <li ng-class="{active:input.type == 'wedstrijd'}"><a href="{{url('/toevoegen?type=wedstrijd')}}">Wedstrijd</a></li>
                         @if(Auth::user()->trainer==2)
-                            <li><a ng-click="gotoStep(2);putValue('trainer')" href="">Trainer worden</a></li>
+                            <li ng-class="{active:input.type == 'trainer'}"><a href="{{url('/toevoegen?type=trainer')}}">Trainer worden</a></li>
                         @endif
                         <li class="{{Menu::isActiveList('toevoegen/nieuws')}}"><a href="{{url('/toevoegen/nieuws')}}">Nieuws
                                 beriecht</a></li>
                         <li class="{{Menu::isActiveList('toevoegen/tutorial')}}"><a
                                     href="{{url('/toevoegen/tutorial')}}">Tutorial</a></li>
                         @if(Auth::user()->admin)
-                                <li class="{{Menu::isActiveList('toevoegen/faq')}}"><a
-                                            href="{{url('/toevoegen/faq')}}">FAQ</a></li>
+                            <li class="{{Menu::isActiveList('toevoegen/faq')}}"><a
+                                        href="{{url('/toevoegen/faq')}}">FAQ</a></li>
                         @endif
                     @elseif(Menu::isActiveRoute(['dashboard']))
                         <li class="{{Menu::isActiveList('dashboard')}}">

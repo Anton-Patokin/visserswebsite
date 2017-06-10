@@ -42,14 +42,14 @@ class ApiZoekenController extends Controller
     {
         $search = [];
 
-        $nieuws = NieuwsArtikel::where('active', '2')->search($request->input, null, true)->take(5)->get();
-        $tutorial = Tutorial::where('active', '2')->search($request->input, null, true)->take(5)->get();
+        $nieuws = NieuwsArtikel::where('active', '2')->search($request->input, null, true)->take(3)->get();
+        $tutorial = Tutorial::where('active', '2')->search($request->input, null, true)->take(3)->get();
         $wedstrijden = Wedstrijd::where('active', '2')
-            ->search($request->input, null, true)->take(5)->get();
+            ->search($request->input, null, true)->take(3)->get();
         $trainer = User::where('active', '2')
-            ->search($request->input, null, true)->take(5)->get();
+            ->search($request->input, null, true)->take(3)->get();
         $visplaats = VisPlek::where('active', '2')
-            ->search($request->input, null, true, true)->take(5)->get();
+            ->search($request->input, null, true, true)->take(3)->get();
 
 
         foreach ($nieuws as $value) {
