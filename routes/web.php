@@ -10,10 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group([
-    'middleware' => ['api', 'cors'],
-    'prefix' => 'api',
-], function () {
+Route::group(['middleware' => ['api', 'cors']], function () {
     Route::get('/', 'HomeController@welcome');
 
     Auth::routes();
