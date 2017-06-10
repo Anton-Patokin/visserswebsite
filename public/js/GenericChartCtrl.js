@@ -63,7 +63,7 @@ myApp.controller('GenericChartCtrl', ['$scope', '$http', '$timeout', function ($
 
     $scope.visDagGegevens='';
     $scope.toggelOccordion = function ($event,$id) {
-        $('.panel-footer').hide();
+
         $http({
             method: 'POST',
             url: ROUTEFRONT + '/api/get/visWeer',
@@ -72,11 +72,17 @@ myApp.controller('GenericChartCtrl', ['$scope', '$http', '$timeout', function ($
             console.log(datas)
             $scope.visDagGegevens=datas;
         })
+        $('.panel-footer').hide();
+
         var div =angular.element(event.currentTarget);
+
+
         var h3 =div.children()[0];
-        console.log($( h3).find(".glyphicon").toggleClass('glyphicon-chevron-down'));
+        $( '.glyphicon').removeClass('glyphicon-chevron-down');
+        $( h3).find(".glyphicon").addClass('glyphicon-chevron-down');
         var p =div.children()[1];
         $(p).slideToggle(200);
+
     };
 
     function pichartInitalize($soortValues) {
