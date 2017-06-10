@@ -1,4 +1,4 @@
-myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies', '$timeout','$window', function ($scope, $http, $cookies, $timeout,$window) {
+myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies', '$timeout', '$window', function ($scope, $http, $cookies, $timeout, $window) {
     $scope.ShowvisActiviteitenPopUp = !$cookies.get('visActiviteitenWeek');
     $scope.showModalVisActiviteiten = false;
     $scope.animatePopUp = false;
@@ -31,11 +31,7 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
     }
 
 
-    var nummerVanDeDag = datumVandaag.getDate();
-    $scope.onlyWeekendsPredicate = function (date) {
-        var day = date.getDate();
-        return day <= nummerVanDeDag;
-    };
+
     $scope.minDate = new Date(
         datumVandaag.getFullYear(),
         datumVandaag.getMonth() - 1,
@@ -45,6 +41,15 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
         datumVandaag.getFullYear(),
         datumVandaag.getMonth(),
         datumVandaag.getDate());
+
+    var nummerVanDeDag = datumVandaag;
+    $scope.onlyWeekendsPredicate = function (date) {
+        var day = date.getDate();
+        var maand= date.getMonth();
+
+        console.log('day', maand);
+        return day <= nummerVanDeDag.getDate() || maand<nummerVanDeDag.getMonth();
+    };
 
     $scope.submitVisVangstModalForm = function () {
 
@@ -66,7 +71,7 @@ myApp.controller('vissersActiviteitenController', ['$scope', '$http', '$cookies'
                 } else {
                     $scope.serverErrorMassage = true;
                 }
-                if(reload){
+                if (reload) {
                     $window.location.reload();
                     console.log('reload page now');
                 }
