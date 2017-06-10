@@ -44,7 +44,8 @@ $content->category  = 'Witvissen';
                         {{--<div  class="arrow-right"></div>--}}
                         {{--<span class="arrow pull-right"></span>--}}
                     {{--</div>--}}
-                    @if(Auth::user()->trainer!=2 &&  Auth::user()->trainer!=1)
+
+                    @if(Auth::user()->active!=2 &&  Auth::user()->active!=1)
                         <div ng-click="gotoStep(2);putValue('trainer')" class="well"
                              ng-class="{'show-arrow':showArrow2}"
                              ng-mouseover="showArrow2=true;show_exampale=2" ng-mouseleave="showArrow2=false">
