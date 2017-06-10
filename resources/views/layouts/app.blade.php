@@ -51,7 +51,7 @@
 <script src="{{url('/js/libs/angular-google-maps.js')}}"></script>
 <script src="{{url('/js/libs/angular-messages.js')}}"></script>
 
-
+//test
 <script src="{{url('/js/libs/angular-animate.min.js')}}"></script>
 <script src="{{url('/js/libs/angular-aria.min.js')}}"></script>
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-messages.min.js"></script>--}}
