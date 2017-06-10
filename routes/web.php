@@ -10,7 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('breweries', ['middleware' => 'cors', function () {
+Route::group([
+    'middleware' => ['api', 'cors'],
+    'namespace' => $this->namespace,
+    'prefix' => 'api',
+], function ($router) {
+
 
     Route::get('/', 'HomeController@welcome');
 
@@ -25,7 +30,7 @@ Route::get('breweries', ['middleware' => 'cors', function () {
     Route::get('/over-ons', 'HomeController@overOns');
     Route::get('/contact', 'HomeController@contact');
     Route::get('/nieuws/{id?}/{titel?}/{amp?}', 'HomeController@nieuws');
-    Route::get('/tutorials/{category}', 'HomeController@tutorials_by_category');
+    Route::get('/tutorials/{category}','HomeController@tutorials_by_category');
 
     Route::get('/dashboard', 'DashboardController@index');
     Route::get('/dashboard/toegevoegd-inhoud', 'DashboardController@toegevoegd_inhoud');
@@ -39,10 +44,10 @@ Route::get('breweries', ['middleware' => 'cors', function () {
     Route::get('/aanvarden_deactiveren/{tabel}/{id}/', 'DashboardController@aanvarden_deactiveren');
     Route::get('/dashboard/gebruikers', 'DashboardController@gebruikers');
     Route::get('/admin_deactivate/{action}/{id}', 'DashboardController@admin');
-    Route::get('/faq/{amp?}', 'FaqController@index');
+    Route::get('/faq/{amp?}','FaqController@index');
     Route::get('/aanpasen/{type}/{id}', 'AanpasenController@dashboard');
-    Route::get('/verwijderFaq/{id}', 'FaqController@verwijderFaq');
-    Route::get('/editFaq/{id}', 'FaqController@toevoegenFaqView');
+    Route::get('/verwijderFaq/{id}','FaqController@verwijderFaq');
+    Route::get('/editFaq/{id}','FaqController@toevoegenFaqView');
 
     Route::get('/toevoegen', 'Add_contentController@index');
     Route::get('/toevoegen/nieuws', 'Add_contentController@nieuws');
@@ -51,10 +56,10 @@ Route::get('breweries', ['middleware' => 'cors', function () {
     Route::post('/toevoegen/tutorial', 'Add_contentController@toevoegenTutorial');
     Route::post('/toevoegen/profiel', 'Add_contentController@toevoegenProfiel');
     Route::post('/toevoegen/faq', 'FaqController@toevoegenFaq');
-    Route::post('/update/faq/{id}', 'FaqController@updateFaq');
-    Route::get('/toevoegen/faq', 'FaqController@toevoegenFaqView');
+    Route::post('/update/faq/{id}','FaqController@updateFaq');
+    Route::get('/toevoegen/faq','FaqController@toevoegenFaqView');
 
-    Route::post('/contact', 'EmailController@contact');
+    Route::post('/contact','EmailController@contact');
 
     Route::post('/toevoegen/subscribe', 'EmailController@addSubscriber');
 
@@ -62,5 +67,8 @@ Route::get('breweries', ['middleware' => 'cors', function () {
     Route::get('/gebruiker', 'GebruikerController@index');
 
 
-    Route::get('/test/{string?}', 'TestController@index');
-}]);
+
+    Route::get('/test/{string?}','TestController@index');
+
+
+});

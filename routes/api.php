@@ -12,7 +12,11 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('breweries', ['middleware' => 'cors', function () {
+Route::group([
+    'middleware' => ['api', 'cors'],
+    'namespace' => $this->namespace,
+    'prefix' => 'api',
+], function ($router) {
 
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
@@ -39,4 +43,5 @@ Route::get('breweries', ['middleware' => 'cors', function () {
     Route::get('/get/wheater/{location?}', 'ApiWeaterControllr@index');
 
     Route::post('/zoeken/alles', 'ApiZoekenController@alles');
-}]);
+
+});
