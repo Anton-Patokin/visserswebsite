@@ -75,8 +75,6 @@ myApp.controller('GenericChartCtrl', ['$scope', '$http', '$timeout', function ($
         $('.panel-footer').hide();
 
         var div =angular.element($event.currentTarget);
-
-
         var h3 =div.children()[0];
         $( '.glyphicon').removeClass('glyphicon-chevron-down');
         $( h3).find(".glyphicon").addClass('glyphicon-chevron-down');
