@@ -74,7 +74,7 @@ myApp.controller('GenericChartCtrl', ['$scope', '$http', '$timeout', function ($
         })
         $('.panel-footer').hide();
 
-        var div =angular.element(event.currentTarget);
+        var div =angular.element($event.currentTarget);
 
 
         var h3 =div.children()[0];
