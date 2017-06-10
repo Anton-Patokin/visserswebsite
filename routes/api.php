@@ -14,9 +14,8 @@ use Illuminate\Http\Request;
 */
 Route::group([
     'middleware' => ['api', 'cors'],
-    'namespace' => $this->namespace,
     'prefix' => 'api',
-], function ($router) {
+], function () {
 
     Route::middleware('auth:api')->get('/user', function (Request $request) {
         return $request->user();
