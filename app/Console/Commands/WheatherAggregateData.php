@@ -203,6 +203,7 @@ class WheatherAggregateData extends Command
         foreach ($cities as $city) {
             $weerCityVandaag = $city->weerVandag->last();
 
+            if(count($weerCityVandaag)){}
             $voorspeling = $classifier->predict([
                 $weerCityVandaag->low,
                 $weerCityVandaag->high,

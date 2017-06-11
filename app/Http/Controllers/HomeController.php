@@ -41,7 +41,8 @@ class HomeController extends Controller
 
     public function welcome()
     {
-    return view('welcome');
+//    return view('welcome');
+        return redirect('/home');
     }
 
     public function index($datum = null)
