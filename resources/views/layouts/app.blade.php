@@ -26,13 +26,15 @@
 @endif
 @include('components.footer')
 {{url('')}}
-@if(url('/')== 'https://fishingfriends.be')
-    <script>var ROUTEFRONT = '';</script>
+{{--@if(url('/')== 'https://fishingfriends.be')--}}
+    {{--<script>var ROUTEFRONT = '';</script>--}}
 
-@else
-    <script>var ROUTEFRONT = 'http://localhost/einddwerk_visserswebsite/visserswebsite/public';</script>
+{{--@else--}}
+    {{--<script>var ROUTEFRONT = 'http://localhost/einddwerk_visserswebsite/visserswebsite/public';</script>--}}
 
-@endif
+{{--@endif--}}
+<script>var ROUTEFRONT = '';</script>
+
 <script type="text/javascript" src="{{url('/js/libs/angular.min.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/libs/lodash.min.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/libs/angular-simple-logger.min.js')}}"></script>
