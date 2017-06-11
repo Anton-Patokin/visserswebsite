@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Fishing Friends') }}</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('head')
-    
+
 </head>
 <body ng-app="myApp" ng-controller="MainController" class="background-gray">
 @include('layouts.top')
