@@ -41,7 +41,7 @@
     <script>var ROUTEFRONT = 'http://localhost/einddwerk_visserswebsite/visserswebsite/public';</script>
 
 @endif
-<script async type="text/javascript" src="{{url('/js/libs/angular.min.js')}}"></script>
+<script type="text/javascript" src="{{url('/js/libs/angular.min.js')}}"></script>
 <script async type="text/javascript" src="{{url('/js/libs/lodash.min.js')}}"></script>
 <script async src="{{url('/js/libs/angular-simple-logger.min.js')}}"></script>
 <script async src="{{url('/js/libs/angular-google-maps.js')}}"></script>
@@ -61,7 +61,7 @@
 <script async src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/1.0.0-beta.1/ng-google-chart.min.js"
         type="text/javascript"></script>
 
-<script async src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 <script id="searchbox.tpl.html" type="text/ng-template">
     <input class="form-search input-sm" type="text" placeholder="Locatie" z-index="50000">
 </script>
