@@ -1,4 +1,4 @@
-<div id="myModal" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" role="dialog" style="overflow:hidden;">
     <div class="modal-dialog modal-lg">
 
         <!-- Modal content-->
