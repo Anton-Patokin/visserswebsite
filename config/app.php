@@ -164,7 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class, //custom
         Intervention\Image\ImageServiceProvider::class,//custom
-
+        Barryvdh\Cors\ServiceProvider::class,//custom
 
         /*
          * Package Service Providers...
