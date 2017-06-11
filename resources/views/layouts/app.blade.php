@@ -28,41 +28,28 @@
 <div id="app">
     @yield('content')
 </div>
-
 <button id="go_top" class="btn btn-default button-up"><i class="glyphicon glyphicon-menu-up"></i></button>
-
 @if(Auth::user())
 @include('actions.vis-vangst')
 @endif
 @include('components.footer')
-
-        <!-- Scripts -->
-{{--<script src="{{url('/js/angular-min.js')}}"></script>--}}
-{{--<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>--}}
-{{--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>--}}
-{{--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJBGY58S0ptq6KlFxYIpNLTIEW8mBKhk4&libraries=places&sensor=false"></script>--}}
-{{--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJBGY58S0ptq6KlFxYIpNLTIEW8mBKhk4&libraries=places" async defer></script>--}}
-<script>var ROUTEFRONT = '';</script>
+<script>var ROUTEFRONT = 'http://localhost/einddwerk_visserswebsite/visserswebsite/public';</script>
 <script type="text/javascript" src="{{url('/js/libs/angular.min.js')}}"></script>
-
 <script type="text/javascript" src="{{url('/js/libs/lodash.min.js')}}"></script>
-
 <script src="{{url('/js/libs/angular-simple-logger.min.js')}}"></script>
 <script src="{{url('/js/libs/angular-google-maps.js')}}"></script>
 <script src="{{url('/js/libs/angular-messages.js')}}"></script>
-
-//test
 <script src="{{url('/js/libs/angular-animate.min.js')}}"></script>
 <script src="{{url('/js/libs/angular-aria.min.js')}}"></script>
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular-messages.min.js"></script>--}}
 <script src="{{url('/js/libs/angular-material.min.js')}}"></script>
 {{--<script src="{{url('/js/libs/ngAutocomplete.js')}}"></script>--}}
 <script src="{{ asset('js/base.js') }}"></script>
-<script src="{{url('/js/file-reader.js')}}"></script>
-<script src="{{url('/js/MainGoogleMaps.js')}}"></script>
-<script src="{{asset('js/vissersActiviteiten.js')}}"></script>
-<script src="{{asset('js/GenericChartCtrl.js')}}"></script>
-<script src="{{url('/js/smallGoogleMaps.js')}}"></script>
+{{--<script src="{{url('/js/file-reader.js')}}"></script>--}}
+{{--<script src="{{url('/js/MainGoogleMaps.js')}}"></script>--}}
+{{--<script src="{{asset('js/vissersActiviteiten.js')}}"></script>--}}
+{{--<script src="{{asset('js/GenericChartCtrl.js')}}"></script>--}}
+{{--<script src="{{url('/js/smallGoogleMaps.js')}}"></script>--}}
 <script type="text/javascript" src="{{url('/js/libs/angular-cookies.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/1.0.0-beta.1/ng-google-chart.min.js" type="text/javascript"></script>
 

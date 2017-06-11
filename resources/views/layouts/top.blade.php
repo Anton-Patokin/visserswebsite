@@ -30,7 +30,7 @@
                                            class="form-control" placeholder="Zoeken">
                     <span class="input-group-addon">
                         <button type="submit">
-                            <span class="glyphicon glyphicon-search"></span>)
+                            <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
                                     <ul id="myUL" ng-if="search_show">
