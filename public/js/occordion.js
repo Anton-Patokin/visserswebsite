@@ -1,11 +1,1 @@
-
-myApp.controller('OccordionConroller', ['$scope', function ($scope) {
-   $scope.toggelOccordion = function ($event) {
-       var div =angular.element($event.currentTarget);
-       var h3 =div.children()[0];
-       $( h3).find(".glyphicon").toggleClass('glyphicon-chevron-down');
-       var p =div.children()[1];
-       $(p).slideToggle(200);
-   };
-    
-}]);
+myApp.controller("OccordionConroller",["$scope",function(n){n.toggelOccordion=function(n){var o=angular.element(n.currentTarget),e=o.children()[0];$(e).find(".glyphicon").toggleClass("glyphicon-chevron-down");var l=o.children()[1];$(l).slideToggle(200)}}]);
