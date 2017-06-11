@@ -63,3 +63,7 @@ Route::get('/gebruiker', 'GebruikerController@index');
 
 
 Route::get('/test/{string?}','TestController@index');
+
+Route::get('/googledb7f674d6eaa91e5.html',function(){
+    return view('googleSearchConsole');
+});
