@@ -60,7 +60,9 @@
 
 @media (max-width: 480px) {
   #navbar-second {
-    margin: -50px 0 0 30px;
+    margin: auto;
+    margin-top: -50px;
+    text-align: center;
     .navbar-default .navbar-nav > li > a {
       font-size: 1em;
       margin-right: 5px;
