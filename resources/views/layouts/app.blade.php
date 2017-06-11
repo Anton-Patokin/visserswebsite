@@ -30,10 +30,17 @@
 </div>
 <button id="go_top" class="btn btn-default button-up"><i class="glyphicon glyphicon-menu-up"></i></button>
 @if(Auth::user())
-@include('actions.vis-vangst')
+    @include('actions.vis-vangst')
 @endif
 @include('components.footer')
-<script>var ROUTEFRONT = 'http://localhost/einddwerk_visserswebsite/visserswebsite/public';</script>
+
+@if(url('/')== 'https://fishingfriends.be/')
+    <script>var ROUTEFRONT = '';</script>
+
+@else
+    <script>var ROUTEFRONT = 'http://localhost/einddwerk_visserswebsite/visserswebsite/public';</script>
+
+@endif
 <script async type="text/javascript" src="{{url('/js/libs/angular.min.js')}}"></script>
 <script async type="text/javascript" src="{{url('/js/libs/lodash.min.js')}}"></script>
 <script async src="{{url('/js/libs/angular-simple-logger.min.js')}}"></script>
@@ -51,7 +58,8 @@
 {{--<script src="{{asset('js/GenericChartCtrl.js')}}"></script>--}}
 {{--<script src="{{url('/js/smallGoogleMaps.js')}}"></script>--}}
 <script async type="text/javascript" src="{{url('/js/libs/angular-cookies.min.js')}}"></script>
-<script async src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/1.0.0-beta.1/ng-google-chart.min.js" type="text/javascript"></script>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/angular-google-chart/1.0.0-beta.1/ng-google-chart.min.js"
+        type="text/javascript"></script>
 
 <script async src="{{ asset('js/app.js') }}"></script>
 <script id="searchbox.tpl.html" type="text/ng-template">
@@ -74,7 +82,7 @@
 
         })
         $('#go_top').click(function () {
-            $("html, body").animate({ scrollTop: 0 }, "slow");
+            $("html, body").animate({scrollTop: 0}, "slow");
         })
 
         $('[data-toggle="tooltip"]').tooltip();
