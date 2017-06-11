@@ -3,7 +3,7 @@ var MAX_SIZE = 5000000;//5mb
 var myApp = angular.module('myApp', ['uiGmapgoogle-maps', 'ngMaterial', 'ngCookies', 'ngMessages', 'googlechart']);
 
 
-myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader', '$http', '$window', function ($scope, uiGmapGoogleMapApi, fileReader, $http, $window) {
+myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader', '$http', '$window','$timeout', function ($scope, uiGmapGoogleMapApi, fileReader, $http, $window,$timeout) {
     $scope.latLngFromAdress = {result: ''};
     $scope.options1 = {
         country: 'be',
@@ -80,7 +80,11 @@ myApp.controller('MainController', ['$scope', 'uiGmapGoogleMapApi', 'fileReader'
     }
 
 
-
+$scope.blurSearch = function () {
+    $timeout(function () {
+        search_show = false;
+    },200)
+}
 
     $scope.search_all_resualt = "";
     $scope.zoeken = function (zoeken) {

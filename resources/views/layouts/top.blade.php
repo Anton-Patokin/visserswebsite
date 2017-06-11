@@ -26,16 +26,16 @@
                         <div class="form-group">
                             <div id="imaginary_container">
                                 <div class="input-group stylish-input-group">
-                                    <input ng-focus="search_show = true" ng-blur="search_show = false" ng-keyup="zoeken(zoeken_alles)" ng-model="zoeken_alles" type="text"
+                                    <input ng-focus="search_show = true" ng-blur="blurSearch()" ng-keyup="zoeken(zoeken_alles)" ng-model="zoeken_alles" type="text"
                                            class="form-control" placeholder="Zoeken">
                     <span class="input-group-addon">
                         <button type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
+                            <span class="glyphicon glyphicon-search"></span>)
                         </button>
                     </span>
                                     <ul id="myUL" ng-if="search_show">
                                         <div ng-repeat="search in search_all_resualt">
-                                            <li ><a href="#">@{{ search.titel }}</a></li>
+                                            <li ><a ng-href="/@{{  search.type}}/@{{  search.id}}/@{{ search.titel }}">@{{ search.titel }}>@{{ search.titel }}</a></li>
                                         </div>
                                     </ul>
 
