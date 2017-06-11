@@ -223,7 +223,9 @@ class WheatherAggregateData extends Command
             $newVoorspeling = new Vorspeling;
             $newVoorspeling->voorspelling = $voorspeling;
             $newVoorspeling->city_id = $city->id;
-            $newVoorspeling->save();
+            if ($newVoorspeling->voorspelling) {
+                $newVoorspeling->save();
+            };
         }
 
 
