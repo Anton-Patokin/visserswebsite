@@ -46,7 +46,39 @@
   color: #fff;
   text-align: center;
 }
+.fish-bad {
+  /*background-color: #007d9b;*/
+  background-color: rgba(243, 133, 51, 0.1);
 
+  /*background-color: rgba(0 125 155 0.3);*/
+}
+
+.fish-meddium {
+  /*background-color: #007d9b;*/
+  background-color: rgba(0, 125, 155, 0.05);
+
+  /*background-color: rgba(0 125 155 0.3);*/
+}
+
+.fish-good {
+  /*background-color: #007d9b;*/
+  background-color: rgba(165, 162, 63, 0.3);
+
+  /*background-color: rgba(0 125 155 0.3);*/
+}
+
+.fish-veryGood {
+  /*background-color: #007d9b;*/
+  background-color: rgba(128, 214, 81, 0.1);
+  /*background-color: rgba(0 125 155 0.3);*/
+}
+
+.circel-rood-legenda {
+  background-color: #d81b60;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+}
 
 
 
