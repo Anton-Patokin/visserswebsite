@@ -1,1 +1,112 @@
-myApp.controller("GenericChartCtrl",["$scope","$http","$timeout",function(e,n,t){function a(n){e.myChartObject.data={cols:[{id:"t",label:"Soort",type:"string"},{id:"s",label:"Aantal",type:"number"}],rows:n},e.myChartObject.options={title:"Percentual gevangen vissoorten"}}function o(n){e.totaalAantalVissenGevangen.data={cols:[{id:"t",label:"Soort",type:"string"},{id:"s",label:"Aantal",type:"number"}],rows:n},e.totaalAantalVissenGevangen.options={title:"Aantal gevangen vissoorten per soort"}}e.myChartObject={},e.totaalAantalVissenGevangen={},e.alleVisOpDag="",e.myChartObject.type="PieChart",e.totaalAantalVissenGevangen.type="ColumnChart",e.onions=[{v:"Onions"},{v:3}],e.initUser=function(l){console.log("user",l);l.length&&t(function(){n({method:"POST",url:ROUTEFRONT+"/api/get/pieChart",data:{id:l}}).success(function(e,n,t,l){$soortValues=[],angular.forEach(e,function(e,n){var t=0;angular.forEach(e,function(e,n){t+=e.aantal}),$soortValues.push({c:[{v:n},{v:t}]})}),a($soortValues),o($soortValues)})},200),l.length&&t(function(){n({method:"POST",url:ROUTEFRONT+"/api/get/alleVissen",data:{id:l}}).success(function(n,t,a,o){console.log(n),e.alleVisOpDag=n})},200)},e.visDagGegevens="",e.toggelOccordion=function(t,a){n({method:"POST",url:ROUTEFRONT+"/api/get/visWeer",data:{id:a}}).success(function(n,t,a,o){console.log(n),e.visDagGegevens=n}),$(".panel-footer").hide();var o=angular.element(t.currentTarget),l=o.children()[0];$(".glyphicon").removeClass("glyphicon-chevron-down"),$(l).find(".glyphicon").addClass("glyphicon-chevron-down");var s=o.children()[1];$(s).slideToggle(200)}}]);
+myApp.controller('GenericChartCtrl', ['$scope', '$http', '$timeout', function ($scope, $http, $timeout) {
+
+    $scope.myChartObject = {};
+    $scope.totaalAantalVissenGevangen = {};
+    $scope.alleVisOpDag = '';
+    $scope.myChartObject.type = "PieChart";
+    $scope.totaalAantalVissenGevangen.type = "ColumnChart";
+    $scope.onions = [
+        {v: "Onions"},
+        {v: 3},
+    ];
+
+
+    $scope.initUser = function ($id) {
+        console.log('user', $id);
+        var url = '/api/get/pieChart/' + $id;
+
+        if ($id.length) {
+            $timeout(function () {
+                $http({
+                    method: 'POST',
+                    url: ROUTEFRONT + '/api/get/pieChart',
+                    data: {id: $id}
+                }).success(function (datas, status, headers, config) {
+                    $soortValues = [];
+                    angular.forEach(datas, function (data, key) {
+
+                        var aantalvissen = 0;
+                        angular.forEach(data, function (value, key_value) {
+                            aantalvissen += value.aantal;
+                        })
+
+                        $soortValues.push({
+                            c: [
+                                {v: key},
+                                {v: aantalvissen},
+                            ]
+                        });
+                    });
+                    pichartInitalize($soortValues);
+                    totaalAantalVissenGevangenInitialize($soortValues);
+                })
+            }, 200);
+
+        }
+
+        if ($id.length) {
+            $timeout(function () {
+                $http({
+                    method: 'POST',
+                    url: ROUTEFRONT + '/api/get/alleVissen',
+                    data: {id: $id}
+                }).success(function (datas, status, headers, config) {
+                    console.log(datas)
+                    $scope.alleVisOpDag = datas;
+                })
+            }, 200);
+
+        }
+
+
+    }
+
+    $scope.visDagGegevens='';
+    $scope.toggelOccordion = function ($event,$id) {
+
+        $http({
+            method: 'POST',
+            url: ROUTEFRONT + '/api/get/visWeer',
+            data: {id: $id}
+        }).success(function (datas, status, headers, config) {
+            console.log(datas)
+            $scope.visDagGegevens=datas;
+        })
+        $('.panel-footer').hide();
+
+        var div =angular.element($event.currentTarget);
+        var h3 =div.children()[0];
+        $( '.glyphicon').removeClass('glyphicon-chevron-down');
+        $( h3).find(".glyphicon").addClass('glyphicon-chevron-down');
+        var p =div.children()[1];
+        $(p).slideToggle(200);
+
+    };
+
+    function pichartInitalize($soortValues) {
+        $scope.myChartObject.data = {
+            "cols": [
+                {id: "t", label: "Soort", type: "string"},
+                {id: "s", label: "Aantal", type: "number"}
+            ], "rows": $soortValues
+        };
+        $scope.myChartObject.options = {
+            'title': 'Percentual gevangen vissoorten'
+        };
+    }
+
+    function totaalAantalVissenGevangenInitialize($aantalvissenArray) {
+        $scope.totaalAantalVissenGevangen.data = {
+            "cols": [
+                {id: "t", label: "Soort", type: "string"},
+                {id: "s", label: "Aantal", type: "number"}
+            ], "rows": $aantalvissenArray
+        };
+
+        $scope.totaalAantalVissenGevangen.options = {
+            'title': 'Aantal gevangen vissoorten per soort'
+        };
+    }
+
+
+}]);

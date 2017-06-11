@@ -1,1 +1,12 @@
-myApp.controller("GoogleMapsSmaalConroller",["$scope",function(o){o.map={options:{scrollwheel:!1,minZoom:7,maxZoom:17},zoom:10}}]);
+
+myApp.controller('GoogleMapsSmaalConroller', ['$scope', function ($scope) {
+    $scope.map = {
+        
+        options: {
+            scrollwheel: false,
+            minZoom: 7,
+            maxZoom: 17,
+        },
+        zoom:10
+    };
+}]);

@@ -25,8 +25,15 @@
 @if(Auth::user())
 @include('actions.vis-vangst')
 @endif
+
+
+
+@if(!Cookie::has('cookieFishingFriendsAccord'))
+
+    @include('cookie')
+@endif
+
 @include('components.footer')
-{{url('')}}
 {{--@if(url('/')== 'https://fishingfriends.be')--}}
     {{--<script>var ROUTEFRONT = '';</script>--}}
 
