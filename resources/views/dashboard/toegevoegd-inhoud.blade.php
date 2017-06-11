@@ -13,8 +13,15 @@
                         @if(isset($showContentToevoegen)&&$showContentToevoegen==true)
                             @include('components.voeg-content-toe')
                         @else
+
+
                             <div class="form-group">
-                                <input class="form-control" type="search" ng-model="search" placeholder="Filter"/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input class="form-control filterSearch" type="search" ng-model="search" placeholder="Filter"/>
+                                    </div>
+                                </div>
+
                             </div>
                             @include('dashboard.tabel-toegevoegd')
                         @endif

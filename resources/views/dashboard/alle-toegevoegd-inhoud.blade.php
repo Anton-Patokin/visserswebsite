@@ -10,7 +10,7 @@
                 <div class="thumbnail">
                     <div class="caption">
                         <div class="form-group">
-                            <input class="form-control" type="search" ng-model="search" placeholder="Filter"/>
+                            <input class="form-control col-md-12" type="search" ng-model="search" placeholder="Filter"/>
                         </div>
                         @include('dashboard.tabel-toegevoegd')
                     </div>

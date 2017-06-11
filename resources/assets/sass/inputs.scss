@@ -34,7 +34,18 @@
     background: #fafafa;
   }
 }
+.form-group .form-control.filterSearch{
+  width: 98%;
+  @media (max-width: 768px) {
 
+      width: 93%;
+
+  }
+  @media (max-width: 480px) {
+    width: 90%;
+  }
+
+}
 .form-search{
   margin-top: 8px;
   width: 75%;
