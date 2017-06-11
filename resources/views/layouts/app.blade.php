@@ -33,7 +33,7 @@
 @include('actions.vis-vangst')
 @endif
 @include('components.footer')
-<script>var ROUTEFRONT = 'http://localhost/einddwerk_visserswebsite/visserswebsite/public';</script>
+<script>var ROUTEFRONT = '';</script>
 <script type="text/javascript" src="{{url('/js/libs/angular.min.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/libs/lodash.min.js')}}"></script>
 <script src="{{url('/js/libs/angular-simple-logger.min.js')}}"></script>
