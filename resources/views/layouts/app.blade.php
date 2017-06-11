@@ -25,7 +25,8 @@
 @include('actions.vis-vangst')
 @endif
 @include('components.footer')
-@if(url('/')== 'https://fishingfriends.be/')
+{{url('')}}
+@if(url('/')== 'https://fishingfriends.be')
     <script>var ROUTEFRONT = '';</script>
 
 @else
