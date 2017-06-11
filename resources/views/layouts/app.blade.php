@@ -42,7 +42,7 @@
 {{--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>--}}
 {{--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDJBGY58S0ptq6KlFxYIpNLTIEW8mBKhk4&libraries=places&sensor=false"></script>--}}
 {{--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJBGY58S0ptq6KlFxYIpNLTIEW8mBKhk4&libraries=places" async defer></script>--}}
-<script>var ROUTEFRONT = 'https://www.fishingfriends.be';</script>
+<script>var ROUTEFRONT = '';</script>
 <script type="text/javascript" src="{{url('/js/libs/angular.min.js')}}"></script>
 
 <script type="text/javascript" src="{{url('/js/libs/lodash.min.js')}}"></script>
