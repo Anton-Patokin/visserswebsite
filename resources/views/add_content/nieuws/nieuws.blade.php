@@ -144,7 +144,9 @@
                                               rows="25">
                                         {{ old('wiziwig') }}
                                         @if(isset($aanpasen))
-                                            {{$aanpasen->wiziwig}}
+{{--                                            {{$aanpasen->wiziwig}}--}}
+                                            {!! File::get('files/'.$aanpasen->url.'.php') !!}
+
                                         @endif
                                     </textarea>
                                                         <div class="space-for-errors">

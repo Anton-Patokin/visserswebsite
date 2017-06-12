@@ -206,7 +206,7 @@ class Add_contentController extends Controller
         }
         if ($fileName && $nieuwsArtikel) {
             $fileName_php=$this->SaveHtml($fileName_php, $request->wiziwig);
-            $nieuwsArtikel->titel = $request->titel;
+            $nieuwsArtikel->titel = str_replace('/','-',$request->titel);
             $nieuwsArtikel->inleiding = $request->inleiding;
             $nieuwsArtikel->image = $fileName;
             $nieuwsArtikel->url = $fileName_php;

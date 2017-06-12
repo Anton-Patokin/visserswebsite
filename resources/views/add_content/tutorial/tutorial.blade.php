@@ -155,7 +155,9 @@
                                               rows="25">
                                         {{ old('wiziwig') }}
                                         @if(isset($aanpasen))
-                                            {{$aanpasen->wiziwig}}
+{{--                                            {{$aanpasen->wiziwig}}--}}
+                                            {!! File::get('files/'.$aanpasen->url.'.php') !!}
+
                                         @endif
                                     </textarea>
                                                 <div class="space-for-errors">
@@ -219,6 +221,8 @@
     </div>
 @endsection
 @section('script')
+    {{--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.css" rel="stylesheet">--}}
+    {{--<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.3/summernote.js"></script>--}}
     <link href="{{url('/css/summernote.css')}}" rel="stylesheet">
     <script src="{{url('/js/libs/summernote.js')}}"></script>
     <script>
