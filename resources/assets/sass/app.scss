@@ -153,8 +153,6 @@ footer{
   color: $dark-blue;
 
 }
-
-
 //coocie
 .cookie {
   position: fixed;
@@ -164,10 +162,12 @@ footer{
   z-index: 200;
   background-color: #323b44;
   color: #fff;
-  height: 75px;
+  min-height: 75px;
 }
 .cookie .content {
   padding-top: 22px;
+  padding-bottom: 2px;
+
 }
 .cookie .content p {
   padding-top: 8px;

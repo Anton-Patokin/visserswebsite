@@ -5,7 +5,7 @@
     @endif
     <div id="snackbar" ng-if="ShowvisActiviteitenPopUp" ng-class='{show:animatePopUp,hide:!animatePopUp}'>
 
-        <img class="worm-icon col-xs-3" src="{{url('/images/icon/worm.png')}}">
+        <img class="worm-icon col-xs-3 hide-600" src="{{url('/images/icon/worm.png')}}">
         <div class="snackbar-box col-xs-9">
             <a href="#" class="snackbar-icon" data-toggle="tooltip"
                title="We verzamelen gegevens van vissers om later voorspelingen te kunnen maken over vangstkansen van toekomstige visdagen.">
