@@ -189,7 +189,7 @@
     </div>
 @endsection
 @section('script')
-    <link href="{{url('/css/sullernote.css')}}" rel="stylesheet">
+    <link href="{{url('/css/summernote.css')}}" rel="stylesheet">
     <script src="{{url('/js/libs/summernote.js')}}"></script>
     <script>
         $(document).ready(function () {
