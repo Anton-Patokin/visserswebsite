@@ -71,7 +71,7 @@ myApp.controller("MainController", ["$scope", "uiGmapGoogleMapApi", "fileReader"
         adres: {nummer: "", straat: "", provincie: "", postCode: "", gewest: "", stad: "", land: ""}
     }, e.blurSearch = function () {
         r(function () {
-            search_show = !1
+            e.search_show = !1
         }, 200)
     }, e.search_all_resualt = "", e.zoeken = function (t) {
         i({method: "POST", url: ROUTEFRONT + "/api/zoeken/alles", data: {input: t}}).success(function (t) {

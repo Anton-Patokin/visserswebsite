@@ -178,7 +178,7 @@
                                        type="text"
                                        class="form-control input-lg" ng-focus="classVergunigenFocus =true"
                                        ng-blur="classVergunigenFocus =false"
-                                       id="" ng-model="input.vergunigen" ng-maxlength="50" maxlength="250"
+                                       id="" ng-model="input.vergunigen" ng-maxlength="250" maxlength="250"
                                        placeholder="Standart post vergunigen">
                                 <div class="space-for-errors">
                                     <p class="error alert alert-danger "
