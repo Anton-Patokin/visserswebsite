@@ -17,7 +17,6 @@
 
 <div class="container">
     <div class="col-md-12">
-        <h1>test</h1>
         <a href="{{url('/')}}" class="thumbnail">
             <img class="page_404" src="{{url('/images/404.jpg')}}" >
         </a>
