@@ -226,7 +226,7 @@ class HomeController extends Controller
             if ($show) {
                 if ($tabel == 'vis_pleks') {
                     $value = VisPlek::with('user')->where('id', $id)->get()->first();
-                    $relevente = $visplaats = VisPlek::where('active', '2')->search($value->vissoorten, null, true, true)->take(15)->get();
+                    $relevente = $visplaats = VisPlek::where('active', '2')->search(substr($value->vissoorten,0,5), null, true, true)->take(15)->get();
                     return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 if ($tabel == 'wedstrijds') {
@@ -239,7 +239,7 @@ class HomeController extends Controller
                     return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 if ($tabel == 'tutorials') {
-                    $relevente = Tutorial::where('active', '2')->search($value->inleiding, null, true, true)->take(15)->get();;
+                    $relevente = Tutorial::where('active', '2')->search(substr($value->inleiding,0,15), null, true, true)->take(15)->get();;
                     return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 return view('show/' . $view1, ['content' => $value]);
