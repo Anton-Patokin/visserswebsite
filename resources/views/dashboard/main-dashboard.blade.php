@@ -89,7 +89,7 @@ $message = Config::get('constant.Headings');
                                                     </div>
                                                     <div class="col-xs-12 col-sm-9 col-md-9">
                                                         <div class="col-xs-12 col-sm-12 col-md-12">
-                                                            <h3>Gegevens over het dag</h3>
+                                                            <h3>Gegevens over de dag</h3>
                                                         </div>
 
                                                         <div class="row">
