@@ -41,7 +41,9 @@
     {{--<script>var ROUTEFRONT = 'http://localhost/einddwerk_visserswebsite/visserswebsite/public';</script>--}}
 
 {{--@endif--}}
-<script>var ROUTEFRONT = '';</script>
+
+
+<script>var ROUTEFRONT = 'https://localhost/einddwerk_visserswebsite/visserswebsite/public';</script>
 
 <script type="text/javascript" src="{{url('/js/libs/angular.min.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/libs/lodash.min.js')}}"></script>
