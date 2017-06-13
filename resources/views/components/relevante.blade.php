@@ -14,22 +14,24 @@
                     </div>
                     @if(count($relevente)>1)
                         @foreach($relevente as $key=>$value)
-                            <?php $content_url = url('/' . $content->type . '/' . $content->id . '/' . substr($content->titel, 0, 40))?>
+                            @if($content->titel != $value->titel)
+                            <?php $content_url = url('/' . $value->type . '/' . $value->id . '/' . str_replace(' ','-',substr($value->titel, 0, 15)))?>
                             <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
                                 <div class="media">
                                     <div class="media-left">
                                         <a href="{{$content_url}}" class="popular-img">
-                                            <img src="{{url('/uploads/thumbnail/'.$content->image)}}">
+                                            <img src="{{url('/uploads/thumbnail/'.$value->image)}}">
                                             <div class="p-overlay"></div>
                                         </a>
                                     </div>
                                     <div class="p-content">
                                         <a href="{{$content_url}}"
-                                           class="text-uppercase">{{substr($content->titel,0,40)}}</a>
-                                        <span class="p-date">{{ date("d-m-Y", strtotime($content->updated_at))}}</span>
+                                           class="text-uppercase">{{substr($value->titel,0,40)}}</a>
+                                        <span class="p-date">{{ date("d-m-Y", strtotime($value->updated_at))}}</span>
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         @endforeach
                     @else
                         <a href="{{url('/home')}}"><h4 class="text-uppercase text-center">Home</h4></a>

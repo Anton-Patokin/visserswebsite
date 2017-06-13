@@ -94,7 +94,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="watertype">Watertype*</label>
+                                                <label for="watertype">Categorie*</label>
                                                 <select class="form-control input-lg ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched"
                                                         ng-model="tutorialCategory" required="required" name="category"
                                                         aria-invalid="true">
