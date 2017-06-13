@@ -23,6 +23,9 @@ class User extends Authenticatable
             'users.ervaring' => 5,
             'users.leeftijd' => 2,
             'users.geslacht' => 2,
+            'users.straat' => 5,
+            'users.geweest' => 5,
+            'users.stad' => 5,
         ]
     ];
 

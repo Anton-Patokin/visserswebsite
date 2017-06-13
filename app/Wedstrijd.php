@@ -21,6 +21,9 @@ class Wedstrijd extends Model
             'wedstrijds.water' => 7,
             'wedstrijds.datum' => 2,
             'wedstrijds.text' => 7,
+            'wedstrijds.straat' => 5,
+            'wedstrijds.geweest' => 5,
+            'wedstrijds.stad' => 5,
         ]
     ];
     public function user()

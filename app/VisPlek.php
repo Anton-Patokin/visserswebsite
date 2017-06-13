@@ -19,6 +19,11 @@ class VisPlek extends Model
             'vis_pleks.viswater' => 5,
             'vis_pleks.vissoorten' => 10,
             'vis_pleks.text' => 5,
+            'vis_pleks.straat' => 5,
+            'vis_pleks.geweest' => 5,
+            'vis_pleks.stad' => 5,
+
+
         ]
     ];
 

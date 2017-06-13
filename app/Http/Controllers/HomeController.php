@@ -226,7 +226,7 @@ class HomeController extends Controller
             if ($show) {
                 if ($tabel == 'vis_pleks') {
                     $value = VisPlek::with('user')->where('id', $id)->get()->first();
-                    $relevente = $visplaats = VisPlek::where('active', '2')->search(substr($value->vissoorten,0,5), null, true, true)->take(15)->get();
+                    $relevente = $visplaats = VisPlek::where('active', '2')->search($value->watertype, null, true, true)->take(15)->get();
                     return view('show/' . $view1, ['content' => $value, 'relevente' => $relevente]);
                 }
                 if ($tabel == 'wedstrijds') {
