@@ -24,6 +24,7 @@ Route::get('/gids/{id?}/{titel?}/{amp?}', 'HomeController@trainer');
 Route::get('/over-ons', 'HomeController@overOns');
 Route::get('/contact', 'HomeController@contact');
 Route::get('/nieuws/{id?}/{titel?}/{amp?}', 'HomeController@nieuws');
+Route::get('/nieuwsArtikel/{id?}/{titel?}/{amp?}', 'HomeController@nieuws');
 Route::get('/tutorials/{category}','HomeController@tutorials_by_category');
 
 Route::get('/dashboard', 'DashboardController@index');
