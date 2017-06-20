@@ -265,7 +265,7 @@
     <div class="thumbnail">
         <img ng-src="@{{imageSrc}}" alt="">
         <div class="card-profile pull-right">
-            <img src="{{url('/images/icon/vishak.jpg')}}">
+            <img src="{{url('/images/icon/fish.jpg')}}">
         </div>
         <div class="caption margin-top-5">
             <h3>@{{input.naam_visplek}}</h3>

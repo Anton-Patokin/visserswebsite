@@ -45,7 +45,7 @@
                     <div class="col-md-12">
                         <h4>Legenda</h4>
                         <a class="normaal-font" href="#" data-toggle="tooltip"
-                           title="Deze prognoses zijn gemaakt aan de hand van de maanstand een de weer">
+                           title="Deze prognoses zijn gemaakt aan de hand van de maanstand.">
                             <table class="table table-bordered table-style table-responsive">
                                 <tr>
                                     <td class="fish-bad"></td>
