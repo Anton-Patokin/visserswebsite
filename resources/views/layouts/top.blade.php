@@ -35,7 +35,7 @@
                     </span>
                                     <ul id="myUL" ng-if="search_show">
                                         <div ng-repeat="search in search_all_resualt">
-                                            <li ><a ng-href="/@{{  search.type}}/@{{  search.id}} }}">@{{ search.titel }}>@{{ search.titel }}</a></li>
+                                            <li ><a ng-href="/@{{  search.type}}/@{{  search.id}}}}">@{{ search.titel }}>@{{ search.titel }}</a></li>
                                         </div>
                                     </ul>
 
