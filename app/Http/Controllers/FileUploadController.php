@@ -23,10 +23,11 @@ class FileUploadController extends Controller
 
     public function fileextExtensionValidation($file)
     {
-        $allowed_extensions = ["jpeg", "png", "jpg"];
+        $allowed_extensions = ["jpeg", "png", "jpg","JPEG", "PNG", "JPG"];
         $extension = $file->getClientOriginalExtension(); // getting image extension
 
         //check whether file extension is valid
+
         if (!in_array($extension, $allowed_extensions)) {
             return false;
         }

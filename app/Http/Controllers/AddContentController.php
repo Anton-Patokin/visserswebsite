@@ -134,6 +134,7 @@ class AddContentController extends Controller
             if ($validator->fails()) {
                 return $validator->messages();
             }
+
             if (Input::hasFile('file')) {
                 $file = Input::file('file');
                 $user = User::find($input['id']);
