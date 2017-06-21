@@ -180,7 +180,7 @@ class Add_contentController extends Controller
                     if ($request->image) {
                         $this->validate($request,
                             [
-                                'image' => 'required | mimes:jpeg,jpg,png,| max:5000',
+                                'image' => 'required | mimes:jpeg,jpg,png,JPEG,JPG,PNG| max:5000',
                             ]);
                         $fileName = $this->fileUpload->fileUpload($request->image);
 
@@ -197,7 +197,7 @@ class Add_contentController extends Controller
 
                 $this->validate($request,
                     [
-                        'image' => 'required | mimes:jpeg,jpg,png | max:5000',
+                        'image' => 'required | mimes:jpeg,jpg,png,JPEG,JPG,PNG | max:5000',
                     ]);
                 $fileName = $this->fileUpload->fileUpload($request->image);
                 $nieuwsArtikel = new NieuwsArtikel;
